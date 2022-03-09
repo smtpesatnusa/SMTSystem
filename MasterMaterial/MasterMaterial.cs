@@ -79,8 +79,7 @@ namespace SMTPE
             try
             {
                 (dataGridViewMasterMaterialList.DataSource as DataTable).DefaultView.RowFilter =
-                    string.Format("material LIKE '{0}%' or materialdescription LIKE '{0}%'" +
-                    " or materialtype LIKE '{0}%'1" , tbSearch.Text);
+                    string.Format("material LIKE '{0}%'" , tbSearch.Text);
             }
             catch (Exception ex)
             {

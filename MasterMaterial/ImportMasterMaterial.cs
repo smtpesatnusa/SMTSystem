@@ -3,9 +3,7 @@ using MetroFramework;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
@@ -18,8 +16,6 @@ namespace SMTPE
         Helper help = new Helper();
         ConnectionDB connectionDB = new ConnectionDB();
         string idUser;
-
-        DataTable dtExcel = new DataTable();
 
         public ImportMasterMaterial()
         {
@@ -77,10 +73,10 @@ namespace SMTPE
                 {
                     string path = MMFileName.ToLower();
                     int sheet = 1;
-                    //DataTable dtExcel = new DataTable();
-                    //dtExcel = help.GetDataFromExcel(path, sheet); //read excel file  
-                    dtExcel = help.ReadDataExcel(path); //read excel file  
+                    DataTable dtExcel = new DataTable();
+                    dtExcel = help.GetDataFromExcel(path, sheet); //read excel file  
                     dataGridViewMasterMaterial.DataSource = dtExcel;
+                    totalLbl.Text = dataGridViewMasterMaterial.Rows.Count.ToString();
                     saveButton.Enabled = true;
                     CloseProgress();
                 }
@@ -93,91 +89,6 @@ namespace SMTPE
             }
         }
 
-        public static void BatchUpdate(DataTable dataTable, Int32 batchSize)
-        {
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
-
-
-            using (MySqlConnection connection = new MySqlConnection(ConnectionDB.strProvider))
-            {
-                // Create a SqlDataAdapter.  
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-
-                //// Set the UPDATE command and parameters.  
-                //adapter.UpdateCommand = new SqlCommand(
-                //    "UPDATE Production.ProductCategory SET "
-                //    + "Name=@Name WHERE ProductCategoryID=@ProdCatID;",
-                //    connection);
-                //adapter.UpdateCommand.Parameters.Add("@Name",
-                //   SqlDbType.NVarChar, 50, "Name");
-                //adapter.UpdateCommand.Parameters.Add("@ProdCatID",
-                //   SqlDbType.Int, 4, "ProductCategoryID");
-                //adapter.UpdateCommand.UpdatedRowSource = UpdateRowSource.None;
-
-                // Set the INSERT command and parameter.  
-                adapter.InsertCommand = new MySqlCommand(
-                    "INSERT INTO tbl_mastermaterial (material, materialdescription, lastChange, materialtype, baseUoM, createdby, materialOri) VALUES " +
-                    "(@material, @materialdescription, @lastChange, @materialtype, @baseUoM, @createdby, @materialOri);",
-                    connection);
-                adapter.InsertCommand.Parameters.Add("@material", MySqlDbType.VarChar, 50, "material");
-                adapter.InsertCommand.Parameters.Add("@materialdescription", MySqlDbType.VarChar, 50, "Material description");
-                adapter.InsertCommand.Parameters.Add("@lastChange", MySqlDbType.VarChar, 50, "Last Change");
-                adapter.InsertCommand.Parameters.Add("@materialtype", MySqlDbType.VarChar, 50, "Material type");
-                adapter.InsertCommand.Parameters.Add("@baseUoM", MySqlDbType.VarChar, 50, "Base Unit of Measure");
-                adapter.InsertCommand.Parameters.Add("@createdby", MySqlDbType.VarChar, 50, "Created by");
-                adapter.InsertCommand.Parameters.Add("@materialOri", MySqlDbType.VarChar, 50, "xx");
-                adapter.InsertCommand.UpdatedRowSource = UpdateRowSource.None;
-
-                //// Set the DELETE command and parameter.  
-                //adapter.DeleteCommand = new SqlCommand(
-                //    "DELETE FROM Production.ProductCategory "
-                //    + "WHERE ProductCategoryID=@ProdCatID;", connection);
-                //adapter.DeleteCommand.Parameters.Add("@ProdCatID",
-                //  SqlDbType.Int, 4, "ProductCategoryID");
-                //adapter.DeleteCommand.UpdatedRowSource = UpdateRowSource.None;
-
-                adapter.InsertCommand.CommandTimeout = 0;
-
-                // Set the batch size.  
-                adapter.UpdateBatchSize = batchSize;
-
-                // Execute the update.  
-                adapter.Update(dataTable);
-            }
-
-            stopwatch.Stop();
-            Debug.WriteLine(" inserts took " + stopwatch.ElapsedMilliseconds + " ms");
-        }
-
-
-        public static void BulkToMySQL()
-        {
-            string host = "localhost";
-            string database = "newpedev";
-            string userDB = "root";
-            string password = "";
-
-            string ConnectionString = "server=" + host + ";Database=" + database + ";User ID=" + userDB + ";Password=" + password;
-            MySqlCommand sCommand = new MySqlCommand("INSERT INTO tbl_mastermaterial (material, materialdescription) VALUES ");
-            using (MySqlConnection mConnection = new MySqlConnection(ConnectionString))
-            {
-                List<string> Rows = new List<string>();
-                for (int i = 0; i < 100000; i++)
-                {
-                    Rows.Add(string.Format("('{0}','{1}')", MySqlHelper.EscapeString("test"), MySqlHelper.EscapeString("test")));
-                }
-
-                //sCommand.Append(string.Join(",", Rows));
-                //sCommand.Append(";");
-                mConnection.Open();
-                using (MySqlCommand myCmd = new MySqlCommand(sCommand.ToString(), mConnection))
-                {
-                    myCmd.CommandType = CommandType.Text;
-                    myCmd.ExecuteNonQuery();
-                }
-            }
-        }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
@@ -197,9 +108,6 @@ namespace SMTPE
 
                 else
                 {
-                    //CSVToMySQL();
-
-                    ////BatchUpdate(dtExcel, 10000);
 
                     bgWorker.WorkerSupportsCancellation = true;
 
@@ -250,23 +158,6 @@ namespace SMTPE
             {
                 dataGridViewMasterMaterial.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
             }
-
-            //// Set table title 
-            //string[] title = { "Material", "Plant", "Valuation Type",  "Material Description", "Last Change", "Material type", "Material Group", "Base UoM", "Purchasing Group", "ABC Indicator", "MRP Type", "Valuation Class", "Price control", "Price", "Currency", "Price unit", "Created by"};
-
-            //for (int i = 0; i < title.Length; i++)
-            //{
-            //    dataGridViewMasterMaterial.Columns[i].HeaderText = "" + title[i];
-            //}
-
-            //        //memberi nomor row
-            //        for (int i = 0; i < dataGridViewMasterMaterial.Rows.Count; ++i)
-            //        {
-            //            int row = i + 1;
-            //            dataGridViewMasterMaterial.Rows[i].HeaderCell.Value = "" + row;
-            //        }
-
-            //dataGridViewMasterMaterial.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
         }
 
         private void ImportMasterMaterial_FormClosing(object sender, FormClosingEventArgs e)
@@ -307,25 +198,14 @@ namespace SMTPE
                 for (int i = 0; i < dataGridViewMasterMaterial.Rows.Count; i++)
                 {
                     string material = dataGridViewMasterMaterial.Rows[i].Cells[0].Value.ToString();
-                    string materialOri = material.Substring(2);
-                    //materialOri = materialOri.Substring(0, materialOri.Length - 1);
-                    string materialDesc = dataGridViewMasterMaterial.Rows[i].Cells[3].Value.ToString().Replace("'", "''");
-                    string lastChange = dataGridViewMasterMaterial.Rows[i].Cells[4].Value.ToString();
-                    string materialType = dataGridViewMasterMaterial.Rows[i].Cells[5].Value.ToString();
-                    string baseUOM = dataGridViewMasterMaterial.Rows[i].Cells[7].Value.ToString();
-                    string createdBy = dataGridViewMasterMaterial.Rows[i].Cells[16].Value.ToString();
-                    string ftype = "-";
+                    string importDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    string importBy = idUser;
 
                     // query insert data part code
                     string StrQuery = "INSERT INTO tbl_mastermaterial VALUES (null,'"
                          + material + "','"
-                         + materialDesc + "', '"
-                         + lastChange + "', '"
-                         + materialType + "', '"
-                         + baseUOM + "', '"
-                         + createdBy + "', '"
-                         + ftype + "','"
-                         + idUser + "','-'); ";
+                         + importDate + "', '"
+                         + importBy + "'); ";
 
                     cmd.CommandText = StrQuery;
                     cmd.ExecuteNonQuery();
@@ -345,32 +225,6 @@ namespace SMTPE
                 MessageBox.Show(ex.Message.ToString());
             }
 
-        }
-
-        public static void CSVToMySQL()
-        {
-            string Command = "INSERT INTO tbl_mastermaterial (material, materialdescription, lastChange, materialtype, baseUoM, createdby, materialOri) VALUES " +
-                    "(@material, @materialdescription, @lastChange, @materialtype, @baseUoM, @createdby, @materialOri);";
-
-            using (MySqlConnection mConnection = new MySqlConnection(ConnectionDB.strProvider))
-            {
-                mConnection.Open();
-
-                for (int i = 0; i < 100000; i++) //inserting 100k items
-                    using (MySqlCommand myCmd = new MySqlCommand(Command, mConnection))
-                    {
-                        myCmd.CommandType = CommandType.Text;
-                        myCmd.Parameters.AddWithValue("@material", "material");
-                        myCmd.Parameters.AddWithValue("@materialdescription", "Material description");
-                        myCmd.Parameters.AddWithValue("@lastChange", "Last Change");
-                        myCmd.Parameters.AddWithValue("@materialtype", "Material type");
-                        myCmd.Parameters.AddWithValue("@baseUoM", "Base Unit of Measure");
-                        myCmd.Parameters.AddWithValue("@createdby", "Created by");
-                        myCmd.Parameters.AddWithValue("@materialOri", "xx");
-
-                        myCmd.ExecuteNonQuery();
-                    }
-            }
         }
     }
 }

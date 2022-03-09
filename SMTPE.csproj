@@ -194,24 +194,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataISN\Substore.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DataISN\Substore.Designer.cs">
-      <DependentUpon>Substore.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DataISN\IncomingFG.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DataISN\IncomingFG.Designer.cs">
-      <DependentUpon>IncomingFG.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DataISN\LabelPrint.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DataISN\LabelPrint.Designer.cs">
-      <DependentUpon>LabelPrint.cs</DependentUpon>
-    </Compile>
     <Compile Include="MasterMaterial\ImportMasterMaterial.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,28 +218,10 @@
     <Compile Include="Modelmaster\Modelmasterlist.Designer.cs">
       <DependentUpon>Modelmasterlist.cs</DependentUpon>
     </Compile>
-    <Compile Include="Label\ImportLabel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Label\ImportLabel.Designer.cs">
-      <DependentUpon>ImportLabel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Label\DetailLabel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Label\DetailLabel.Designer.cs">
-      <DependentUpon>DetailLabel.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Label\LabelList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Label\LabelList.Designer.cs">
-      <DependentUpon>LabelList.cs</DependentUpon>
     </Compile>
     <Compile Include="Setup\ExcelConvert.cs" />
     <Compile Include="Setup\Helper.cs" />
@@ -282,15 +246,6 @@
     <Compile Include="Setup\ConnectionDB.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="DataISN\Substore.resx">
-      <DependentUpon>Substore.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DataISN\IncomingFG.resx">
-      <DependentUpon>IncomingFG.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DataISN\LabelPrint.resx">
-      <DependentUpon>LabelPrint.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MasterMaterial\ImportMasterMaterial.resx">
       <DependentUpon>ImportMasterMaterial.cs</DependentUpon>
     </EmbeddedResource>
@@ -302,12 +257,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modelmaster\Modelmasterlist.resx">
       <DependentUpon>Modelmasterlist.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Label\ImportLabel.resx">
-      <DependentUpon>ImportLabel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Label\DetailLabel.resx">
-      <DependentUpon>DetailLabel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoadForm.resx">
       <DependentUpon>LoadForm.cs</DependentUpon>
@@ -322,9 +271,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Label\LabelList.resx">
-      <DependentUpon>LabelList.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

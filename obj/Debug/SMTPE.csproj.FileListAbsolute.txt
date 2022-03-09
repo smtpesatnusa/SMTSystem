@@ -264,16 +264,10 @@ C:\Users\mis\source\repos\inboundsmt\bin\Debug\Z.BulkOperations.xml
 C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.application
 C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.csproj.CopyComplete
 C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.csprojAssemblyReference.cache
-C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.Substore.resources
-C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.IncomingFG.resources
-C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.LabelPrint.resources
 C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.Addmodelmaster.resources
 C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.Modelmasterlist.resources
-C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.ImportLabel.resources
-C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.DetailLabel.resources
 C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.LoadForm.resources
 C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.MainMenu.resources
-C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.LabelList.resources
 C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.Login.resources
 C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.ImportMasterMaterial.resources
 C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.MasterMaterial.resources

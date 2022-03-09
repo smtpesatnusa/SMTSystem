@@ -48,6 +48,8 @@ namespace SMTPE
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.homeButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.totalLbl = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMasterMaterial)).BeginInit();
@@ -94,8 +96,10 @@ namespace SMTPE
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.totalLbl);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.browseMM);
             this.groupBox1.Controls.Add(this.tbfilepathMM);
             this.groupBox1.Controls.Add(this.label6);
@@ -161,8 +165,8 @@ namespace SMTPE
             // dataGridViewMasterMaterial
             // 
             this.dataGridViewMasterMaterial.AllowUserToAddRows = false;
-            this.dataGridViewMasterMaterial.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.dataGridViewMasterMaterial.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewMasterMaterial.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewMasterMaterial.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
@@ -242,6 +246,30 @@ namespace SMTPE
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1318, 71);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 19);
+            this.label1.TabIndex = 39;
+            this.label1.Text = "Total Data :";
+            // 
+            // totalLbl
+            // 
+            this.totalLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.totalLbl.AutoSize = true;
+            this.totalLbl.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalLbl.Location = new System.Drawing.Point(1411, 71);
+            this.totalLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.totalLbl.Name = "totalLbl";
+            this.totalLbl.Size = new System.Drawing.Size(14, 19);
+            this.totalLbl.TabIndex = 40;
+            this.totalLbl.Text = "-";
+            // 
             // ImportMasterMaterial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -286,5 +314,7 @@ namespace SMTPE
         private System.Windows.Forms.Button homeButton;
         private System.Windows.Forms.Timer timer;
         private System.ComponentModel.BackgroundWorker bgWorker;
+        private System.Windows.Forms.Label totalLbl;
+        private System.Windows.Forms.Label label1;
     }
 }

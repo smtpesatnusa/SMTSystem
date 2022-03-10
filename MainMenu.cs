@@ -79,5 +79,12 @@ namespace SMTPE
             }
         }
 
+        private void packingListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PackingList packingList = new PackingList();
+            packingList.toolStripUsername.Text = toolStripUsername.Text;
+            packingList.Show();
+            this.Hide();
+        }
     }
 }

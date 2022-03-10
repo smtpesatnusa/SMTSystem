@@ -271,3 +271,6 @@ C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.MainMenu.resources
 C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.Login.resources
 C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.ImportMasterMaterial.resources
 C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.MasterMaterial.resources
+C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.ImportPackingList.resources
+C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.PackingList.resources
+C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.DetailPackingList.resources

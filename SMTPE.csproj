@@ -194,6 +194,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PackingList\ImportPackingList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PackingList\ImportPackingList.Designer.cs">
+      <DependentUpon>ImportPackingList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PackingList\DetailPackingList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PackingList\DetailPackingList.Designer.cs">
+      <DependentUpon>DetailPackingList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PackingList\PackingList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PackingList\PackingList.Designer.cs">
+      <DependentUpon>PackingList.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterMaterial\ImportMasterMaterial.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -246,6 +264,15 @@
     <Compile Include="Setup\ConnectionDB.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="PackingList\ImportPackingList.resx">
+      <DependentUpon>ImportPackingList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PackingList\DetailPackingList.resx">
+      <DependentUpon>DetailPackingList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PackingList\PackingList.resx">
+      <DependentUpon>PackingList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MasterMaterial\ImportMasterMaterial.resx">
       <DependentUpon>ImportMasterMaterial.cs</DependentUpon>
     </EmbeddedResource>

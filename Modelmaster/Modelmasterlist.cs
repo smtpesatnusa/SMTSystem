@@ -188,7 +188,6 @@ namespace SMTPE
             using (MySqlDataAdapter adpt = new MySqlDataAdapter(query, connectionDB.connection))
             {
                 DataSet dset = new DataSet();
-
                 adpt.Fill(dset);
 
                 dataGridViewModellist.DataSource = dset.Tables[0];

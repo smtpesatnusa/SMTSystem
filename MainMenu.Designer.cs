@@ -36,7 +36,7 @@
             this.bOMSAPVsLLVsPRoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.labelPrintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.packingListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.masterDataToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.modelMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.materialMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,17 +96,18 @@
             // 
             this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.labelPrintToolStripMenuItem,
+            this.packingListToolStripMenuItem,
             this.masterDataToolStripMenuItem1,
             this.logOutToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
             this.contextMenuStrip.Size = new System.Drawing.Size(211, 104);
             // 
-            // labelPrintToolStripMenuItem
+            // packingListToolStripMenuItem
             // 
-            this.labelPrintToolStripMenuItem.Name = "labelPrintToolStripMenuItem";
-            this.labelPrintToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
-            this.labelPrintToolStripMenuItem.Text = "Packing List";
+            this.packingListToolStripMenuItem.Name = "packingListToolStripMenuItem";
+            this.packingListToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.packingListToolStripMenuItem.Text = "Packing List";
+            this.packingListToolStripMenuItem.Click += new System.EventHandler(this.packingListToolStripMenuItem_Click);
             // 
             // masterDataToolStripMenuItem1
             // 
@@ -114,27 +115,27 @@
             this.modelMasterToolStripMenuItem,
             this.materialMasterToolStripMenuItem});
             this.masterDataToolStripMenuItem1.Name = "masterDataToolStripMenuItem1";
-            this.masterDataToolStripMenuItem1.Size = new System.Drawing.Size(210, 24);
+            this.masterDataToolStripMenuItem1.Size = new System.Drawing.Size(159, 24);
             this.masterDataToolStripMenuItem1.Text = "Master Data";
             // 
             // modelMasterToolStripMenuItem
             // 
             this.modelMasterToolStripMenuItem.Name = "modelMasterToolStripMenuItem";
-            this.modelMasterToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.modelMasterToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
             this.modelMasterToolStripMenuItem.Text = "Model Master";
             this.modelMasterToolStripMenuItem.Click += new System.EventHandler(this.modelMasterToolStripMenuItem_Click);
             // 
             // materialMasterToolStripMenuItem
             // 
             this.materialMasterToolStripMenuItem.Name = "materialMasterToolStripMenuItem";
-            this.materialMasterToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.materialMasterToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
             this.materialMasterToolStripMenuItem.Text = "Material Master";
             this.materialMasterToolStripMenuItem.Click += new System.EventHandler(this.materialMasterToolStripMenuItem_Click);
             // 
             // logOutToolStripMenuItem
             // 
             this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(159, 24);
             this.logOutToolStripMenuItem.Text = "Log Out";
             this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
             // 
@@ -169,7 +170,7 @@
         private System.Windows.Forms.ToolStripMenuItem bOMSAPVsLLVsPRoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem masterDataToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem modelMasterToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem labelPrintToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem packingListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem;
         public System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem materialMasterToolStripMenuItem;

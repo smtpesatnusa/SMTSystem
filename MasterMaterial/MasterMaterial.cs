@@ -117,6 +117,8 @@ namespace SMTPE
             //set full with taskbar below
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
             this.WindowState = FormWindowState.Maximized;
+            //icon
+            this.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
 
             LoadDataMasterMaterial();
         }

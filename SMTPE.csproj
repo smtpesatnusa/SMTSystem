@@ -264,6 +264,24 @@
     <Compile Include="Setup\ConnectionDB.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User\Adduser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User\Adduser.Designer.cs">
+      <DependentUpon>Adduser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User\ChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User\ChangePassword.Designer.cs">
+      <DependentUpon>ChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User\Userlist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User\Userlist.Designer.cs">
+      <DependentUpon>Userlist.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="PackingList\ImportPackingList.resx">
       <DependentUpon>ImportPackingList.cs</DependentUpon>
     </EmbeddedResource>
@@ -298,6 +316,15 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User\Adduser.resx">
+      <DependentUpon>Adduser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User\ChangePassword.resx">
+      <DependentUpon>ChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User\Userlist.resx">
+      <DependentUpon>Userlist.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -86,5 +86,13 @@ namespace SMTPE
             packingList.Show();
             this.Hide();
         }
+
+        private void userToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Userlist userlist = new Userlist();
+            userlist.toolStripUsername.Text = toolStripUsername.Text;
+            userlist.Show();
+            this.Hide();
+        }
     }
 }

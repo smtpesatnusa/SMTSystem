@@ -274,3 +274,6 @@ C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.MasterMaterial.resources
 C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.ImportPackingList.resources
 C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.PackingList.resources
 C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.DetailPackingList.resources
+C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.Adduser.resources
+C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.ChangePassword.resources
+C:\Users\mis\source\repos\inboundsmt\obj\Debug\SMTPE.Userlist.resources

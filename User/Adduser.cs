@@ -49,7 +49,7 @@ namespace SMTPE
                             MessageBox.Show(this, "Unable to add user, UserID already insert", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             tbuserid.Text = string.Empty;
                             tbname.Text = string.Empty;
-                            tbuserrole.Text = string.Empty;
+                            cmbuserlevel.SelectedItem = 0;
                         }
                         else
                         {

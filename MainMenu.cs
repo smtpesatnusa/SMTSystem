@@ -94,5 +94,12 @@ namespace SMTPE
             userlist.Show();
             this.Hide();
         }
+
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangePassword changePassword = new ChangePassword();
+            changePassword.usernameLbl.Text = toolStripUsername.Text;
+            changePassword.Show();
+        }
     }
 }

@@ -54,6 +54,8 @@ namespace SMTPE
             this.label2 = new System.Windows.Forms.Label();
             this.totalLbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.planBtn = new System.Windows.Forms.Button();
+            this.inboundBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlDetail)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -137,6 +139,8 @@ namespace SMTPE
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.inboundBtn);
+            this.groupBox1.Controls.Add(this.planBtn);
             this.groupBox1.Controls.Add(this.tbDestination);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.tbPortLoading);
@@ -334,6 +338,39 @@ namespace SMTPE
             this.label1.TabIndex = 39;
             this.label1.Text = "Total Data :";
             // 
+            // planBtn
+            // 
+            this.planBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.planBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.planBtn.Font = new System.Drawing.Font("Open Sans", 8.25F);
+            this.planBtn.Image = global::SMTPE.Properties.Resources.icons8_export_excel_20;
+            this.planBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.planBtn.Location = new System.Drawing.Point(1407, 27);
+            this.planBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.planBtn.Name = "planBtn";
+            this.planBtn.Size = new System.Drawing.Size(76, 43);
+            this.planBtn.TabIndex = 194;
+            this.planBtn.Text = "Plan";
+            this.planBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.planBtn.UseVisualStyleBackColor = true;
+            this.planBtn.Click += new System.EventHandler(this.planBtn_Click);
+            // 
+            // inboundBtn
+            // 
+            this.inboundBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.inboundBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.inboundBtn.Font = new System.Drawing.Font("Open Sans", 8.25F);
+            this.inboundBtn.Image = global::SMTPE.Properties.Resources.icons8_export_excel_20;
+            this.inboundBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.inboundBtn.Location = new System.Drawing.Point(1301, 27);
+            this.inboundBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.inboundBtn.Name = "inboundBtn";
+            this.inboundBtn.Size = new System.Drawing.Size(98, 43);
+            this.inboundBtn.TabIndex = 195;
+            this.inboundBtn.Text = "Inbound";
+            this.inboundBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.inboundBtn.UseVisualStyleBackColor = true;
+            // 
             // DetailPackingList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -384,5 +421,7 @@ namespace SMTPE
         public System.Windows.Forms.TextBox tbShipTerm;
         public System.Windows.Forms.TextBox tbInvoiceDate;
         public System.Windows.Forms.TextBox tbPackingListNo;
+        private System.Windows.Forms.Button inboundBtn;
+        private System.Windows.Forms.Button planBtn;
     }
 }

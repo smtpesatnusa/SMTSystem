@@ -38,6 +38,7 @@ namespace SMTPE
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.backButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.planBtn = new System.Windows.Forms.Button();
             this.tbDestination = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tbPortLoading = new System.Windows.Forms.TextBox();
@@ -54,11 +55,11 @@ namespace SMTPE
             this.label2 = new System.Windows.Forms.Label();
             this.totalLbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.planBtn = new System.Windows.Forms.Button();
-            this.inboundBtn = new System.Windows.Forms.Button();
+            this.dataGridViewInbound = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlDetail)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInbound)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridViewPlDetail
@@ -69,11 +70,13 @@ namespace SMTPE
             this.dataGridViewPlDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewPlDetail.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewPlDetail.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dataGridViewPlDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPlDetail.Location = new System.Drawing.Point(16, 422);
             this.dataGridViewPlDetail.Name = "dataGridViewPlDetail";
+            this.dataGridViewPlDetail.ReadOnly = true;
             this.dataGridViewPlDetail.RowHeadersWidth = 51;
+            this.dataGridViewPlDetail.RowTemplate.Height = 30;
             this.dataGridViewPlDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewPlDetail.Size = new System.Drawing.Size(1495, 414);
             this.dataGridViewPlDetail.TabIndex = 10;
@@ -139,7 +142,6 @@ namespace SMTPE
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.inboundBtn);
             this.groupBox1.Controls.Add(this.planBtn);
             this.groupBox1.Controls.Add(this.tbDestination);
             this.groupBox1.Controls.Add(this.label9);
@@ -166,6 +168,23 @@ namespace SMTPE
             this.groupBox1.TabIndex = 60;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Packing List";
+            // 
+            // planBtn
+            // 
+            this.planBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.planBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.planBtn.Font = new System.Drawing.Font("Open Sans", 8.25F);
+            this.planBtn.Image = global::SMTPE.Properties.Resources.icons8_export_excel_20;
+            this.planBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.planBtn.Location = new System.Drawing.Point(1403, 27);
+            this.planBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.planBtn.Name = "planBtn";
+            this.planBtn.Size = new System.Drawing.Size(80, 43);
+            this.planBtn.TabIndex = 194;
+            this.planBtn.Text = "Export";
+            this.planBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.planBtn.UseVisualStyleBackColor = true;
+            this.planBtn.Click += new System.EventHandler(this.planBtn_Click);
             // 
             // tbDestination
             // 
@@ -338,44 +357,31 @@ namespace SMTPE
             this.label1.TabIndex = 39;
             this.label1.Text = "Total Data :";
             // 
-            // planBtn
+            // dataGridViewInbound
             // 
-            this.planBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.planBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.planBtn.Font = new System.Drawing.Font("Open Sans", 8.25F);
-            this.planBtn.Image = global::SMTPE.Properties.Resources.icons8_export_excel_20;
-            this.planBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.planBtn.Location = new System.Drawing.Point(1407, 27);
-            this.planBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.planBtn.Name = "planBtn";
-            this.planBtn.Size = new System.Drawing.Size(76, 43);
-            this.planBtn.TabIndex = 194;
-            this.planBtn.Text = "Plan";
-            this.planBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.planBtn.UseVisualStyleBackColor = true;
-            this.planBtn.Click += new System.EventHandler(this.planBtn_Click);
-            // 
-            // inboundBtn
-            // 
-            this.inboundBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.inboundBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.inboundBtn.Font = new System.Drawing.Font("Open Sans", 8.25F);
-            this.inboundBtn.Image = global::SMTPE.Properties.Resources.icons8_export_excel_20;
-            this.inboundBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.inboundBtn.Location = new System.Drawing.Point(1301, 27);
-            this.inboundBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.inboundBtn.Name = "inboundBtn";
-            this.inboundBtn.Size = new System.Drawing.Size(98, 43);
-            this.inboundBtn.TabIndex = 195;
-            this.inboundBtn.Text = "Inbound";
-            this.inboundBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.inboundBtn.UseVisualStyleBackColor = true;
+            this.dataGridViewInbound.AllowUserToAddRows = false;
+            this.dataGridViewInbound.AllowUserToDeleteRows = false;
+            this.dataGridViewInbound.AllowUserToResizeRows = false;
+            this.dataGridViewInbound.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewInbound.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dataGridViewInbound.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewInbound.Location = new System.Drawing.Point(16, 422);
+            this.dataGridViewInbound.Name = "dataGridViewInbound";
+            this.dataGridViewInbound.ReadOnly = true;
+            this.dataGridViewInbound.RowHeadersWidth = 51;
+            this.dataGridViewInbound.RowTemplate.Height = 30;
+            this.dataGridViewInbound.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewInbound.Size = new System.Drawing.Size(1495, 414);
+            this.dataGridViewInbound.TabIndex = 61;
             // 
             // DetailPackingList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1527, 944);
+            this.Controls.Add(this.dataGridViewInbound);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.backButton);
@@ -391,13 +397,13 @@ namespace SMTPE
             this.statusStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInbound)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView dataGridViewPlDetail;
         private System.Windows.Forms.Button backButton;
         public System.Windows.Forms.ToolStripStatusLabel toolStripUsername;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
@@ -421,7 +427,8 @@ namespace SMTPE
         public System.Windows.Forms.TextBox tbShipTerm;
         public System.Windows.Forms.TextBox tbInvoiceDate;
         public System.Windows.Forms.TextBox tbPackingListNo;
-        private System.Windows.Forms.Button inboundBtn;
         private System.Windows.Forms.Button planBtn;
+        private System.Windows.Forms.DataGridView dataGridViewPlDetail;
+        private System.Windows.Forms.DataGridView dataGridViewInbound;
     }
 }

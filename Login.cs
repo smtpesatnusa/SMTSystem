@@ -74,6 +74,7 @@ namespace SMTPE
                     else
                     {
                         MessageBox.Show("Data not found", "Information");
+                        txtPassword.Clear();
                     }
                 }
                 else

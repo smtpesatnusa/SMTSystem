@@ -4,6 +4,7 @@ using MetroFramework;
 using MySql.Data.MySqlClient;
 using System;
 using System.Data;
+using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -174,8 +175,10 @@ namespace SMTPE
                     string invoiceDate = DateTime.ParseExact(tbInvoiceDate.Text, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture).ToString("dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
                     dataGridViewInbound.Rows[i].Cells[6].Value = invoiceDate.ToString();
 
-                    //DateTime dateTimeETA = DateTime.Parse(invoiceDate);
-                    //dataGridViewInbound.Rows[i].Cells[19].Value = dateTimeETA.AddDays(2);
+                    DateTime date = DateTime.ParseExact(tbInvoiceDate.Text, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                    DateTime dateTimeETA = date.AddDays(3);
+
+                    dataGridViewInbound.Rows[i].Cells[19].Value = dateTimeETA.ToString("dd.MM.yyyy");
 
                     string querymodel = "SELECT * FROM tbl_model WHERE model = '" + model + "'";
                     using (MySqlDataAdapter adptmodel = new MySqlDataAdapter(querymodel, connectionDB.connection))

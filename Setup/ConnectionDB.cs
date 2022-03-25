@@ -10,8 +10,8 @@ namespace SMTPE
         MySqlConnection conn;
         static string host = "192.168.192.150";
         static string database = "pe_inbound";
-        static string userDB = "root";
-        static string password = "";
+        static string userDB = "smt_developer";
+        static string password = "w(v97weP8UGe=bYd";
         public static string strProvider = "server=" + host + ";Database=" + database + ";User ID=" + userDB + ";Password=" + password;
         public MySqlConnection connection = new MySqlConnection("server=" + host + ";Database=" + database + ";User ID=" + userDB + ";Password=" + password);
 

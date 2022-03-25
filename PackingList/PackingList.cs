@@ -13,14 +13,6 @@ namespace SMTPE
     {
         LoadForm lf = new LoadForm();
         ConnectionDB connectionDB = new ConnectionDB();
-        private DataSet ds;
-        private DataTable dtSource;
-        private int PageCount;
-        private int maxRec;
-        private int pageSize;
-        private int currentPage;
-        private int recNo;
-        private string Sql;
 
         public PackingList()
         {
@@ -78,7 +70,8 @@ namespace SMTPE
             try
             {
                 (dataGridViewPlList.DataSource as DataTable).DefaultView.RowFilter =
-                    string.Format("material LIKE '{0}%'", tbSearch.Text);
+                    string.Format("packingList LIKE '{0}%' or invoiceDate LIKE '{0}%' or shipterm LIKE '{0}%' or incoterm LIKE '{0}%' " +
+                    "or paymentterm LIKE '{0}%' or portofloading LIKE '{0}%' or destination LIKE '{0}%' or importBy LIKE '{0}%'", tbSearch.Text);
             }
             catch (Exception ex)
             {

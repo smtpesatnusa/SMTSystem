@@ -375,17 +375,18 @@ namespace SMTPE
             this.dataGridViewInbound.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewInbound.Size = new System.Drawing.Size(1495, 414);
             this.dataGridViewInbound.TabIndex = 61;
+            this.dataGridViewInbound.Visible = false;
             // 
             // DetailPackingList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1527, 944);
-            this.Controls.Add(this.dataGridViewInbound);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.dataGridViewPlDetail);
+            this.Controls.Add(this.dataGridViewInbound);
             this.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
             this.Name = "DetailPackingList";

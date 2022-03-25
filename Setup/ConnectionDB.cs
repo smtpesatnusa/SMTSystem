@@ -8,8 +8,8 @@ namespace SMTPE
     public class ConnectionDB
     {
         MySqlConnection conn;
-        static string host = "localhost";
-        static string database = "inboundsmt";
+        static string host = "192.168.192.150";
+        static string database = "pe_inbound";
         static string userDB = "root";
         static string password = "";
         public static string strProvider = "server=" + host + ";Database=" + database + ";User ID=" + userDB + ";Password=" + password;

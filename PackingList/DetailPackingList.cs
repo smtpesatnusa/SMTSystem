@@ -176,7 +176,7 @@ namespace SMTPE
                     dataGridViewInbound.Rows[i].Cells[6].Value = invoiceDate.ToString();
 
                     DateTime date = DateTime.ParseExact(tbInvoiceDate.Text, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
-                    DateTime dateTimeETA = date.AddDays(3);
+                    DateTime dateTimeETA = date.AddDays(2);
 
                     dataGridViewInbound.Rows[i].Cells[19].Value = dateTimeETA.ToString("dd.MM.yyyy");
 
@@ -276,7 +276,7 @@ namespace SMTPE
             {
                 string directoryFile = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                 directoryFile = directoryFile + "\\Inbound SMT\\" + tbPackingListNo.Text;
-                string filename =  tbPackingListNo.Text.Replace("P","") + " - Template ASN - Upload to SAP.xlsx";
+                string filename =  tbPackingListNo.Text.Replace("P","") + "-Template ASN - Upload to SAP.xlsx";
                 using (var workbook = new XLWorkbook())
                 {
                     //worksheet SAP upload inbound
@@ -288,29 +288,34 @@ namespace SMTPE
                     worksheetInbound.ShowGridLines = true;
 
                     //set column width
-                    worksheetInbound.Column(1).Width = 12;
-                    worksheetInbound.Column(2).Width = 18;
-                    worksheetInbound.Column(3).Width = 23.78;
-                    worksheetInbound.Column(4).Width = 14.78;
-                    worksheetInbound.Column(5).Width = 18.89;
-                    worksheetInbound.Column(6).Width = 11.33;
-                    worksheetInbound.Column(7).Width = 11.33;
-                    worksheetInbound.Column(8).Width = 11.33;
-                    worksheetInbound.Column(9).Width = 9.89;
-                    worksheetInbound.Column(10).Width = 14.78;
-                    worksheetInbound.Column(11).Width = 15.22;
-                    worksheetInbound.Column(12).Width = 17;
-                    worksheetInbound.Column(13).Width = 10.44;
-                    worksheetInbound.Column(14).Width = 11;
-                    worksheetInbound.Column(15).Width = 17.11;
-                    worksheetInbound.Column(16).Width = 11.67;
-                    worksheetInbound.Column(17).Width = 8.44;
-                    worksheetInbound.Column(18).Width = 9.33;
-                    worksheetInbound.Column(19).Width = 10;
-                    worksheetInbound.Column(20).Width = 34;
-                    worksheetInbound.Column(21).Width = 14.44;
-                    worksheetInbound.Column(22).Width = 16.89;
-                    worksheetInbound.Column(23).Width = 27.33;
+                    worksheetInbound.Columns().Width = 8.22;
+                    worksheetInbound.Column(1).Width = 20.78;
+                    worksheetInbound.Column(5).Width = 10.22;
+                    worksheetInbound.Column(6).Width = 16.33;
+                    worksheetInbound.Column(8).Width = 11.89;
+                    worksheetInbound.Column(10).Width = 27;
+                    worksheetInbound.Column(11).Width = 20.22;
+                    worksheetInbound.Column(12).Width = 12.78;
+                    worksheetInbound.Column(15).Width = 10.44;
+                    worksheetInbound.Column(17).Width = 12.44;
+                    worksheetInbound.Column(19).Width = 11.78;
+                    worksheetInbound.Column(20).Width = 13.22;
+                    worksheetInbound.Column(21).Width = 12.33;
+                    worksheetInbound.Column(22).Width = 14.22;
+                    worksheetInbound.Column(23).Width = 29;
+                    worksheetInbound.Column(24).Width = 15.78;
+                    worksheetInbound.Column(29).Width = 13.44;
+                    worksheetInbound.Column(30).Width = 12.78;
+                    worksheetInbound.Column(31).Width = 11.22;
+                    worksheetInbound.Column(32).Width = 14.22;
+                    worksheetInbound.Column(33).Width = 11.78;
+                    worksheetInbound.Column(34).Width = 12;
+                    worksheetInbound.Column(35).Width = 19;
+                    worksheetInbound.Column(36).Width = 21.67;
+                    worksheetInbound.Column(37).Width = 12.22;
+                    worksheetInbound.Column(38).Width = 14.22;
+                    worksheetInbound.Column(39).Width = 22.22;
+                    worksheetInbound.Column(40).Width = 24.33;                                       
 
                     worksheetInbound.Rows().Height = 14.4;
                     worksheetInbound.Row(2).Height = 110.1;
@@ -345,7 +350,7 @@ namespace SMTPE
                     worksheetInbound.Range(worksheetInbound.Cell(1, 1), worksheetInbound.Cell(1, 40)).Style.Font.FontColor = XLColor.White;
 
                     // Set title row 3
-                    string[] row2 = {"", "Unique ID \nReference no from Customer : ASN no/ Midoc no etc",   "Company Code\nFill PTSN", "Purch Org\nFill PTSN",
+                    string[] row2 = {"", "Unique ID \nReference no from Customer : ASN no/Midoc no etc",   "Company Code\nFill PTSN", "Purch Org\nFill PTSN",
                         "Purchasing grup\nFill S01", "Document Type\nConsign: ZPCC Buy & Sell : ZPOB ", "Document Date\nReference date from Customer Doc", "Currency" ,
                         "Vendor\nBP Code ", "Item no\nIncrement of 10 ", "Material\n(SAP Material No) Can be blank if Colom K & L is filled. (SAP will mapping combination field K&L)",
                         "Customer Material\nIF Column D blank, mandatory to fill this column", "Customer\nIf Column D blank, mandatory to fill this column",    "Plant", "Storage Location",

@@ -78,8 +78,17 @@ namespace SMTPE
         {
             try
             {
-                (dataGridViewMasterMaterialList.DataSource as DataTable).DefaultView.RowFilter =
-                    string.Format("material LIKE '{0}%'" , tbSearch.Text);
+                if (tbSearch.Text == "")
+                {
+                    Sql = "SELECT material, importDate, importBy FROM tbl_mastermaterial ORDER BY id";
+                }
+                else
+                {
+                    Sql = "SELECT material, importDate, importBy FROM tbl_mastermaterial WHERE material like '%" + tbSearch.Text + "%'" +
+                        "or importBy LIKE '%" + tbSearch.Text + "%'";
+                }
+                LoadDS(Sql);
+                FillGrid();
             }
             catch (Exception ex)
             {
@@ -94,7 +103,7 @@ namespace SMTPE
 
         private void importMMButton_Click(object sender, EventArgs e)
         {
-            ImportMasterMaterial iMM = new ImportMasterMaterial();
+            ImportMasterMaterialXM iMM = new ImportMasterMaterialXM();
             iMM.toolStripUsername.Text = toolStripUsername.Text;
             iMM.Show();
             this.Hide();
@@ -169,7 +178,7 @@ namespace SMTPE
 
         private void btnPreviousPage_Click(object sender, EventArgs e)
         {
-            currentPage = currentPage - 1;
+            currentPage --;
 
             // Check if you are already at the first page.
             if (currentPage < 1)
@@ -194,7 +203,7 @@ namespace SMTPE
                 return;
             }
 
-            currentPage = currentPage + 1;
+            currentPage ++;
 
             if (currentPage > PageCount)
             {
@@ -262,7 +271,7 @@ namespace SMTPE
                 for (int i = startRec; i <= endRec - 1; i++)
                 {
                     dtTemp.ImportRow(dtSource.Rows[i]);
-                    recNo = recNo + 1;
+                    recNo ++;
                 }
             }
 
@@ -305,7 +314,7 @@ namespace SMTPE
 
             // Adjust the page number if the last page contains a partial page.
             if ((maxRec % pageSize) > 0)
-                PageCount = PageCount + 1;
+                PageCount ++;
 
             // Initial seeings
             currentPage = 1;
@@ -375,7 +384,7 @@ namespace SMTPE
                 }
 
                 connectionDB.connection.Close();
-                MasterMaterial masterMaterial = new MasterMaterial();
+                MasterMaterialXM masterMaterial = new MasterMaterialXM();
                 masterMaterial.toolStripUsername.Text = toolStripUsername.Text;
                 this.Hide();
                 masterMaterial.Show();

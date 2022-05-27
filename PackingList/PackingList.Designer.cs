@@ -41,6 +41,7 @@ namespace SMTPE
             this.importPlButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
             this.refreshLbl = new System.Windows.Forms.LinkLabel();
+            this.truncatePackingListLbl = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlList)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -49,7 +50,7 @@ namespace SMTPE
             // 
             this.tbSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tbSearch.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbSearch.Location = new System.Drawing.Point(552, 122);
+            this.tbSearch.Location = new System.Drawing.Point(1138, 122);
             this.tbSearch.Name = "tbSearch";
             this.tbSearch.Size = new System.Drawing.Size(200, 26);
             this.tbSearch.TabIndex = 13;
@@ -61,7 +62,7 @@ namespace SMTPE
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(498, 127);
+            this.label1.Location = new System.Drawing.Point(1084, 127);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 19);
             this.label1.TabIndex = 12;
@@ -81,7 +82,7 @@ namespace SMTPE
             this.dataGridViewPlList.Location = new System.Drawing.Point(23, 179);
             this.dataGridViewPlList.Name = "dataGridViewPlList";
             this.dataGridViewPlList.RowHeadersWidth = 51;
-            this.dataGridViewPlList.Size = new System.Drawing.Size(729, 400);
+            this.dataGridViewPlList.Size = new System.Drawing.Size(1315, 494);
             this.dataGridViewPlList.TabIndex = 10;
             this.dataGridViewPlList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPlList_CellContentClick);
             this.dataGridViewPlList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewPlList_CellFormatting);
@@ -115,9 +116,9 @@ namespace SMTPE
             this.toolStripUsername,
             this.toolStripStatusLabel1,
             this.dateTimeNow});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 648);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 742);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(780, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1366, 26);
             this.statusStrip1.TabIndex = 59;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -133,7 +134,7 @@ namespace SMTPE
             this.importPlButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.importPlButton.Image = global::SMTPE.Properties.Resources.icons8_import_file_20;
             this.importPlButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.importPlButton.Location = new System.Drawing.Point(496, 70);
+            this.importPlButton.Location = new System.Drawing.Point(1082, 70);
             this.importPlButton.Name = "importPlButton";
             this.importPlButton.Size = new System.Drawing.Size(164, 41);
             this.importPlButton.TabIndex = 60;
@@ -149,7 +150,7 @@ namespace SMTPE
             this.backButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backButton.Image = global::SMTPE.Properties.Resources.icons8_reply_arrow_20;
             this.backButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.backButton.Location = new System.Drawing.Point(676, 70);
+            this.backButton.Location = new System.Drawing.Point(1262, 70);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(76, 40);
             this.backButton.TabIndex = 58;
@@ -163,7 +164,7 @@ namespace SMTPE
             this.refreshLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.refreshLbl.AutoSize = true;
             this.refreshLbl.BackColor = System.Drawing.Color.Transparent;
-            this.refreshLbl.Location = new System.Drawing.Point(691, 157);
+            this.refreshLbl.Location = new System.Drawing.Point(1198, 157);
             this.refreshLbl.Name = "refreshLbl";
             this.refreshLbl.Size = new System.Drawing.Size(61, 19);
             this.refreshLbl.TabIndex = 102;
@@ -171,11 +172,25 @@ namespace SMTPE
             this.refreshLbl.Text = "Refresh";
             this.refreshLbl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.refreshLbl_LinkClicked);
             // 
+            // truncatePackingListLbl
+            // 
+            this.truncatePackingListLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.truncatePackingListLbl.AutoSize = true;
+            this.truncatePackingListLbl.BackColor = System.Drawing.Color.Transparent;
+            this.truncatePackingListLbl.Location = new System.Drawing.Point(1265, 157);
+            this.truncatePackingListLbl.Name = "truncatePackingListLbl";
+            this.truncatePackingListLbl.Size = new System.Drawing.Size(73, 19);
+            this.truncatePackingListLbl.TabIndex = 103;
+            this.truncatePackingListLbl.TabStop = true;
+            this.truncatePackingListLbl.Text = "Delete All";
+            this.truncatePackingListLbl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.truncatePackingListLbl_LinkClicked);
+            // 
             // PackingList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(780, 674);
+            this.ClientSize = new System.Drawing.Size(1366, 768);
+            this.Controls.Add(this.truncatePackingListLbl);
             this.Controls.Add(this.refreshLbl);
             this.Controls.Add(this.importPlButton);
             this.Controls.Add(this.statusStrip1);
@@ -209,5 +224,6 @@ namespace SMTPE
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.LinkLabel refreshLbl;
+        private System.Windows.Forms.LinkLabel truncatePackingListLbl;
     }
 }

@@ -22,44 +22,6 @@ namespace SMTPE
             InitializeComponent();
         }
 
-        //The below is the key for showing Progress bar
-        private void StartProgress(String strStatusText)
-        {
-            LoadForm lf = new LoadForm();
-            ShowProgress();
-        }
-        private void CloseProgress()
-        {
-            //Thread.Sleep(200);
-            while (!this.IsHandleCreated)
-                System.Threading.Thread.Sleep(200);
-            lf.Invoke(new Action(lf.Close));
-        }
-        private void ShowProgress()
-        {
-            try
-            {
-                if (this.InvokeRequired)
-                {
-                    try
-                    {
-                        lf.ShowDialog();
-                    }
-                    catch (Exception ex) { }
-                }
-                else
-                {
-                    Thread th = new Thread(ShowProgress);
-                    th.IsBackground = false;
-                    th.Start();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         private void backButton_Click(object sender, EventArgs e)
         {
             PackingList packingList = new PackingList();
@@ -148,11 +110,17 @@ namespace SMTPE
         {
             try
             {
-                string query = "SELECT projectModel, REPLACE(packingNo, 'P','I') AS uniqueId, 'PTSN', 'PTSN', 'S01', 'ZPCC', '', 'IDR', '1000000013', '', partno, ''," +
-                    " '', 'SM11', 'R001', SUM(totalqty) AS total, 'PC', '0', '1000', '', 'X', SUBSTRING_INDEX(soandline, '/', 1) AS supplierInvoice," +
-                    "SUBSTRING_INDEX(soandline, '/', -1) AS supplierInvoice, 'SI4B', REPLACE(packingNo, 'P', 'I') AS shipInvoice," +
-                    "'','','','','','','','','','','', 'ID', '', '', tbl_packingdetail.desc, '', '' FROM tbl_packingdetail " +
-                    "WHERE packingNo = '"+tbPackingListNo.Text+ "' GROUP BY partno ORDER BY id ";
+                //string query = "SELECT projectModel, REPLACE(packingNo, 'P','I') AS uniqueId, 'PTSN', 'PTSN', 'S01', 'ZPCC', '', 'IDR', '1000000013', '', partno, ''," +
+                //    " '', 'SM11', 'R001', SUM(totalqty) AS total, 'PC', '0', '1000', '', 'X', SUBSTRING_INDEX(soandline, '/', 1) AS supplierInvoice," +
+                //    "SUBSTRING_INDEX(soandline, '/', -1) AS supplierInvoice, 'SI4B', REPLACE(packingNo, 'P', 'I') AS shipInvoice," +
+                //    "'','','','','','','','','','','', 'ID', '', '', tbl_packingdetail.desc, '', '' FROM tbl_packingdetail " +
+                //    "WHERE packingNo = '"+tbPackingListNo.Text+ "' GROUP BY partno ORDER BY id ";
+
+                string query = "SELECT ANY_VALUE(projectModel) AS projectModel, REPLACE(packingNo, 'P','I') AS uniqueId, 'PTSN', 'PTSN', 'S01', 'ZPCC', ''," +
+                    " 'IDR', '1000000013', '', partno, '', '', 'SM11', 'R001', SUM(totalqty) AS total, 'PC', '0', '1000', '', 'X', " +
+                    "ANY_VALUE(SUBSTRING_INDEX(soandline, '/', 1)) AS supplierInvoice, ANY_VALUE( SUBSTRING_INDEX(soandline, '/', -1)) AS supplierInvoice, 'SI4B', " +
+                    "REPLACE(packingNo, 'P', 'I') AS shipInvoice, '','','','','','','','','','','', 'ID', '', '', ANY_VALUE(tbl_packingdetail.desc) AS descr, '', '' " +
+                    "FROM tbl_packingdetail WHERE packingNo = '" + tbPackingListNo.Text + "' GROUP BY partno ORDER BY id ";
 
                 using (MySqlDataAdapter adpt = new MySqlDataAdapter(query, connectionDB.connection))
                 {

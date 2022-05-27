@@ -1,9 +1,11 @@
 ﻿using ClosedXML.Excel;
 using ExcelDataReader;
+using MySql.Data.MySqlClient;
 using System;
 using System.Data;
 using System.Data.OleDb;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
@@ -12,6 +14,8 @@ namespace SMTPE
 {
     public class Helper
     {
+        ConnectionDB connectionDB = new ConnectionDB();
+
         // for read excel file
         public System.Data.DataTable ReadExcel(string fileName, string fileExt, string query)
         {
@@ -222,6 +226,113 @@ namespace SMTPE
 
             }
             return dt;
+        }
+
+        // to fill listbox from db
+        public void fill_listbox(string sql, ListBox lst, string column)
+        {
+            try
+            {
+                using (MySqlDataAdapter adpt = new MySqlDataAdapter(sql, connectionDB.connection))
+                {
+                    DataTable dt = new DataTable();
+                    adpt.Fill(dt);
+                    lst.DataSource = dt;
+                    lst.DisplayMember = column;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        //tampilkan data now di label toolstrip
+        public void dateTimeNow(ToolStripLabel dateTimeNow)
+        {
+            dateTimeNow.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss");
+        }
+
+        // for display data in treeview
+        public void AddNodes(ref TreeNode node, DataTable dtSource)
+        {
+            DataTable dt = GetChildData(dtSource, Convert.ToInt32(node.Name));
+            foreach (DataRow row in dt.Rows)
+            {
+                TreeNode childNode = new TreeNode();
+                childNode.Name = row["NodeID"].ToString();
+                childNode.Text = row["NodeText"].ToString();
+                AddNodes(ref childNode, dtSource);
+                node.Nodes.Add(childNode);
+            }
+        }
+
+        public DataTable GetChildData(DataTable dtSource, int parentId)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.AddRange(new DataColumn[] {
+        new DataColumn("NodeId", typeof(int)),
+        new DataColumn("ParentId", typeof(int)),
+        new DataColumn("NodeText") });
+            foreach (DataRow dr in dtSource.Rows)
+            {
+                if (dr[1].ToString() != parentId.ToString())
+                {
+                    continue;
+                }
+                DataRow row = dt.NewRow();
+                row["NodeId"] = dr["NodeId"];
+                row["ParentId"] = dr["ParentId"];
+                row["NodeText"] = dr["NodeText"];
+                dt.Rows.Add(row);
+            }
+
+            return dt;
+        }
+
+        public DataTable GetData(string query)
+        {
+            using (MySqlDataAdapter adpt = new MySqlDataAdapter(query, connectionDB.connection))
+            {
+                DataTable dt = new DataTable();
+                adpt.Fill(dt);
+                return dt;
+            }
+        }
+
+        // Updates all child tree nodes recursively.
+        public void CheckAllChildNodes(TreeNode treeNode, bool nodeChecked)
+        {
+            foreach (TreeNode node in treeNode.Nodes)
+            {
+                node.Checked = nodeChecked;
+                if (node.Nodes.Count > 0)
+                {
+                    // If the current node has child nodes, call the CheckAllChildsNodes method recursively.
+                    this.CheckAllChildNodes(node, nodeChecked);
+                }
+            }
+        }
+
+        //class for check and uncheck treeview if child checked
+        public void SelectParents(TreeNode node, Boolean isChecked)
+        {
+            var parent = node.Parent;
+
+            if (parent == null)
+                return;
+
+            if (!isChecked && HasCheckedNode(parent))
+                return;
+
+            parent.Checked = isChecked;
+            SelectParents(parent, isChecked);
+        }
+
+        public bool HasCheckedNode(TreeNode node)
+        {
+            return node.Nodes.Cast<TreeNode>().Any(n => n.Checked);
         }
 
     }

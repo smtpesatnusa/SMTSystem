@@ -78,7 +78,7 @@ namespace SMTPE
             this.dataGridViewPlDetail.RowHeadersWidth = 51;
             this.dataGridViewPlDetail.RowTemplate.Height = 30;
             this.dataGridViewPlDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPlDetail.Size = new System.Drawing.Size(1495, 414);
+            this.dataGridViewPlDetail.Size = new System.Drawing.Size(1334, 299);
             this.dataGridViewPlDetail.TabIndex = 10;
             this.dataGridViewPlDetail.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewPlDetail_CellFormatting);
             // 
@@ -111,9 +111,9 @@ namespace SMTPE
             this.toolStripUsername,
             this.toolStripStatusLabel1,
             this.dateTimeNow});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 918);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 742);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1527, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1366, 26);
             this.statusStrip1.TabIndex = 59;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -129,7 +129,7 @@ namespace SMTPE
             this.backButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backButton.Image = global::SMTPE.Properties.Resources.icons8_reply_arrow_20;
             this.backButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.backButton.Location = new System.Drawing.Point(1423, 70);
+            this.backButton.Location = new System.Drawing.Point(1262, 70);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(76, 40);
             this.backButton.TabIndex = 58;
@@ -164,7 +164,7 @@ namespace SMTPE
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(1495, 256);
+            this.groupBox1.Size = new System.Drawing.Size(1334, 256);
             this.groupBox1.TabIndex = 60;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Packing List";
@@ -176,7 +176,7 @@ namespace SMTPE
             this.planBtn.Font = new System.Drawing.Font("Open Sans", 8.25F);
             this.planBtn.Image = global::SMTPE.Properties.Resources.icons8_export_excel_20;
             this.planBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.planBtn.Location = new System.Drawing.Point(1403, 27);
+            this.planBtn.Location = new System.Drawing.Point(1195, 27);
             this.planBtn.Margin = new System.Windows.Forms.Padding(4);
             this.planBtn.Name = "planBtn";
             this.planBtn.Size = new System.Drawing.Size(80, 43);
@@ -189,7 +189,7 @@ namespace SMTPE
             // tbDestination
             // 
             this.tbDestination.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDestination.Location = new System.Drawing.Point(836, 135);
+            this.tbDestination.Location = new System.Drawing.Point(835, 187);
             this.tbDestination.Margin = new System.Windows.Forms.Padding(4);
             this.tbDestination.Name = "tbDestination";
             this.tbDestination.ReadOnly = true;
@@ -200,7 +200,7 @@ namespace SMTPE
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(683, 138);
+            this.label9.Location = new System.Drawing.Point(682, 190);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(86, 19);
@@ -210,7 +210,7 @@ namespace SMTPE
             // tbPortLoading
             // 
             this.tbPortLoading.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPortLoading.Location = new System.Drawing.Point(836, 84);
+            this.tbPortLoading.Location = new System.Drawing.Point(835, 136);
             this.tbPortLoading.Margin = new System.Windows.Forms.Padding(4);
             this.tbPortLoading.Name = "tbPortLoading";
             this.tbPortLoading.ReadOnly = true;
@@ -230,7 +230,7 @@ namespace SMTPE
             // tbInvoiceDate
             // 
             this.tbInvoiceDate.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInvoiceDate.Location = new System.Drawing.Point(836, 35);
+            this.tbInvoiceDate.Location = new System.Drawing.Point(835, 87);
             this.tbInvoiceDate.Margin = new System.Windows.Forms.Padding(4);
             this.tbInvoiceDate.Name = "tbInvoiceDate";
             this.tbInvoiceDate.ReadOnly = true;
@@ -241,7 +241,7 @@ namespace SMTPE
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(683, 38);
+            this.label3.Location = new System.Drawing.Point(682, 90);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 19);
@@ -252,7 +252,7 @@ namespace SMTPE
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(683, 87);
+            this.label7.Location = new System.Drawing.Point(682, 139);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(114, 19);
@@ -338,7 +338,7 @@ namespace SMTPE
             this.totalLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.totalLbl.AutoSize = true;
             this.totalLbl.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totalLbl.Location = new System.Drawing.Point(1441, 193);
+            this.totalLbl.Location = new System.Drawing.Point(1297, 222);
             this.totalLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.totalLbl.Name = "totalLbl";
             this.totalLbl.Size = new System.Drawing.Size(14, 19);
@@ -350,7 +350,7 @@ namespace SMTPE
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1322, 193);
+            this.label1.Location = new System.Drawing.Point(1178, 222);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 19);
@@ -373,7 +373,7 @@ namespace SMTPE
             this.dataGridViewInbound.RowHeadersWidth = 51;
             this.dataGridViewInbound.RowTemplate.Height = 30;
             this.dataGridViewInbound.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewInbound.Size = new System.Drawing.Size(1495, 414);
+            this.dataGridViewInbound.Size = new System.Drawing.Size(1334, 238);
             this.dataGridViewInbound.TabIndex = 61;
             this.dataGridViewInbound.Visible = false;
             // 
@@ -381,7 +381,7 @@ namespace SMTPE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1527, 944);
+            this.ClientSize = new System.Drawing.Size(1366, 768);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.backButton);

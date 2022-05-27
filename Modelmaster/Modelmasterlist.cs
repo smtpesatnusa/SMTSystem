@@ -12,64 +12,19 @@ namespace SMTPE
     {
         LoadForm lf = new LoadForm();
         ConnectionDB connectionDB = new ConnectionDB();
-        private DataSet ds;
-        private DataTable dtSource;
-        private int PageCount;
-        private int maxRec;
-        private int pageSize;
-        private int currentPage;
-        private int recNo;
-        private string Sql;
 
         public Modelmasterlist()
         {
             InitializeComponent();
         }
 
-        //The below is the key for showing Progress bar
-        private void StartProgress(String strStatusText)
-        {
-            LoadForm lf = new LoadForm();
-            ShowProgress();
-        }
-        private void CloseProgress()
-        {
-            //Thread.Sleep(200);
-            while (!this.IsHandleCreated)
-                System.Threading.Thread.Sleep(200);
-            lf.Invoke(new Action(lf.Close));
-        }
-        private void ShowProgress()
-        {
-            try
-            {
-                if (this.InvokeRequired)
-                {
-                    try
-                    {
-                        lf.ShowDialog();
-                    }
-                    catch (Exception ex) { }
-                }
-                else
-                {
-                    Thread th = new Thread(ShowProgress);
-                    th.IsBackground = false;
-                    th.Start();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
 
         private void tbSearch_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 (dataGridViewModellist.DataSource as DataTable).DefaultView.RowFilter =
-                    string.Format("model LIKE '{0}%' or code LIKE '{0}%' or CONVERT(taping, System.String) LIKE '{0}%' ", tbSearch.Text);
+                    string.Format("model LIKE '{0}%' or code LIKE '{0}%' or CONVERT(taping, System.String) LIKE '{0}%' or CONVERT(createBy, System.String) LIKE '{0}%' ", tbSearch.Text);
             }
             catch (Exception ex)
             {

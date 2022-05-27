@@ -64,7 +64,7 @@
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
-    <ApplicationIcon>invoice_ticket_document_icon_188744.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\icons8-system-70.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
@@ -90,6 +90,11 @@
     </Reference>
     <Reference Include="Grpc.Core.Api, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d754f35622e28bad, processorArchitecture=MSIL">
       <HintPath>packages\Grpc.Core.Api.2.44.0\lib\net45\Grpc.Core.Api.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.BarTender, Version=11.0.8.1, Culture=neutral, PublicKeyToken=109ff779a1b4cbc7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\Interop.BarTender.dll</HintPath>
     </Reference>
     <Reference Include="K4os.Compression.LZ4, Version=1.1.11.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
       <HintPath>packages\K4os.Compression.LZ4.1.1.11\lib\net46\K4os.Compression.LZ4.dll</HintPath>
@@ -194,6 +199,36 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustControl\CustControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustControl\CustControl.Designer.cs">
+      <DependentUpon>CustControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LabelPartnumber\LabelPN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LabelPartnumber\LabelPN.Designer.cs">
+      <DependentUpon>LabelPN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LabelPartnumber\LabelPNList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LabelPartnumber\LabelPNList.Designer.cs">
+      <DependentUpon>LabelPNList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterMaterial\MasterMaterial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterMaterial\MasterMaterial.Designer.cs">
+      <DependentUpon>MasterMaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu Control\menuControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu Control\menuControl.Designer.cs">
+      <DependentUpon>menuControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PackingList\ImportPackingList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,17 +247,17 @@
     <Compile Include="PackingList\PackingList.Designer.cs">
       <DependentUpon>PackingList.cs</DependentUpon>
     </Compile>
-    <Compile Include="MasterMaterial\ImportMasterMaterial.cs">
+    <Compile Include="MasterMaterial\ImportMasterMaterialXM.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MasterMaterial\ImportMasterMaterial.Designer.cs">
-      <DependentUpon>ImportMasterMaterial.cs</DependentUpon>
+    <Compile Include="MasterMaterial\ImportMasterMaterialXM.Designer.cs">
+      <DependentUpon>ImportMasterMaterialXM.cs</DependentUpon>
     </Compile>
-    <Compile Include="MasterMaterial\MasterMaterial.cs">
+    <Compile Include="MasterMaterial\MasterMaterialXM.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MasterMaterial\MasterMaterial.Designer.cs">
-      <DependentUpon>MasterMaterial.cs</DependentUpon>
+    <Compile Include="MasterMaterial\MasterMaterialXM.Designer.cs">
+      <DependentUpon>MasterMaterialXM.cs</DependentUpon>
     </Compile>
     <Compile Include="Modelmaster\Addmodelmaster.cs">
       <SubType>Form</SubType>
@@ -235,6 +270,12 @@
     </Compile>
     <Compile Include="Modelmaster\Modelmasterlist.Designer.cs">
       <DependentUpon>Modelmasterlist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrintLabel\PrintLabel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintLabel\PrintLabel.Designer.cs">
+      <DependentUpon>PrintLabel.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -264,6 +305,19 @@
     <Compile Include="Setup\ConnectionDB.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Setup\MessagesHelper.cs" />
+    <Compile Include="UserLevel\UserLevellist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserLevel\UserLevellist.Designer.cs">
+      <DependentUpon>UserLevellist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserRole\UserRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserRole\UserRole.Designer.cs">
+      <DependentUpon>UserRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="User\Adduser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -282,6 +336,21 @@
     <Compile Include="User\Userlist.Designer.cs">
       <DependentUpon>Userlist.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CustControl\CustControl.resx">
+      <DependentUpon>CustControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LabelPartnumber\LabelPN.resx">
+      <DependentUpon>LabelPN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LabelPartnumber\LabelPNList.resx">
+      <DependentUpon>LabelPNList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterMaterial\MasterMaterial.resx">
+      <DependentUpon>MasterMaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu Control\menuControl.resx">
+      <DependentUpon>menuControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PackingList\ImportPackingList.resx">
       <DependentUpon>ImportPackingList.cs</DependentUpon>
     </EmbeddedResource>
@@ -291,11 +360,11 @@
     <EmbeddedResource Include="PackingList\PackingList.resx">
       <DependentUpon>PackingList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MasterMaterial\ImportMasterMaterial.resx">
-      <DependentUpon>ImportMasterMaterial.cs</DependentUpon>
+    <EmbeddedResource Include="MasterMaterial\ImportMasterMaterialXM.resx">
+      <DependentUpon>ImportMasterMaterialXM.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MasterMaterial\MasterMaterial.resx">
-      <DependentUpon>MasterMaterial.cs</DependentUpon>
+    <EmbeddedResource Include="MasterMaterial\MasterMaterialXM.resx">
+      <DependentUpon>MasterMaterialXM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modelmaster\Addmodelmaster.resx">
       <DependentUpon>Addmodelmaster.cs</DependentUpon>
@@ -312,10 +381,19 @@
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PrintLabel\PrintLabel.resx">
+      <DependentUpon>PrintLabel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserLevel\UserLevellist.resx">
+      <DependentUpon>UserLevellist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserRole\UserRole.resx">
+      <DependentUpon>UserRole.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User\Adduser.resx">
       <DependentUpon>Adduser.cs</DependentUpon>
@@ -406,10 +484,18 @@
     <None Include="Resources\icons8-reply-arrow-20.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="invoice_ticket_document_icon_188744.ico" />
-    <Content Include="Resources\invoice_106601.ico" />
-    <Content Include="Resources\invoice_ticket_document_icon_188744.ico" />
-    <Content Include="Resources\scan_code_qr_barcode_program_icon_195671.ico" />
+    <Content Include="Resources\icons8-system-70.ico" />
+    <Content Include="Resources\icons8-add-20.png" />
+    <Content Include="Resources\icons8-add-document-20.png" />
+    <Content Include="Resources\icons8-compare-20.png" />
+    <Content Include="Resources\icons8-export-excel-20.png" />
+    <Content Include="Resources\icons8-home-24.png" />
+    <Content Include="Resources\icons8-home-page-16.png" />
+    <Content Include="Resources\icons8-import-file-20.png" />
+    <Content Include="Resources\icons8-import-file-24 %281%29.png" />
+    <Content Include="Resources\icons8-purchase-order-20 %281%29.png" />
+    <Content Include="Resources\icons8-purchase-order-20.png" />
+    <Content Include="Resources\icons8-time-machine-30.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

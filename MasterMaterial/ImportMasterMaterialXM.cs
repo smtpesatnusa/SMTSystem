@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace SMTPE
 {
-    public partial class ImportMasterMaterial : MaterialForm
+    public partial class ImportMasterMaterialXM : MaterialForm
     {
         LoadForm lf = new LoadForm();
         Helper help = new Helper();
         ConnectionDB connectionDB = new ConnectionDB();
         string idUser;
 
-        public ImportMasterMaterial()
+        public ImportMasterMaterialXM()
         {
             InitializeComponent();
         }
@@ -49,8 +49,10 @@ namespace SMTPE
                 }
                 else
                 {
-                    Thread th = new Thread(ShowProgress);
-                    th.IsBackground = false;
+                    Thread th = new Thread(ShowProgress)
+                    {
+                        IsBackground = false
+                    };
                     th.Start();
                 }
             }
@@ -118,7 +120,7 @@ namespace SMTPE
 
                     MessageBox.Show(this, "Master Material will Uploaded in Background", "Master Material", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Hide();
-                    MasterMaterial mm = new MasterMaterial();
+                    MasterMaterialXM mm = new MasterMaterialXM();
                     mm.toolStripUsername.Text = toolStripUsername.Text;
                     mm.Show();
                     this.Hide();
@@ -132,7 +134,7 @@ namespace SMTPE
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            MasterMaterial mm = new MasterMaterial();
+            MasterMaterialXM mm = new MasterMaterialXM();
             mm.toolStripUsername.Text = toolStripUsername.Text;
             this.Hide();
             mm.Show();

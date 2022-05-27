@@ -11,50 +11,11 @@ namespace SMTPE
 {
     public partial class PackingList : MaterialForm
     {
-        LoadForm lf = new LoadForm();
         ConnectionDB connectionDB = new ConnectionDB();
 
         public PackingList()
         {
             InitializeComponent();
-        }
-
-        //The below is the key for showing Progress bar
-        private void StartProgress(String strStatusText)
-        {
-            LoadForm lf = new LoadForm();
-            ShowProgress();
-        }
-        private void CloseProgress()
-        {
-            //Thread.Sleep(200);
-            while (!this.IsHandleCreated)
-                System.Threading.Thread.Sleep(200);
-            lf.Invoke(new Action(lf.Close));
-        }
-        private void ShowProgress()
-        {
-            try
-            {
-                if (this.InvokeRequired)
-                {
-                    try
-                    {
-                        lf.ShowDialog();
-                    }
-                    catch (Exception ex) { }
-                }
-                else
-                {
-                    Thread th = new Thread(ShowProgress);
-                    th.IsBackground = false;
-                    th.Start();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -245,6 +206,40 @@ namespace SMTPE
                 else
                 {
                 }
+            }
+        }
+
+        private void truncatePackingListLbl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string message = "Are you sure want to delete All this Packing List Data ?";
+            string title = "Delete Packing List";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            MessageBoxIcon icon = MessageBoxIcon.Information;
+            DialogResult result = MessageBox.Show(this, message, title, buttons, icon);
+            if (result == DialogResult.Yes)
+            {
+                var cmd = new MySqlCommand("", connectionDB.connection);
+
+                string querydeletepackinglist = "SET FOREIGN_KEY_CHECKS = 0; TRUNCATE tbl_packinglist;";
+                string querydeletepackingdetail = "TRUNCATE tbl_packingdetail";
+
+                connectionDB.connection.Open();
+
+                string[] allQuery = { querydeletepackinglist, querydeletepackingdetail };
+                for (int j = 0; j < allQuery.Length; j++)
+                {
+                    cmd.CommandText = allQuery[j];
+                    //Masukkan perintah/query yang akan dijalankan ke dalam CommandText
+                    cmd.ExecuteNonQuery();
+                    //Jalankan perintah / query dalam CommandText pada database
+                }
+
+                connectionDB.connection.Close();
+                PackingList packingList = new PackingList();
+                packingList.toolStripUsername.Text = toolStripUsername.Text;
+                this.Hide();
+                packingList.Show();
+                MessageBox.Show(this, "Record Deleted successfully", "Packing List Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

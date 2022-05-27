@@ -8,8 +8,8 @@ namespace SMTPE
 {
     public partial class Login : MaterialForm
     {
-        ConnectionDB con = new ConnectionDB();
-        Helper help = new Helper();
+        readonly ConnectionDB con = new ConnectionDB();
+        readonly Helper help = new Helper();
         string id, username, password, name, role;
 
         private void timer_Tick(object sender, EventArgs e)
@@ -90,8 +90,7 @@ namespace SMTPE
 
         public Login()
         {
-            InitializeComponent();
-            Helper help = new Helper();
+            InitializeComponent();            
         }
 
         private void Login_Load(object sender, EventArgs e)

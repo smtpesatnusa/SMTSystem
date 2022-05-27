@@ -55,7 +55,7 @@ namespace SMTPE
             // 
             this.tbSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tbSearch.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbSearch.Location = new System.Drawing.Point(552, 122);
+            this.tbSearch.Location = new System.Drawing.Point(1138, 122);
             this.tbSearch.Name = "tbSearch";
             this.tbSearch.Size = new System.Drawing.Size(200, 26);
             this.tbSearch.TabIndex = 13;
@@ -67,7 +67,7 @@ namespace SMTPE
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(498, 127);
+            this.label1.Location = new System.Drawing.Point(1084, 127);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 19);
             this.label1.TabIndex = 12;
@@ -87,7 +87,7 @@ namespace SMTPE
             this.dataGridViewMasterMaterialList.Location = new System.Drawing.Point(23, 179);
             this.dataGridViewMasterMaterialList.Name = "dataGridViewMasterMaterialList";
             this.dataGridViewMasterMaterialList.RowHeadersWidth = 51;
-            this.dataGridViewMasterMaterialList.Size = new System.Drawing.Size(729, 400);
+            this.dataGridViewMasterMaterialList.Size = new System.Drawing.Size(1315, 494);
             this.dataGridViewMasterMaterialList.TabIndex = 10;
             this.dataGridViewMasterMaterialList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewMasterMaterialList_CellFormatting);
             // 
@@ -96,7 +96,7 @@ namespace SMTPE
             this.truncateMasterMaterialLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.truncateMasterMaterialLbl.AutoSize = true;
             this.truncateMasterMaterialLbl.BackColor = System.Drawing.Color.Transparent;
-            this.truncateMasterMaterialLbl.Location = new System.Drawing.Point(679, 157);
+            this.truncateMasterMaterialLbl.Location = new System.Drawing.Point(1265, 157);
             this.truncateMasterMaterialLbl.Name = "truncateMasterMaterialLbl";
             this.truncateMasterMaterialLbl.Size = new System.Drawing.Size(73, 19);
             this.truncateMasterMaterialLbl.TabIndex = 61;
@@ -133,9 +133,9 @@ namespace SMTPE
             this.toolStripUsername,
             this.toolStripStatusLabel1,
             this.dateTimeNow});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 648);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 742);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(780, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1366, 26);
             this.statusStrip1.TabIndex = 59;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -147,7 +147,7 @@ namespace SMTPE
             // txtDisplayPageNo
             // 
             this.txtDisplayPageNo.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.txtDisplayPageNo.Location = new System.Drawing.Point(329, 606);
+            this.txtDisplayPageNo.Location = new System.Drawing.Point(622, 700);
             this.txtDisplayPageNo.Name = "txtDisplayPageNo";
             this.txtDisplayPageNo.ReadOnly = true;
             this.txtDisplayPageNo.Size = new System.Drawing.Size(100, 26);
@@ -156,7 +156,7 @@ namespace SMTPE
             // btnNextPage
             // 
             this.btnNextPage.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnNextPage.Location = new System.Drawing.Point(443, 605);
+            this.btnNextPage.Location = new System.Drawing.Point(736, 699);
             this.btnNextPage.Name = "btnNextPage";
             this.btnNextPage.Size = new System.Drawing.Size(75, 23);
             this.btnNextPage.TabIndex = 99;
@@ -167,7 +167,7 @@ namespace SMTPE
             // btnPreviousPage
             // 
             this.btnPreviousPage.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnPreviousPage.Location = new System.Drawing.Point(242, 605);
+            this.btnPreviousPage.Location = new System.Drawing.Point(535, 699);
             this.btnPreviousPage.Name = "btnPreviousPage";
             this.btnPreviousPage.Size = new System.Drawing.Size(75, 23);
             this.btnPreviousPage.TabIndex = 98;
@@ -178,7 +178,7 @@ namespace SMTPE
             // btnLastPage
             // 
             this.btnLastPage.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnLastPage.Location = new System.Drawing.Point(524, 605);
+            this.btnLastPage.Location = new System.Drawing.Point(817, 699);
             this.btnLastPage.Name = "btnLastPage";
             this.btnLastPage.Size = new System.Drawing.Size(75, 23);
             this.btnLastPage.TabIndex = 97;
@@ -189,7 +189,7 @@ namespace SMTPE
             // btnFirstPage
             // 
             this.btnFirstPage.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnFirstPage.Location = new System.Drawing.Point(161, 605);
+            this.btnFirstPage.Location = new System.Drawing.Point(454, 699);
             this.btnFirstPage.Name = "btnFirstPage";
             this.btnFirstPage.Size = new System.Drawing.Size(75, 23);
             this.btnFirstPage.TabIndex = 96;
@@ -204,7 +204,7 @@ namespace SMTPE
             this.importMMButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.importMMButton.Image = global::SMTPE.Properties.Resources.icons8_import_file_20;
             this.importMMButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.importMMButton.Location = new System.Drawing.Point(466, 70);
+            this.importMMButton.Location = new System.Drawing.Point(1052, 70);
             this.importMMButton.Name = "importMMButton";
             this.importMMButton.Size = new System.Drawing.Size(194, 41);
             this.importMMButton.TabIndex = 60;
@@ -220,7 +220,7 @@ namespace SMTPE
             this.backButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backButton.Image = global::SMTPE.Properties.Resources.icons8_reply_arrow_20;
             this.backButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.backButton.Location = new System.Drawing.Point(676, 70);
+            this.backButton.Location = new System.Drawing.Point(1262, 70);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(76, 40);
             this.backButton.TabIndex = 58;
@@ -234,7 +234,7 @@ namespace SMTPE
             this.refreshLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.refreshLbl.AutoSize = true;
             this.refreshLbl.BackColor = System.Drawing.Color.Transparent;
-            this.refreshLbl.Location = new System.Drawing.Point(621, 157);
+            this.refreshLbl.Location = new System.Drawing.Point(1207, 157);
             this.refreshLbl.Name = "refreshLbl";
             this.refreshLbl.Size = new System.Drawing.Size(61, 19);
             this.refreshLbl.TabIndex = 102;
@@ -242,11 +242,11 @@ namespace SMTPE
             this.refreshLbl.Text = "Refresh";
             this.refreshLbl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.refreshLbl_LinkClicked);
             // 
-            // MasterMaterial
+            // MasterMaterialXM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(780, 674);
+            this.ClientSize = new System.Drawing.Size(1366, 768);
             this.Controls.Add(this.refreshLbl);
             this.Controls.Add(this.txtDisplayPageNo);
             this.Controls.Add(this.btnNextPage);
@@ -262,8 +262,8 @@ namespace SMTPE
             this.Controls.Add(this.dataGridViewMasterMaterialList);
             this.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
-            this.Name = "MasterMaterial";
-            this.Text = "Master Material";
+            this.Name = "MasterMaterialXM";
+            this.Text = "Master Material XM";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MasterMaterial_FormClosing);
             this.Load += new System.EventHandler(this.MasterMaterial_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMasterMaterialList)).EndInit();

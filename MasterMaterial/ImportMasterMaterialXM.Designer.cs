@@ -1,7 +1,7 @@
 ﻿
 namespace SMTPE
 {
-    partial class ImportMasterMaterial
+    partial class ImportMasterMaterialXM
     {
         /// <summary>
         /// Required designer variable.
@@ -38,6 +38,8 @@ namespace SMTPE
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.dateTimeNow = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.totalLbl = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.browseMM = new System.Windows.Forms.Button();
             this.tbfilepathMM = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -48,8 +50,6 @@ namespace SMTPE
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
             this.homeButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.totalLbl = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMasterMaterial)).BeginInit();
@@ -63,10 +63,10 @@ namespace SMTPE
             this.toolStripUsername,
             this.toolStripStatusLabel1,
             this.dateTimeNow});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 918);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 742);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1527, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1366, 26);
             this.statusStrip1.TabIndex = 34;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -108,10 +108,34 @@ namespace SMTPE
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(1495, 108);
+            this.groupBox1.Size = new System.Drawing.Size(1334, 108);
             this.groupBox1.TabIndex = 35;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Master Material";
+            // 
+            // totalLbl
+            // 
+            this.totalLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.totalLbl.AutoSize = true;
+            this.totalLbl.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalLbl.Location = new System.Drawing.Point(1250, 71);
+            this.totalLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.totalLbl.Name = "totalLbl";
+            this.totalLbl.Size = new System.Drawing.Size(14, 19);
+            this.totalLbl.TabIndex = 40;
+            this.totalLbl.Text = "-";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1157, 71);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 19);
+            this.label1.TabIndex = 39;
+            this.label1.Text = "Total Data :";
             // 
             // browseMM
             // 
@@ -153,7 +177,7 @@ namespace SMTPE
             this.saveButton.Enabled = false;
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveButton.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(701, 854);
+            this.saveButton.Location = new System.Drawing.Point(621, 678);
             this.saveButton.Margin = new System.Windows.Forms.Padding(4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(107, 37);
@@ -199,7 +223,7 @@ namespace SMTPE
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewMasterMaterial.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewMasterMaterial.RowHeadersWidth = 51;
-            this.dataGridViewMasterMaterial.Size = new System.Drawing.Size(1495, 558);
+            this.dataGridViewMasterMaterial.Size = new System.Drawing.Size(1334, 382);
             this.dataGridViewMasterMaterial.TabIndex = 37;
             this.dataGridViewMasterMaterial.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewMasterMaterial_CellFormatting);
             // 
@@ -219,7 +243,7 @@ namespace SMTPE
             this.homeButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.homeButton.Image = global::SMTPE.Properties.Resources.icons8_home_page_16;
             this.homeButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.homeButton.Location = new System.Drawing.Point(1346, 82);
+            this.homeButton.Location = new System.Drawing.Point(1185, 82);
             this.homeButton.Margin = new System.Windows.Forms.Padding(4);
             this.homeButton.Name = "homeButton";
             this.homeButton.Size = new System.Drawing.Size(77, 43);
@@ -236,7 +260,7 @@ namespace SMTPE
             this.backButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backButton.Image = global::SMTPE.Properties.Resources.icons8_reply_arrow_20;
             this.backButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.backButton.Location = new System.Drawing.Point(1431, 82);
+            this.backButton.Location = new System.Drawing.Point(1270, 82);
             this.backButton.Margin = new System.Windows.Forms.Padding(4);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(80, 43);
@@ -246,35 +270,11 @@ namespace SMTPE
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1318, 71);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 19);
-            this.label1.TabIndex = 39;
-            this.label1.Text = "Total Data :";
-            // 
-            // totalLbl
-            // 
-            this.totalLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.totalLbl.AutoSize = true;
-            this.totalLbl.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totalLbl.Location = new System.Drawing.Point(1411, 71);
-            this.totalLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.totalLbl.Name = "totalLbl";
-            this.totalLbl.Size = new System.Drawing.Size(14, 19);
-            this.totalLbl.TabIndex = 40;
-            this.totalLbl.Text = "-";
-            // 
-            // ImportMasterMaterial
+            // ImportMasterMaterialXM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1527, 944);
+            this.ClientSize = new System.Drawing.Size(1366, 768);
             this.Controls.Add(this.homeButton);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.saveButton);
@@ -283,8 +283,8 @@ namespace SMTPE
             this.Controls.Add(this.statusStrip1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.Name = "ImportMasterMaterial";
-            this.Text = "Import Master Material";
+            this.Name = "ImportMasterMaterialXM";
+            this.Text = "Import Master Material XM";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ImportMasterMaterial_FormClosing);
             this.Load += new System.EventHandler(this.ImportMasterMaterial_Load);
             this.statusStrip1.ResumeLayout(false);

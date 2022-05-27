@@ -72,13 +72,12 @@ namespace SMTPE
 
         private void browseLL_Click(object sender, EventArgs e)
         {
-            resetData();
-
             openFileDialogMM.Title = "Please Select a File Packing List";
             openFileDialogMM.Filter = "Excel Files|*.xls;*.xlsx;";
             if (openFileDialogMM.ShowDialog() == DialogResult.OK)
             {
                 StartProgress("Loading...");
+                resetData();
                 PLFileName = openFileDialogMM.FileName;
                 tbfilepathPL.Text = PLFileName;
                 fileExtPL = Path.GetExtension(PLFileName).ToLower(); //get the file extension  
@@ -457,7 +456,6 @@ namespace SMTPE
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-
 
         private void dataGridViewPackingList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {

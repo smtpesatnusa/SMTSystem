@@ -197,7 +197,7 @@ namespace SMTPE
         {
             ChangePassword changePassword = new ChangePassword();
             changePassword.usernameLbl.Text = toolStripUsername.Text;
-            changePassword.Show();
+            changePassword.ShowDialog();
         }
 
         private void scanToolStripMenuItem_Click(object sender, EventArgs e)
@@ -251,6 +251,30 @@ namespace SMTPE
             MasterMaterialXM masterMaterialXM = new MasterMaterialXM();
             masterMaterialXM.toolStripUsername.Text = toolStripUsername.Text;
             masterMaterialXM.Show();
+            this.Hide();
+        }
+
+        private void materialMasterToolStripMenuItem_Click_Click(object sender, EventArgs e)
+        {
+            MasterMaterial masterMaterial = new MasterMaterial();
+            masterMaterial.toolStripUsername.Text = toolStripUsername.Text;
+            masterMaterial.Show();
+            this.Hide();
+        }
+
+        private void departmentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Departmentlist departmentlist = new Departmentlist();
+            departmentlist.toolStripUsername.Text = toolStripUsername.Text;
+            departmentlist.Show();
+            this.Hide();
+        }
+
+        private void scrapPartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ScrapPartnumber scrapPartnumber = new ScrapPartnumber();
+            scrapPartnumber.toolStripUsername.Text = toolStripUsername.Text;
+            scrapPartnumber.Show();
             this.Hide();
         }
     }

@@ -3,6 +3,7 @@ using MetroFramework;
 using MySql.Data.MySqlClient;
 using System;
 using System.Data;
+using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -43,6 +44,8 @@ namespace SMTPE
 
         private void Refresh()
         {
+            tbSearch.Clear();
+
             // remove data in datagridview result
             dataGridViewUserList.DataSource = null;
             dataGridViewUserList.Refresh();
@@ -216,7 +219,8 @@ namespace SMTPE
             }
 
             dataGridViewUserList.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-            //dataGridViewUserList.Columns[3].DefaultCellStyle.Format = "dddd, dd MMMM yyyy HH:mm:ss";
+            dataGridViewUserList.Columns[1].DefaultCellStyle.Format = "dddd, dd MMMM yyyy HH:mm:ss";
+
         }
 
         private void BackButton_Click(object sender, EventArgs e)
@@ -252,7 +256,7 @@ namespace SMTPE
                         // cek jika modelno tsb sudah di upload
                         if (ds.Tables[0].Rows.Count > 0)
                         {
-                            MessageBox.Show(this, "Unable to add user, UserID already insert", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(this, "Unable to add user, Badge ID already insert", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             clearInput();
                         }
                         else
@@ -282,6 +286,14 @@ namespace SMTPE
                     MessageBox.Show(ex.Message.ToString());
                 }
             }
+        }
+
+        private void tbname_TextChanged(object sender, EventArgs e)
+        {
+            CultureInfo cultureInfo = System.Threading.Thread.CurrentThread.CurrentCulture;
+            TextInfo textInfo = cultureInfo.TextInfo;
+            tbname.Text = textInfo.ToTitleCase(tbname.Text.ToLower());
+            tbname.Select(tbname.Text.Length, 0);
         }
     }
 }

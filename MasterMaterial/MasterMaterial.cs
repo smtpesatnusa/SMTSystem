@@ -80,12 +80,12 @@ namespace SMTPE
             {
                 if (tbSearch.Text == "")
                 {
-                    Sql = "SELECT material, importDate, importBy FROM tbl_mastermaterial ORDER BY id";
+                    Sql = "SELECT material, description, location, f_type FROM tbl_masterpartmaterial ORDER BY id";
                 }
                 else
                 {
-                    Sql = "SELECT material, importDate, importBy FROM tbl_mastermaterial WHERE material like '%" + tbSearch.Text + "%'" +
-                        "or importBy LIKE '%" + tbSearch.Text + "%'";
+                    Sql = "SELECT material, description, location, f_type FROM tbl_masterpartmaterial WHERE material like '%" + tbSearch.Text + "%'" +
+                        "or description LIKE '%" + tbSearch.Text + "%' or location LIKE '%" + tbSearch.Text + "%' or f_type LIKE '%" + tbSearch.Text + "%'";
                 }
                 LoadDS(Sql);
                 FillGrid();
@@ -103,7 +103,7 @@ namespace SMTPE
 
         private void importMMButton_Click(object sender, EventArgs e)
         {
-            ImportMasterMaterialXM iMM = new ImportMasterMaterialXM();
+            ImportMasterMaterial iMM = new ImportMasterMaterial();
             iMM.toolStripUsername.Text = toolStripUsername.Text;
             iMM.Show();
             this.Hide();
@@ -138,7 +138,7 @@ namespace SMTPE
             {
                 connectionDB.connection.Open();
 
-                Sql = "SELECT material, importDate, importBy FROM tbl_mastermaterial ORDER BY id";
+                Sql = "SELECT material, description, f_type, location FROM tbl_masterpartmaterial ORDER BY id";
 
                 StartProgress("Loading...");
 
@@ -158,7 +158,7 @@ namespace SMTPE
             }
         }
 
-            private void btnFirstPage_Click(object sender, EventArgs e)
+        private void btnFirstPage_Click(object sender, EventArgs e)
         {
             if (!CheckFillButton())
                 return;
@@ -178,7 +178,7 @@ namespace SMTPE
 
         private void btnPreviousPage_Click(object sender, EventArgs e)
         {
-            currentPage --;
+            currentPage--;
 
             // Check if you are already at the first page.
             if (currentPage < 1)
@@ -203,7 +203,7 @@ namespace SMTPE
                 return;
             }
 
-            currentPage ++;
+            currentPage++;
 
             if (currentPage > PageCount)
             {
@@ -271,7 +271,7 @@ namespace SMTPE
                 for (int i = startRec; i <= endRec - 1; i++)
                 {
                     dtTemp.ImportRow(dtSource.Rows[i]);
-                    recNo ++;
+                    recNo++;
                 }
             }
 
@@ -314,7 +314,7 @@ namespace SMTPE
 
             // Adjust the page number if the last page contains a partial page.
             if ((maxRec % pageSize) > 0)
-                PageCount ++;
+                PageCount++;
 
             // Initial seeings
             currentPage = 1;
@@ -348,14 +348,13 @@ namespace SMTPE
             }
 
             // Set table title
-            string[] title = { "MATERIAL", "IMPORT DATE", "IMPORT BY" };
+            string[] title = { "MATERIAL", "DESCRIPTION", "LOCATION", "F.TYPE" };
             for (int i = 0; i < title.Length; i++)
             {
                 dataGridViewMasterMaterialList.Columns[i].HeaderText = "" + title[i];
             }
 
             dataGridViewMasterMaterialList.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-            dataGridViewMasterMaterialList.Columns[1].DefaultCellStyle.Format = "dddd, dd MMMM yyyy HH:mm:ss";
 
         }
 
@@ -370,7 +369,7 @@ namespace SMTPE
             {
                 var cmd = new MySqlCommand("", connectionDB.connection);
 
-                string querydeletemastermaterial = "TRUNCATE tbl_mastermaterial";
+                string querydeletemastermaterial = "TRUNCATE tbl_masterpartmaterial";
 
                 connectionDB.connection.Open();
 
@@ -384,7 +383,7 @@ namespace SMTPE
                 }
 
                 connectionDB.connection.Close();
-                MasterMaterialXM masterMaterial = new MasterMaterialXM();
+                MasterMaterial masterMaterial = new MasterMaterial();
                 masterMaterial.toolStripUsername.Text = toolStripUsername.Text;
                 this.Hide();
                 masterMaterial.Show();

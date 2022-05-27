@@ -242,7 +242,7 @@ namespace SMTPE
             this.refreshLbl.Text = "Refresh";
             this.refreshLbl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.refreshLbl_LinkClicked);
             // 
-            // MasterMaterialXM
+            // MasterMaterial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -262,8 +262,8 @@ namespace SMTPE
             this.Controls.Add(this.dataGridViewMasterMaterialList);
             this.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
-            this.Name = "MasterMaterialXM";
-            this.Text = "Master Material XM";
+            this.Name = "MasterMaterial";
+            this.Text = "Master Material";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MasterMaterial_FormClosing);
             this.Load += new System.EventHandler(this.MasterMaterial_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMasterMaterialList)).EndInit();

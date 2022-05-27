@@ -64,7 +64,6 @@ namespace SMTPE
             // expand all child in treeview
             treeViewMenu.ExpandAll();
 
-
             // fill listbox with user data
             string sqluserlist = "SELECT CONCAT(username, ' | ', NAME) AS NAMES FROM tbl_user ORDER BY name";
             help.fill_listbox(sqluserlist, listBoxUser, "names");

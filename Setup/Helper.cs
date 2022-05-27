@@ -15,6 +15,14 @@ namespace SMTPE
     public class Helper
     {
         ConnectionDB connectionDB = new ConnectionDB();
+        private DataSet ds;
+        private DataTable dtSource;
+        private int PageCount;
+        private int maxRec;
+        private int pageSize;
+        private int currentPage;
+        private int recNo;
+        private string Sql;
 
         // for read excel file
         public System.Data.DataTable ReadExcel(string fileName, string fileExt, string query)
@@ -335,5 +343,31 @@ namespace SMTPE
             return node.Nodes.Cast<TreeNode>().Any(n => n.Checked);
         }
 
+        public void displayCmbList(string sql, string display, string value, ComboBox comboBox)
+        {
+            try
+            {
+                using (MySqlDataAdapter adpt = new MySqlDataAdapter(sql, connectionDB.connection))
+                {
+                    DataTable dt = new DataTable();
+                    adpt.Fill(dt);
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        for (int j = 0; j < dt.Rows.Count; j++)
+                        {
+                            comboBox.Items.Add(dt.Rows[j][display]);
+                            comboBox.ValueMember = dt.Rows[j][value].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                connectionDB.connection.Close();
+                // tampilkan pesan error
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

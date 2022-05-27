@@ -217,16 +217,22 @@
     <Compile Include="LabelPartnumber\LabelPNList.Designer.cs">
       <DependentUpon>LabelPNList.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterMaterial\ImportMasterMaterial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterMaterial\ImportMasterMaterial.Designer.cs">
+      <DependentUpon>ImportMasterMaterial.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterMaterial\MasterMaterial.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MasterMaterial\MasterMaterial.Designer.cs">
       <DependentUpon>MasterMaterial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menu Control\menuControl.cs">
+    <Compile Include="MenuControl\menuControl.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Menu Control\menuControl.Designer.cs">
+    <Compile Include="MenuControl\menuControl.Designer.cs">
       <DependentUpon>menuControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PackingList\ImportPackingList.cs">
@@ -282,6 +288,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ScrapPartnumber\ScrapPartnumber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScrapPartnumber\ScrapPartnumber.Designer.cs">
+      <DependentUpon>ScrapPartnumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Setup\ExcelConvert.cs" />
     <Compile Include="Setup\Helper.cs" />
     <Compile Include="LoadForm.cs">
@@ -306,6 +318,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup\MessagesHelper.cs" />
+    <Compile Include="Department\Departmentlist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Department\Departmentlist.Designer.cs">
+      <DependentUpon>Departmentlist.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserLevel\UserLevellist.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -345,10 +363,13 @@
     <EmbeddedResource Include="LabelPartnumber\LabelPNList.resx">
       <DependentUpon>LabelPNList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MasterMaterial\ImportMasterMaterial.resx">
+      <DependentUpon>ImportMasterMaterial.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MasterMaterial\MasterMaterial.resx">
       <DependentUpon>MasterMaterial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Menu Control\menuControl.resx">
+    <EmbeddedResource Include="MenuControl\menuControl.resx">
       <DependentUpon>menuControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PackingList\ImportPackingList.resx">
@@ -388,6 +409,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScrapPartnumber\ScrapPartnumber.resx">
+      <DependentUpon>ScrapPartnumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Department\Departmentlist.resx">
+      <DependentUpon>Departmentlist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserLevel\UserLevellist.resx">
       <DependentUpon>UserLevellist.cs</DependentUpon>
@@ -484,6 +511,8 @@
     <None Include="Resources\icons8-reply-arrow-20.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\icons8-print-20.png" />
+    <None Include="Resources\icons8-add-20 %282%29.png" />
     <Content Include="Resources\icons8-system-70.ico" />
     <Content Include="Resources\icons8-add-20.png" />
     <Content Include="Resources\icons8-add-document-20.png" />

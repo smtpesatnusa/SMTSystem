@@ -93,6 +93,16 @@ namespace SMTPE.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_add_20__2_ {
+            get {
+                object obj = ResourceManager.GetObject("icons8-add-20 (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_add_document_20 {
             get {
                 object obj = ResourceManager.GetObject("icons8-add-document-20", resourceCulture);
@@ -136,6 +146,16 @@ namespace SMTPE.Properties {
         internal static System.Drawing.Bitmap icons8_import_file_20 {
             get {
                 object obj = ResourceManager.GetObject("icons8_import_file_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_print_20 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-print-20", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

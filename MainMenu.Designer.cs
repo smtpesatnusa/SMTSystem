@@ -45,12 +45,12 @@
             this.printLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.masterDataToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.modelMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.materialMasterToolStripMenuItem_Click = new System.Windows.Forms.ToolStripMenuItem();
             this.materialMasterXMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.partMaterialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.administrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.departmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userRoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -164,6 +164,7 @@
             this.scrapPartToolStripMenuItem.Name = "scrapPartToolStripMenuItem";
             this.scrapPartToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.scrapPartToolStripMenuItem.Text = "Scrap Part";
+            this.scrapPartToolStripMenuItem.Click += new System.EventHandler(this.scrapPartToolStripMenuItem_Click);
             // 
             // printLabelToolStripMenuItem
             // 
@@ -176,8 +177,8 @@
             // 
             this.masterDataToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.modelMasterToolStripMenuItem,
-            this.materialMasterXMToolStripMenuItem,
-            this.partMaterialToolStripMenuItem});
+            this.materialMasterToolStripMenuItem_Click,
+            this.materialMasterXMToolStripMenuItem});
             this.masterDataToolStripMenuItem1.Name = "masterDataToolStripMenuItem1";
             this.masterDataToolStripMenuItem1.Size = new System.Drawing.Size(210, 24);
             this.masterDataToolStripMenuItem1.Text = "Master Data";
@@ -185,22 +186,23 @@
             // modelMasterToolStripMenuItem
             // 
             this.modelMasterToolStripMenuItem.Name = "modelMasterToolStripMenuItem";
-            this.modelMasterToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.modelMasterToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
             this.modelMasterToolStripMenuItem.Text = "Model Master";
             this.modelMasterToolStripMenuItem.Click += new System.EventHandler(this.modelMasterToolStripMenuItem_Click);
+            // 
+            // materialMasterToolStripMenuItem_Click
+            // 
+            this.materialMasterToolStripMenuItem_Click.Name = "materialMasterToolStripMenuItem_Click";
+            this.materialMasterToolStripMenuItem_Click.Size = new System.Drawing.Size(222, 26);
+            this.materialMasterToolStripMenuItem_Click.Text = "Material Master";
+            this.materialMasterToolStripMenuItem_Click.Click += new System.EventHandler(this.materialMasterToolStripMenuItem_Click_Click);
             // 
             // materialMasterXMToolStripMenuItem
             // 
             this.materialMasterXMToolStripMenuItem.Name = "materialMasterXMToolStripMenuItem";
-            this.materialMasterXMToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.materialMasterXMToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
             this.materialMasterXMToolStripMenuItem.Text = "Material Master XM";
             this.materialMasterXMToolStripMenuItem.Click += new System.EventHandler(this.materialMasterXMToolStripMenuItem_Click);
-            // 
-            // partMaterialToolStripMenuItem
-            // 
-            this.partMaterialToolStripMenuItem.Name = "partMaterialToolStripMenuItem";
-            this.partMaterialToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.partMaterialToolStripMenuItem.Text = "Material Master";
             // 
             // toolStripMenuItem1
             // 
@@ -210,8 +212,8 @@
             // administrationToolStripMenuItem
             // 
             this.administrationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.departmentToolStripMenuItem,
             this.userLevelToolStripMenuItem,
-            this.menuControlToolStripMenuItem,
             this.userToolStripMenuItem,
             this.userRoleToolStripMenuItem,
             this.changePasswordToolStripMenuItem});
@@ -219,18 +221,19 @@
             this.administrationToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.administrationToolStripMenuItem.Text = "Administration";
             // 
+            // departmentToolStripMenuItem
+            // 
+            this.departmentToolStripMenuItem.Name = "departmentToolStripMenuItem";
+            this.departmentToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
+            this.departmentToolStripMenuItem.Text = "Department";
+            this.departmentToolStripMenuItem.Click += new System.EventHandler(this.departmentToolStripMenuItem_Click);
+            // 
             // userLevelToolStripMenuItem
             // 
             this.userLevelToolStripMenuItem.Name = "userLevelToolStripMenuItem";
             this.userLevelToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
             this.userLevelToolStripMenuItem.Text = "User Level";
             this.userLevelToolStripMenuItem.Click += new System.EventHandler(this.userLevelToolStripMenuItem_Click);
-            // 
-            // menuControlToolStripMenuItem
-            // 
-            this.menuControlToolStripMenuItem.Name = "menuControlToolStripMenuItem";
-            this.menuControlToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
-            this.menuControlToolStripMenuItem.Text = "Menu Control";
             // 
             // userToolStripMenuItem
             // 
@@ -303,12 +306,12 @@
         private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem userLevelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem menuControlToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem userRoleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem printLabelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scrapPartToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem custCodeControlToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem partMaterialToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem materialMasterToolStripMenuItem_Click;
+        private System.Windows.Forms.ToolStripMenuItem departmentToolStripMenuItem;
     }
 }
 

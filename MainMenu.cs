@@ -10,7 +10,6 @@ namespace SMTPE
 {
     public partial class MainMenu : MaterialForm
     {
-        readonly Helper help = new Helper();
         readonly ConnectionDB connectionDB = new ConnectionDB();
         readonly string idUser;
 
@@ -272,7 +271,7 @@ namespace SMTPE
 
         private void scrapPartToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ScrapPartnumber scrapPartnumber = new ScrapPartnumber();
+            ScrapPartnumberList scrapPartnumber = new ScrapPartnumberList();
             scrapPartnumber.toolStripUsername.Text = toolStripUsername.Text;
             scrapPartnumber.Show();
             this.Hide();

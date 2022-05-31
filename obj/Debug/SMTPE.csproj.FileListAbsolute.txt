@@ -368,7 +368,6 @@ C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.ScrapPartnumber.resources
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.Departmentlist.resources
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.UserLevellist.resources
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.UserRole.resources
-C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.Adduser.resources
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.ChangePassword.resources
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.Userlist.resources
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.csproj.GenerateResource.cache
@@ -379,3 +378,4 @@ C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.csproj.CopyComplete
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.exe
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.pdb
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.csprojAssemblyReference.cache
+C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.ScrapPartnumberList.resources

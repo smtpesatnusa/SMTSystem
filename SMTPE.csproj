@@ -288,6 +288,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ScrapPartnumber\ScrapPartnumberList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScrapPartnumber\ScrapPartnumberList.Designer.cs">
+      <DependentUpon>ScrapPartnumberList.cs</DependentUpon>
+    </Compile>
     <Compile Include="ScrapPartnumber\ScrapPartnumber.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -335,12 +341,6 @@
     </Compile>
     <Compile Include="UserRole\UserRole.Designer.cs">
       <DependentUpon>UserRole.cs</DependentUpon>
-    </Compile>
-    <Compile Include="User\Adduser.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="User\Adduser.Designer.cs">
-      <DependentUpon>Adduser.cs</DependentUpon>
     </Compile>
     <Compile Include="User\ChangePassword.cs">
       <SubType>Form</SubType>
@@ -410,6 +410,9 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ScrapPartnumber\ScrapPartnumberList.resx">
+      <DependentUpon>ScrapPartnumberList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ScrapPartnumber\ScrapPartnumber.resx">
       <DependentUpon>ScrapPartnumber.cs</DependentUpon>
     </EmbeddedResource>
@@ -421,9 +424,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserRole\UserRole.resx">
       <DependentUpon>UserRole.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="User\Adduser.resx">
-      <DependentUpon>Adduser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User\ChangePassword.resx">
       <DependentUpon>ChangePassword.cs</DependentUpon>

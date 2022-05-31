@@ -1,7 +1,7 @@
 ﻿
 namespace SMTPE
 {
-    partial class MasterMaterial
+    partial class ScrapPartnumberList
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@ namespace SMTPE
             this.components = new System.ComponentModel.Container();
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridViewMasterMaterialList = new System.Windows.Forms.DataGridView();
+            this.dataGridViewScrapPartList = new System.Windows.Forms.DataGridView();
             this.truncateMasterMaterialLbl = new System.Windows.Forms.LinkLabel();
             this.toolStripUsername = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -44,22 +44,29 @@ namespace SMTPE
             this.btnPreviousPage = new System.Windows.Forms.Button();
             this.btnLastPage = new System.Windows.Forms.Button();
             this.btnFirstPage = new System.Windows.Forms.Button();
-            this.importMMButton = new System.Windows.Forms.Button();
+            this.addScrapPartButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
             this.refreshLbl = new System.Windows.Forms.LinkLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMasterMaterialList)).BeginInit();
+            this.exportBtn = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.searchBy = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewScrapPartList)).BeginInit();
             this.statusStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbSearch
             // 
             this.tbSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tbSearch.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbSearch.Location = new System.Drawing.Point(1138, 122);
+            this.tbSearch.Location = new System.Drawing.Point(796, 122);
             this.tbSearch.Name = "tbSearch";
             this.tbSearch.Size = new System.Drawing.Size(200, 26);
             this.tbSearch.TabIndex = 13;
+            this.tbSearch.Visible = false;
             this.tbSearch.TextChanged += new System.EventHandler(this.tbSearch_TextChanged);
+            this.tbSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSearch_KeyDown);
             // 
             // label1
             // 
@@ -67,42 +74,44 @@ namespace SMTPE
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1084, 127);
+            this.label1.Location = new System.Drawing.Point(742, 127);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 19);
             this.label1.TabIndex = 12;
             this.label1.Text = "Search";
+            this.label1.Visible = false;
             // 
-            // dataGridViewMasterMaterialList
+            // dataGridViewScrapPartList
             // 
-            this.dataGridViewMasterMaterialList.AllowUserToAddRows = false;
-            this.dataGridViewMasterMaterialList.AllowUserToDeleteRows = false;
-            this.dataGridViewMasterMaterialList.AllowUserToOrderColumns = true;
-            this.dataGridViewMasterMaterialList.AllowUserToResizeRows = false;
-            this.dataGridViewMasterMaterialList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dataGridViewScrapPartList.AllowUserToAddRows = false;
+            this.dataGridViewScrapPartList.AllowUserToDeleteRows = false;
+            this.dataGridViewScrapPartList.AllowUserToOrderColumns = true;
+            this.dataGridViewScrapPartList.AllowUserToResizeRows = false;
+            this.dataGridViewScrapPartList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewMasterMaterialList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewMasterMaterialList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewMasterMaterialList.Location = new System.Drawing.Point(23, 179);
-            this.dataGridViewMasterMaterialList.Name = "dataGridViewMasterMaterialList";
-            this.dataGridViewMasterMaterialList.ReadOnly = true;
-            this.dataGridViewMasterMaterialList.RowHeadersWidth = 51;
-            this.dataGridViewMasterMaterialList.Size = new System.Drawing.Size(1315, 494);
-            this.dataGridViewMasterMaterialList.TabIndex = 10;
-            this.dataGridViewMasterMaterialList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewMasterMaterialList_CellFormatting);
+            this.dataGridViewScrapPartList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewScrapPartList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewScrapPartList.Location = new System.Drawing.Point(23, 179);
+            this.dataGridViewScrapPartList.Name = "dataGridViewScrapPartList";
+            this.dataGridViewScrapPartList.ReadOnly = true;
+            this.dataGridViewScrapPartList.RowHeadersWidth = 51;
+            this.dataGridViewScrapPartList.Size = new System.Drawing.Size(973, 494);
+            this.dataGridViewScrapPartList.TabIndex = 10;
+            this.dataGridViewScrapPartList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewScrapPartList_CellFormatting);
             // 
             // truncateMasterMaterialLbl
             // 
             this.truncateMasterMaterialLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.truncateMasterMaterialLbl.AutoSize = true;
             this.truncateMasterMaterialLbl.BackColor = System.Drawing.Color.Transparent;
-            this.truncateMasterMaterialLbl.Location = new System.Drawing.Point(1265, 157);
+            this.truncateMasterMaterialLbl.Location = new System.Drawing.Point(856, 157);
             this.truncateMasterMaterialLbl.Name = "truncateMasterMaterialLbl";
             this.truncateMasterMaterialLbl.Size = new System.Drawing.Size(73, 19);
             this.truncateMasterMaterialLbl.TabIndex = 61;
             this.truncateMasterMaterialLbl.TabStop = true;
             this.truncateMasterMaterialLbl.Text = "Delete All";
+            this.truncateMasterMaterialLbl.Visible = false;
             this.truncateMasterMaterialLbl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.tbTruncateMasterMaterial_LinkClicked);
             // 
             // toolStripUsername
@@ -136,7 +145,7 @@ namespace SMTPE
             this.dateTimeNow});
             this.statusStrip1.Location = new System.Drawing.Point(0, 742);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1366, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1024, 26);
             this.statusStrip1.TabIndex = 59;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -148,7 +157,7 @@ namespace SMTPE
             // txtDisplayPageNo
             // 
             this.txtDisplayPageNo.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.txtDisplayPageNo.Location = new System.Drawing.Point(622, 700);
+            this.txtDisplayPageNo.Location = new System.Drawing.Point(451, 700);
             this.txtDisplayPageNo.Name = "txtDisplayPageNo";
             this.txtDisplayPageNo.ReadOnly = true;
             this.txtDisplayPageNo.Size = new System.Drawing.Size(100, 26);
@@ -157,7 +166,7 @@ namespace SMTPE
             // btnNextPage
             // 
             this.btnNextPage.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnNextPage.Location = new System.Drawing.Point(736, 699);
+            this.btnNextPage.Location = new System.Drawing.Point(565, 699);
             this.btnNextPage.Name = "btnNextPage";
             this.btnNextPage.Size = new System.Drawing.Size(75, 23);
             this.btnNextPage.TabIndex = 99;
@@ -168,7 +177,7 @@ namespace SMTPE
             // btnPreviousPage
             // 
             this.btnPreviousPage.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnPreviousPage.Location = new System.Drawing.Point(535, 699);
+            this.btnPreviousPage.Location = new System.Drawing.Point(364, 699);
             this.btnPreviousPage.Name = "btnPreviousPage";
             this.btnPreviousPage.Size = new System.Drawing.Size(75, 23);
             this.btnPreviousPage.TabIndex = 98;
@@ -179,7 +188,7 @@ namespace SMTPE
             // btnLastPage
             // 
             this.btnLastPage.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnLastPage.Location = new System.Drawing.Point(817, 699);
+            this.btnLastPage.Location = new System.Drawing.Point(646, 699);
             this.btnLastPage.Name = "btnLastPage";
             this.btnLastPage.Size = new System.Drawing.Size(75, 23);
             this.btnLastPage.TabIndex = 97;
@@ -190,7 +199,7 @@ namespace SMTPE
             // btnFirstPage
             // 
             this.btnFirstPage.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnFirstPage.Location = new System.Drawing.Point(454, 699);
+            this.btnFirstPage.Location = new System.Drawing.Point(283, 699);
             this.btnFirstPage.Name = "btnFirstPage";
             this.btnFirstPage.Size = new System.Drawing.Size(75, 23);
             this.btnFirstPage.TabIndex = 96;
@@ -198,21 +207,21 @@ namespace SMTPE
             this.btnFirstPage.UseVisualStyleBackColor = true;
             this.btnFirstPage.Click += new System.EventHandler(this.btnFirstPage_Click);
             // 
-            // importMMButton
+            // addScrapPartButton
             // 
-            this.importMMButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.importMMButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.importMMButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.importMMButton.Image = global::SMTPE.Properties.Resources.icons8_import_file_20;
-            this.importMMButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.importMMButton.Location = new System.Drawing.Point(1052, 70);
-            this.importMMButton.Name = "importMMButton";
-            this.importMMButton.Size = new System.Drawing.Size(194, 41);
-            this.importMMButton.TabIndex = 60;
-            this.importMMButton.Text = "Import Master Material";
-            this.importMMButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.importMMButton.UseVisualStyleBackColor = true;
-            this.importMMButton.Click += new System.EventHandler(this.importMMButton_Click);
+            this.addScrapPartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.addScrapPartButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addScrapPartButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addScrapPartButton.Image = global::SMTPE.Properties.Resources.icons8_add_20;
+            this.addScrapPartButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.addScrapPartButton.Location = new System.Drawing.Point(806, 69);
+            this.addScrapPartButton.Name = "addScrapPartButton";
+            this.addScrapPartButton.Size = new System.Drawing.Size(108, 41);
+            this.addScrapPartButton.TabIndex = 60;
+            this.addScrapPartButton.Text = "Scrap Part";
+            this.addScrapPartButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.addScrapPartButton.UseVisualStyleBackColor = true;
+            this.addScrapPartButton.Click += new System.EventHandler(this.addScrapPartButton_Click);
             // 
             // backButton
             // 
@@ -221,7 +230,7 @@ namespace SMTPE
             this.backButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backButton.Image = global::SMTPE.Properties.Resources.icons8_reply_arrow_20;
             this.backButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.backButton.Location = new System.Drawing.Point(1262, 70);
+            this.backButton.Location = new System.Drawing.Point(920, 70);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(76, 40);
             this.backButton.TabIndex = 58;
@@ -235,7 +244,7 @@ namespace SMTPE
             this.refreshLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.refreshLbl.AutoSize = true;
             this.refreshLbl.BackColor = System.Drawing.Color.Transparent;
-            this.refreshLbl.Location = new System.Drawing.Point(1207, 157);
+            this.refreshLbl.Location = new System.Drawing.Point(935, 157);
             this.refreshLbl.Name = "refreshLbl";
             this.refreshLbl.Size = new System.Drawing.Size(61, 19);
             this.refreshLbl.TabIndex = 102;
@@ -243,11 +252,68 @@ namespace SMTPE
             this.refreshLbl.Text = "Refresh";
             this.refreshLbl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.refreshLbl_LinkClicked);
             // 
-            // MasterMaterial
+            // exportBtn
+            // 
+            this.exportBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.exportBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.exportBtn.Font = new System.Drawing.Font("Open Sans", 8.25F);
+            this.exportBtn.Image = global::SMTPE.Properties.Resources.icons8_export_excel_20;
+            this.exportBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.exportBtn.Location = new System.Drawing.Point(719, 69);
+            this.exportBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.exportBtn.Name = "exportBtn";
+            this.exportBtn.Size = new System.Drawing.Size(80, 41);
+            this.exportBtn.TabIndex = 195;
+            this.exportBtn.Text = "Export";
+            this.exportBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.exportBtn.UseVisualStyleBackColor = true;
+            this.exportBtn.Click += new System.EventHandler(this.exportBtn_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.searchBy);
+            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Location = new System.Drawing.Point(23, 112);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(512, 64);
+            this.groupBox1.TabIndex = 196;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Search by :";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Customer",
+            "Part No",
+            "Qty",
+            "PRF No",
+            "Department",
+            "Update Date"});
+            this.comboBox1.Location = new System.Drawing.Point(6, 25);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(142, 27);
+            this.comboBox1.TabIndex = 0;
+            // 
+            // searchBy
+            // 
+            this.searchBy.Location = new System.Drawing.Point(155, 25);
+            this.searchBy.Name = "searchBy";
+            this.searchBy.Size = new System.Drawing.Size(337, 26);
+            this.searchBy.TabIndex = 1;
+            this.searchBy.TextChanged += new System.EventHandler(this.searchBy_TextChanged);
+            // 
+            // ScrapPartnumberList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1366, 768);
+            this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.exportBtn);
             this.Controls.Add(this.refreshLbl);
             this.Controls.Add(this.txtDisplayPageNo);
             this.Controls.Add(this.btnNextPage);
@@ -255,21 +321,23 @@ namespace SMTPE
             this.Controls.Add(this.btnLastPage);
             this.Controls.Add(this.btnFirstPage);
             this.Controls.Add(this.truncateMasterMaterialLbl);
-            this.Controls.Add(this.importMMButton);
+            this.Controls.Add(this.addScrapPartButton);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.tbSearch);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridViewMasterMaterialList);
+            this.Controls.Add(this.dataGridViewScrapPartList);
             this.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
-            this.Name = "MasterMaterial";
-            this.Text = "Master Material";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MasterMaterial_FormClosing);
-            this.Load += new System.EventHandler(this.MasterMaterial_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMasterMaterialList)).EndInit();
+            this.Name = "ScrapPartnumberList";
+            this.Text = "Scrap Part";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ScrapPartnumberList_FormClosing);
+            this.Load += new System.EventHandler(this.ScrapPartnumberList_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewScrapPartList)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -278,9 +346,9 @@ namespace SMTPE
         #endregion
         private System.Windows.Forms.TextBox tbSearch;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridViewMasterMaterialList;
+        private System.Windows.Forms.DataGridView dataGridViewScrapPartList;
         private System.Windows.Forms.Button backButton;
-        private System.Windows.Forms.Button importMMButton;
+        private System.Windows.Forms.Button addScrapPartButton;
         private System.Windows.Forms.LinkLabel truncateMasterMaterialLbl;
         public System.Windows.Forms.ToolStripStatusLabel toolStripUsername;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
@@ -293,5 +361,9 @@ namespace SMTPE
         private System.Windows.Forms.Button btnLastPage;
         private System.Windows.Forms.Button btnFirstPage;
         private System.Windows.Forms.LinkLabel refreshLbl;
+        private System.Windows.Forms.Button exportBtn;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox searchBy;
     }
 }

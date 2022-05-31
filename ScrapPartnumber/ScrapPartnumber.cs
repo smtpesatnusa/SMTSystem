@@ -27,23 +27,11 @@ namespace SMTPE
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            MainMenu mm = new MainMenu();
-            mm.toolStripUsername.Text = toolStripUsername.Text;
-            mm.Show();
+            ScrapPartnumberList scrapPartnumberList = new ScrapPartnumberList();
+            scrapPartnumberList.toolStripUsername.Text = toolStripUsername.Text;
+            scrapPartnumberList.Show();
             this.Hide();
-        }
-
-        private void LabelPartnumber_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            string message = "Are you sure you want to logout?";
-            string title = "Confirm Logout";
-            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-            MessageBoxIcon icon = MessageBoxIcon.Information;
-            if (MetroMessageBox.Show(this, message, title, buttons, icon) == DialogResult.No)
-                e.Cancel = true;
-            else
-                System.Windows.Forms.Application.ExitThread();
-        }
+        }        
 
         private void LabelPartnumber_Load(object sender, EventArgs e)
         {
@@ -58,7 +46,7 @@ namespace SMTPE
             int idPosition = toolStripUsername.Text.Split(' ').Length - 3;
             idUser = userId[idPosition].Replace(",", "");
 
-            tbpnSN.Select();
+            tbPrfNo.Select();
             //menampilkan data combobox department
             help.displayCmbList("SELECT * FROM tbl_department ORDER BY NAME ASC", "name", "name", cmbDepartment);
 
@@ -75,6 +63,30 @@ namespace SMTPE
             }
         }
 
+        private void LoadDataPRF()
+        {
+            try
+            {
+                string query = "SELECT a.partnosn, b.description,a. qty, a.prfNo, a.department , b.f_type, b.location, " +
+                    "a.updateDate FROM tbl_scrappart a, tbl_masterpartmaterial b WHERE a.partnosn = b.material AND " +
+                    "a.prfNo LIKE '%"+tbPrfNo.Text+"%'";
+
+                using (MySqlDataAdapter adpt = new MySqlDataAdapter(query, connectionDB.connection))
+                {
+                    DataSet dset = new DataSet();
+                    adpt.Fill(dset);
+
+                    dataGridViewPRFList.DataSource = dset.Tables[0];
+                }
+            }
+            catch (Exception ex)
+            {
+                connectionDB.connection.Close();
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
         private void tbPrfNo_TextChanged(object sender, EventArgs e)
         {
             if (tbPrfNo.Text != "")
@@ -84,6 +96,10 @@ namespace SMTPE
                 {
                     tbPrfNo.Text = tbPrfNo.Text.Remove(tbPrfNo.Text.Length - 1);
                 }
+                if (tbPrfNo.TextLength == 7)
+                {
+                    LoadDataPRF();
+                }                
             }
         }
 
@@ -92,10 +108,11 @@ namespace SMTPE
             if (e.KeyCode == Keys.Enter)
             {
                 string pnSN = tbpnSN.Text.Trim();
+                string pn = pnSN.Remove(pnSN.Length - 3);
 
                 if (pnSN.Length >= 12 && pnSN.Length <= 22)
                 {
-                    string query = "SELECT material FROM tbl_masterpartmaterial WHERE material LIKE '%" + pnSN + "%'";
+                    string query = "SELECT material FROM tbl_masterpartmaterial WHERE material LIKE '%" + pn + "%'";
                     using (MySqlDataAdapter adpt = new MySqlDataAdapter(query, connectionDB.connection))
                     {
                         DataTable dt = new DataTable();
@@ -129,18 +146,13 @@ namespace SMTPE
             {
                 if (tbscrapQty.Text != "")
                 {
-                    tbPrfNo.Select();
+                    tbPrint.Focus();
                 }
                 else
                 {
                     MessageBox.Show("Please fill scrap Qty properly", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-        }
-
-        private void tbpnSN_TextChanged(object sender, EventArgs e)
-        {
-            tbpnSN.Text = tbpnSN.Text.ToUpper();
         }
 
         private void tbPrfNo_KeyDown(object sender, KeyEventArgs e)
@@ -176,20 +188,21 @@ namespace SMTPE
             {
                 if (cmbRequestBy.SelectedIndex != -1)
                 {
-                    tbPrint.Focus();
+                    tbpnSN.Focus();
                 }
             }
         }
 
         private void tbPrint_Click(object sender, EventArgs e)
         {
-
+            printlabel();
         }
 
         private void tbPrint_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
+                printlabel();
             }
         }
 
@@ -198,12 +211,94 @@ namespace SMTPE
             if (tbpnSN.Text.Length >= 12 && tbpnSN.Text.Length <= 22 && tbscrapQty.Text != "" 
                 && tbPrfNo.Text.Length == 7 && cmbDepartment.SelectedIndex != -1 && cmbRequestBy.SelectedIndex != -1 )
             {
+                // insert to data to db
+                try
+                {
+                    string pnSN = tbpnSN.Text.Trim();
+                    string pn = pnSN.Remove(pnSN.Length - 3);
+                    string qty = tbscrapQty.Text;
+                    string prfNo = tbPrfNo.Text;
+                    string department = cmbDepartment.Text;
+                    var requested = cmbRequestBy.Text.Split('|');
+                    string requestBy = requested[0].Replace(" ", "");
 
+                    //MessageBox.Show(pnsn +" " +qty+ " " + prfNo + " " + department + " " + requestBy + " |" + idUser + "", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    string cekdata = "SELECT * FROM tbl_scrappart WHERE partnosn = '"+pn+ "' AND qty = '" + qty + "' AND prfno = '" + prfNo + "'AND department = '" + department + "'";
+                    using (MySqlDataAdapter adpt = new MySqlDataAdapter(cekdata , connectionDB.connection))
+                    {
+                        DataSet ds = new DataSet();
+                        adpt.Fill(ds);
+
+                        // cek jika modelno tsb sudah di upload
+                        if (ds.Tables[0].Rows.Count > 0)
+                        {
+                            MessageBox.Show(this, "Unable to add scrap data, scrap data already insert", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            
+                        }
+                        else
+                        {
+                            connectionDB.connection.Open();
+                            var cmd = new MySqlCommand("", connectionDB.connection);
+                            //insert  data to table
+                            string insertdata = "INSERT INTO tbl_scrappart (partnosn, qty, prfno, department, requestedBy, issuedBy, updateDate) values " +
+                                "('" + pn + "','" + qty + "','" + prfNo + "','" + department + "','" + requestBy + "','" + idUser + "','" + DateTime.Now.ToString("yyyyy-MM-dd HH:mm:ss") + "')";
+                            cmd.CommandText = insertdata;
+                            cmd.ExecuteNonQuery();
+                            connectionDB.connection.Close();
+
+                            //load data prf
+                            LoadDataPRF();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    connectionDB.connection.Close();
+                    // tampilkan pesan error
+                    MessageBox.Show(ex.Message);
+                }
             }
             else
             {
                 MessageBox.Show("Please fill scrap data properly", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void tbNew_Click(object sender, EventArgs e)
+        {
+            resetInput();
+        }
+
+        private void resetInput()
+        {
+            tbpnSN.Clear();
+            tbscrapQty.Clear();
+            tbPrfNo.Clear();
+            cmbDepartment.SelectedIndex = -1;
+            cmbRequestBy.SelectedIndex = -1;
+
+            // remove data in datagridview result
+            dataGridViewPRFList.DataSource = null;
+            dataGridViewPRFList.Refresh();
+
+        }
+
+        private void ScrapPartnumber_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string message = "Are you sure you want to logout?";
+            string title = "Confirm Logout";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            MessageBoxIcon icon = MessageBoxIcon.Information;
+            if (MetroMessageBox.Show(this, message, title, buttons, icon) == DialogResult.No)
+                e.Cancel = true;
+            else
+                System.Windows.Forms.Application.ExitThread();
+        }
+
+        private void dataGridViewPRFList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            dataGridViewPRFList.Columns[7].DefaultCellStyle.Format = "dd-MM-yyyy";
         }
     }
 }

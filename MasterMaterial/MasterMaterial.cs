@@ -102,7 +102,7 @@ namespace SMTPE
         }
 
         private void importMMButton_Click(object sender, EventArgs e)
-        {
+        {           
             ImportMasterMaterial iMM = new ImportMasterMaterial();
             iMM.toolStripUsername.Text = toolStripUsername.Text;
             iMM.Show();

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
+using Tkx.Lppa;
 
 namespace SMTPE
 {
@@ -259,7 +260,7 @@ namespace SMTPE
         //tampilkan data now di label toolstrip
         public void dateTimeNow(ToolStripLabel dateTimeNow)
         {
-            dateTimeNow.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss");
+            dateTimeNow.Text = System.DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss");
         }
 
         // for display data in treeview
@@ -369,5 +370,37 @@ namespace SMTPE
                 MessageBox.Show(ex.Message);
             }
         }
+
+        #region Printer setup
+        /// <summary>
+        /// Required method for helper printer - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        /// 
+
+       
+        public void UpdatePrinterList(ComboBox comboBox)
+        {
+            Tkx.Lppa.Application _csApp = new Tkx.Lppa.Application();
+
+            comboBox.Items.Clear();
+
+            foreach (string printer in _csApp.PrinterSystem.PrintersNames(KindOfPrinters.AllPrinters))
+            {
+                comboBox.Items.Add(printer);
+            }
+
+            _csApp.Quit();
+        }
+
+        public void UpdateSelectedPrinter(ComboBox comboBox, Document _csDoc)
+        {
+            if (_csDoc != null)
+            {
+                comboBox.SelectedIndex = comboBox.Items.IndexOf(_csDoc.Printer.Name);
+            }
+        }
+        #endregion
+
     }
 }

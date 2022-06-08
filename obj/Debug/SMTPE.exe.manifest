@@ -43,6 +43,18 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BarcodeLib.dll" size="114688">
+      <assemblyIdentity name="BarcodeLib" version="1.0.0.19" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>qFWkKyjqQ9Cv4b4WfE1UiHoSzNnZyVDgKbLRuWpxZHk=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BouncyCastle.Crypto.dll" size="2609152">
       <assemblyIdentity name="BouncyCastle.Crypto" version="1.8.9.0" publicKeyToken="0E99375E54769942" language="neutral" />
       <hash>
@@ -175,6 +187,18 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Lppanet.dll" size="304128">
+      <assemblyIdentity name="Lppanet" version="15.0.0.0" publicKeyToken="1904804C83C4F22A" language="neutral" processorArchitecture="x86" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>ReuwP1mHZgVF7SVDTl1Oa2Hhs1mDH/eN3FUqp13VfJI=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MaterialSkin.dll" size="587776">
       <assemblyIdentity name="MaterialSkin" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -271,14 +295,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SMTPE.exe" size="263640">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SMTPE.exe" size="285656">
       <assemblyIdentity name="SMTPE" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>S1LI32J7+0Ss1ElEaanF8+kuWY9GrhwJUuLFJgG3dEg=</dsig:DigestValue>
+        <dsig:DigestValue>J4Iv2NCjKrMaZMPO34j/8H9UazWNzlUsRNhYyAXIJAM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

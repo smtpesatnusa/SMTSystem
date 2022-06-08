@@ -99,7 +99,7 @@ namespace SMTPE
             // 
             this.tbpnSN.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbpnSN.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpnSN.Location = new System.Drawing.Point(243, 187);
+            this.tbpnSN.Location = new System.Drawing.Point(246, 189);
             this.tbpnSN.MaxLength = 60;
             this.tbpnSN.Name = "tbpnSN";
             this.tbpnSN.Size = new System.Drawing.Size(384, 35);
@@ -114,7 +114,7 @@ namespace SMTPE
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(37, 190);
+            this.label2.Location = new System.Drawing.Point(40, 192);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(113, 27);
             this.label2.TabIndex = 199;
@@ -139,7 +139,7 @@ namespace SMTPE
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(32, 126);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(973, 291);
+            this.groupBox1.Size = new System.Drawing.Size(973, 290);
             this.groupBox1.TabIndex = 200;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Scrap Part";
@@ -151,7 +151,7 @@ namespace SMTPE
             this.tbNew.Font = new System.Drawing.Font("Open Sans", 8.25F);
             this.tbNew.Image = global::SMTPE.Properties.Resources.icons8_add_20__2_;
             this.tbNew.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tbNew.Location = new System.Drawing.Point(790, 232);
+            this.tbNew.Location = new System.Drawing.Point(793, 234);
             this.tbNew.Margin = new System.Windows.Forms.Padding(4);
             this.tbNew.Name = "tbNew";
             this.tbNew.Size = new System.Drawing.Size(152, 43);
@@ -168,7 +168,7 @@ namespace SMTPE
             this.tbPrint.Font = new System.Drawing.Font("Open Sans", 8.25F);
             this.tbPrint.Image = global::SMTPE.Properties.Resources.icons8_print_20;
             this.tbPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tbPrint.Location = new System.Drawing.Point(664, 232);
+            this.tbPrint.Location = new System.Drawing.Point(667, 234);
             this.tbPrint.Margin = new System.Windows.Forms.Padding(4);
             this.tbPrint.Name = "tbPrint";
             this.tbPrint.Size = new System.Drawing.Size(114, 43);
@@ -186,7 +186,7 @@ namespace SMTPE
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(37, 138);
+            this.label5.Location = new System.Drawing.Point(40, 140);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(138, 27);
             this.label5.TabIndex = 207;
@@ -197,11 +197,10 @@ namespace SMTPE
             // 
             this.cmbRequestBy.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbRequestBy.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cmbRequestBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRequestBy.Font = new System.Drawing.Font("Open Sans", 12F);
             this.cmbRequestBy.FormattingEnabled = true;
             this.cmbRequestBy.IntegralHeight = false;
-            this.cmbRequestBy.Location = new System.Drawing.Point(243, 135);
+            this.cmbRequestBy.Location = new System.Drawing.Point(246, 137);
             this.cmbRequestBy.Margin = new System.Windows.Forms.Padding(4);
             this.cmbRequestBy.MaxDropDownItems = 10;
             this.cmbRequestBy.Name = "cmbRequestBy";
@@ -216,7 +215,7 @@ namespace SMTPE
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(37, 88);
+            this.label4.Location = new System.Drawing.Point(40, 90);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(125, 27);
             this.label4.TabIndex = 205;
@@ -231,7 +230,7 @@ namespace SMTPE
             this.cmbDepartment.Font = new System.Drawing.Font("Open Sans", 12F);
             this.cmbDepartment.FormattingEnabled = true;
             this.cmbDepartment.IntegralHeight = false;
-            this.cmbDepartment.Location = new System.Drawing.Point(243, 85);
+            this.cmbDepartment.Location = new System.Drawing.Point(246, 87);
             this.cmbDepartment.Margin = new System.Windows.Forms.Padding(4);
             this.cmbDepartment.MaxDropDownItems = 10;
             this.cmbDepartment.Name = "cmbDepartment";
@@ -242,7 +241,7 @@ namespace SMTPE
             // tbPrfNo
             // 
             this.tbPrfNo.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPrfNo.Location = new System.Drawing.Point(243, 31);
+            this.tbPrfNo.Location = new System.Drawing.Point(246, 33);
             this.tbPrfNo.MaxLength = 7;
             this.tbPrfNo.Name = "tbPrfNo";
             this.tbPrfNo.Size = new System.Drawing.Size(384, 35);
@@ -258,7 +257,7 @@ namespace SMTPE
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(37, 34);
+            this.label3.Location = new System.Drawing.Point(40, 36);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 27);
             this.label3.TabIndex = 202;
@@ -268,7 +267,7 @@ namespace SMTPE
             // tbscrapQty
             // 
             this.tbscrapQty.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbscrapQty.Location = new System.Drawing.Point(243, 236);
+            this.tbscrapQty.Location = new System.Drawing.Point(246, 238);
             this.tbscrapQty.MaxLength = 10;
             this.tbscrapQty.Name = "tbscrapQty";
             this.tbscrapQty.Size = new System.Drawing.Size(384, 35);
@@ -284,7 +283,7 @@ namespace SMTPE
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(37, 239);
+            this.label1.Location = new System.Drawing.Point(40, 241);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(107, 27);
             this.label1.TabIndex = 200;
@@ -294,20 +293,18 @@ namespace SMTPE
             // dataGridViewPRFList
             // 
             this.dataGridViewPRFList.AllowUserToAddRows = false;
-            this.dataGridViewPRFList.AllowUserToDeleteRows = false;
-            this.dataGridViewPRFList.AllowUserToOrderColumns = true;
             this.dataGridViewPRFList.AllowUserToResizeRows = false;
             this.dataGridViewPRFList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewPRFList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewPRFList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPRFList.Location = new System.Drawing.Point(32, 440);
+            this.dataGridViewPRFList.Location = new System.Drawing.Point(32, 422);
             this.dataGridViewPRFList.Name = "dataGridViewPRFList";
             this.dataGridViewPRFList.ReadOnly = true;
             this.dataGridViewPRFList.RowHeadersWidth = 51;
             this.dataGridViewPRFList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPRFList.Size = new System.Drawing.Size(973, 292);
+            this.dataGridViewPRFList.Size = new System.Drawing.Size(973, 310);
             this.dataGridViewPRFList.TabIndex = 201;
             this.dataGridViewPRFList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewPRFList_CellFormatting);
             // 

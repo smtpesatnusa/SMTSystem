@@ -67,6 +67,10 @@
     <ApplicationIcon>Resources\icons8-system-70.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BarcodeLib, Version=1.0.0.19, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\BarcodeLib.dll</HintPath>
+    </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
@@ -104,6 +108,10 @@
     </Reference>
     <Reference Include="K4os.Hash.xxHash, Version=1.0.6.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
       <HintPath>packages\K4os.Hash.xxHash.1.0.6\lib\net46\K4os.Hash.xxHash.dll</HintPath>
+    </Reference>
+    <Reference Include="Lppanet, Version=15.0.0.0, Culture=neutral, PublicKeyToken=1904804c83c4f22a, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Lppanet.dll</HintPath>
     </Reference>
     <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll</HintPath>
@@ -277,6 +285,12 @@
     <Compile Include="Modelmaster\Modelmasterlist.Designer.cs">
       <DependentUpon>Modelmasterlist.cs</DependentUpon>
     </Compile>
+    <Compile Include="PrintLabel\PrintLabelNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintLabel\PrintLabelNew.Designer.cs">
+      <DependentUpon>PrintLabelNew.cs</DependentUpon>
+    </Compile>
     <Compile Include="PrintLabel\PrintLabel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -401,6 +415,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintLabel\PrintLabelNew.resx">
+      <DependentUpon>PrintLabelNew.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PrintLabel\PrintLabel.resx">
       <DependentUpon>PrintLabel.cs</DependentUpon>

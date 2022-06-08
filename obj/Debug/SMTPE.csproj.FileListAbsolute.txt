@@ -379,3 +379,4 @@ C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.exe
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.pdb
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.csprojAssemblyReference.cache
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.ScrapPartnumberList.resources
+C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.PrintLabelNew.resources

@@ -233,6 +233,7 @@ namespace SMTPE
 
         private void printLabelToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //PrintLabelNew printLabel = new PrintLabelNew();
             PrintLabel printLabel = new PrintLabel();
             printLabel.ShowDialog();
         }

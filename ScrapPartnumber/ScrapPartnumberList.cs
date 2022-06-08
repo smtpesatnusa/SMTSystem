@@ -91,7 +91,7 @@ namespace SMTPE
             {
                 connectionDB.connection.Open();
 
-                Sql = "SELECT a.partnosn, c.description, c.f_type, c.location, a. qty, a.prfNo, a.department , " +
+                Sql = "SELECT SUBSTRING(a.partnosn, 1, 2) AS custCode, a.partnosn, c.description, c.f_type, c.location, a. qty, a.prfNo, a.department , " +
                     "(SELECT b.name FROM tbl_user b WHERE b.username = a.requestedby) requestedby, " +
                     "(SELECT b.name FROM tbl_user b WHERE b.username = a.issuedBy) issuedBy, a.updateDate FROM " +
                     "tbl_scrappart a, tbl_masterpartmaterial c WHERE a.partnosn = c.material ORDER BY a.id DESC";
@@ -367,8 +367,8 @@ namespace SMTPE
                 }
             }
 
-            // set text capital in forst letter
-            if (e.ColumnIndex == 7 || e.ColumnIndex == 8)
+            // set text capital in first letter
+            if (e.ColumnIndex == 8 || e.ColumnIndex == 9)
             {
                 e.Value = e.Value.ToString().ToUpper();
                 CultureInfo cultureInfo = System.Threading.Thread.CurrentThread.CurrentCulture;
@@ -377,14 +377,17 @@ namespace SMTPE
             }
 
             // Set table title
-            string[] title = { "PART NO", "DESCRIPTION", "F.TYPE", "LOCATION", "QTY", "PRF NO", "DEPARTMENT", "REQUSTED BY", "ISSUED BY", "UPDATE BY" };
+            string[] title = { "CUST", "PART NO", "DESCRIPTION", "F.TYPE", "LOCATION", "QTY", "PRF NO", "DEPARTMENT", "REQUSTED BY", "ISSUED BY", "UPDATE DATE" };
             for (int i = 0; i < title.Length; i++)
             {
                 dataGridViewScrapPartList.Columns[i].HeaderText = "" + title[i];
             }
 
+            dataGridViewScrapPartList.Columns[0].AutoSizeMode =  DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewScrapPartList.Columns[5].AutoSizeMode =  DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewScrapPartList.Columns[6].AutoSizeMode =  DataGridViewAutoSizeColumnMode.ColumnHeader;
             dataGridViewScrapPartList.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-            dataGridViewScrapPartList.Columns[9].DefaultCellStyle.Format = "dd-MM-yyyy";
+            dataGridViewScrapPartList.Columns[10].DefaultCellStyle.Format = "dd-MM-yyyy";
 
         }
 
@@ -396,7 +399,15 @@ namespace SMTPE
             //icon
             this.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
 
+            dateTimePickerFrom.CustomFormat = "dd-MM-yyyy";
+            dateTimePickerTo.CustomFormat = "dd-MM-yyyy";
+
             LoadData();
+
+            if (dataGridViewScrapPartList.Rows.Count > 0)
+            {
+                exportBtn.Enabled = true;
+            }
         }
 
         private void Search()
@@ -405,14 +416,14 @@ namespace SMTPE
             {
                 if (tbSearch.Text == "")
                 {
-                    Sql = "SELECT a.partnosn, c.description, c.f_type, c.location, a. qty, a.prfNo, a.department , " +
+                    Sql = "SELECT SUBSTRING(a.partnosn, 1, 2) AS custCode, a.partnosn, c.description, c.f_type, c.location, a. qty, a.prfNo, a.department , " +
                     "(SELECT b.name FROM tbl_user b WHERE b.username = a.requestedby) requestedby, " +
                     "(SELECT b.name FROM tbl_user b WHERE b.username = a.issuedBy) issuedBy, a.updateDate FROM " +
                     "tbl_scrappart a, tbl_masterpartmaterial c WHERE a.partnosn = c.material ORDER BY a.id";
                 }
                 else
                 {
-                    Sql = "SELECT a.partnosn, c.description, c.f_type, c.location, a. qty, a.prfNo, a.department, " +
+                    Sql = "SELECT SUBSTRING(a.partnosn, 1, 2) AS custCode, a.partnosn, c.description, c.f_type, c.location, a. qty, a.prfNo, a.department, " +
                         "(SELECT b.name FROM tbl_user b WHERE b.username = a.requestedby) requestedby, " +
                         "(SELECT b.name FROM tbl_user b WHERE b.username = a.issuedBy) issuedBy, a.updateDate FROM tbl_scrappart a, " +
                         "tbl_masterpartmaterial c WHERE a.partnosn = c.material AND partnosn LIKE '%" + tbSearch.Text + "%' " +
@@ -527,9 +538,9 @@ namespace SMTPE
                         {
                             worksheet.Cell(i + cellRowIndex, 1).Value = i + 1;
                             worksheet.Cell(i + cellRowIndex, 1).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
-                            worksheet.Cell(i + cellRowIndex, j+ cellColumnIndex).Value = dataGridViewScrapPartList.Rows[i].Cells[j].Value.ToString();
-                            worksheet.Cell(i + cellRowIndex, 11).Style.NumberFormat.Format= "dd-MM-yyyy";
-                            worksheet.Cell(i + cellRowIndex, 11).Style.NumberFormat.Format= "dd-MM-yyyy";
+                            worksheet.Cell(i + cellRowIndex, j + cellColumnIndex).Value = string.Format("{0}", dataGridViewScrapPartList.Rows[i].Cells[j].FormattedValue);
+                            //worksheet.Cell(i + cellRowIndex, j+ cellColumnIndex).Value = dataGridViewScrapPartList.Rows[i].Cells[j].Value.ToString();
+                            //worksheet.Cell(i + cellRowIndex, 11).Style.NumberFormat.Format= "dd-MM-yyyy";
                         }
                     }
 
@@ -559,6 +570,24 @@ namespace SMTPE
         private void searchBy_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void dateTimePickerTo_ValueChanged(object sender, EventArgs e)
+        {
+            if (dateTimePickerTo.Value.Date < dateTimePickerFrom.Value.Date)
+            {
+                MessageBox.Show("From Date is greater than To Date");
+                dateTimePickerTo.Value = dateTimePickerFrom.Value.AddDays(+1);
+            }
+        }
+
+        private void dateTimePickerFrom_ValueChanged(object sender, EventArgs e)
+        {
+            if (dateTimePickerTo.Value.Date < dateTimePickerFrom.Value.Date)
+            {
+                MessageBox.Show("From Date is greater than To Date");
+                dateTimePickerTo.Value = dateTimePickerFrom.Value.AddDays(+1);
+            }
         }
     }
 }

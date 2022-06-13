@@ -80,11 +80,11 @@ namespace SMTPE
             {
                 if (tbSearch.Text == "")
                 {
-                    Sql = "SELECT material, description, location, f_type FROM tbl_masterpartmaterial ORDER BY id";
+                    Sql = "SELECT material, description, f_type, location FROM tbl_masterpartmaterial ORDER BY id";
                 }
                 else
                 {
-                    Sql = "SELECT material, description, location, f_type FROM tbl_masterpartmaterial WHERE material like '%" + tbSearch.Text + "%'" +
+                    Sql = "SELECT material, description, f_type, location FROM tbl_masterpartmaterial WHERE material like '%" + tbSearch.Text + "%'" +
                         "or description LIKE '%" + tbSearch.Text + "%' or location LIKE '%" + tbSearch.Text + "%' or f_type LIKE '%" + tbSearch.Text + "%'";
                 }
                 LoadDS(Sql);
@@ -348,7 +348,7 @@ namespace SMTPE
             }
 
             // Set table title
-            string[] title = { "MATERIAL", "DESCRIPTION", "LOCATION", "F.TYPE" };
+            string[] title = { "MATERIAL", "DESCRIPTION", "F.TYPE", "LOCATION" };
             for (int i = 0; i < title.Length; i++)
             {
                 dataGridViewMasterMaterialList.Columns[i].HeaderText = "" + title[i];
@@ -396,6 +396,7 @@ namespace SMTPE
 
         private void refreshLbl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            tbSearch.Clear();
             LoadDataMasterMaterial();
             dataGridViewMasterMaterialList.Update();
             dataGridViewMasterMaterialList.Refresh();

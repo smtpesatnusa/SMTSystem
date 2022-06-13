@@ -293,6 +293,8 @@ namespace SMTPE
             // dataGridViewPRFList
             // 
             this.dataGridViewPRFList.AllowUserToAddRows = false;
+            this.dataGridViewPRFList.AllowUserToDeleteRows = false;
+            this.dataGridViewPRFList.AllowUserToOrderColumns = true;
             this.dataGridViewPRFList.AllowUserToResizeRows = false;
             this.dataGridViewPRFList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -306,7 +308,9 @@ namespace SMTPE
             this.dataGridViewPRFList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewPRFList.Size = new System.Drawing.Size(973, 310);
             this.dataGridViewPRFList.TabIndex = 201;
+            this.dataGridViewPRFList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPRFList_CellDoubleClick);
             this.dataGridViewPRFList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewPRFList_CellFormatting);
+            this.dataGridViewPRFList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridViewPRFList_KeyDown);
             // 
             // backButton
             // 
@@ -340,7 +344,7 @@ namespace SMTPE
             this.Sizable = false;
             this.Text = "Scrap Partnumber";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ScrapPartnumber_FormClosing);
-            this.Load += new System.EventHandler(this.LabelPartnumber_Load);
+            this.Load += new System.EventHandler(this.ScrapPartnumber_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);

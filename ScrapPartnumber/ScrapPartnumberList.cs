@@ -24,6 +24,8 @@ namespace SMTPE
         private int recNo;
         private string Sql;
 
+        Helper help = new Helper();
+
         public ScrapPartnumberList()
         {
             InitializeComponent();
@@ -75,11 +77,6 @@ namespace SMTPE
             this.Hide();
         }
 
-        private void tbSearch_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         private void timer_Tick(object sender, EventArgs e)
         {
             dateTimeNow.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss");
@@ -94,7 +91,7 @@ namespace SMTPE
                 Sql = "SELECT SUBSTRING(a.partnosn, 1, 2) AS custCode, a.partnosn, c.description, c.f_type, c.location, a. qty, a.prfNo, a.department , " +
                     "(SELECT b.name FROM tbl_user b WHERE b.username = a.requestedby) requestedby, " +
                     "(SELECT b.name FROM tbl_user b WHERE b.username = a.issuedBy) issuedBy, a.updateDate FROM " +
-                    "tbl_scrappart a, tbl_masterpartmaterial c WHERE a.partnosn = c.material ORDER BY a.id DESC";
+                    "tbl_scrappart a, tbl_masterpartmaterial c WHERE a.partnosn = c.material AND statusDelete IS NULL ORDER BY a.id DESC";
 
                 StartProgress("Loading...");
 
@@ -399,9 +396,16 @@ namespace SMTPE
             //icon
             this.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
 
+            // change datetimepicker format
             dateTimePickerFrom.CustomFormat = "dd-MM-yyyy";
             dateTimePickerTo.CustomFormat = "dd-MM-yyyy";
 
+            // add all di cmb cust
+            cmbCust.Items.Add("All");
+            //menampilkan data combobox department
+            help.displayCmbList("SELECT CONCAT(id, ' (', custname, ')') AS cust, id FROM tbl_customer ORDER BY id ", "cust", "id", cmbCust);
+
+            // load data list
             LoadData();
 
             if (dataGridViewScrapPartList.Rows.Count > 0)
@@ -419,14 +423,14 @@ namespace SMTPE
                     Sql = "SELECT SUBSTRING(a.partnosn, 1, 2) AS custCode, a.partnosn, c.description, c.f_type, c.location, a. qty, a.prfNo, a.department , " +
                     "(SELECT b.name FROM tbl_user b WHERE b.username = a.requestedby) requestedby, " +
                     "(SELECT b.name FROM tbl_user b WHERE b.username = a.issuedBy) issuedBy, a.updateDate FROM " +
-                    "tbl_scrappart a, tbl_masterpartmaterial c WHERE a.partnosn = c.material ORDER BY a.id";
+                    "tbl_scrappart a, tbl_masterpartmaterial c WHERE a.partnosn = c.material AND statusDelete IS NULL ORDER BY a.id DESC";
                 }
                 else
                 {
                     Sql = "SELECT SUBSTRING(a.partnosn, 1, 2) AS custCode, a.partnosn, c.description, c.f_type, c.location, a. qty, a.prfNo, a.department, " +
                         "(SELECT b.name FROM tbl_user b WHERE b.username = a.requestedby) requestedby, " +
                         "(SELECT b.name FROM tbl_user b WHERE b.username = a.issuedBy) issuedBy, a.updateDate FROM tbl_scrappart a, " +
-                        "tbl_masterpartmaterial c WHERE a.partnosn = c.material AND partnosn LIKE '%" + tbSearch.Text + "%' " +
+                        "tbl_masterpartmaterial c WHERE a.partnosn = c.material AND statusDelete IS NULL AND partnosn LIKE '%" + tbSearch.Text + "%' " +
                         "OR DESCRIPTION LIKE '%" + tbSearch.Text + "%' OR f_type LIKE '%" + tbSearch.Text + "%' OR location LIKE '%" + tbSearch.Text + "%' " +
                         "OR qty LIKE '%" + tbSearch.Text + "%' OR prfNo LIKE '%" + tbSearch.Text + "%' OR department LIKE '%" + tbSearch.Text + "%' " +
                         "OR requestedby LIKE '%" + tbSearch.Text + "%' OR issuedBy LIKE '%" + tbSearch.Text + "%' OR updateDate LIKE '%" + tbSearch.Text + "%' ";
@@ -475,9 +479,11 @@ namespace SMTPE
                     // set column width
                     worksheet.Columns().Width = 13;
                     worksheet.Column(1).Width = 6;
-                    worksheet.Column(2).Width = 17;
-                    worksheet.Column(3).Width = 44;
-                    worksheet.Column(6).Width = 10;
+                    worksheet.Column(2).Width = 6;
+                    worksheet.Column(3).Width = 17;
+                    worksheet.Column(4).Width = 44;
+                    worksheet.Column(7).Width = 10;
+                    worksheet.Column(12).Style.NumberFormat.Format = "dd-mm-yyyy";           
 
                     worksheet.Rows().Height = 16.25;
                     worksheet.Row(1).Height = 25.5;
@@ -491,7 +497,7 @@ namespace SMTPE
                     worksheet.PageSetup.Margins.Footer = 0.25;
                     worksheet.PageSetup.CenterHorizontally = true;
 
-                    worksheet.Range(worksheet.Cell(1, 1), worksheet.Cell(1, 11)).Merge();
+                    worksheet.Range(worksheet.Cell(1, 1), worksheet.Cell(1, 12)).Merge();
                     worksheet.Cell(1, 1).Style.Font.FontName = "Times New Roman";
                     worksheet.Cell(1, 1).Style.Font.Bold = true;
                     worksheet.Cell(1, 1).Style.Font.FontSize = 20;
@@ -504,57 +510,76 @@ namespace SMTPE
                     worksheet.Range(worksheet.Cell(2, 5), worksheet.Cell(3, 6)).Style.Font.FontName = "Times New Roman";
                     worksheet.Range(worksheet.Cell(2, 5), worksheet.Cell(3, 6)).Style.Font.Italic = true;
                     worksheet.Range(worksheet.Cell(2, 5), worksheet.Cell(3, 6)).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Right);
-                    worksheet.Cell(2, 10).Value = "Report Date :";
-                    worksheet.Cell(2, 11).Value = DateTime.Now.ToString("dd-MM-yyyy");
+                    worksheet.Cell(2, 11).Value = "Report Date :";
+                    worksheet.Cell(2, 12).Value = DateTime.Now.ToString("yyyy-MM-dd");
 
                     worksheet.Cell(4, 1).Value = "NO";
-                    worksheet.Cell(4, 2).Value = "PART NO";
-                    worksheet.Cell(4, 3).Value = "DESCRIPTION";
-                    worksheet.Cell(4, 4).Value = "F.TYPE";
-                    worksheet.Cell(4, 5).Value = "LOCATION";
-                    worksheet.Cell(4, 6).Value = "QTY";
-                    worksheet.Cell(4, 7).Value = "PRF NO";
-                    worksheet.Cell(4, 8).Value = "DEPARTMENT";
-                    worksheet.Cell(4, 9).Value = "REQUESTED BY";
-                    worksheet.Cell(4, 10).Value = "ISSUED BY";
-                    worksheet.Cell(4, 11).Value = "UPDATE DATE";
-                    worksheet.Range(worksheet.Cell(4, 1), worksheet.Cell(4, 11)).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
-                    worksheet.Range(worksheet.Cell(4, 1), worksheet.Cell(4, 11)).Style.Alignment.SetVertical(XLAlignmentVerticalValues.Center);
-                    worksheet.Range(worksheet.Cell(4, 1), worksheet.Cell(4, 11)).Style.Font.Bold = true;
-                    worksheet.Range(worksheet.Cell(4, 1), worksheet.Cell(4, 11)).Style.Border.TopBorder = XLBorderStyleValues.Medium;
-                    worksheet.Range(worksheet.Cell(4, 1), worksheet.Cell(4, 11)).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
-                    worksheet.Range(worksheet.Cell(4, 1), worksheet.Cell(4, 11)).Style.Border.BottomBorder = XLBorderStyleValues.Double;
-                    worksheet.Range(worksheet.Cell(4, 1), worksheet.Cell(4, 11)).Style.Fill.BackgroundColor = XLColor.Yellow;
+                    worksheet.Cell(4, 2).Value = "CUST";
+                    worksheet.Cell(4, 3).Value = "PART NO";
+                    worksheet.Cell(4, 4).Value = "DESCRIPTION";
+                    worksheet.Cell(4, 5).Value = "F.TYPE";
+                    worksheet.Cell(4, 6).Value = "LOCATION";
+                    worksheet.Cell(4, 7).Value = "QTY";
+                    worksheet.Cell(4, 8).Value = "PRF NO";
+                    worksheet.Cell(4, 9).Value = "DEPARTMENT";
+                    worksheet.Cell(4, 10).Value = "REQUESTED BY";
+                    worksheet.Cell(4, 11).Value = "ISSUED BY";
+                    worksheet.Cell(4, 12).Value = "UPDATE DATE";
+                    worksheet.Range(worksheet.Cell(4, 1), worksheet.Cell(4, 12)).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+                    worksheet.Range(worksheet.Cell(4, 1), worksheet.Cell(4, 12)).Style.Alignment.SetVertical(XLAlignmentVerticalValues.Center);
+                    worksheet.Range(worksheet.Cell(4, 1), worksheet.Cell(4, 12)).Style.Font.Bold = true;
+                    worksheet.Range(worksheet.Cell(4, 1), worksheet.Cell(4, 12)).Style.Border.TopBorder = XLBorderStyleValues.Medium;
+                    worksheet.Range(worksheet.Cell(4, 1), worksheet.Cell(4, 12)).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                    worksheet.Range(worksheet.Cell(4, 1), worksheet.Cell(4, 12)).Style.Border.BottomBorder = XLBorderStyleValues.Double;
+                    worksheet.Range(worksheet.Cell(4, 1), worksheet.Cell(4, 12)).Style.Fill.BackgroundColor = XLColor.Yellow;
                     worksheet.Cell(4, 1).Style.Border.LeftBorder = XLBorderStyleValues.Medium;
-                    worksheet.Cell(4, 11).Style.Border.RightBorder = XLBorderStyleValues.Medium;
+                    worksheet.Cell(4, 12).Style.Border.RightBorder = XLBorderStyleValues.Medium;
 
                     int cellRowIndex= 5;
                     int cellColumnIndex = 2;
 
-                    // storing Each row and column value to excel sheet  
-                    for (int i = 0; i < dataGridViewScrapPartList.Rows.Count; i++)
+                    try
                     {
-                        for (int j = 0; j <= dataGridViewScrapPartList.Columns.Count-1; j++)
+                        connectionDB.connection.Open();
+                        using (MySqlDataAdapter adpt = new MySqlDataAdapter(Sql, connectionDB.connection))
                         {
-                            worksheet.Cell(i + cellRowIndex, 1).Value = i + 1;
-                            worksheet.Cell(i + cellRowIndex, 1).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
-                            worksheet.Cell(i + cellRowIndex, j + cellColumnIndex).Value = string.Format("{0}", dataGridViewScrapPartList.Rows[i].Cells[j].FormattedValue);
-                            //worksheet.Cell(i + cellRowIndex, j+ cellColumnIndex).Value = dataGridViewScrapPartList.Rows[i].Cells[j].Value.ToString();
-                            //worksheet.Cell(i + cellRowIndex, 11).Style.NumberFormat.Format= "dd-MM-yyyy";
+                            DataTable dt = new DataTable();
+                            adpt.Fill(dt);
+
+                            if (dt.Rows.Count > 0)
+                            {
+                                // storing Each row and column value to excel sheet  
+                                for (int i = 0; i < dt.Rows.Count; i++)
+                                {
+                                    for (int j = 0; j <= dt.Columns.Count - 1; j++)
+                                    {
+                                        worksheet.Cell(i + cellRowIndex, 1).Value = i + 1;
+                                        worksheet.Cell(i + cellRowIndex, 1).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+                                        worksheet.Cell(i + cellRowIndex, j + cellColumnIndex).Value = dt.Rows[i][j].ToString();
+                                        //worksheet.Cell(i + cellRowIndex, j + cellColumnIndex).Value = string.Format("{0}", dataGridViewScrapPartList.Rows[i][j].FormattedValue);
+                                        ////worksheet.Cell(i + cellRowIndex, j+ cellColumnIndex).Value = dataGridViewScrapPartList.Rows[i].Cells[j].Value.ToString();
+                                        ////worksheet.Cell(i + cellRowIndex, 11).Style.NumberFormat.Format= "dd-MM-yyyy";
+                                    }
+                                }
+                                int endPart = dt.Rows.Count + cellRowIndex;
+
+                                // setup border 
+                                worksheet.Range(worksheet.Cell(cellRowIndex, 1), worksheet.Cell(endPart - 1, 12)).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                                worksheet.Range(worksheet.Cell(cellRowIndex - 1, 2), worksheet.Cell(endPart - 1, 12)).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                                worksheet.Range(worksheet.Cell(cellRowIndex, 1), worksheet.Cell(endPart - 1, 1)).Style.Border.LeftBorder = XLBorderStyleValues.Medium;
+                                worksheet.Range(worksheet.Cell(cellRowIndex, 12), worksheet.Cell(endPart - 1, 12)).Style.Border.RightBorder = XLBorderStyleValues.Medium;
+                                worksheet.Range(worksheet.Cell(endPart, 1), worksheet.Cell(endPart, 12)).Style.Border.TopBorder = XLBorderStyleValues.Medium;
+
+                                workbook.SaveAs(directoryFile + "\\" + filename);
+                            }
                         }
+                        connectionDB.connection.Close();
                     }
-
-                    int endPart = dataGridViewScrapPartList.Rows.Count + cellRowIndex;
-
-                    // setup border 
-                    worksheet.Range(worksheet.Cell(cellRowIndex, 1), worksheet.Cell(endPart - 1, 11)).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
-                    worksheet.Range(worksheet.Cell(cellRowIndex - 1, 2), worksheet.Cell(endPart - 1, 11)).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
-                    worksheet.Range(worksheet.Cell(cellRowIndex, 1), worksheet.Cell(endPart - 1, 1)).Style.Border.LeftBorder = XLBorderStyleValues.Medium;
-                    worksheet.Range(worksheet.Cell(cellRowIndex, 11), worksheet.Cell(endPart - 1, 11)).Style.Border.RightBorder = XLBorderStyleValues.Medium;
-                    worksheet.Range(worksheet.Cell(endPart, 1), worksheet.Cell(endPart, 11)).Style.Border.TopBorder = XLBorderStyleValues.Medium;
-
-
-                    workbook.SaveAs(directoryFile + "\\" + filename);
+                    catch (Exception ex)
+                    {
+                        connectionDB.connection.Close();
+                        MessageBox.Show(ex.Message);
+                    }
                 }
 
                 MessageBox.Show(this, "Excel File Success Generated", "Generate Excel", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -3,7 +3,6 @@ using MetroFramework;
 using MySql.Data.MySqlClient;
 using System;
 using System.Data;
-using System.Drawing;
 using System.Drawing.Printing;
 using System.Windows.Forms;
 
@@ -13,7 +12,7 @@ namespace SMTPE
     {
         private static BarTender.Application btApp = new BarTender.Application();
         private static BarTender.Format btFormat = new BarTender.Format();
-        string dateNow = DateTime.Now.ToString("dd.MM.yyyy");
+        string dateNow = DateTime.Now.ToString("dd/MM/yyyy");
 
         Helper help = new Helper();
         ConnectionDB connectionDB = new ConnectionDB();
@@ -48,27 +47,6 @@ namespace SMTPE
             this.Hide();
         }
 
-        private void LabelPartnumber_Load(object sender, EventArgs e)
-        {
-            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
-            this.WindowState = FormWindowState.Maximized;
-
-            //icon
-            this.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-
-            //get user id
-            var userId = toolStripUsername.Text.Split(' ');
-            int idPosition = toolStripUsername.Text.Split(' ').Length - 3;
-            idUser = userId[idPosition].Replace(",", "");
-
-            tbPrfNo.Select();
-            //menampilkan data combobox department
-            help.displayCmbList("SELECT * FROM tbl_department ORDER BY NAME ASC", "name", "name", cmbDepartment);
-
-            //menampilkan data combobox request by
-            help.displayCmbList("SELECT CONCAT(username, ' | ', NAME) AS NAMES, username FROM tbl_user ORDER BY NAME", "names", "username", cmbRequestBy);
-        }
-
         private void tbscrapQty_TextChanged(object sender, EventArgs e)
         {
             //if user type alphabet
@@ -85,7 +63,7 @@ namespace SMTPE
                 string query = "SELECT a.partnosn, c.description, c.f_type, c.location, a. qty, a.prfNo, a.department , " +
                     "(SELECT CONCAT(a.requestedby, ' | ', b.name) FROM tbl_user b WHERE b.username = a.requestedby) requestedby, " +
                     "(SELECT b.name FROM tbl_user b WHERE b.username = a.issuedBy) issuedBy, a.updateDate FROM tbl_scrappart a, " +
-                    "tbl_masterpartmaterial c WHERE a.partnosn = c.material AND prfNo = '" + tbPrfNo.Text + "'";
+                    "tbl_masterpartmaterial c WHERE a.partnosn = c.material AND statusDelete IS NULL AND prfNo = '" + tbPrfNo.Text + "'";
 
                 using (MySqlDataAdapter adpt = new MySqlDataAdapter(query, connectionDB.connection))
                 {
@@ -180,14 +158,14 @@ namespace SMTPE
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (tbpnSN.Text.Length >= 10 && tbpnSN.Text.Length <= 22)
+                if (tbpnSN.Text.Length >= 10 && tbpnSN.Text.Length <= 30)
                 {
                     string pnSN = tbpnSN.Text.Trim();
                     string pn = pnSN.Remove(pnSN.Length - 3);
                     string custCode = pn.Substring(0, 2);
                     int tpPosition = pnSN.Length - 4;
 
-                    printPn = pnSN.Insert(tpPosition,"(").Insert(tpPosition+2,") ");
+                    printPn = pnSN.Insert(tpPosition, "(").Insert(tpPosition + 2, ") ");
 
                     string query = "SELECT material FROM tbl_masterpartmaterial WHERE material = '" + pn + "'";
                     using (MySqlDataAdapter adpt = new MySqlDataAdapter(query, connectionDB.connection))
@@ -201,7 +179,7 @@ namespace SMTPE
                             string query1 = "SELECT a.partnosn, c.description, c.f_type, c.location, a. qty, a.prfNo, a.department, " +
                                 "(SELECT CONCAT(a.requestedby, ' | ', b.name) FROM tbl_user b WHERE b.username = a.requestedby) requestedby, " +
                                 "(SELECT b.name FROM tbl_user b WHERE b.username = a.issuedBy) issuedBy, a.updateDate FROM tbl_scrappart a, " +
-                                "tbl_masterpartmaterial c WHERE a.partnosn = c.material AND prfNo = '" + tbPrfNo.Text + "' AND partnosn = '" + pn + "'";
+                                "tbl_masterpartmaterial c WHERE a.partnosn = c.material AND statusDelete IS NULL AND prfNo = '" + tbPrfNo.Text + "' AND partnosn = '" + pn + "'";
 
                             using (MySqlDataAdapter adpt1 = new MySqlDataAdapter(query1, connectionDB.connection))
                             {
@@ -306,7 +284,7 @@ namespace SMTPE
 
         private void printlabel()
         {
-            if (tbpnSN.Text.Length >= 12 && tbpnSN.Text.Length <= 22 && tbscrapQty.Text != ""
+            if (tbpnSN.Text.Length >= 12 && tbpnSN.Text.Length <= 30 && tbscrapQty.Text != ""
                 && tbPrfNo.Text.Length == 7 && cmbDepartment.SelectedIndex != -1 && cmbRequestBy.SelectedIndex != -1)
             {
                 // insert to data to db
@@ -321,7 +299,7 @@ namespace SMTPE
                     string requestBy = requested[0].Replace(" ", "");
                     date = dateNow;
 
-                    string cekdata = "SELECT * FROM tbl_scrappart WHERE partnosn = '" + pn + "' AND qty = '" + qty + "' AND prfno = '" + prfNo + "'AND department = '" + department + "'";
+                    string cekdata = "SELECT * FROM tbl_scrappart WHERE partnosn = '" + pn + "' AND qty = '" + qty + "' AND prfno = '" + prfNo + "'AND department = '" + department + "'AND statusDelete IS NULL";
                     using (MySqlDataAdapter adpt = new MySqlDataAdapter(cekdata, connectionDB.connection))
                     {
                         DataSet ds = new DataSet();
@@ -340,7 +318,7 @@ namespace SMTPE
                                 var cmd = new MySqlCommand("", connectionDB.connection);
                                 //insert  data to table
                                 string insertdata = "INSERT INTO tbl_scrappart (partnosn, partdetail, qty, prfno, department, requestedBy, issuedBy, updateDate) values " +
-                                    "('" + pn + "','" + pnSN + "' ,'" + qty + "','" + prfNo + "','" + department + "','" + requestBy + "','" + idUser + "','" + DateTime.Now.ToString("yyyyy-MM-dd HH:mm:ss") + "')";
+                                    "('" + pn + "','" + pnSN + "' ,'" + qty + "','" + prfNo + "','" + department + "','" + requestBy + "','" + idUser + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "')";
                                 cmd.CommandText = insertdata;
                                 cmd.ExecuteNonQuery();
                                 connectionDB.connection.Close();
@@ -443,6 +421,131 @@ namespace SMTPE
         private void dataGridViewPRFList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             dataGridViewPRFList.Columns[9].DefaultCellStyle.Format = "dd-MM-yyyy";
+        }
+
+        private void dataGridViewPRFList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (this.dataGridViewPRFList.SelectedRows.Count > 0)
+                {
+                    int i;
+                    i = dataGridViewPRFList.SelectedCells[0].RowIndex;
+                    string partslctd = dataGridViewPRFList.Rows[i].Cells[0].Value.ToString();
+                    string prfslctd = dataGridViewPRFList.Rows[i].Cells[5].Value.ToString();
+
+                    string message = "Do you want to delete this Scrap Part " + partslctd + "?";
+                    string title = "Delete Scrap Part";
+                    MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                    MessageBoxIcon icon = MessageBoxIcon.Information;
+                    DialogResult result = MessageBox.Show(this, message, title, buttons, icon);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        this.dataGridViewPRFList.Rows.Remove(this.dataGridViewPRFList.SelectedRows[0]);
+                        e.Handled = true;
+                        try
+                        {
+                            var cmd = new MySqlCommand("", connectionDB.connection);
+
+                            string queryupdateStatusPart = "UPDATE tbl_scrappart SET statusDelete ='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")+ ","+idUser+"' WHERE partnosn = '" +partslctd+"' AND prfno = '"+prfslctd+"'";
+                            connectionDB.connection.Open();
+
+                            string[] allQuery = { queryupdateStatusPart };
+                            for (int j = 0; j < allQuery.Length; j++)
+                            {
+                                cmd.CommandText = allQuery[j];
+                                //Masukkan perintah/query yang akan dijalankan ke dalam CommandText
+                                cmd.ExecuteNonQuery();
+                                //Jalankan perintah / query dalam CommandText pada database
+                            }
+
+                            connectionDB.connection.Close();
+                            MessageBox.Show("Record Deleted successfully", "Scrap Part List Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            connectionDB.connection.Close();
+                            MessageBox.Show("Unable to remove selected Partnumber", "Scrap Part List Record", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //MessageBox.Show(ex.Message);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void ScrapPartnumber_Load(object sender, EventArgs e)
+        {
+            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+            this.WindowState = FormWindowState.Maximized;
+
+            //icon
+            this.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+
+            //get user id
+            var userId = toolStripUsername.Text.Split(' ');
+            int idPosition = toolStripUsername.Text.Split(' ').Length - 3;
+            idUser = userId[idPosition].Replace(",", "");
+
+            tbPrfNo.Select();
+            //menampilkan data combobox department
+            help.displayCmbList("SELECT * FROM tbl_department ORDER BY NAME ASC", "name", "name", cmbDepartment);
+
+            //menampilkan data combobox request by
+            help.displayCmbList("SELECT CONCAT(username, ' | ', NAME) AS NAMES, username FROM tbl_user ORDER BY NAME", "names", "username", cmbRequestBy);
+        }
+
+        private void dataGridViewPRFList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (this.dataGridViewPRFList.SelectedRows.Count > 0)
+            {
+                int i;
+                i = dataGridViewPRFList.SelectedCells[0].RowIndex;
+                string partslctd = dataGridViewPRFList.Rows[i].Cells[0].Value.ToString();
+                string prfslctd = dataGridViewPRFList.Rows[i].Cells[5].Value.ToString();
+
+                string message = "Do you want to Reprint this Scrap Part " + partslctd + "?";
+                string title = "Reprint Scrap Part";
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                MessageBoxIcon icon = MessageBoxIcon.Information;
+                DialogResult result = MessageBox.Show(this, message, title, buttons, icon);
+
+                if (result == DialogResult.Yes)
+                {
+                    // get part with $$
+                    try
+                    {
+                        string query = "SELECT partdetail, qty, updatedate FROM tbl_scrappart WHERE partnosn = '"+partslctd+"' AND prfNo = '"+prfslctd+"'";
+                        using (MySqlDataAdapter adpt = new MySqlDataAdapter(query, connectionDB.connection))
+                        {
+                            DataTable dt = new DataTable();
+                            adpt.Fill(dt);
+
+                            if (dt.Rows.Count > 0)
+                            {
+                                string pndetail = dt.Rows[0]["partdetail"].ToString();
+                                //date = dt.Rows[0]["updatedate"].ToString();
+                                date = dateNow;
+                                qty = dt.Rows[0]["qty"].ToString();
+                                int tpPosition = pndetail.Length - 4;
+                                printPn = pndetail.Insert(tpPosition, "(").Insert(tpPosition + 2, ") ");
+                                pn = partslctd;
+                                pnSN = pndetail;
+
+                                // load detail pn to print
+                                LoadDetailPN();
+                                // print label
+                                printLabeltoPrinter();
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        connectionDB.connection.Close();
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
         }
     }
 }

@@ -49,13 +49,12 @@ namespace SMTPE
             this.refreshLbl = new System.Windows.Forms.LinkLabel();
             this.exportBtn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.searchBy = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbCust = new System.Windows.Forms.ComboBox();
+            this.allDate = new System.Windows.Forms.CheckBox();
+            this.filterBtn = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.dateTimePickerFrom = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerTo = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.allDate = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewScrapPartList)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -70,7 +69,6 @@ namespace SMTPE
             this.tbSearch.Size = new System.Drawing.Size(200, 26);
             this.tbSearch.TabIndex = 13;
             this.tbSearch.Visible = false;
-            this.tbSearch.TextChanged += new System.EventHandler(this.tbSearch_TextChanged);
             this.tbSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSearch_KeyDown);
             // 
             // label1
@@ -278,46 +276,73 @@ namespace SMTPE
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox1.Controls.Add(this.searchBy);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Location = new System.Drawing.Point(108, 55);
+            this.groupBox1.Controls.Add(this.cmbCust);
+            this.groupBox1.Controls.Add(this.allDate);
+            this.groupBox1.Controls.Add(this.filterBtn);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.dateTimePickerFrom);
+            this.groupBox1.Controls.Add(this.dateTimePickerTo);
+            this.groupBox1.Location = new System.Drawing.Point(23, 85);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(512, 64);
+            this.groupBox1.Size = new System.Drawing.Size(571, 88);
             this.groupBox1.TabIndex = 196;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Search by :";
+            this.groupBox1.Text = "Filter";
             this.groupBox1.Visible = false;
             // 
-            // searchBy
+            // cmbCust
             // 
-            this.searchBy.Location = new System.Drawing.Point(155, 25);
-            this.searchBy.Name = "searchBy";
-            this.searchBy.Size = new System.Drawing.Size(337, 26);
-            this.searchBy.TabIndex = 1;
-            this.searchBy.TextChanged += new System.EventHandler(this.searchBy_TextChanged);
+            this.cmbCust.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbCust.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbCust.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCust.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCust.FormattingEnabled = true;
+            this.cmbCust.IntegralHeight = false;
+            this.cmbCust.Location = new System.Drawing.Point(11, 22);
+            this.cmbCust.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbCust.MaxDropDownItems = 10;
+            this.cmbCust.Name = "cmbCust";
+            this.cmbCust.Size = new System.Drawing.Size(192, 26);
+            this.cmbCust.TabIndex = 205;
             // 
-            // comboBox1
+            // allDate
             // 
-            this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Customer",
-            "Part No",
-            "Qty",
-            "PRF No",
-            "Department",
-            "Update Date"});
-            this.comboBox1.Location = new System.Drawing.Point(6, 25);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(142, 27);
-            this.comboBox1.TabIndex = 0;
+            this.allDate.AutoSize = true;
+            this.allDate.BackColor = System.Drawing.Color.Transparent;
+            this.allDate.Location = new System.Drawing.Point(210, 24);
+            this.allDate.Name = "allDate";
+            this.allDate.Size = new System.Drawing.Size(48, 23);
+            this.allDate.TabIndex = 202;
+            this.allDate.Text = "All";
+            this.allDate.UseVisualStyleBackColor = false;
+            // 
+            // filterBtn
+            // 
+            this.filterBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.filterBtn.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.filterBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.filterBtn.Location = new System.Drawing.Point(11, 55);
+            this.filterBtn.Name = "filterBtn";
+            this.filterBtn.Size = new System.Drawing.Size(76, 26);
+            this.filterBtn.TabIndex = 201;
+            this.filterBtn.Text = "Load";
+            this.filterBtn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.filterBtn.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(400, 25);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(25, 19);
+            this.label2.TabIndex = 200;
+            this.label2.Text = "To";
+            this.label2.Visible = false;
             // 
             // dateTimePickerFrom
             // 
             this.dateTimePickerFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerFrom.Location = new System.Drawing.Point(252, 143);
+            this.dateTimePickerFrom.Location = new System.Drawing.Point(264, 21);
             this.dateTimePickerFrom.Name = "dateTimePickerFrom";
             this.dateTimePickerFrom.Size = new System.Drawing.Size(131, 26);
             this.dateTimePickerFrom.TabIndex = 197;
@@ -327,59 +352,18 @@ namespace SMTPE
             // dateTimePickerTo
             // 
             this.dateTimePickerTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerTo.Location = new System.Drawing.Point(419, 143);
+            this.dateTimePickerTo.Location = new System.Drawing.Point(431, 21);
             this.dateTimePickerTo.Name = "dateTimePickerTo";
             this.dateTimePickerTo.Size = new System.Drawing.Size(131, 26);
             this.dateTimePickerTo.TabIndex = 199;
             this.dateTimePickerTo.Visible = false;
             this.dateTimePickerTo.ValueChanged += new System.EventHandler(this.dateTimePickerTo_ValueChanged);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(388, 147);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(25, 19);
-            this.label2.TabIndex = 200;
-            this.label2.Text = "To";
-            this.label2.Visible = false;
-            // 
-            // button1
-            // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(564, 143);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(76, 26);
-            this.button1.TabIndex = 201;
-            this.button1.Text = "Load";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
-            // 
-            // allDate
-            // 
-            this.allDate.AutoSize = true;
-            this.allDate.BackColor = System.Drawing.Color.Transparent;
-            this.allDate.Location = new System.Drawing.Point(198, 146);
-            this.allDate.Name = "allDate";
-            this.allDate.Size = new System.Drawing.Size(48, 23);
-            this.allDate.TabIndex = 202;
-            this.allDate.Text = "All";
-            this.allDate.UseVisualStyleBackColor = false;
-            this.allDate.Visible = false;
-            // 
             // ScrapPartnumberList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 768);
-            this.Controls.Add(this.allDate);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.dateTimePickerTo);
-            this.Controls.Add(this.dateTimePickerFrom);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.exportBtn);
             this.Controls.Add(this.refreshLbl);
@@ -431,12 +415,11 @@ namespace SMTPE
         private System.Windows.Forms.LinkLabel refreshLbl;
         private System.Windows.Forms.Button exportBtn;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox searchBy;
         private System.Windows.Forms.DateTimePicker dateTimePickerFrom;
         private System.Windows.Forms.DateTimePicker dateTimePickerTo;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button filterBtn;
         private System.Windows.Forms.CheckBox allDate;
+        private System.Windows.Forms.ComboBox cmbCust;
     }
 }

@@ -143,21 +143,21 @@
             // scanToolStripMenuItem
             // 
             this.scanToolStripMenuItem.Name = "scanToolStripMenuItem";
-            this.scanToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
+            this.scanToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.scanToolStripMenuItem.Text = "Scan";
             this.scanToolStripMenuItem.Click += new System.EventHandler(this.scanToolStripMenuItem_Click);
             // 
             // dataToolStripMenuItem
             // 
             this.dataToolStripMenuItem.Name = "dataToolStripMenuItem";
-            this.dataToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
+            this.dataToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.dataToolStripMenuItem.Text = "Data";
             this.dataToolStripMenuItem.Click += new System.EventHandler(this.dataToolStripMenuItem_Click);
             // 
             // custCodeControlToolStripMenuItem
             // 
             this.custCodeControlToolStripMenuItem.Name = "custCodeControlToolStripMenuItem";
-            this.custCodeControlToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
+            this.custCodeControlToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.custCodeControlToolStripMenuItem.Text = "Cust Code Control";
             this.custCodeControlToolStripMenuItem.Click += new System.EventHandler(this.custCodeControlToolStripMenuItem_Click);
             // 
@@ -189,7 +189,7 @@
             // modelMasterToolStripMenuItem
             // 
             this.modelMasterToolStripMenuItem.Name = "modelMasterToolStripMenuItem";
-            this.modelMasterToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.modelMasterToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.modelMasterToolStripMenuItem.Text = "Model Master";
             this.modelMasterToolStripMenuItem.Visible = false;
             this.modelMasterToolStripMenuItem.Click += new System.EventHandler(this.modelMasterToolStripMenuItem_Click);
@@ -197,14 +197,14 @@
             // materialMasterToolStripMenuItem_Click
             // 
             this.materialMasterToolStripMenuItem_Click.Name = "materialMasterToolStripMenuItem_Click";
-            this.materialMasterToolStripMenuItem_Click.Size = new System.Drawing.Size(222, 26);
+            this.materialMasterToolStripMenuItem_Click.Size = new System.Drawing.Size(224, 26);
             this.materialMasterToolStripMenuItem_Click.Text = "Material Master";
             this.materialMasterToolStripMenuItem_Click.Click += new System.EventHandler(this.materialMasterToolStripMenuItem_Click_Click);
             // 
             // materialMasterXMToolStripMenuItem
             // 
             this.materialMasterXMToolStripMenuItem.Name = "materialMasterXMToolStripMenuItem";
-            this.materialMasterXMToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.materialMasterXMToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.materialMasterXMToolStripMenuItem.Text = "Material Master XM";
             this.materialMasterXMToolStripMenuItem.Visible = false;
             this.materialMasterXMToolStripMenuItem.Click += new System.EventHandler(this.materialMasterXMToolStripMenuItem_Click);
@@ -229,28 +229,28 @@
             // departmentToolStripMenuItem
             // 
             this.departmentToolStripMenuItem.Name = "departmentToolStripMenuItem";
-            this.departmentToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
+            this.departmentToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.departmentToolStripMenuItem.Text = "Department";
             this.departmentToolStripMenuItem.Click += new System.EventHandler(this.departmentToolStripMenuItem_Click);
             // 
             // userLevelToolStripMenuItem
             // 
             this.userLevelToolStripMenuItem.Name = "userLevelToolStripMenuItem";
-            this.userLevelToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
+            this.userLevelToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.userLevelToolStripMenuItem.Text = "User Level";
             this.userLevelToolStripMenuItem.Click += new System.EventHandler(this.userLevelToolStripMenuItem_Click);
             // 
             // userToolStripMenuItem
             // 
             this.userToolStripMenuItem.Name = "userToolStripMenuItem";
-            this.userToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
+            this.userToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.userToolStripMenuItem.Text = "User";
             this.userToolStripMenuItem.Click += new System.EventHandler(this.userToolStripMenuItem_Click);
             // 
             // userRoleToolStripMenuItem
             // 
             this.userRoleToolStripMenuItem.Name = "userRoleToolStripMenuItem";
-            this.userRoleToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
+            this.userRoleToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.userRoleToolStripMenuItem.Text = "User Role";
             this.userRoleToolStripMenuItem.Visible = false;
             this.userRoleToolStripMenuItem.Click += new System.EventHandler(this.userRoleToolStripMenuItem_Click);
@@ -258,7 +258,7 @@
             // changePasswordToolStripMenuItem
             // 
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 

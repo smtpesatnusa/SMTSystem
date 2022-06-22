@@ -82,16 +82,11 @@ namespace SMTPE
             dateTimeNow.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss");
         }
 
-        private void LoadData()
+        private void LoadData(string Sql)
         {
             try
             {
                 connectionDB.connection.Open();
-
-                Sql = "SELECT SUBSTRING(a.partnosn, 1, 2) AS custCode, a.partnosn, c.description, c.f_type, c.location, a. qty, a.prfNo, a.department , " +
-                    "(SELECT b.name FROM tbl_user b WHERE b.username = a.requestedby) requestedby, " +
-                    "(SELECT b.name FROM tbl_user b WHERE b.username = a.issuedBy) issuedBy, a.updateDate FROM " +
-                    "tbl_scrappart a, tbl_masterpartmaterial c WHERE a.partnosn = c.material AND statusDelete IS NULL ORDER BY a.id DESC";
 
                 StartProgress("Loading...");
 
@@ -316,7 +311,15 @@ namespace SMTPE
 
         private void refreshLbl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            LoadData();
+            dateTimePickerFrom.Value = DateTime.Today;
+            dateTimePickerTo.Value = DateTime.Today;
+
+            Sql = "SELECT SUBSTRING(a.partnosn, 1, 2) AS custCode, a.partnosn, c.description, c.f_type, c.location, a. qty, a.prfNo, a.department , " +
+                    "(SELECT b.name FROM tbl_user b WHERE b.username = a.requestedby) requestedby, " +
+                    "(SELECT b.name FROM tbl_user b WHERE b.username = a.issuedBy) issuedBy, a.updateDate FROM " +
+                    "tbl_scrappart a, tbl_masterpartmaterial c WHERE a.partnosn = c.material AND statusDelete IS NULL ORDER BY a.id DESC";
+
+            LoadData(Sql);
             dataGridViewScrapPartList.Update();
             dataGridViewScrapPartList.Refresh();
         }
@@ -405,8 +408,13 @@ namespace SMTPE
             //menampilkan data combobox department
             help.displayCmbList("SELECT CONCAT(id, ' (', custname, ')') AS cust, id FROM tbl_customer ORDER BY id ", "cust", "id", cmbCust);
 
+            Sql = "SELECT SUBSTRING(a.partnosn, 1, 2) AS custCode, a.partnosn, c.description, c.f_type, c.location, a. qty, a.prfNo, a.department , " +
+                    "(SELECT b.name FROM tbl_user b WHERE b.username = a.requestedby) requestedby, " +
+                    "(SELECT b.name FROM tbl_user b WHERE b.username = a.issuedBy) issuedBy, a.updateDate FROM " +
+                    "tbl_scrappart a, tbl_masterpartmaterial c WHERE a.partnosn = c.material AND statusDelete IS NULL ORDER BY a.id DESC";
+
             // load data list
-            LoadData();
+            LoadData(Sql);
 
             if (dataGridViewScrapPartList.Rows.Count > 0)
             {
@@ -465,7 +473,7 @@ namespace SMTPE
                 string date = DateTime.Now.ToString("dd-MM-yyyy");
                 string directoryFile = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                 directoryFile = directoryFile + "\\Scrap Part Summary\\" + date;
-                string filename = "Summary Scrap Part.xlsx";
+                string filename = "Summary Scrap Part "+help.randomText(5)+".xlsx";
                 using (var workbook = new XLWorkbook())
                 {
                     //worksheet SAP upload inbound
@@ -572,6 +580,10 @@ namespace SMTPE
 
                                 workbook.SaveAs(directoryFile + "\\" + filename);
                             }
+                            else
+                            {
+                                workbook.SaveAs(directoryFile + "\\" + filename);
+                            }
                         }
                         connectionDB.connection.Close();
                     }
@@ -592,11 +604,6 @@ namespace SMTPE
             }
         }
 
-        private void searchBy_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void dateTimePickerTo_ValueChanged(object sender, EventArgs e)
         {
             if (dateTimePickerTo.Value.Date < dateTimePickerFrom.Value.Date)
@@ -613,6 +620,22 @@ namespace SMTPE
                 MessageBox.Show("From Date is greater than To Date");
                 dateTimePickerTo.Value = dateTimePickerFrom.Value.AddDays(+1);
             }
+        }
+
+        private void filterBtn_Click(object sender, EventArgs e)
+        {
+            string from = DateTime.ParseExact(dateTimePickerFrom.Text, "dd'-'MM'-'yyyy", CultureInfo.InvariantCulture).ToString("yyyy'-'MM'-'dd");
+            string to = DateTime.ParseExact(dateTimePickerTo.Text, "dd'-'MM'-'yyyy", CultureInfo.InvariantCulture).ToString("yyyy'-'MM'-'dd");
+
+            Sql = "SELECT SUBSTRING(a.partnosn, 1, 2) AS custCode, a.partnosn, c.description, c.f_type, c.location, a. qty, a.prfNo, a.department , " +
+                "(SELECT b.name FROM tbl_user b WHERE b.username = a.requestedby) requestedby,  (SELECT b.name FROM tbl_user b WHERE " +
+                "b.username = a.issuedBy) issuedBy, a.updateDate FROM tbl_scrappart a, tbl_masterpartmaterial c WHERE " +
+                "a.partnosn = c.material AND statusDelete IS NULL AND updateDate BETWEEN '"+from+" 00:00:01' AND " +
+                "'"+to+" 23:59:59' ORDER BY a.id DESC";
+
+            LoadData(Sql);
+            dataGridViewScrapPartList.Update();
+            dataGridViewScrapPartList.Refresh();
         }
     }
 }

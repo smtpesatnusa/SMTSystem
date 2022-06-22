@@ -55,6 +55,7 @@ namespace SMTPE
             this.label2 = new System.Windows.Forms.Label();
             this.dateTimePickerFrom = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerTo = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewScrapPartList)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -278,11 +279,7 @@ namespace SMTPE
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.cmbCust);
             this.groupBox1.Controls.Add(this.allDate);
-            this.groupBox1.Controls.Add(this.filterBtn);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.dateTimePickerFrom);
-            this.groupBox1.Controls.Add(this.dateTimePickerTo);
-            this.groupBox1.Location = new System.Drawing.Point(23, 85);
+            this.groupBox1.Location = new System.Drawing.Point(126, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(571, 88);
             this.groupBox1.TabIndex = 196;
@@ -321,54 +318,68 @@ namespace SMTPE
             this.filterBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.filterBtn.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.filterBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.filterBtn.Location = new System.Drawing.Point(11, 55);
+            this.filterBtn.Location = new System.Drawing.Point(410, 136);
             this.filterBtn.Name = "filterBtn";
             this.filterBtn.Size = new System.Drawing.Size(76, 26);
             this.filterBtn.TabIndex = 201;
             this.filterBtn.Text = "Load";
             this.filterBtn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.filterBtn.UseVisualStyleBackColor = true;
+            this.filterBtn.Click += new System.EventHandler(this.filterBtn_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(400, 25);
+            this.label2.Location = new System.Drawing.Point(230, 139);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(25, 19);
             this.label2.TabIndex = 200;
             this.label2.Text = "To";
-            this.label2.Visible = false;
             // 
             // dateTimePickerFrom
             // 
             this.dateTimePickerFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerFrom.Location = new System.Drawing.Point(264, 21);
+            this.dateTimePickerFrom.Location = new System.Drawing.Point(94, 135);
             this.dateTimePickerFrom.Name = "dateTimePickerFrom";
             this.dateTimePickerFrom.Size = new System.Drawing.Size(131, 26);
             this.dateTimePickerFrom.TabIndex = 197;
-            this.dateTimePickerFrom.Visible = false;
             this.dateTimePickerFrom.ValueChanged += new System.EventHandler(this.dateTimePickerFrom_ValueChanged);
             // 
             // dateTimePickerTo
             // 
             this.dateTimePickerTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerTo.Location = new System.Drawing.Point(431, 21);
+            this.dateTimePickerTo.Location = new System.Drawing.Point(261, 135);
             this.dateTimePickerTo.Name = "dateTimePickerTo";
             this.dateTimePickerTo.Size = new System.Drawing.Size(131, 26);
             this.dateTimePickerTo.TabIndex = 199;
-            this.dateTimePickerTo.Visible = false;
             this.dateTimePickerTo.ValueChanged += new System.EventHandler(this.dateTimePickerTo_ValueChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(19, 139);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(43, 19);
+            this.label3.TabIndex = 202;
+            this.label3.Text = "Filter";
             // 
             // ScrapPartnumberList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.exportBtn);
+            this.Controls.Add(this.filterBtn);
             this.Controls.Add(this.refreshLbl);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.txtDisplayPageNo);
+            this.Controls.Add(this.dateTimePickerFrom);
             this.Controls.Add(this.btnNextPage);
+            this.Controls.Add(this.dateTimePickerTo);
             this.Controls.Add(this.btnPreviousPage);
             this.Controls.Add(this.btnLastPage);
             this.Controls.Add(this.btnFirstPage);
@@ -421,5 +432,6 @@ namespace SMTPE
         private System.Windows.Forms.Button filterBtn;
         private System.Windows.Forms.CheckBox allDate;
         private System.Windows.Forms.ComboBox cmbCust;
+        private System.Windows.Forms.Label label3;
     }
 }

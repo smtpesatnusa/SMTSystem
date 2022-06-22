@@ -333,7 +333,6 @@ namespace SMTPE
 
                                 tbpnSN.Clear();
                                 tbscrapQty.Clear();
-
                             }
                             catch (Exception ex)
                             {

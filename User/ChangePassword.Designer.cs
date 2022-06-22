@@ -45,7 +45,7 @@ namespace SMTPE
             this.saveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveBtn.Font = new System.Drawing.Font("Open Sans", 8.25F);
             this.saveBtn.Location = new System.Drawing.Point(313, 274);
-            this.saveBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveBtn.Margin = new System.Windows.Forms.Padding(4);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(120, 43);
             this.saveBtn.TabIndex = 3;
@@ -57,7 +57,7 @@ namespace SMTPE
             // 
             this.tbnewpass.Font = new System.Drawing.Font("Open Sans", 8.25F);
             this.tbnewpass.Location = new System.Drawing.Point(239, 153);
-            this.tbnewpass.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbnewpass.Margin = new System.Windows.Forms.Padding(4);
             this.tbnewpass.Name = "tbnewpass";
             this.tbnewpass.PasswordChar = '●';
             this.tbnewpass.Size = new System.Drawing.Size(277, 26);
@@ -79,7 +79,7 @@ namespace SMTPE
             // 
             this.tbcrnpass.Font = new System.Drawing.Font("Open Sans", 8.25F);
             this.tbcrnpass.Location = new System.Drawing.Point(239, 97);
-            this.tbcrnpass.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbcrnpass.Margin = new System.Windows.Forms.Padding(4);
             this.tbcrnpass.MaxLength = 50;
             this.tbcrnpass.Name = "tbcrnpass";
             this.tbcrnpass.PasswordChar = '●';
@@ -127,7 +127,7 @@ namespace SMTPE
             // 
             this.tbvrypass.Font = new System.Drawing.Font("Open Sans", 8.25F);
             this.tbvrypass.Location = new System.Drawing.Point(239, 207);
-            this.tbvrypass.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbvrypass.Margin = new System.Windows.Forms.Padding(4);
             this.tbvrypass.Name = "tbvrypass";
             this.tbvrypass.PasswordChar = '●';
             this.tbvrypass.Size = new System.Drawing.Size(277, 26);
@@ -162,8 +162,9 @@ namespace SMTPE
             this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.tbnewpass);
             this.Controls.Add(this.tbusername);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ChangePassword";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

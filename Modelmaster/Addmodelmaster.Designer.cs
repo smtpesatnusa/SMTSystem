@@ -112,6 +112,7 @@ namespace SMTPE
             // 
             // tbTaping
             // 
+            this.tbTaping.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbTaping.Font = new System.Drawing.Font("Open Sans", 8.25F);
             this.tbTaping.Location = new System.Drawing.Point(239, 213);
             this.tbTaping.Margin = new System.Windows.Forms.Padding(4);
@@ -148,6 +149,7 @@ namespace SMTPE
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Addmodelmaster";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

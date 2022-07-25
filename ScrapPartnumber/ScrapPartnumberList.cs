@@ -316,7 +316,7 @@ namespace SMTPE
 
             Sql = "SELECT SUBSTRING(a.partnosn, 1, 2) AS custCode, a.partnosn, c.description, c.f_type, c.location, a. qty, a.prfNo, a.department , " +
                     "(SELECT b.name FROM tbl_user b WHERE b.username = a.requestedby) requestedby, " +
-                    "(SELECT b.name FROM tbl_user b WHERE b.username = a.issuedBy) issuedBy, a.updateDate FROM " +
+                    "(SELECT b.name FROM tbl_user b WHERE b.username = a.issuedBy) issuedBy, DATE_FORMAT(a.updateDate, '%d-%m-%Y') AS updateDate FROM " +
                     "tbl_scrappart a, tbl_masterpartmaterial c WHERE a.partnosn = c.material AND statusDelete IS NULL ORDER BY a.id DESC";
 
             LoadData(Sql);
@@ -334,8 +334,8 @@ namespace SMTPE
 
         private void ScrapPartnumberList_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string message = "Are you sure you want to logout?";
-            string title = "Confirm Logout";
+            string message = "Are you sure you want to close this application?";
+            string title = "Confirm Close";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             MessageBoxIcon icon = MessageBoxIcon.Information;
             if (MetroMessageBox.Show(this, message, title, buttons, icon) == DialogResult.No)
@@ -409,9 +409,9 @@ namespace SMTPE
             help.displayCmbList("SELECT CONCAT(id, ' (', custname, ')') AS cust, id FROM tbl_customer ORDER BY id ", "cust", "id", cmbCust);
 
             Sql = "SELECT SUBSTRING(a.partnosn, 1, 2) AS custCode, a.partnosn, c.description, c.f_type, c.location, a. qty, a.prfNo, a.department , " +
-                    "(SELECT b.name FROM tbl_user b WHERE b.username = a.requestedby) requestedby, " +
-                    "(SELECT b.name FROM tbl_user b WHERE b.username = a.issuedBy) issuedBy, a.updateDate FROM " +
-                    "tbl_scrappart a, tbl_masterpartmaterial c WHERE a.partnosn = c.material AND statusDelete IS NULL ORDER BY a.id DESC";
+                "(SELECT b.name FROM tbl_user b WHERE b.username = a.requestedby) requestedby, (SELECT b.name FROM tbl_user b WHERE b.username = a.issuedBy) issuedBy, " +
+                "DATE_FORMAT(a.updateDate, '%d-%m-%Y') AS updateDate FROM tbl_scrappart a, tbl_masterpartmaterial c WHERE a.partnosn = c.material " +
+                "AND statusDelete IS NULL ORDER BY a.id DESC";
 
             // load data list
             LoadData(Sql);
@@ -430,14 +430,14 @@ namespace SMTPE
                 {
                     Sql = "SELECT SUBSTRING(a.partnosn, 1, 2) AS custCode, a.partnosn, c.description, c.f_type, c.location, a. qty, a.prfNo, a.department , " +
                     "(SELECT b.name FROM tbl_user b WHERE b.username = a.requestedby) requestedby, " +
-                    "(SELECT b.name FROM tbl_user b WHERE b.username = a.issuedBy) issuedBy, a.updateDate FROM " +
+                    "(SELECT b.name FROM tbl_user b WHERE b.username = a.issuedBy) issuedBy, DATE_FORMAT(a.updateDate, '%d-%m-%Y') AS updateDate FROM " +
                     "tbl_scrappart a, tbl_masterpartmaterial c WHERE a.partnosn = c.material AND statusDelete IS NULL ORDER BY a.id DESC";
                 }
                 else
                 {
                     Sql = "SELECT SUBSTRING(a.partnosn, 1, 2) AS custCode, a.partnosn, c.description, c.f_type, c.location, a. qty, a.prfNo, a.department, " +
                         "(SELECT b.name FROM tbl_user b WHERE b.username = a.requestedby) requestedby, " +
-                        "(SELECT b.name FROM tbl_user b WHERE b.username = a.issuedBy) issuedBy, a.updateDate FROM tbl_scrappart a, " +
+                        "(SELECT b.name FROM tbl_user b WHERE b.username = a.issuedBy) issuedBy, DATE_FORMAT(a.updateDate, '%d-%m-%Y') AS updateDate FROM tbl_scrappart a, " +
                         "tbl_masterpartmaterial c WHERE a.partnosn = c.material AND statusDelete IS NULL AND partnosn LIKE '%" + tbSearch.Text + "%' " +
                         "OR DESCRIPTION LIKE '%" + tbSearch.Text + "%' OR f_type LIKE '%" + tbSearch.Text + "%' OR location LIKE '%" + tbSearch.Text + "%' " +
                         "OR qty LIKE '%" + tbSearch.Text + "%' OR prfNo LIKE '%" + tbSearch.Text + "%' OR department LIKE '%" + tbSearch.Text + "%' " +
@@ -491,7 +491,7 @@ namespace SMTPE
                     worksheet.Column(3).Width = 17;
                     worksheet.Column(4).Width = 44;
                     worksheet.Column(7).Width = 10;
-                    worksheet.Column(12).Style.NumberFormat.Format = "dd-mm-yyyy";           
+                    //worksheet.Column(12).Style.NumberFormat.Format = "dd-MM-yyyy";           
 
                     worksheet.Rows().Height = 16.25;
                     worksheet.Row(1).Height = 25.5;
@@ -519,7 +519,7 @@ namespace SMTPE
                     worksheet.Range(worksheet.Cell(2, 5), worksheet.Cell(3, 6)).Style.Font.Italic = true;
                     worksheet.Range(worksheet.Cell(2, 5), worksheet.Cell(3, 6)).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Right);
                     worksheet.Cell(2, 11).Value = "Report Date :";
-                    worksheet.Cell(2, 12).Value = DateTime.Now.ToString("yyyy-MM-dd");
+                    worksheet.Cell(2, 12).Value = DateTime.Now.ToString("dd-MM-yyyy");
 
                     worksheet.Cell(4, 1).Value = "NO";
                     worksheet.Cell(4, 2).Value = "CUST";
@@ -563,10 +563,15 @@ namespace SMTPE
                                     {
                                         worksheet.Cell(i + cellRowIndex, 1).Value = i + 1;
                                         worksheet.Cell(i + cellRowIndex, 1).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
-                                        worksheet.Cell(i + cellRowIndex, j + cellColumnIndex).Value = dt.Rows[i][j].ToString();
-                                        //worksheet.Cell(i + cellRowIndex, j + cellColumnIndex).Value = string.Format("{0}", dataGridViewScrapPartList.Rows[i][j].FormattedValue);
-                                        ////worksheet.Cell(i + cellRowIndex, j+ cellColumnIndex).Value = dataGridViewScrapPartList.Rows[i].Cells[j].Value.ToString();
-                                        ////worksheet.Cell(i + cellRowIndex, 11).Style.NumberFormat.Format= "dd-MM-yyyy";
+                                        if (j == 10)
+                                        {
+                                            //worksheet.Cell(i + cellRowIndex, j + cellColumnIndex).Value = string.Format("{0}", dt.Rows[i][j].FormattedValue);
+                                            worksheet.Cell(i + cellRowIndex, j + cellColumnIndex).Value = dt.Rows[i][j].ToString();
+                                        }
+                                        else
+                                        {
+                                            worksheet.Cell(i + cellRowIndex, j + cellColumnIndex).Value = dt.Rows[i][j].ToString();
+                                        }
                                     }
                                 }
                                 int endPart = dt.Rows.Count + cellRowIndex;
@@ -629,9 +634,9 @@ namespace SMTPE
 
             Sql = "SELECT SUBSTRING(a.partnosn, 1, 2) AS custCode, a.partnosn, c.description, c.f_type, c.location, a. qty, a.prfNo, a.department , " +
                 "(SELECT b.name FROM tbl_user b WHERE b.username = a.requestedby) requestedby,  (SELECT b.name FROM tbl_user b WHERE " +
-                "b.username = a.issuedBy) issuedBy, a.updateDate FROM tbl_scrappart a, tbl_masterpartmaterial c WHERE " +
-                "a.partnosn = c.material AND statusDelete IS NULL AND updateDate BETWEEN '"+from+" 00:00:01' AND " +
-                "'"+to+" 23:59:59' ORDER BY a.id DESC";
+                "b.username = a.issuedBy) issuedBy, DATE_FORMAT(a.updateDate, '%d-%m-%Y') AS updateDate FROM tbl_scrappart a, tbl_masterpartmaterial c WHERE " +
+                "a.partnosn = c.material AND statusDelete IS NULL AND updateDate BETWEEN '" + from + " 00:00:01' AND " +
+                "'" + to + " 23:59:59' ORDER BY a.id DESC";
 
             LoadData(Sql);
             dataGridViewScrapPartList.Update();

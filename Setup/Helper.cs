@@ -344,6 +344,20 @@ namespace SMTPE
             return node.Nodes.Cast<TreeNode>().Any(n => n.Checked);
         }
 
+        //uncheck all checkboxes of tree view
+        public void UncheckAllNodes(TreeView treeView)
+        {
+            foreach (TreeNode parent in treeView.Nodes)
+            {
+                parent.Checked = false;
+
+                foreach (TreeNode child in parent.Nodes)
+                {
+                    child.Checked = false;
+                }
+            }
+        }
+
         public void displayCmbList(string sql, string display, string value, ComboBox comboBox)
         {
             try

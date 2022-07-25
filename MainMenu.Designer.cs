@@ -43,9 +43,9 @@
             this.custCodeControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scrapPartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.masterDataToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.masterDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modelMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.materialMasterToolStripMenuItem_Click = new System.Windows.Forms.ToolStripMenuItem();
+            this.materialMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.materialMasterXMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.administrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,6 +55,7 @@
             this.userRoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -114,17 +115,19 @@
             this.labelPartnumberToolStripMenuItem,
             this.scrapPartToolStripMenuItem,
             this.printLabelToolStripMenuItem,
-            this.masterDataToolStripMenuItem1,
+            this.masterDataToolStripMenuItem,
             this.toolStripMenuItem1,
             this.administrationToolStripMenuItem,
-            this.logOutToolStripMenuItem});
+            this.changePasswordToolStripMenuItem,
+            this.logOutToolStripMenuItem,
+            this.exitToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(211, 206);
+            this.contextMenuStrip.Size = new System.Drawing.Size(196, 226);
             // 
             // packingListToolStripMenuItem
             // 
             this.packingListToolStripMenuItem.Name = "packingListToolStripMenuItem";
-            this.packingListToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.packingListToolStripMenuItem.Size = new System.Drawing.Size(195, 24);
             this.packingListToolStripMenuItem.Text = "Packing List XM";
             this.packingListToolStripMenuItem.Visible = false;
             this.packingListToolStripMenuItem.Click += new System.EventHandler(this.packingListToolStripMenuItem_Click);
@@ -136,75 +139,78 @@
             this.dataToolStripMenuItem,
             this.custCodeControlToolStripMenuItem});
             this.labelPartnumberToolStripMenuItem.Name = "labelPartnumberToolStripMenuItem";
-            this.labelPartnumberToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.labelPartnumberToolStripMenuItem.Size = new System.Drawing.Size(195, 24);
             this.labelPartnumberToolStripMenuItem.Text = "Label Partnumber";
             this.labelPartnumberToolStripMenuItem.Visible = false;
             // 
             // scanToolStripMenuItem
             // 
             this.scanToolStripMenuItem.Name = "scanToolStripMenuItem";
-            this.scanToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.scanToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
             this.scanToolStripMenuItem.Text = "Scan";
             this.scanToolStripMenuItem.Click += new System.EventHandler(this.scanToolStripMenuItem_Click);
             // 
             // dataToolStripMenuItem
             // 
             this.dataToolStripMenuItem.Name = "dataToolStripMenuItem";
-            this.dataToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.dataToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
             this.dataToolStripMenuItem.Text = "Data";
             this.dataToolStripMenuItem.Click += new System.EventHandler(this.dataToolStripMenuItem_Click);
             // 
             // custCodeControlToolStripMenuItem
             // 
             this.custCodeControlToolStripMenuItem.Name = "custCodeControlToolStripMenuItem";
-            this.custCodeControlToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.custCodeControlToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
             this.custCodeControlToolStripMenuItem.Text = "Cust Code Control";
             this.custCodeControlToolStripMenuItem.Click += new System.EventHandler(this.custCodeControlToolStripMenuItem_Click);
             // 
             // scrapPartToolStripMenuItem
             // 
             this.scrapPartToolStripMenuItem.Name = "scrapPartToolStripMenuItem";
-            this.scrapPartToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.scrapPartToolStripMenuItem.Size = new System.Drawing.Size(195, 24);
             this.scrapPartToolStripMenuItem.Text = "Scrap Part";
+            this.scrapPartToolStripMenuItem.Visible = false;
             this.scrapPartToolStripMenuItem.Click += new System.EventHandler(this.scrapPartToolStripMenuItem_Click);
             // 
             // printLabelToolStripMenuItem
             // 
             this.printLabelToolStripMenuItem.Name = "printLabelToolStripMenuItem";
-            this.printLabelToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.printLabelToolStripMenuItem.Size = new System.Drawing.Size(195, 24);
             this.printLabelToolStripMenuItem.Text = "Print Label";
             this.printLabelToolStripMenuItem.Visible = false;
             this.printLabelToolStripMenuItem.Click += new System.EventHandler(this.printLabelToolStripMenuItem_Click);
             // 
-            // masterDataToolStripMenuItem1
+            // masterDataToolStripMenuItem
             // 
-            this.masterDataToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.masterDataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.modelMasterToolStripMenuItem,
-            this.materialMasterToolStripMenuItem_Click,
+            this.materialMasterToolStripMenuItem,
             this.materialMasterXMToolStripMenuItem});
-            this.masterDataToolStripMenuItem1.Name = "masterDataToolStripMenuItem1";
-            this.masterDataToolStripMenuItem1.Size = new System.Drawing.Size(210, 24);
-            this.masterDataToolStripMenuItem1.Text = "Master Data";
+            this.masterDataToolStripMenuItem.Name = "masterDataToolStripMenuItem";
+            this.masterDataToolStripMenuItem.Size = new System.Drawing.Size(195, 24);
+            this.masterDataToolStripMenuItem.Text = "Master Data";
+            this.masterDataToolStripMenuItem.Visible = false;
             // 
             // modelMasterToolStripMenuItem
             // 
             this.modelMasterToolStripMenuItem.Name = "modelMasterToolStripMenuItem";
-            this.modelMasterToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.modelMasterToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
             this.modelMasterToolStripMenuItem.Text = "Model Master";
             this.modelMasterToolStripMenuItem.Visible = false;
             this.modelMasterToolStripMenuItem.Click += new System.EventHandler(this.modelMasterToolStripMenuItem_Click);
             // 
-            // materialMasterToolStripMenuItem_Click
+            // materialMasterToolStripMenuItem
             // 
-            this.materialMasterToolStripMenuItem_Click.Name = "materialMasterToolStripMenuItem_Click";
-            this.materialMasterToolStripMenuItem_Click.Size = new System.Drawing.Size(224, 26);
-            this.materialMasterToolStripMenuItem_Click.Text = "Material Master";
-            this.materialMasterToolStripMenuItem_Click.Click += new System.EventHandler(this.materialMasterToolStripMenuItem_Click_Click);
+            this.materialMasterToolStripMenuItem.Name = "materialMasterToolStripMenuItem";
+            this.materialMasterToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.materialMasterToolStripMenuItem.Text = "Material Master";
+            this.materialMasterToolStripMenuItem.Visible = false;
+            this.materialMasterToolStripMenuItem.Click += new System.EventHandler(this.materialMasterToolStripMenuItem_Click);
             // 
             // materialMasterXMToolStripMenuItem
             // 
             this.materialMasterXMToolStripMenuItem.Name = "materialMasterXMToolStripMenuItem";
-            this.materialMasterXMToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.materialMasterXMToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
             this.materialMasterXMToolStripMenuItem.Text = "Material Master XM";
             this.materialMasterXMToolStripMenuItem.Visible = false;
             this.materialMasterXMToolStripMenuItem.Click += new System.EventHandler(this.materialMasterXMToolStripMenuItem_Click);
@@ -212,7 +218,7 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(207, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(192, 6);
             // 
             // administrationToolStripMenuItem
             // 
@@ -220,17 +226,18 @@
             this.departmentToolStripMenuItem,
             this.userLevelToolStripMenuItem,
             this.userToolStripMenuItem,
-            this.userRoleToolStripMenuItem,
-            this.changePasswordToolStripMenuItem});
+            this.userRoleToolStripMenuItem});
             this.administrationToolStripMenuItem.Name = "administrationToolStripMenuItem";
-            this.administrationToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.administrationToolStripMenuItem.Size = new System.Drawing.Size(195, 24);
             this.administrationToolStripMenuItem.Text = "Administration";
+            this.administrationToolStripMenuItem.Visible = false;
             // 
             // departmentToolStripMenuItem
             // 
             this.departmentToolStripMenuItem.Name = "departmentToolStripMenuItem";
             this.departmentToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.departmentToolStripMenuItem.Text = "Department";
+            this.departmentToolStripMenuItem.Visible = false;
             this.departmentToolStripMenuItem.Click += new System.EventHandler(this.departmentToolStripMenuItem_Click);
             // 
             // userLevelToolStripMenuItem
@@ -238,6 +245,7 @@
             this.userLevelToolStripMenuItem.Name = "userLevelToolStripMenuItem";
             this.userLevelToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.userLevelToolStripMenuItem.Text = "User Level";
+            this.userLevelToolStripMenuItem.Visible = false;
             this.userLevelToolStripMenuItem.Click += new System.EventHandler(this.userLevelToolStripMenuItem_Click);
             // 
             // userToolStripMenuItem
@@ -245,12 +253,13 @@
             this.userToolStripMenuItem.Name = "userToolStripMenuItem";
             this.userToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.userToolStripMenuItem.Text = "User";
+            this.userToolStripMenuItem.Visible = false;
             this.userToolStripMenuItem.Click += new System.EventHandler(this.userToolStripMenuItem_Click);
             // 
             // userRoleToolStripMenuItem
             // 
             this.userRoleToolStripMenuItem.Name = "userRoleToolStripMenuItem";
-            this.userRoleToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.userRoleToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
             this.userRoleToolStripMenuItem.Text = "User Role";
             this.userRoleToolStripMenuItem.Visible = false;
             this.userRoleToolStripMenuItem.Click += new System.EventHandler(this.userRoleToolStripMenuItem_Click);
@@ -258,16 +267,23 @@
             // changePasswordToolStripMenuItem
             // 
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(195, 24);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // logOutToolStripMenuItem
             // 
             this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(195, 24);
             this.logOutToolStripMenuItem.Text = "Log Out";
             this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(195, 24);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // MainMenu
             // 
@@ -282,7 +298,7 @@
             this.Name = "MainMenu";
             this.Text = "ALFASYS";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainMenu_FormClosing);
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.MainMenu_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.contextMenuStrip.ResumeLayout(false);
@@ -298,7 +314,7 @@
         private System.Windows.Forms.Timer timer;
         public System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripMenuItem bOMSAPVsLLVsPRoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem masterDataToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem masterDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modelMasterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem packingListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem;
@@ -306,7 +322,6 @@
         private System.Windows.Forms.ToolStripMenuItem materialMasterXMToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem administrationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem userToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem labelPartnumberToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scanToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem;
@@ -316,8 +331,10 @@
         private System.Windows.Forms.ToolStripMenuItem printLabelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scrapPartToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem custCodeControlToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem materialMasterToolStripMenuItem_Click;
+        private System.Windows.Forms.ToolStripMenuItem materialMasterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem departmentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 

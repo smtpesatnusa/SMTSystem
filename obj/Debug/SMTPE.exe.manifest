@@ -295,14 +295,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SMTPE.exe" size="288728">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SMTPE.exe" size="297944">
       <assemblyIdentity name="SMTPE" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>8UOLcap2u4vYvbHDwWzJgTwxGoDZBanGIauSdkw9Fys=</dsig:DigestValue>
+        <dsig:DigestValue>bcO2E87b0dgWKGek1oMcHEnwB9SFp3QKjKk6O1mNMr0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -606,13 +606,13 @@
       <dsig:DigestValue>e/3Ohxng8HogoKghb7pAyqtjz88xjXRHUp2i0Q9qFww=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="SMTPE.exe.config" size="1021">
+  <file name="SMTPE.exe.config" size="1066">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>ZI22XtBhwY5CHF2Bl7wC8nDooa26MYDGM1bJKiL1rYU=</dsig:DigestValue>
+      <dsig:DigestValue>zHjT2/YvybWJQqZVpKboNAX9eCf4MlVGFB/TPX2RAas=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

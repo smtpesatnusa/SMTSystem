@@ -44,9 +44,10 @@ namespace SMTPE
             this.btnPreviousPage = new System.Windows.Forms.Button();
             this.btnLastPage = new System.Windows.Forms.Button();
             this.btnFirstPage = new System.Windows.Forms.Button();
+            this.refreshLbl = new System.Windows.Forms.LinkLabel();
+            this.addBtn = new System.Windows.Forms.Button();
             this.importMMButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
-            this.refreshLbl = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMasterMaterialList)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -198,6 +199,36 @@ namespace SMTPE
             this.btnFirstPage.UseVisualStyleBackColor = true;
             this.btnFirstPage.Click += new System.EventHandler(this.btnFirstPage_Click);
             // 
+            // refreshLbl
+            // 
+            this.refreshLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.refreshLbl.AutoSize = true;
+            this.refreshLbl.BackColor = System.Drawing.Color.Transparent;
+            this.refreshLbl.Location = new System.Drawing.Point(1207, 157);
+            this.refreshLbl.Name = "refreshLbl";
+            this.refreshLbl.Size = new System.Drawing.Size(61, 19);
+            this.refreshLbl.TabIndex = 102;
+            this.refreshLbl.TabStop = true;
+            this.refreshLbl.Text = "Refresh";
+            this.refreshLbl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.refreshLbl_LinkClicked);
+            // 
+            // addBtn
+            // 
+            this.addBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.addBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addBtn.Font = new System.Drawing.Font("Open Sans", 8.25F);
+            this.addBtn.Image = global::SMTPE.Properties.Resources.icons8_add_20__2_;
+            this.addBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.addBtn.Location = new System.Drawing.Point(1175, 70);
+            this.addBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.addBtn.Name = "addBtn";
+            this.addBtn.Size = new System.Drawing.Size(80, 40);
+            this.addBtn.TabIndex = 192;
+            this.addBtn.Text = "Add";
+            this.addBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.addBtn.UseVisualStyleBackColor = true;
+            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
+            // 
             // importMMButton
             // 
             this.importMMButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -205,7 +236,7 @@ namespace SMTPE
             this.importMMButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.importMMButton.Image = global::SMTPE.Properties.Resources.icons8_import_file_20;
             this.importMMButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.importMMButton.Location = new System.Drawing.Point(1052, 70);
+            this.importMMButton.Location = new System.Drawing.Point(974, 70);
             this.importMMButton.Name = "importMMButton";
             this.importMMButton.Size = new System.Drawing.Size(194, 41);
             this.importMMButton.TabIndex = 60;
@@ -230,24 +261,12 @@ namespace SMTPE
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
-            // refreshLbl
-            // 
-            this.refreshLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.refreshLbl.AutoSize = true;
-            this.refreshLbl.BackColor = System.Drawing.Color.Transparent;
-            this.refreshLbl.Location = new System.Drawing.Point(1207, 157);
-            this.refreshLbl.Name = "refreshLbl";
-            this.refreshLbl.Size = new System.Drawing.Size(61, 19);
-            this.refreshLbl.TabIndex = 102;
-            this.refreshLbl.TabStop = true;
-            this.refreshLbl.Text = "Refresh";
-            this.refreshLbl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.refreshLbl_LinkClicked);
-            // 
             // MasterMaterial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1366, 768);
+            this.Controls.Add(this.addBtn);
             this.Controls.Add(this.refreshLbl);
             this.Controls.Add(this.txtDisplayPageNo);
             this.Controls.Add(this.btnNextPage);
@@ -293,5 +312,6 @@ namespace SMTPE
         private System.Windows.Forms.Button btnLastPage;
         private System.Windows.Forms.Button btnFirstPage;
         private System.Windows.Forms.LinkLabel refreshLbl;
+        private System.Windows.Forms.Button addBtn;
     }
 }

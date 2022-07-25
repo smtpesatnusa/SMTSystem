@@ -325,7 +325,7 @@ namespace SMTPE
             this.Name = "Userlist";
             this.Sizable = false;
             this.Text = "User List";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Modelmasterlist_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Userlist_FormClosing);
             this.Load += new System.EventHandler(this.Userlist_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

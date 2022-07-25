@@ -85,12 +85,12 @@ namespace SMTPE
 
         private void tbTaping_TextChanged(object sender, EventArgs e)
         {
-            //if user type alphabet
-            if (System.Text.RegularExpressions.Regex.IsMatch(tbTaping.Text, "[^0-9]"))
-            {
-                //MessageBox.Show("Please enter only numbers.");
-                tbTaping.Text = tbTaping.Text.Remove(tbTaping.Text.Length - 1);
-            }
+            ////if user type alphabet
+            //if (System.Text.RegularExpressions.Regex.IsMatch(tbTaping.Text, "[^0-9]"))
+            //{
+            //    //MessageBox.Show("Please enter only numbers.");
+            //    tbTaping.Text = tbTaping.Text.Remove(tbTaping.Text.Length - 1);
+            //}
         }
     }
 }

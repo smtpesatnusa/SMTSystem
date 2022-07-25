@@ -406,8 +406,8 @@ namespace SMTPE
 
         private void ScrapPartnumber_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string message = "Are you sure you want to logout?";
-            string title = "Confirm Logout";
+            string message = "Are you sure you want to close this application?";
+            string title = "Confirm Close";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             MessageBoxIcon icon = MessageBoxIcon.Information;
             if (MetroMessageBox.Show(this, message, title, buttons, icon) == DialogResult.No)

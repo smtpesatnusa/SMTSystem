@@ -362,8 +362,10 @@ C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.Modelmasterlist.resources
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.LoadForm.resources
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.Login.resources
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.MainMenu.resources
+C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.PrintLabelNew.resources
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.PrintLabel.resources
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.Properties.Resources.resources
+C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.ScrapPartnumberList.resources
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.ScrapPartnumber.resources
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.Departmentlist.resources
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.UserLevellist.resources
@@ -378,5 +380,4 @@ C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.csproj.CopyComplete
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.exe
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.pdb
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.csprojAssemblyReference.cache
-C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.ScrapPartnumberList.resources
-C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.PrintLabelNew.resources
+C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.AddMasterMaterial.resources

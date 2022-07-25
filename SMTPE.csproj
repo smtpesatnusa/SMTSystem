@@ -225,6 +225,12 @@
     <Compile Include="LabelPartnumber\LabelPNList.Designer.cs">
       <DependentUpon>LabelPNList.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterMaterial\AddMasterMaterial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterMaterial\AddMasterMaterial.Designer.cs">
+      <DependentUpon>AddMasterMaterial.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterMaterial\ImportMasterMaterial.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -314,6 +320,7 @@
     <Compile Include="ScrapPartnumber\ScrapPartnumber.Designer.cs">
       <DependentUpon>ScrapPartnumber.cs</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="Setup\ExcelConvert.cs" />
     <Compile Include="Setup\Helper.cs" />
     <Compile Include="LoadForm.cs">
@@ -376,6 +383,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LabelPartnumber\LabelPNList.resx">
       <DependentUpon>LabelPNList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterMaterial\AddMasterMaterial.resx">
+      <DependentUpon>AddMasterMaterial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterMaterial\ImportMasterMaterial.resx">
       <DependentUpon>ImportMasterMaterial.cs</DependentUpon>

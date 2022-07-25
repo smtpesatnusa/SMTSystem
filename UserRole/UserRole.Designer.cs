@@ -168,6 +168,7 @@ namespace SMTPE
             this.listBoxUser.Name = "listBoxUser";
             this.listBoxUser.Size = new System.Drawing.Size(338, 289);
             this.listBoxUser.TabIndex = 15;
+            this.listBoxUser.SelectedValueChanged += new System.EventHandler(this.listBoxUser_SelectedValueChanged);
             // 
             // tbSearch
             // 
@@ -218,7 +219,7 @@ namespace SMTPE
             this.Name = "UserRole";
             this.Sizable = false;
             this.Text = "User Role";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Modelmasterlist_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UserRole_FormClosing);
             this.Load += new System.EventHandler(this.Userlist_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

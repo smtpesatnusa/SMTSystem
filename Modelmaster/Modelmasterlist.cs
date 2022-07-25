@@ -60,7 +60,7 @@ namespace SMTPE
             try
             {
                 connectionDB.connection.Open();
-                string query = "SELECT model,code, taping, createDate, createBy FROM tbl_model";
+                string query = "SELECT model,code, taping, createDate, createBy FROM tbl_model ORDER BY id DESC";
                 using (MySqlDataAdapter adpt = new MySqlDataAdapter(query, connectionDB.connection))
                 {
                     DataSet dset = new DataSet();
@@ -138,7 +138,7 @@ namespace SMTPE
 
             connectionDB.connection.Open();
 
-            string query = "SELECT model,code, taping, createDate, createBy FROM tbl_model";
+            string query = "SELECT model,code, taping, createDate, createBy FROM tbl_model ORDER BY id DESC";
 
             using (MySqlDataAdapter adpt = new MySqlDataAdapter(query, connectionDB.connection))
             {
@@ -168,8 +168,8 @@ namespace SMTPE
 
         private void Modelmasterlist_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string message = "Are you sure you want to logout?";
-            string title = "Confirm Logout";
+            string message = "Are you sure you want to close this application?";
+            string title = "Confirm Close";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             MessageBoxIcon icon = MessageBoxIcon.Information;
             if (MetroMessageBox.Show(this, message, title, buttons, icon) == DialogResult.No)

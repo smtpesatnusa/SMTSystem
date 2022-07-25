@@ -4,7 +4,6 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Data;
 using System.Globalization;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace SMTPE
@@ -88,17 +87,6 @@ namespace SMTPE
                 connectionDB.connection.Close();
                 MessageBox.Show(ex.Message);
             }
-        }
-        private void Modelmasterlist_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            string message = "Are you sure you want to logout?";
-            string title = "Confirm Logout";
-            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-            MessageBoxIcon icon = MessageBoxIcon.Information;
-            if (MetroMessageBox.Show(this, message, title, buttons, icon) == DialogResult.No)
-                e.Cancel = true;
-            else
-                System.Windows.Forms.Application.ExitThread();
         }
 
 
@@ -294,6 +282,18 @@ namespace SMTPE
             TextInfo textInfo = cultureInfo.TextInfo;
             tbname.Text = textInfo.ToTitleCase(tbname.Text.ToLower());
             tbname.Select(tbname.Text.Length, 0);
+        }
+
+        private void Userlist_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string message = "Are you sure you want to close this application?";
+            string title = "Confirm Close";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            MessageBoxIcon icon = MessageBoxIcon.Information;
+            if (MetroMessageBox.Show(this, message, title, buttons, icon) == DialogResult.No)
+                e.Cancel = true;
+            else
+                System.Windows.Forms.Application.ExitThread();
         }
     }
 }

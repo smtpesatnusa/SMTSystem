@@ -31,7 +31,7 @@ namespace SMTPE
         {
             this.tbPartnumberSN = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.userdetail = new System.Windows.Forms.Label();
+            this.usernameLbl = new System.Windows.Forms.Label();
             this.tbDesc = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.saveBtn = new System.Windows.Forms.Button();
@@ -65,18 +65,18 @@ namespace SMTPE
             this.label4.TabIndex = 222;
             this.label4.Text = "Partnumber SN";
             // 
-            // userdetail
+            // usernameLbl
             // 
-            this.userdetail.AutoSize = true;
-            this.userdetail.BackColor = System.Drawing.Color.Transparent;
-            this.userdetail.Font = new System.Drawing.Font("Open Sans", 8.25F);
-            this.userdetail.Location = new System.Drawing.Point(63, 331);
-            this.userdetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.userdetail.Name = "userdetail";
-            this.userdetail.Size = new System.Drawing.Size(77, 19);
-            this.userdetail.TabIndex = 220;
-            this.userdetail.Text = "username";
-            this.userdetail.Visible = false;
+            this.usernameLbl.AutoSize = true;
+            this.usernameLbl.BackColor = System.Drawing.Color.Transparent;
+            this.usernameLbl.Font = new System.Drawing.Font("Open Sans", 8.25F);
+            this.usernameLbl.Location = new System.Drawing.Point(63, 331);
+            this.usernameLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.usernameLbl.Name = "usernameLbl";
+            this.usernameLbl.Size = new System.Drawing.Size(77, 19);
+            this.usernameLbl.TabIndex = 220;
+            this.usernameLbl.Text = "username";
+            this.usernameLbl.Visible = false;
             // 
             // tbDesc
             // 
@@ -85,7 +85,7 @@ namespace SMTPE
             this.tbDesc.Font = new System.Drawing.Font("Open Sans", 8.25F);
             this.tbDesc.Location = new System.Drawing.Point(239, 158);
             this.tbDesc.Margin = new System.Windows.Forms.Padding(4);
-            this.tbDesc.MaxLength = 6;
+            this.tbDesc.MaxLength = 700;
             this.tbDesc.Name = "tbDesc";
             this.tbDesc.Size = new System.Drawing.Size(277, 26);
             this.tbDesc.TabIndex = 214;
@@ -122,7 +122,7 @@ namespace SMTPE
             this.tbFtype.Font = new System.Drawing.Font("Open Sans", 8.25F);
             this.tbFtype.Location = new System.Drawing.Point(239, 215);
             this.tbFtype.Margin = new System.Windows.Forms.Padding(4);
-            this.tbFtype.MaxLength = 500;
+            this.tbFtype.MaxLength = 15;
             this.tbFtype.Name = "tbFtype";
             this.tbFtype.Size = new System.Drawing.Size(277, 26);
             this.tbFtype.TabIndex = 215;
@@ -146,7 +146,7 @@ namespace SMTPE
             this.tbLoc.Font = new System.Drawing.Font("Open Sans", 8.25F);
             this.tbLoc.Location = new System.Drawing.Point(239, 269);
             this.tbLoc.Margin = new System.Windows.Forms.Padding(4);
-            this.tbLoc.MaxLength = 500;
+            this.tbLoc.MaxLength = 15;
             this.tbLoc.Name = "tbLoc";
             this.tbLoc.Size = new System.Drawing.Size(277, 26);
             this.tbLoc.TabIndex = 216;
@@ -171,9 +171,9 @@ namespace SMTPE
             this.label5.Location = new System.Drawing.Point(236, 245);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(100, 14);
+            this.label5.Size = new System.Drawing.Size(106, 14);
             this.label5.TabIndex = 225;
-            this.label5.Text = "Fill with - if no data";
+            this.label5.Text = "*Fill with - if no data";
             // 
             // label6
             // 
@@ -183,9 +183,9 @@ namespace SMTPE
             this.label6.Location = new System.Drawing.Point(236, 299);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(100, 14);
+            this.label6.Size = new System.Drawing.Size(106, 14);
             this.label6.TabIndex = 226;
-            this.label6.Text = "Fill with - if no data";
+            this.label6.Text = "*Fill with - if no data";
             // 
             // AddMasterMaterial
             // 
@@ -198,7 +198,7 @@ namespace SMTPE
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tbPartnumberSN);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.userdetail);
+            this.Controls.Add(this.usernameLbl);
             this.Controls.Add(this.tbDesc);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.saveBtn);
@@ -222,7 +222,7 @@ namespace SMTPE
         #endregion
         public System.Windows.Forms.TextBox tbPartnumberSN;
         private System.Windows.Forms.Label label4;
-        public System.Windows.Forms.Label userdetail;
+        public System.Windows.Forms.Label usernameLbl;
         public System.Windows.Forms.TextBox tbDesc;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button saveBtn;

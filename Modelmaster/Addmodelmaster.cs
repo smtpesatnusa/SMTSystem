@@ -76,7 +76,7 @@ namespace SMTPE
 
         private void Addmodelmaster_Load(object sender, EventArgs e)
         {
-          // //get user id
+          //get user id
            var userId = usernameLbl.Text.Split(' ');
            int idPosition = usernameLbl.Text.Split(' ').Length - 3;
            idUser = userId[idPosition].Replace(",", "");

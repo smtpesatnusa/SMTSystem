@@ -405,7 +405,7 @@ namespace SMTPE
         private void addBtn_Click(object sender, EventArgs e)
         {
             AddMasterMaterial addMasterMaterial = new AddMasterMaterial();
-            addMasterMaterial.userdetail.Text = toolStripUsername.Text;
+            addMasterMaterial.usernameLbl.Text = toolStripUsername.Text;
             addMasterMaterial.ShowDialog();
         }
     }

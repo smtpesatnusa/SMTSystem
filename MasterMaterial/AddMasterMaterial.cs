@@ -21,7 +21,7 @@ namespace SMTPE
         {
             if (tbPartnumberSN.Text == "" || tbDesc.Text == "" || tbFtype.Text == "" || tbLoc.Text == "")
             {
-                MessageBox.Show(this, "Unable Add Employee with let any field blank", "Add Employee", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(this, "Unable Add Material with let any field blank", "Add Master Material", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {

@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Windows.Forms;
 using System.Drawing;
+using MaterialSkin;
 
 namespace SMTPE
 {
@@ -11,6 +12,21 @@ namespace SMTPE
         readonly ConnectionDB con = new ConnectionDB();
         readonly Helper help = new Helper();
         string id, username, password, name, role;
+
+        public Login()
+        {
+            InitializeComponent();
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+        }
+        private void Login_Load(object sender, EventArgs e)
+        {
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            //icon
+            this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+        }
 
         private void timer_Tick(object sender, EventArgs e)
         {
@@ -88,16 +104,7 @@ namespace SMTPE
             }
         }
 
-        public Login()
-        {
-            InitializeComponent();            
-        }
 
-        private void Login_Load(object sender, EventArgs e)
-        {
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            //icon
-            this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-        }
+        
     }
 }

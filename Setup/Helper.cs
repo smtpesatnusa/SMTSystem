@@ -369,13 +369,12 @@ namespace SMTPE
 
                     if (dt.Rows.Count > 0)
                     {
-                        for (int j = 0; j < dt.Rows.Count; j++)
-                        {
-                            comboBox.Items.Add(dt.Rows[j][display]);
-                            comboBox.ValueMember = dt.Rows[j][value].ToString();
-                        }
+                        comboBox.DataSource = dt;
+                        comboBox.DisplayMember = display;
+                        comboBox.ValueMember = value;
                     }
                 }
+                comboBox.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -392,7 +391,7 @@ namespace SMTPE
         /// </summary>
         /// 
 
-       
+
         public void UpdatePrinterList(ComboBox comboBox)
         {
             Tkx.Lppa.Application _csApp = new Tkx.Lppa.Application();

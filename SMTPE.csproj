@@ -30,6 +30,7 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -113,17 +114,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\Lppanet.dll</HintPath>
     </Reference>
-    <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll</HintPath>
-    </Reference>
-    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
-      <HintPath>packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
-      <HintPath>packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
-    </Reference>
-    <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
-      <HintPath>packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
+    <Reference Include="MaterialSkin, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialSkin.2.2.3.1\lib\net461\MaterialSkin.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=8.0.23.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>packages\MySql.Data.8.0.23\lib\net452\MySql.Data.dll</HintPath>
@@ -155,6 +147,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.IO.FileSystem.Primitives.4.0.1\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
@@ -248,6 +241,36 @@
     </Compile>
     <Compile Include="MenuControl\menuControl.Designer.cs">
       <DependentUpon>menuControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelUPH\Addmodeluph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModelUPH\Addmodeluph.Designer.cs">
+      <DependentUpon>Addmodeluph.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelUPH\Modeluphlist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModelUPH\Modeluphlist.Designer.cs">
+      <DependentUpon>Modeluphlist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ForecastList\DetailForecastList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForecastList\DetailForecastList.Designer.cs">
+      <DependentUpon>DetailForecastList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ForecastList\ImportForecastList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForecastList\ImportForecastList.Designer.cs">
+      <DependentUpon>ImportForecastList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ForecastList\ForecastList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForecastList\ForecastList.Designer.cs">
+      <DependentUpon>ForecastList.cs</DependentUpon>
     </Compile>
     <Compile Include="PackingList\ImportPackingList.cs">
       <SubType>Form</SubType>
@@ -395,6 +418,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MenuControl\menuControl.resx">
       <DependentUpon>menuControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelUPH\Addmodeluph.resx">
+      <DependentUpon>Addmodeluph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelUPH\Modeluphlist.resx">
+      <DependentUpon>Modeluphlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ForecastList\DetailForecastList.resx">
+      <DependentUpon>DetailForecastList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ForecastList\ImportForecastList.resx">
+      <DependentUpon>ImportForecastList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ForecastList\ForecastList.resx">
+      <DependentUpon>ForecastList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PackingList\ImportPackingList.resx">
       <DependentUpon>ImportPackingList.cs</DependentUpon>

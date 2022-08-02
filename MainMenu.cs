@@ -1,5 +1,4 @@
-﻿using MetroFramework;
-using System;
+﻿using System;
 using System.Windows.Forms;
 using MaterialSkin.Controls;
 using System.Drawing;
@@ -124,12 +123,18 @@ namespace SMTPE
         {
             string message = "Are you sure you want to close this application?";
             string title = "Confirm Close";
-            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-            MessageBoxIcon icon = MessageBoxIcon.Information;
-            if (MetroMessageBox.Show(this, message, title, buttons, icon) == DialogResult.No)
-                e.Cancel = true;
+            MaterialDialog materialDialog = new MaterialDialog(this, title, message, "OK", true, "Cancel");
+            DialogResult result = materialDialog.ShowDialog(this);
+            if (result.ToString() == "OK")
+            {
+                Application.ExitThread();
+            }
             else
-                System.Windows.Forms.Application.ExitThread();
+            {
+                e.Cancel = true;
+                MaterialSnackBar SnackBarMessage = new MaterialSnackBar(result.ToString(), 750);
+                SnackBarMessage.Show(this);
+            }
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -149,11 +154,9 @@ namespace SMTPE
         {
             string message = "Are you sure you want to logout?";
             string title = "Confirm Logout";
-            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-            MessageBoxIcon icon = MessageBoxIcon.Information;
-            DialogResult result = MetroMessageBox.Show(this, message, title, buttons, icon);
-            //MessageBox.Show(message, title, buttons);
-            if (result == DialogResult.Yes)
+            MaterialDialog materialDialog = new MaterialDialog(this, title, message, "OK", true, "Cancel");
+            DialogResult result = materialDialog.ShowDialog(this);
+            if (result.ToString() == "OK")
             {
                 this.Hide();
                 Login login = new Login();
@@ -161,6 +164,8 @@ namespace SMTPE
             }
             else
             {
+                MaterialSnackBar SnackBarMessage = new MaterialSnackBar(result.ToString(), 750);
+                SnackBarMessage.Show(this);
             }
         }
 
@@ -263,11 +268,16 @@ namespace SMTPE
         {
             string message = "Are you sure you want to close this application?";
             string title = "Confirm Close";
-            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-            MessageBoxIcon icon = MessageBoxIcon.Information;
-            if (MetroMessageBox.Show(this, message, title, buttons, icon) == DialogResult.Yes)
+            MaterialDialog materialDialog = new MaterialDialog(this, title, message, "OK", true, "Cancel");
+            DialogResult result = materialDialog.ShowDialog(this);
+            if (result.ToString() == "OK")
             {
-                System.Windows.Forms.Application.ExitThread();
+                Application.ExitThread();
+            }
+            else
+            {
+                MaterialSnackBar SnackBarMessage = new MaterialSnackBar(result.ToString(), 750);
+                SnackBarMessage.Show(this);
             }
         }
 
@@ -276,6 +286,22 @@ namespace SMTPE
             MasterMaterial masterMaterial = new MasterMaterial();
             masterMaterial.toolStripUsername.Text = toolStripUsername.Text;
             masterMaterial.Show();
+            this.Hide();
+        }
+
+        private void uPHModelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Modeluphlist modeluphlist = new Modeluphlist();
+            modeluphlist.toolStripUsername.Text = toolStripUsername.Text;
+            modeluphlist.Show();
+            this.Hide();
+        }
+
+        private void forecastListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ForecastList forecastList = new ForecastList();
+            forecastList.toolStripUsername.Text = toolStripUsername.Text;
+            forecastList.Show();
             this.Hide();
         }
     }

@@ -1,5 +1,4 @@
 ﻿using MaterialSkin.Controls;
-using MetroFramework;
 using MySql.Data.MySqlClient;
 using System;
 using System.Data;
@@ -77,8 +76,8 @@ namespace SMTPE
                         string department = dt.Rows[0]["department"].ToString();
                         string requestedBy = dt.Rows[0]["requestedby"].ToString();
 
-                        cmbDepartment.SelectedItem = department;
-                        cmbRequestBy.SelectedItem = requestedBy;
+                        cmbDepartment.SelectedValue = department;
+                        cmbRequestBy.SelectedText = requestedBy;
 
                         cmbDepartment.Enabled = false;
                         cmbRequestBy.Enabled = false;
@@ -135,7 +134,6 @@ namespace SMTPE
                 MessageBox.Show(ex.Message);
             }
         }
-
 
 
         private void tbPrfNo_TextChanged(object sender, EventArgs e)
@@ -394,10 +392,10 @@ namespace SMTPE
             tbpnSN.Clear();
             tbscrapQty.Clear();
             tbPrfNo.Clear();
-            cmbDepartment.SelectedIndex = -1;
-            cmbRequestBy.SelectedIndex = -1;
             cmbDepartment.Enabled = true;
             cmbRequestBy.Enabled = true;
+            cmbDepartment.SelectedIndex = -1;
+            cmbRequestBy.SelectedIndex = -1;
 
             // remove data in datagridview result
             dataGridViewPRFList.DataSource = null;
@@ -408,13 +406,18 @@ namespace SMTPE
         {
             string message = "Are you sure you want to close this application?";
             string title = "Confirm Close";
-            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-            MessageBoxIcon icon = MessageBoxIcon.Information;
-            if (MetroMessageBox.Show(this, message, title, buttons, icon) == DialogResult.No)
-                e.Cancel = true;
+            MaterialDialog materialDialog = new MaterialDialog(this, title, message, "OK", true, "Cancel");
+            DialogResult result = materialDialog.ShowDialog(this);
+            if (result.ToString() == "OK")
+            {
+                Application.ExitThread();
+            }
             else
-                System.Windows.Forms.Application.ExitThread();
-            btApp.Quit(BarTender.BtSaveOptions.btSaveChanges);
+            {
+                e.Cancel = true;
+                MaterialSnackBar SnackBarMessage = new MaterialSnackBar(result.ToString(), 750);
+                SnackBarMessage.Show(this);
+            }
         }
 
         private void dataGridViewPRFList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

@@ -1,6 +1,5 @@
 ﻿using ClosedXML.Excel;
 using MaterialSkin.Controls;
-using MetroFramework;
 using MySql.Data.MySqlClient;
 using System;
 using System.Data;
@@ -122,12 +121,18 @@ namespace SMTPE
         {
             string message = "Are you sure you want to close this application?";
             string title = "Confirm Close";
-            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-            MessageBoxIcon icon = MessageBoxIcon.Information;
-            if (MetroMessageBox.Show(this, message, title, buttons, icon) == DialogResult.No)
-                e.Cancel = true;
+            MaterialDialog materialDialog = new MaterialDialog(this, title, message, "OK", true, "Cancel");
+            DialogResult result = materialDialog.ShowDialog(this);
+            if (result.ToString() == "OK")
+            {
+                Application.ExitThread();
+            }
             else
-                System.Windows.Forms.Application.ExitThread();
+            {
+                e.Cancel = true;
+                MaterialSnackBar SnackBarMessage = new MaterialSnackBar(result.ToString(), 750);
+                SnackBarMessage.Show(this);
+            }
         }
 
         private void dataGridViewPlList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

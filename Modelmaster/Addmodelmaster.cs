@@ -50,7 +50,7 @@ namespace SMTPE
                         }
                         else
                         {
-                            string queryAddmodel= "INSERT INTO tbl_model VALUES (null, '" + model + "', '" + code + "', '" + taping + "','" + idUser +"','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")+"')";
+                            string queryAddmodel= "INSERT INTO tbl_model (model, code, taping, createBy, createDate) VALUES ('" + model + "', '" + code + "', '" + taping + "','" + idUser +"','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")+"')";
 
                             string[] allQuery = { queryAddmodel };
                             for (int j = 0; j < allQuery.Length; j++)

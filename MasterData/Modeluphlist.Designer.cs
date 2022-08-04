@@ -38,9 +38,9 @@ namespace SMTPE
             this.dateTimeNow = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.addButton = new System.Windows.Forms.Button();
             this.refreshLbl = new System.Windows.Forms.LinkLabel();
-            this.backButton = new System.Windows.Forms.Button();
+            this.BackButton = new MaterialSkin.Controls.MaterialButton();
+            this.addBtn = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewModeluphlist)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -115,9 +115,9 @@ namespace SMTPE
             this.toolStripUsername,
             this.toolStripStatusLabel1,
             this.dateTimeNow});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 742);
+            this.statusStrip1.Location = new System.Drawing.Point(3, 739);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1366, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1360, 26);
             this.statusStrip1.TabIndex = 59;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -125,22 +125,6 @@ namespace SMTPE
             // 
             this.timer.Enabled = true;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
-            // 
-            // addButton
-            // 
-            this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.addButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addButton.Image = global::SMTPE.Properties.Resources.icons8_import_file_20;
-            this.addButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.addButton.Location = new System.Drawing.Point(1174, 70);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(70, 43);
-            this.addButton.TabIndex = 60;
-            this.addButton.Text = "Add";
-            this.addButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.addmodel_Click);
             // 
             // refreshLbl
             // 
@@ -155,31 +139,56 @@ namespace SMTPE
             this.refreshLbl.Text = "Refresh";
             this.refreshLbl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.refreshLbl_LinkClicked);
             // 
-            // backButton
+            // BackButton
             // 
-            this.backButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.backButton.Font = new System.Drawing.Font("Open Sans", 8.25F);
-            this.backButton.Image = global::SMTPE.Properties.Resources.icons8_reply_arrow_20;
-            this.backButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.backButton.Location = new System.Drawing.Point(1258, 70);
-            this.backButton.Margin = new System.Windows.Forms.Padding(4);
-            this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(80, 43);
-            this.backButton.TabIndex = 186;
-            this.backButton.Text = "Back";
-            this.backButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.backButton.UseVisualStyleBackColor = true;
-            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            this.BackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BackButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.BackButton.Depth = 0;
+            this.BackButton.HighEmphasis = true;
+            this.BackButton.Icon = global::SMTPE.Properties.Resources.icons8_reply_arrow_20;
+            this.BackButton.Location = new System.Drawing.Point(1251, 76);
+            this.BackButton.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.BackButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.BackButton.Name = "BackButton";
+            this.BackButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.BackButton.Size = new System.Drawing.Size(87, 36);
+            this.BackButton.TabIndex = 265;
+            this.BackButton.Text = "Back";
+            this.BackButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.BackButton.UseAccentColor = false;
+            this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
+            // addBtn
+            // 
+            this.addBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.addBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.addBtn.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.addBtn.Depth = 0;
+            this.addBtn.HighEmphasis = true;
+            this.addBtn.Icon = global::SMTPE.Properties.Resources.icons8_add_20__2_;
+            this.addBtn.Location = new System.Drawing.Point(1163, 76);
+            this.addBtn.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.addBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.addBtn.Name = "addBtn";
+            this.addBtn.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.addBtn.Size = new System.Drawing.Size(78, 36);
+            this.addBtn.TabIndex = 267;
+            this.addBtn.Text = "Add";
+            this.addBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.addBtn.UseAccentColor = false;
+            this.addBtn.UseVisualStyleBackColor = true;
+            this.addBtn.Click += new System.EventHandler(this.addmodel_Click);
             // 
             // Modeluphlist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1366, 768);
-            this.Controls.Add(this.backButton);
+            this.Controls.Add(this.addBtn);
+            this.Controls.Add(this.BackButton);
             this.Controls.Add(this.refreshLbl);
-            this.Controls.Add(this.addButton);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tbSearch);
             this.Controls.Add(this.label1);
@@ -202,13 +211,13 @@ namespace SMTPE
         private System.Windows.Forms.TextBox tbSearch;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridViewModeluphlist;
-        private System.Windows.Forms.Button addButton;
         public System.Windows.Forms.ToolStripStatusLabel toolStripUsername;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel dateTimeNow;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.LinkLabel refreshLbl;
-        private System.Windows.Forms.Button backButton;
+        private MaterialSkin.Controls.MaterialButton BackButton;
+        private MaterialSkin.Controls.MaterialButton addBtn;
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 namespace SMTPE
 {
-    partial class UserLevellist
+    partial class Departmentlist
     {
         /// <summary>
         /// Required designer variable.
@@ -38,8 +38,7 @@ namespace SMTPE
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.refreshLbl = new System.Windows.Forms.LinkLabel();
-            this.BackButton = new System.Windows.Forms.Button();
-            this.dataGridViewUserLevelList = new System.Windows.Forms.DataGridView();
+            this.dataGridViewDepartmentList = new System.Windows.Forms.DataGridView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.clearBtn = new System.Windows.Forms.Button();
@@ -48,8 +47,9 @@ namespace SMTPE
             this.label5 = new System.Windows.Forms.Label();
             this.tbDesc = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.BackButton = new MaterialSkin.Controls.MaterialButton();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUserLevelList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDepartmentList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -106,9 +106,9 @@ namespace SMTPE
             this.toolStripUsername,
             this.toolStripStatusLabel1,
             this.dateTimeNow});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 648);
+            this.statusStrip1.Location = new System.Drawing.Point(3, 645);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(919, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(913, 26);
             this.statusStrip1.TabIndex = 59;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -130,42 +130,25 @@ namespace SMTPE
             this.refreshLbl.Text = "Refresh";
             this.refreshLbl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.refreshLbl_LinkClicked);
             // 
-            // BackButton
+            // dataGridViewDepartmentList
             // 
-            this.BackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BackButton.Font = new System.Drawing.Font("Open Sans", 8.25F);
-            this.BackButton.Image = global::SMTPE.Properties.Resources.icons8_reply_arrow_20;
-            this.BackButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BackButton.Location = new System.Drawing.Point(811, 70);
-            this.BackButton.Margin = new System.Windows.Forms.Padding(4);
-            this.BackButton.Name = "BackButton";
-            this.BackButton.Size = new System.Drawing.Size(80, 43);
-            this.BackButton.TabIndex = 186;
-            this.BackButton.Text = "Back";
-            this.BackButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BackButton.UseVisualStyleBackColor = true;
-            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
-            // 
-            // dataGridViewUserLevelList
-            // 
-            this.dataGridViewUserLevelList.AllowUserToAddRows = false;
-            this.dataGridViewUserLevelList.AllowUserToDeleteRows = false;
-            this.dataGridViewUserLevelList.AllowUserToOrderColumns = true;
-            this.dataGridViewUserLevelList.AllowUserToResizeRows = false;
-            this.dataGridViewUserLevelList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dataGridViewDepartmentList.AllowUserToAddRows = false;
+            this.dataGridViewDepartmentList.AllowUserToDeleteRows = false;
+            this.dataGridViewDepartmentList.AllowUserToOrderColumns = true;
+            this.dataGridViewDepartmentList.AllowUserToResizeRows = false;
+            this.dataGridViewDepartmentList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewUserLevelList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewUserLevelList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewUserLevelList.Location = new System.Drawing.Point(3, 45);
-            this.dataGridViewUserLevelList.Name = "dataGridViewUserLevelList";
-            this.dataGridViewUserLevelList.ReadOnly = true;
-            this.dataGridViewUserLevelList.RowHeadersWidth = 51;
-            this.dataGridViewUserLevelList.Size = new System.Drawing.Size(522, 371);
-            this.dataGridViewUserLevelList.TabIndex = 10;
-            this.dataGridViewUserLevelList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewUserList_CellContentClick);
-            this.dataGridViewUserLevelList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewUserList_CellFormatting);
+            this.dataGridViewDepartmentList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewDepartmentList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewDepartmentList.Location = new System.Drawing.Point(3, 45);
+            this.dataGridViewDepartmentList.Name = "dataGridViewDepartmentList";
+            this.dataGridViewDepartmentList.ReadOnly = true;
+            this.dataGridViewDepartmentList.RowHeadersWidth = 51;
+            this.dataGridViewDepartmentList.Size = new System.Drawing.Size(522, 371);
+            this.dataGridViewDepartmentList.TabIndex = 10;
+            this.dataGridViewDepartmentList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDepartmentList_CellContentClick);
+            this.dataGridViewDepartmentList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewDepartmentList_CellFormatting);
             // 
             // splitContainer1
             // 
@@ -173,6 +156,8 @@ namespace SMTPE
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(26, 154);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -182,7 +167,7 @@ namespace SMTPE
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.dataGridViewUserLevelList);
+            this.splitContainer1.Panel2.Controls.Add(this.dataGridViewDepartmentList);
             this.splitContainer1.Panel2.Controls.Add(this.refreshLbl);
             this.splitContainer1.Panel2.Controls.Add(this.tbSearch);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
@@ -206,7 +191,7 @@ namespace SMTPE
             this.groupBox1.Size = new System.Drawing.Size(327, 413);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "User Level";
+            this.groupBox1.Text = "Department";
             // 
             // clearBtn
             // 
@@ -257,9 +242,9 @@ namespace SMTPE
             this.label5.Location = new System.Drawing.Point(18, 46);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(78, 19);
+            this.label5.Size = new System.Drawing.Size(90, 19);
             this.label5.TabIndex = 189;
-            this.label5.Text = "User Level";
+            this.label5.Text = "Department";
             // 
             // tbDesc
             // 
@@ -284,24 +269,45 @@ namespace SMTPE
             this.label2.TabIndex = 190;
             this.label2.Text = "Description";
             // 
-            // UserLevellist
+            // BackButton
+            // 
+            this.BackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BackButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.BackButton.Depth = 0;
+            this.BackButton.HighEmphasis = true;
+            this.BackButton.Icon = global::SMTPE.Properties.Resources.icons8_reply_arrow_20;
+            this.BackButton.Location = new System.Drawing.Point(804, 76);
+            this.BackButton.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.BackButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.BackButton.Name = "BackButton";
+            this.BackButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.BackButton.Size = new System.Drawing.Size(87, 36);
+            this.BackButton.TabIndex = 261;
+            this.BackButton.Text = "Back";
+            this.BackButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.BackButton.UseAccentColor = false;
+            this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
+            // 
+            // Departmentlist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(919, 674);
-            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.BackButton);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
-            this.Name = "UserLevellist";
+            this.Name = "Departmentlist";
             this.Sizable = false;
-            this.Text = "User Level List";
+            this.Text = "Department Level List";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UserLevellist_FormClosing);
             this.Load += new System.EventHandler(this.UserLevellist_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUserLevelList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDepartmentList)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
@@ -323,8 +329,7 @@ namespace SMTPE
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.LinkLabel refreshLbl;
-        private System.Windows.Forms.Button BackButton;
-        private System.Windows.Forms.DataGridView dataGridViewUserLevelList;
+        private System.Windows.Forms.DataGridView dataGridViewDepartmentList;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button clearBtn;
@@ -333,5 +338,6 @@ namespace SMTPE
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbDesc;
         private System.Windows.Forms.Label label2;
+        private MaterialSkin.Controls.MaterialButton BackButton;
     }
 }

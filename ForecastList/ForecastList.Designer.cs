@@ -32,17 +32,17 @@ namespace SMTPE
             this.components = new System.ComponentModel.Container();
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridViewPlList = new System.Windows.Forms.DataGridView();
+            this.dataGridViewFCTList = new System.Windows.Forms.DataGridView();
             this.toolStripUsername = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.dateTimeNow = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.importButton = new System.Windows.Forms.Button();
-            this.backButton = new System.Windows.Forms.Button();
             this.refreshLbl = new System.Windows.Forms.LinkLabel();
             this.truncateLbl = new System.Windows.Forms.LinkLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlList)).BeginInit();
+            this.BackButton = new MaterialSkin.Controls.MaterialButton();
+            this.importBtn = new MaterialSkin.Controls.MaterialButton();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFCTList)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,24 +68,24 @@ namespace SMTPE
             this.label1.TabIndex = 12;
             this.label1.Text = "Search";
             // 
-            // dataGridViewPlList
+            // dataGridViewFCTList
             // 
-            this.dataGridViewPlList.AllowUserToAddRows = false;
-            this.dataGridViewPlList.AllowUserToDeleteRows = false;
-            this.dataGridViewPlList.AllowUserToOrderColumns = true;
-            this.dataGridViewPlList.AllowUserToResizeRows = false;
-            this.dataGridViewPlList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dataGridViewFCTList.AllowUserToAddRows = false;
+            this.dataGridViewFCTList.AllowUserToDeleteRows = false;
+            this.dataGridViewFCTList.AllowUserToOrderColumns = true;
+            this.dataGridViewFCTList.AllowUserToResizeRows = false;
+            this.dataGridViewFCTList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewPlList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewPlList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPlList.Location = new System.Drawing.Point(23, 179);
-            this.dataGridViewPlList.Name = "dataGridViewPlList";
-            this.dataGridViewPlList.RowHeadersWidth = 51;
-            this.dataGridViewPlList.Size = new System.Drawing.Size(1315, 494);
-            this.dataGridViewPlList.TabIndex = 10;
-            this.dataGridViewPlList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPlList_CellContentClick);
-            this.dataGridViewPlList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewPlList_CellFormatting);
+            this.dataGridViewFCTList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewFCTList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewFCTList.Location = new System.Drawing.Point(23, 179);
+            this.dataGridViewFCTList.Name = "dataGridViewFCTList";
+            this.dataGridViewFCTList.RowHeadersWidth = 51;
+            this.dataGridViewFCTList.Size = new System.Drawing.Size(1315, 494);
+            this.dataGridViewFCTList.TabIndex = 10;
+            this.dataGridViewFCTList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPlList_CellContentClick);
+            this.dataGridViewFCTList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewPlList_CellFormatting);
             // 
             // toolStripUsername
             // 
@@ -116,9 +116,9 @@ namespace SMTPE
             this.toolStripUsername,
             this.toolStripStatusLabel1,
             this.dateTimeNow});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 742);
+            this.statusStrip1.Location = new System.Drawing.Point(3, 739);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1366, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1360, 26);
             this.statusStrip1.TabIndex = 59;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -126,38 +126,6 @@ namespace SMTPE
             // 
             this.timer.Enabled = true;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
-            // 
-            // importButton
-            // 
-            this.importButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.importButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.importButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.importButton.Image = global::SMTPE.Properties.Resources.icons8_import_file_20;
-            this.importButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.importButton.Location = new System.Drawing.Point(1156, 70);
-            this.importButton.Name = "importButton";
-            this.importButton.Size = new System.Drawing.Size(90, 41);
-            this.importButton.TabIndex = 60;
-            this.importButton.Text = "Import";
-            this.importButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.importButton.UseVisualStyleBackColor = true;
-            this.importButton.Click += new System.EventHandler(this.importButton_Click);
-            // 
-            // backButton
-            // 
-            this.backButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.backButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backButton.Image = global::SMTPE.Properties.Resources.icons8_reply_arrow_20;
-            this.backButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.backButton.Location = new System.Drawing.Point(1262, 70);
-            this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(76, 40);
-            this.backButton.TabIndex = 58;
-            this.backButton.Text = "Back";
-            this.backButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.backButton.UseVisualStyleBackColor = true;
-            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // refreshLbl
             // 
@@ -183,28 +151,70 @@ namespace SMTPE
             this.truncateLbl.TabIndex = 103;
             this.truncateLbl.TabStop = true;
             this.truncateLbl.Text = "Delete All";
-            this.truncateLbl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.truncatePackingListLbl_LinkClicked);
+            this.truncateLbl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.truncateLbl_LinkClicked);
+            // 
+            // BackButton
+            // 
+            this.BackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BackButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.BackButton.Depth = 0;
+            this.BackButton.HighEmphasis = true;
+            this.BackButton.Icon = global::SMTPE.Properties.Resources.icons8_reply_arrow_20;
+            this.BackButton.Location = new System.Drawing.Point(1251, 75);
+            this.BackButton.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.BackButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.BackButton.Name = "BackButton";
+            this.BackButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.BackButton.Size = new System.Drawing.Size(87, 36);
+            this.BackButton.TabIndex = 262;
+            this.BackButton.Text = "Back";
+            this.BackButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.BackButton.UseAccentColor = false;
+            this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
+            // importBtn
+            // 
+            this.importBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.importBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.importBtn.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.importBtn.Depth = 0;
+            this.importBtn.HighEmphasis = true;
+            this.importBtn.Icon = global::SMTPE.Properties.Resources.icons8_import_file_20;
+            this.importBtn.Location = new System.Drawing.Point(1138, 76);
+            this.importBtn.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.importBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.importBtn.Name = "importBtn";
+            this.importBtn.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.importBtn.Size = new System.Drawing.Size(103, 36);
+            this.importBtn.TabIndex = 263;
+            this.importBtn.Text = "Import";
+            this.importBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.importBtn.UseAccentColor = false;
+            this.importBtn.UseVisualStyleBackColor = true;
+            this.importBtn.Click += new System.EventHandler(this.importButton_Click);
             // 
             // ForecastList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1366, 768);
+            this.Controls.Add(this.importBtn);
+            this.Controls.Add(this.BackButton);
             this.Controls.Add(this.truncateLbl);
             this.Controls.Add(this.refreshLbl);
-            this.Controls.Add(this.importButton);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.backButton);
             this.Controls.Add(this.tbSearch);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridViewPlList);
+            this.Controls.Add(this.dataGridViewFCTList);
             this.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
             this.Name = "ForecastList";
-            this.Text = "Forecast List";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PackingList_FormClosing);
+            this.Text = "Production Plan List";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ForecastList_FormClosing);
             this.Load += new System.EventHandler(this.ForecastList_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFCTList)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -215,9 +225,7 @@ namespace SMTPE
         #endregion
         private System.Windows.Forms.TextBox tbSearch;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridViewPlList;
-        private System.Windows.Forms.Button backButton;
-        private System.Windows.Forms.Button importButton;
+        private System.Windows.Forms.DataGridView dataGridViewFCTList;
         public System.Windows.Forms.ToolStripStatusLabel toolStripUsername;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel dateTimeNow;
@@ -225,5 +233,7 @@ namespace SMTPE
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.LinkLabel refreshLbl;
         private System.Windows.Forms.LinkLabel truncateLbl;
+        private MaterialSkin.Controls.MaterialButton BackButton;
+        private MaterialSkin.Controls.MaterialButton importBtn;
     }
 }

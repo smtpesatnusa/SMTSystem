@@ -111,7 +111,7 @@ namespace SMTPE
             //set enable true if row datagridview > 0
             if (dataGridViewLabelPNList.Rows.Count > 0)
             {
-                exportBtn.Enabled = true;
+                exportButton.Enabled = true;
             }
         }
         

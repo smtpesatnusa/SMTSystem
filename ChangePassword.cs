@@ -21,7 +21,8 @@ namespace SMTPE
         {
             if (tbcrnpass.Text == "" || tbnewpass.Text == "" || tbvrypass.Text == "")
             {
-                MessageBox.Show(this, "Unable Change with let Current Password or new Password Blank", "Chane Passw0rd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MaterialDialog materialDialog = new MaterialDialog(this, "Change Password", "Unable Change with let Current Password or new Password Blank", "OK");
+                DialogResult result = materialDialog.ShowDialog(this);
             }
             else
             {
@@ -36,7 +37,7 @@ namespace SMTPE
 
                     connectionDB.connection.Open();
                     //Buka koneksi
-                    string cekcrnpass= "SELECT * FROM tbl_user WHERE username = '" + idUser + "' and pass ='"+ crnpass +"'";
+                    string cekcrnpass = "SELECT * FROM tbl_user WHERE username = '" + idUser + "' and pass ='" + crnpass + "'";
                     using (MySqlDataAdapter dscmd = new MySqlDataAdapter(cekcrnpass, connectionDB.connection))
                     {
                         DataSet ds = new DataSet();
@@ -57,14 +58,15 @@ namespace SMTPE
                                 //Jalankan perintah / query dalam CommandText pada database
                             }
                             connectionDB.connection.Close();
-                            MessageBox.Show(this, "Password Successfully Changed, Please login again", "Password change", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MaterialDialog materialDialog = new MaterialDialog(this, "Change Password", "Password Successfully Changed, Please login again", "OK");
+                            DialogResult result = materialDialog.ShowDialog(this);
                             this.Close();
                             Application.Restart();
-                            
                         }
                         else
                         {
-                            MessageBox.Show(this, "Current Password wrong", "Password change", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MaterialDialog materialDialog = new MaterialDialog(this, "Change Password", "Current Password wrong", "OK");
+                            DialogResult result = materialDialog.ShowDialog(this);
                             connectionDB.connection.Close();
                         }
                     }
@@ -73,7 +75,7 @@ namespace SMTPE
                 {
                     connectionDB.connection.Close();
                     MessageBox.Show(ex.Message.ToString());
-                }            
+                }
             }
         }
 

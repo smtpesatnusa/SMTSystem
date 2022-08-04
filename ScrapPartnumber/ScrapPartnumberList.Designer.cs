@@ -44,10 +44,7 @@ namespace SMTPE
             this.btnPreviousPage = new System.Windows.Forms.Button();
             this.btnLastPage = new System.Windows.Forms.Button();
             this.btnFirstPage = new System.Windows.Forms.Button();
-            this.addScrapPartButton = new System.Windows.Forms.Button();
-            this.backButton = new System.Windows.Forms.Button();
             this.refreshLbl = new System.Windows.Forms.LinkLabel();
-            this.exportBtn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmbCust = new System.Windows.Forms.ComboBox();
             this.allDate = new System.Windows.Forms.CheckBox();
@@ -56,6 +53,9 @@ namespace SMTPE
             this.dateTimePickerFrom = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerTo = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
+            this.BackButton = new MaterialSkin.Controls.MaterialButton();
+            this.exportButton = new MaterialSkin.Controls.MaterialButton();
+            this.addBtn = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewScrapPartList)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -147,9 +147,9 @@ namespace SMTPE
             this.toolStripUsername,
             this.toolStripStatusLabel1,
             this.dateTimeNow});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 742);
+            this.statusStrip1.Location = new System.Drawing.Point(3, 739);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1024, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1018, 26);
             this.statusStrip1.TabIndex = 59;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -211,38 +211,6 @@ namespace SMTPE
             this.btnFirstPage.UseVisualStyleBackColor = true;
             this.btnFirstPage.Click += new System.EventHandler(this.btnFirstPage_Click);
             // 
-            // addScrapPartButton
-            // 
-            this.addScrapPartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.addScrapPartButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addScrapPartButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addScrapPartButton.Image = global::SMTPE.Properties.Resources.icons8_add_20;
-            this.addScrapPartButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.addScrapPartButton.Location = new System.Drawing.Point(806, 69);
-            this.addScrapPartButton.Name = "addScrapPartButton";
-            this.addScrapPartButton.Size = new System.Drawing.Size(108, 41);
-            this.addScrapPartButton.TabIndex = 60;
-            this.addScrapPartButton.Text = "Scrap Part";
-            this.addScrapPartButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.addScrapPartButton.UseVisualStyleBackColor = true;
-            this.addScrapPartButton.Click += new System.EventHandler(this.addScrapPartButton_Click);
-            // 
-            // backButton
-            // 
-            this.backButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.backButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backButton.Image = global::SMTPE.Properties.Resources.icons8_reply_arrow_20;
-            this.backButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.backButton.Location = new System.Drawing.Point(920, 70);
-            this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(76, 40);
-            this.backButton.TabIndex = 58;
-            this.backButton.Text = "Back";
-            this.backButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.backButton.UseVisualStyleBackColor = true;
-            this.backButton.Click += new System.EventHandler(this.backButton_Click);
-            // 
             // refreshLbl
             // 
             this.refreshLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -256,32 +224,14 @@ namespace SMTPE
             this.refreshLbl.Text = "Refresh";
             this.refreshLbl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.refreshLbl_LinkClicked);
             // 
-            // exportBtn
-            // 
-            this.exportBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.exportBtn.Enabled = false;
-            this.exportBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.exportBtn.Font = new System.Drawing.Font("Open Sans", 8.25F);
-            this.exportBtn.Image = global::SMTPE.Properties.Resources.icons8_export_excel_20;
-            this.exportBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.exportBtn.Location = new System.Drawing.Point(719, 69);
-            this.exportBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.exportBtn.Name = "exportBtn";
-            this.exportBtn.Size = new System.Drawing.Size(80, 41);
-            this.exportBtn.TabIndex = 195;
-            this.exportBtn.Text = "Export";
-            this.exportBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.exportBtn.UseVisualStyleBackColor = true;
-            this.exportBtn.Click += new System.EventHandler(this.exportBtn_Click);
-            // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.cmbCust);
             this.groupBox1.Controls.Add(this.allDate);
-            this.groupBox1.Location = new System.Drawing.Point(126, 12);
+            this.groupBox1.Location = new System.Drawing.Point(137, 1);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(571, 88);
+            this.groupBox1.Size = new System.Drawing.Size(571, 54);
             this.groupBox1.TabIndex = 196;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filter";
@@ -365,14 +315,79 @@ namespace SMTPE
             this.label3.TabIndex = 202;
             this.label3.Text = "Filter";
             // 
+            // BackButton
+            // 
+            this.BackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BackButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.BackButton.Depth = 0;
+            this.BackButton.HighEmphasis = true;
+            this.BackButton.Icon = global::SMTPE.Properties.Resources.icons8_reply_arrow_20;
+            this.BackButton.Location = new System.Drawing.Point(909, 74);
+            this.BackButton.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.BackButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.BackButton.Name = "BackButton";
+            this.BackButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.BackButton.Size = new System.Drawing.Size(87, 36);
+            this.BackButton.TabIndex = 265;
+            this.BackButton.Text = "Back";
+            this.BackButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.BackButton.UseAccentColor = false;
+            this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
+            // exportButton
+            // 
+            this.exportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.exportButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.exportButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.exportButton.Depth = 0;
+            this.exportButton.HighEmphasis = true;
+            this.exportButton.Icon = global::SMTPE.Properties.Resources.icons8_export_excel_20;
+            this.exportButton.Location = new System.Drawing.Point(707, 74);
+            this.exportButton.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.exportButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.exportButton.Name = "exportButton";
+            this.exportButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.exportButton.Size = new System.Drawing.Size(104, 36);
+            this.exportButton.TabIndex = 266;
+            this.exportButton.Text = "Export";
+            this.exportButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.exportButton.UseAccentColor = false;
+            this.exportButton.UseVisualStyleBackColor = true;
+            this.exportButton.Click += new System.EventHandler(this.exportBtn_Click);
+            // 
+            // addBtn
+            // 
+            this.addBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.addBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.addBtn.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.addBtn.Depth = 0;
+            this.addBtn.HighEmphasis = true;
+            this.addBtn.Icon = global::SMTPE.Properties.Resources.icons8_add_20__2_;
+            this.addBtn.Location = new System.Drawing.Point(821, 74);
+            this.addBtn.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.addBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.addBtn.Name = "addBtn";
+            this.addBtn.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.addBtn.Size = new System.Drawing.Size(78, 36);
+            this.addBtn.TabIndex = 267;
+            this.addBtn.Text = "Add";
+            this.addBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.addBtn.UseAccentColor = false;
+            this.addBtn.UseVisualStyleBackColor = true;
+            this.addBtn.Click += new System.EventHandler(this.addScrapPartButton_Click);
+            // 
             // ScrapPartnumberList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.Controls.Add(this.addBtn);
+            this.Controls.Add(this.exportButton);
+            this.Controls.Add(this.BackButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.exportBtn);
             this.Controls.Add(this.filterBtn);
             this.Controls.Add(this.refreshLbl);
             this.Controls.Add(this.label2);
@@ -384,9 +399,7 @@ namespace SMTPE
             this.Controls.Add(this.btnLastPage);
             this.Controls.Add(this.btnFirstPage);
             this.Controls.Add(this.truncateMasterMaterialLbl);
-            this.Controls.Add(this.addScrapPartButton);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.backButton);
             this.Controls.Add(this.tbSearch);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewScrapPartList);
@@ -410,8 +423,6 @@ namespace SMTPE
         private System.Windows.Forms.TextBox tbSearch;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridViewScrapPartList;
-        private System.Windows.Forms.Button backButton;
-        private System.Windows.Forms.Button addScrapPartButton;
         private System.Windows.Forms.LinkLabel truncateMasterMaterialLbl;
         public System.Windows.Forms.ToolStripStatusLabel toolStripUsername;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
@@ -424,7 +435,6 @@ namespace SMTPE
         private System.Windows.Forms.Button btnLastPage;
         private System.Windows.Forms.Button btnFirstPage;
         private System.Windows.Forms.LinkLabel refreshLbl;
-        private System.Windows.Forms.Button exportBtn;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DateTimePicker dateTimePickerFrom;
         private System.Windows.Forms.DateTimePicker dateTimePickerTo;
@@ -433,5 +443,8 @@ namespace SMTPE
         private System.Windows.Forms.CheckBox allDate;
         private System.Windows.Forms.ComboBox cmbCust;
         private System.Windows.Forms.Label label3;
+        private MaterialSkin.Controls.MaterialButton BackButton;
+        private MaterialSkin.Controls.MaterialButton exportButton;
+        private MaterialSkin.Controls.MaterialButton addBtn;
     }
 }

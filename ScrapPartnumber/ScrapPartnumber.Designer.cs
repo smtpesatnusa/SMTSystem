@@ -49,7 +49,7 @@ namespace SMTPE
             this.tbscrapQty = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridViewPRFList = new System.Windows.Forms.DataGridView();
-            this.backButton = new System.Windows.Forms.Button();
+            this.BackButton = new MaterialSkin.Controls.MaterialButton();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPRFList)).BeginInit();
@@ -84,9 +84,9 @@ namespace SMTPE
             this.toolStripUsername,
             this.toolStripStatusLabel1,
             this.dateTimeNow});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 742);
+            this.statusStrip1.Location = new System.Drawing.Point(3, 739);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1024, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1018, 26);
             this.statusStrip1.TabIndex = 59;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -312,31 +312,35 @@ namespace SMTPE
             this.dataGridViewPRFList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewPRFList_CellFormatting);
             this.dataGridViewPRFList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridViewPRFList_KeyDown);
             // 
-            // backButton
+            // BackButton
             // 
-            this.backButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.backButton.Font = new System.Drawing.Font("Open Sans", 8.25F);
-            this.backButton.Image = global::SMTPE.Properties.Resources.icons8_reply_arrow_20;
-            this.backButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.backButton.Location = new System.Drawing.Point(916, 70);
-            this.backButton.Margin = new System.Windows.Forms.Padding(4);
-            this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(80, 43);
-            this.backButton.TabIndex = 186;
-            this.backButton.Text = "Back";
-            this.backButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.backButton.UseVisualStyleBackColor = true;
-            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            this.BackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BackButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.BackButton.Depth = 0;
+            this.BackButton.HighEmphasis = true;
+            this.BackButton.Icon = global::SMTPE.Properties.Resources.icons8_reply_arrow_20;
+            this.BackButton.Location = new System.Drawing.Point(918, 80);
+            this.BackButton.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.BackButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.BackButton.Name = "BackButton";
+            this.BackButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.BackButton.Size = new System.Drawing.Size(87, 36);
+            this.BackButton.TabIndex = 265;
+            this.BackButton.Text = "Back";
+            this.BackButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.BackButton.UseAccentColor = false;
+            this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // ScrapPartnumber
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.Controls.Add(this.BackButton);
             this.Controls.Add(this.dataGridViewPRFList);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.backButton);
             this.Controls.Add(this.statusStrip1);
             this.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
@@ -361,7 +365,6 @@ namespace SMTPE
         private System.Windows.Forms.ToolStripStatusLabel dateTimeNow;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Timer timer;
-        private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.TextBox tbpnSN;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -376,5 +379,6 @@ namespace SMTPE
         private System.Windows.Forms.DataGridView dataGridViewPRFList;
         private System.Windows.Forms.Button tbPrint;
         private System.Windows.Forms.Button tbNew;
+        private MaterialSkin.Controls.MaterialButton BackButton;
     }
 }

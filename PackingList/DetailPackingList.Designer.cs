@@ -36,9 +36,7 @@ namespace SMTPE
             this.dateTimeNow = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.backButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.planBtn = new System.Windows.Forms.Button();
             this.tbDestination = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tbPortLoading = new System.Windows.Forms.TextBox();
@@ -56,6 +54,8 @@ namespace SMTPE
             this.totalLbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridViewInbound = new System.Windows.Forms.DataGridView();
+            this.BackButton = new MaterialSkin.Controls.MaterialButton();
+            this.exportButton = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlDetail)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -111,9 +111,9 @@ namespace SMTPE
             this.toolStripUsername,
             this.toolStripStatusLabel1,
             this.dateTimeNow});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 742);
+            this.statusStrip1.Location = new System.Drawing.Point(3, 739);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1366, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1360, 26);
             this.statusStrip1.TabIndex = 59;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -122,27 +122,11 @@ namespace SMTPE
             this.timer.Enabled = true;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // backButton
-            // 
-            this.backButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.backButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backButton.Image = global::SMTPE.Properties.Resources.icons8_reply_arrow_20;
-            this.backButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.backButton.Location = new System.Drawing.Point(1262, 70);
-            this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(76, 40);
-            this.backButton.TabIndex = 58;
-            this.backButton.Text = "Back";
-            this.backButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.backButton.UseVisualStyleBackColor = true;
-            this.backButton.Click += new System.EventHandler(this.backButton_Click);
-            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.planBtn);
+            this.groupBox1.Controls.Add(this.exportButton);
             this.groupBox1.Controls.Add(this.tbDestination);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.tbPortLoading);
@@ -168,23 +152,6 @@ namespace SMTPE
             this.groupBox1.TabIndex = 60;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Packing List";
-            // 
-            // planBtn
-            // 
-            this.planBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.planBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.planBtn.Font = new System.Drawing.Font("Open Sans", 8.25F);
-            this.planBtn.Image = global::SMTPE.Properties.Resources.icons8_export_excel_20;
-            this.planBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.planBtn.Location = new System.Drawing.Point(1195, 27);
-            this.planBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.planBtn.Name = "planBtn";
-            this.planBtn.Size = new System.Drawing.Size(80, 43);
-            this.planBtn.TabIndex = 194;
-            this.planBtn.Text = "Export";
-            this.planBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.planBtn.UseVisualStyleBackColor = true;
-            this.planBtn.Click += new System.EventHandler(this.planBtn_Click);
             // 
             // tbDestination
             // 
@@ -377,14 +344,56 @@ namespace SMTPE
             this.dataGridViewInbound.TabIndex = 61;
             this.dataGridViewInbound.Visible = false;
             // 
+            // BackButton
+            // 
+            this.BackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BackButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.BackButton.Depth = 0;
+            this.BackButton.HighEmphasis = true;
+            this.BackButton.Icon = global::SMTPE.Properties.Resources.icons8_reply_arrow_20;
+            this.BackButton.Location = new System.Drawing.Point(1263, 86);
+            this.BackButton.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.BackButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.BackButton.Name = "BackButton";
+            this.BackButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.BackButton.Size = new System.Drawing.Size(87, 36);
+            this.BackButton.TabIndex = 265;
+            this.BackButton.Text = "Back";
+            this.BackButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.BackButton.UseAccentColor = false;
+            this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
+            // exportButton
+            // 
+            this.exportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.exportButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.exportButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.exportButton.Depth = 0;
+            this.exportButton.HighEmphasis = true;
+            this.exportButton.Icon = global::SMTPE.Properties.Resources.icons8_export_excel_20;
+            this.exportButton.Location = new System.Drawing.Point(1171, 32);
+            this.exportButton.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.exportButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.exportButton.Name = "exportButton";
+            this.exportButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.exportButton.Size = new System.Drawing.Size(104, 36);
+            this.exportButton.TabIndex = 264;
+            this.exportButton.Text = "Export";
+            this.exportButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.exportButton.UseAccentColor = false;
+            this.exportButton.UseVisualStyleBackColor = true;
+            this.exportButton.Click += new System.EventHandler(this.planBtn_Click);
+            // 
             // DetailPackingList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1366, 768);
+            this.Controls.Add(this.BackButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.backButton);
             this.Controls.Add(this.dataGridViewPlDetail);
             this.Controls.Add(this.dataGridViewInbound);
             this.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -405,7 +414,6 @@ namespace SMTPE
         }
 
         #endregion
-        private System.Windows.Forms.Button backButton;
         public System.Windows.Forms.ToolStripStatusLabel toolStripUsername;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel dateTimeNow;
@@ -428,8 +436,9 @@ namespace SMTPE
         public System.Windows.Forms.TextBox tbShipTerm;
         public System.Windows.Forms.TextBox tbInvoiceDate;
         public System.Windows.Forms.TextBox tbPackingListNo;
-        private System.Windows.Forms.Button planBtn;
         private System.Windows.Forms.DataGridView dataGridViewPlDetail;
         private System.Windows.Forms.DataGridView dataGridViewInbound;
+        private MaterialSkin.Controls.MaterialButton BackButton;
+        private MaterialSkin.Controls.MaterialButton exportButton;
     }
 }

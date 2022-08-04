@@ -1,6 +1,7 @@
 ﻿using MaterialSkin.Controls;
 using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Threading;
@@ -8,14 +9,14 @@ using System.Windows.Forms;
 
 namespace SMTPE
 {
-    public partial class ImportMasterMaterial : MaterialForm
+    public partial class ImportMasterMaterialXM : MaterialForm
     {
         LoadForm lf = new LoadForm();
         Helper help = new Helper();
         ConnectionDB connectionDB = new ConnectionDB();
         string idUser;
 
-        public ImportMasterMaterial()
+        public ImportMasterMaterialXM()
         {
             InitializeComponent();
         }
@@ -103,7 +104,7 @@ namespace SMTPE
                     saveButton.Enabled = true;
                     MessageBox.Show(this, "Unable to import Master Material without choose file properly", "Master Material", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     homeButton.Enabled = true;
-                    backButton.Enabled = true;
+                    BackButton.Enabled = true;
                 }
 
                 else
@@ -118,7 +119,7 @@ namespace SMTPE
 
                     MessageBox.Show(this, "Master Material will Uploaded in Background", "Master Material", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Hide();
-                    MasterMaterial mm = new MasterMaterial();
+                    MasterMaterialXM mm = new MasterMaterialXM();
                     mm.toolStripUsername.Text = toolStripUsername.Text;
                     mm.Show();
                     this.Hide();
@@ -132,7 +133,7 @@ namespace SMTPE
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            MasterMaterial mm = new MasterMaterial();
+            MasterMaterialXM mm = new MasterMaterialXM();
             mm.toolStripUsername.Text = toolStripUsername.Text;
             this.Hide();
             mm.Show();
@@ -207,18 +208,12 @@ namespace SMTPE
                 for (int i = 0; i < dataGridViewMasterMaterial.Rows.Count; i++)
                 {
                     string material = dataGridViewMasterMaterial.Rows[i].Cells[0].Value.ToString();
-                    string desc = dataGridViewMasterMaterial.Rows[i].Cells[1].Value.ToString().Replace("'","''");
-                    string fType = dataGridViewMasterMaterial.Rows[i].Cells[2].Value.ToString();
-                    string loc = dataGridViewMasterMaterial.Rows[i].Cells[3].Value.ToString();
                     string importDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     string importBy = idUser;
 
                     // query insert data part code
-                    string StrQuery = "INSERT INTO tbl_masterpartmaterial (material, description, f_type, location, importDate, importBy) " +
-                        "VALUES ('"+ material + "','"
-                         + desc + "', '"
-                         + fType + "', '"
-                         + loc + "', '"
+                    string StrQuery = "INSERT INTO tbl_mastermaterial VALUES (null,'"
+                         + material + "','"
                          + importDate + "', '"
                          + importBy + "'); ";
 
@@ -231,7 +226,7 @@ namespace SMTPE
 
                 connectionDB.connection.Close();
                 //Tutup koneksi
-                MessageBox.Show("Import Master Material complete", "Master Material", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, "Import Master Material complete", "Master Material", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             catch (Exception ex)

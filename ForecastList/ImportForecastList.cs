@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Data;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
@@ -71,63 +72,55 @@ namespace SMTPE
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            try
+            saveButton.Enabled = false;
+
+            if (cmbForecastFile.Text == "" || cmbForecastFile.Text == "" || dataGridViewProdPlanList.Rows.Count == 0)
             {
-                saveButton.Enabled = false;
-
-                if (cmbForecastFile.Text == "" || cmbForecastFile.Text == "" || dataGridViewForecastList.Rows.Count == 0)
+                saveButton.Enabled = true;
+                MessageBox.Show(this, "Unable to import Forecast List without choose file properly", "Forecast List", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                homeButton.Enabled = true;
+                BackButton.Enabled = true;
+            }
+            else
+            {
+                try
                 {
-                    saveButton.Enabled = true;
-                    MessageBox.Show(this, "Unable to import Forecast List without choose file properly", "Forecast List", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    homeButton.Enabled = true;
-                    backButton.Enabled = true;
-                }
-                else
-                {
-                    try
+                    StartProgress("Loading...");
+                    var cmd = new MySqlCommand("", connectionDB.connection);
+                    string forecast = cmbForecastFile.Text;
+                    string cekmodel = "SELECT * FROM tbl_forecastlist WHERE forecastList = '" + cmbForecastFile.Text + "'";
+                    using (MySqlDataAdapter dscmd = new MySqlDataAdapter(cekmodel, connectionDB.connection))
                     {
-                        StartProgress("Loading...");
-                        var cmd = new MySqlCommand("", connectionDB.connection);
-                        string forecast = cmbForecastFile.Text;
-                        string cekmodel = "SELECT * FROM tbl_forecastlist WHERE forecastList = '"+cmbForecastFile.Text+"'";
-                        using (MySqlDataAdapter dscmd = new MySqlDataAdapter(cekmodel, connectionDB.connection))
+                        DataSet ds = new DataSet();
+                        dscmd.Fill(ds);
+
+                        // cek jika modelno tsb sudah di upload
+                        if (ds.Tables[0].Rows.Count > 0)
                         {
-                            DataSet ds = new DataSet();
-                            dscmd.Fill(ds);
+                            CloseProgress();
+                            MessageBox.Show(this, "Unable to import Forecast List, Forecast List already insert", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            resetData();
+                        }
+                        else
+                        {
+                            //insert data
+                            insertData();
 
-                            // cek jika modelno tsb sudah di upload
-                            if (ds.Tables[0].Rows.Count > 0)
-                            {
-                                connectionDB.connection.Close();
-                                CloseProgress();
-                                MessageBox.Show(this, "Unable to import Forecast List, Forecast List already insert", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                resetData();
-                            }
-                            else
-                            {
-                                //insert data
-                                insertDataPacking();
-
-                                this.Hide();
-                                ForecastList fl = new ForecastList();
-                                fl.toolStripUsername.Text = toolStripUsername.Text;
-                                fl.Show();
-                                this.Hide();
-                            }
+                            //dataGridViewForecastList.DataSource = null;
+                            this.Hide();
+                            ForecastList fl = new ForecastList();
+                            fl.toolStripUsername.Text = toolStripUsername.Text;
+                            fl.Show();
+                            this.Hide();
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        CloseProgress();
-                        connectionDB.connection.Close();
-                        MessageBox.Show(ex.Message.ToString());
-                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                CloseProgress();
-                MessageBox.Show(ex.Message.ToString());
+                catch (Exception ex)
+                {
+                    CloseProgress();
+                    connectionDB.connection.Close();
+                    MessageBox.Show(ex.Message.ToString());
+                }
             }
         }
 
@@ -138,12 +131,12 @@ namespace SMTPE
             Loadbutton.Enabled = false;
 
             // remove data in datagridview result
-            dataGridViewForecastList.DataSource = null;
-            dataGridViewForecastList.Refresh();
+            dataGridViewProdPlanList.DataSource = null;
+            dataGridViewProdPlanList.Refresh();
 
-            while (dataGridViewForecastList.Columns.Count > 0)
+            while (dataGridViewProdPlanList.Columns.Count > 0)
             {
-                dataGridViewForecastList.Columns.RemoveAt(0);
+                dataGridViewProdPlanList.Columns.RemoveAt(0);
             }
         }
 
@@ -168,7 +161,7 @@ namespace SMTPE
             dateTimeNow.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss");
         }
 
-        private void insertDataPacking()
+        private void insertData()
         {
             try
             {
@@ -181,94 +174,121 @@ namespace SMTPE
 
                 string forecastNo = cmbForecastFile.Text;
 
-                //insert packinglistdate
-                string insertPackingList = "INSERT INTO tbl_forecastlist (forecastList, importDate, importBy) VALUES ('" + forecastNo + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '" + idUser + "')";
-                cmd.CommandText = insertPackingList;
+                //insert listdata
+                string insert = "INSERT INTO tbl_forecastlist (forecastList, importDate, importBy) VALUES ('" + forecastNo + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '" + idUser + "')";
+                cmd.CommandText = insert;
                 cmd.ExecuteNonQuery();
 
-                ////insert detail PL
-                //for (int i = 0; i < dataGridViewForecastList.Rows.Count; i++)
-                //{
-                //    string model = dataGridViewForecastList.Rows[i].Cells[0].Value.ToString();
-                //    string modelNo = dataGridViewForecastList.Rows[i].Cells[1].Value.ToString();
-                //    string desc = dataGridViewForecastList.Rows[i].Cells[2].Value.ToString();
-                //    string poandline = dataGridViewForecastList.Rows[i].Cells[3].Value.ToString();
-                //    string detail = dataGridViewForecastList.Rows[i].Cells[4].Value.ToString();
-                //    string date1 = dataGridViewForecastList.Rows[i].Cells[5].Value.ToString();
-                //    string date2 = dataGridViewForecastList.Rows[i].Cells[6].Value.ToString();
-                //    string date3 = dataGridViewForecastList.Rows[i].Cells[7].Value.ToString();
-                //    string date4 = dataGridViewForecastList.Rows[i].Cells[8].Value.ToString();
-                //    string date5 = dataGridViewForecastList.Rows[i].Cells[9].Value.ToString();
-                //    string date6 = dataGridViewForecastList.Rows[i].Cells[10].Value.ToString();
-                //    string date7 = dataGridViewForecastList.Rows[i].Cells[11].Value.ToString();
-                //    string date8 = dataGridViewForecastList.Rows[i].Cells[12].Value.ToString();
-                //    string date9 = dataGridViewForecastList.Rows[i].Cells[13].Value.ToString();
-                //    string date10 = dataGridViewForecastList.Rows[i].Cells[14].Value.ToString();
-                //    string date11 = dataGridViewForecastList.Rows[i].Cells[15].Value.ToString();
-                //    string date12 = dataGridViewForecastList.Rows[i].Cells[16].Value.ToString();
-                //    string date13 = dataGridViewForecastList.Rows[i].Cells[17].Value.ToString();
-                //    string date14 = dataGridViewForecastList.Rows[i].Cells[18].Value.ToString();
-                //    string date15 = dataGridViewForecastList.Rows[i].Cells[19].Value.ToString();
-                //    string date16 = dataGridViewForecastList.Rows[i].Cells[20].Value.ToString();
-                //    string date17 = dataGridViewForecastList.Rows[i].Cells[21].Value.ToString();
-                //    string date18 = dataGridViewForecastList.Rows[i].Cells[22].Value.ToString();
-                //    string date19 = dataGridViewForecastList.Rows[i].Cells[23].Value.ToString();
-                //    string date20 = dataGridViewForecastList.Rows[i].Cells[24].Value.ToString();
-                //    string date21 = dataGridViewForecastList.Rows[i].Cells[25].Value.ToString();
-                //    string date22 = dataGridViewForecastList.Rows[i].Cells[26].Value.ToString();
-                //    string date23 = dataGridViewForecastList.Rows[i].Cells[27].Value.ToString();
-                //    string date24 = dataGridViewForecastList.Rows[i].Cells[28].Value.ToString();
-                //    string date25 = dataGridViewForecastList.Rows[i].Cells[29].Value.ToString();
-                //    string date26 = dataGridViewForecastList.Rows[i].Cells[30].Value.ToString();
-                //    string date27 = dataGridViewForecastList.Rows[i].Cells[31].Value.ToString();
-                //    string date28 = dataGridViewForecastList.Rows[i].Cells[32].Value.ToString();
-                //    string date29 = dataGridViewForecastList.Rows[i].Cells[33].Value.ToString();
-                //    string date30 = dataGridViewForecastList.Rows[i].Cells[34].Value.ToString();
-                //    string date31 = dataGridViewForecastList.Rows[i].Cells[35].Value.ToString();
-                //    string importDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                //    string importBy = idUser;
+                string query = "SELECT * FROM tbl_forecastlist WHERE forecastList = '" + cmbForecastFile.Text + "'";
+                using (MySqlDataAdapter adpt = new MySqlDataAdapter(query, connectionDB.connection))
+                {
+                    DataTable dt = new DataTable();
+                    adpt.Fill(dt);
+                    if (dt.Rows.Count > 0)
+                    {
+                        string idForecast = dt.Rows[0]["id"].ToString();
+                        //insert detail
+                        for (int i = 0; i < dataGridViewProdPlanList.Rows.Count; i++)
+                        {
+                            // insert data plan only 
+                            if (dataGridViewProdPlanList.Rows[i].Cells[0].Value.ToString() != "")
+                            {
+                                string model = dataGridViewProdPlanList.Rows[i].Cells[0].Value.ToString();
+                                string modelNo = dataGridViewProdPlanList.Rows[i].Cells[1].Value.ToString();
+                                string desc = dataGridViewProdPlanList.Rows[i].Cells[2].Value.ToString();
+                                string detail = dataGridViewProdPlanList.Rows[i].Cells[3].Value.ToString();
+                                string date1 = dataGridViewProdPlanList.Rows[i].Cells[4].Value.ToString();
+                                string date2 = dataGridViewProdPlanList.Rows[i].Cells[5].Value.ToString();
+                                string date3 = dataGridViewProdPlanList.Rows[i].Cells[6].Value.ToString();
+                                string date4 = dataGridViewProdPlanList.Rows[i].Cells[7].Value.ToString();
+                                string date5 = dataGridViewProdPlanList.Rows[i].Cells[8].Value.ToString();
+                                string date6 = dataGridViewProdPlanList.Rows[i].Cells[9].Value.ToString();
+                                string date7 = dataGridViewProdPlanList.Rows[i].Cells[10].Value.ToString();
+                                string date8 = dataGridViewProdPlanList.Rows[i].Cells[11].Value.ToString();
+                                string date9 = dataGridViewProdPlanList.Rows[i].Cells[12].Value.ToString();
+                                string date10 = dataGridViewProdPlanList.Rows[i].Cells[13].Value.ToString();
+                                string date11 = dataGridViewProdPlanList.Rows[i].Cells[14].Value.ToString();
+                                string date12 = dataGridViewProdPlanList.Rows[i].Cells[15].Value.ToString();
+                                string date13 = dataGridViewProdPlanList.Rows[i].Cells[16].Value.ToString();
+                                string date14 = dataGridViewProdPlanList.Rows[i].Cells[17].Value.ToString();
+                                string date15 = dataGridViewProdPlanList.Rows[i].Cells[18].Value.ToString();
+                                string date16 = dataGridViewProdPlanList.Rows[i].Cells[19].Value.ToString();
+                                string date17 = dataGridViewProdPlanList.Rows[i].Cells[20].Value.ToString();
+                                string date18 = dataGridViewProdPlanList.Rows[i].Cells[21].Value.ToString();
+                                string date19 = dataGridViewProdPlanList.Rows[i].Cells[22].Value.ToString();
+                                string date20 = dataGridViewProdPlanList.Rows[i].Cells[23].Value.ToString();
+                                string date21 = dataGridViewProdPlanList.Rows[i].Cells[24].Value.ToString();
+                                string date22 = dataGridViewProdPlanList.Rows[i].Cells[25].Value.ToString();
+                                string date23 = dataGridViewProdPlanList.Rows[i].Cells[26].Value.ToString();
+                                string date24 = dataGridViewProdPlanList.Rows[i].Cells[27].Value.ToString();
+                                string date25 = dataGridViewProdPlanList.Rows[i].Cells[28].Value.ToString();
+                                string date26 = dataGridViewProdPlanList.Rows[i].Cells[29].Value.ToString();
+                                string date27 = dataGridViewProdPlanList.Rows[i].Cells[30].Value.ToString();
+                                string date28 = dataGridViewProdPlanList.Rows[i].Cells[31].Value.ToString();
+                                string date29 = dataGridViewProdPlanList.Rows[i].Cells[32].Value.ToString();
+                                string date30 = dataGridViewProdPlanList.Rows[i].Cells[33].Value.ToString();
+                                string date31 = dataGridViewProdPlanList.Rows[i].Cells[34].Value.ToString();
 
-                //    string StrQuery = "INSERT INTO tbl_forecastdetail " +
-                //        "(forecastid, model, modelno, descr, detail, 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31) " +
-                //        "VALUES ('"
-                //         + forecastNo + "','"
-                //         + palletNo + "','"
-                //         + projectModel + "', '"
-                //         + soandline + "', '"
-                //         + poandline + "', '"
-                //         + partno + "', '"
-                //         + desc + "', '"
-                //         + model + "', '"
-                //         + qtyperctn + "', '"
-                //         + totalctn + "', '"
-                //         + totalqty + "', '"
-                //         + unit + "', '"
-                //         + cou + "', '"
-                //         + netweight + "', '"
-                //         + grossweigth + "', '"
-                //         + volume + "'" +
-                //         ",null, null); ";
+                                string StrQuery = "INSERT INTO tbl_forecastdetail " +
+                                    "(forecastid, model, modelno, descr, detail, date1,date2,date3,date4,date5,date6,date7,date8,date9,date10,date11,date12,date13,date14,date15" +
+                                    ",date16,date17,date18,date19,date20,date21,date22,date23,date24,date25,date26,date27,date28,date29,date30,date31) " +
+                                    "VALUES ('"
+                                     + idForecast + "','"
+                                     + model + "','"
+                                     + modelNo + "', '"
+                                     + desc + "', '"
+                                     + detail + "', '"
+                                     + date1 + "', '"
+                                     + date2 + "', '"
+                                     + date3 + "', '"
+                                     + date4 + "', '"
+                                     + date5 + "', '"
+                                     + date6 + "', '"
+                                     + date7 + "', '"
+                                     + date8 + "', '"
+                                     + date9 + "', '"
+                                     + date10 + "', '"
+                                     + date11 + "', '"
+                                     + date12 + "', '"
+                                     + date13 + "', '"
+                                     + date14 + "', '"
+                                     + date15 + "', '"
+                                     + date16 + "', '"
+                                     + date17 + "', '"
+                                     + date18 + "', '"
+                                     + date19 + "', '"
+                                     + date20 + "', '"
+                                     + date21 + "', '"
+                                     + date22 + "', '"
+                                     + date23 + "', '"
+                                     + date24 + "', '"
+                                     + date25 + "', '"
+                                     + date26 + "', '"
+                                     + date27 + "', '"
+                                     + date28 + "', '"
+                                     + date29 + "', '"
+                                     + date30 + "', '"
+                                     + date31 + "')";
 
-                //    cmd.CommandText = StrQuery;
-                //    cmd.ExecuteNonQuery();
-                //}
+                                cmd.CommandText = StrQuery;
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
 
-                //stopwatch.Stop();
-                //Debug.WriteLine(" inserts took " + stopwatch.ElapsedMilliseconds + " ms");
+                        stopwatch.Stop();
+                        Debug.WriteLine(" inserts took " + stopwatch.ElapsedMilliseconds + " ms");
 
-                connectionDB.connection.Close();
-                //Tutup koneksi
+                        connectionDB.connection.Close();
+                        //Tutup koneksi
 
-                ////directory file
-                //string directoryFile = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                //directoryFile = directoryFile + "\\Packing List";
-
-                ////save as excel file
-                //File.Copy(PLFileName, @"" + directoryFile + "\\" + Path.GetFileName(PLFileName));
-
-                CloseProgress();
-                MessageBox.Show(this, "Import Packing List complete", "Packing List", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                        CloseProgress();
+                        MessageBox.Show(this, "Import Forecast List complete", "Forecast List", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show(this, "Fail to import Forecast file", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -277,23 +297,6 @@ namespace SMTPE
             }
         }
 
-        private void ImportPackingList_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            string message = "Are you sure you want to close this application?";
-            string title = "Confirm Close";
-            MaterialDialog materialDialog = new MaterialDialog(this, title, message, "OK", true, "Cancel");
-            DialogResult result = materialDialog.ShowDialog(this);
-            if (result.ToString() == "OK")
-            {
-                Application.ExitThread();
-            }
-            else
-            {
-                e.Cancel = true;
-                MaterialSnackBar SnackBarMessage = new MaterialSnackBar(result.ToString(), 750);
-                SnackBarMessage.Show(this);
-            }
-        }
 
         private void ImportForecastList_Load(object sender, EventArgs e)
         {
@@ -358,10 +361,13 @@ namespace SMTPE
         private void dataGridViewForecastList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             // not allow to sort table
-            for (int i = 0; i < dataGridViewForecastList.Columns.Count; i++)
+            for (int i = 0; i < dataGridViewProdPlanList.Columns.Count; i++)
             {
-                dataGridViewForecastList.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewProdPlanList.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
             }
+
+            // to resize column
+            dataGridViewProdPlanList.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
         }
 
         private void Loadbutton_Click(object sender, EventArgs e)
@@ -378,7 +384,7 @@ namespace SMTPE
                 // baca data pl No dan invoice date
                 DataTable dtExcel = new DataTable();
                 dtExcel = help.ReadExcel(FileName, fileExt, query); //read excel file   
-                dataGridViewForecastList.DataSource = dtExcel;
+                dataGridViewProdPlanList.DataSource = dtExcel;
 
                 // buat cari batas total row
                 DataTable dtExcel1 = new DataTable();
@@ -398,41 +404,77 @@ namespace SMTPE
                     }
                 }
 
-                int totalrow = dataGridViewForecastList.Rows.Count;
-                rowIndexBatas = rowIndexBatas-2;
+                int totalrow = dataGridViewProdPlanList.Rows.Count;
+                rowIndexBatas = rowIndexBatas - 2;
 
                 //delete data start from text stencil No
                 for (int i = totalrow - 1; i > rowIndexBatas; i--)
                 {
-                    dataGridViewForecastList.Rows.RemoveAt(i);
+                    dataGridViewProdPlanList.Rows.RemoveAt(i);
                 }
 
-                saveButton.Enabled = true;
+                // change - and remove other remarks 
+                for (int i = 0; i < dataGridViewProdPlanList.Rows.Count; i++)
+                {
+                    // get model detail
+                    if (dataGridViewProdPlanList.Rows[i].Cells[2].Value.ToString().Contains(" MB"))
+                    {
+                        //get model name
+                        var model = dataGridViewProdPlanList.Rows[i].Cells[2].Value.ToString().Split(' ');
+                        dataGridViewProdPlanList.Rows[i].Cells[0].Value = model[0];
+                    }
 
-                ////to give color if not found model in datagridview
-                //int countmissingmodel = 0;
-                //string model;
-                //missingmodel = "";
+                    for (int j = 0; j <= dataGridViewProdPlanList.Columns.Count - 1; j++)
+                    {
+                        if (dataGridViewProdPlanList.Rows[i].Cells[j].Value.ToString() == "-")
+                        {
+                            dataGridViewProdPlanList.Rows[i].Cells[j].Value = 0;
+                        }
+                    }
+                }
+                totalLbl.Text = dataGridViewProdPlanList.Rows.Count.ToString();
 
-                //for (int i = 0; i < dataGridViewPackingList.Rows.Count; ++i)
-                //{
-                //    model = dataGridViewPackingList.Rows[i].Cells[1].Value.ToString();
-                //    // cek pn exist or not in db
-                //    string cekmodel = "SELECT model FROM tbl_model WHERE model = '" + model + "'";
-                //    using (MySqlDataAdapter dscmd = new MySqlDataAdapter(cekmodel, connectionDB.connection))
-                //    {
-                //        DataSet ds = new DataSet();
-                //        dscmd.Fill(ds);
-                //        // cek jika ada model tsb
-                //        if (ds.Tables[0].Rows.Count < 1)
-                //        {
-                //            dataGridViewPackingList.Rows[i].DefaultCellStyle.BackColor = Color.Red;
-                //            countmissingmodel++;
-                //            missingmodel += model + "\r\n";
-                //        }
-                //    }
-                //}
-                CloseProgress();
+                //to give color if not found model in datagridview
+                int countmissingmodel = 0;
+                string modelUPH;
+                missingmodel = "";
+
+                for (int i = 0; i < dataGridViewProdPlanList.Rows.Count; ++i)
+                {
+                    //Only check data MB
+                    if (dataGridViewProdPlanList.Rows[i].Cells[0].Value.ToString() != "" )
+                    {
+                        modelUPH = dataGridViewProdPlanList.Rows[i].Cells[0].Value.ToString();
+                        // cek model exist or not in db
+                        string cekmodel = "SELECT b.model FROM tbl_masteruph a, tbl_model b WHERE b.id = a.model AND b.model = '" + modelUPH + "'";
+                        using (MySqlDataAdapter dscmd = new MySqlDataAdapter(cekmodel, connectionDB.connection))
+                        {
+                            DataSet ds = new DataSet();
+                            dscmd.Fill(ds);
+                            // cek jika ada model tsb
+                            if (ds.Tables[0].Rows.Count < 1)
+                            {
+                                dataGridViewProdPlanList.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                                countmissingmodel++;
+                                missingmodel += modelUPH + "\r\n";
+                            }
+                        }
+                    }
+                }
+
+                if (countmissingmodel > 0)
+                {
+                    CloseProgress();
+                    MessageBox.Show(this, "Missing model from model UPH, please register model uph first ", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error); //custom messageBox to show error 
+                    saveButton.Enabled = false;
+                }
+                else
+                {                   
+                    saveButton.Enabled = true;
+                    CloseProgress();
+                }
+
+                totalLbl.Text = dataGridViewProdPlanList.Rows.Count.ToString();
             }
             catch (Exception ex)
             {
@@ -446,6 +488,11 @@ namespace SMTPE
         private void cmbForecastFile_SelectedIndexChanged(object sender, EventArgs e)
         {
             saveButton.Enabled = false;
+        }
+
+        private void ImportForecastList_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
         }
     }
 }

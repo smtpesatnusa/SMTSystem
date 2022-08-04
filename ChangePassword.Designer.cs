@@ -29,7 +29,6 @@ namespace SMTPE
         /// </summary>
         private void InitializeComponent()
         {
-            this.saveBtn = new System.Windows.Forms.Button();
             this.tbnewpass = new System.Windows.Forms.TextBox();
             this.tbusername = new System.Windows.Forms.Label();
             this.tbcrnpass = new System.Windows.Forms.TextBox();
@@ -38,20 +37,8 @@ namespace SMTPE
             this.tbuserrole = new System.Windows.Forms.Label();
             this.tbvrypass = new System.Windows.Forms.TextBox();
             this.lblnotmatch = new System.Windows.Forms.Label();
+            this.saveBtn = new MaterialSkin.Controls.MaterialButton();
             this.SuspendLayout();
-            // 
-            // saveBtn
-            // 
-            this.saveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.saveBtn.Font = new System.Drawing.Font("Open Sans", 8.25F);
-            this.saveBtn.Location = new System.Drawing.Point(313, 274);
-            this.saveBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(120, 43);
-            this.saveBtn.TabIndex = 3;
-            this.saveBtn.Text = "Save";
-            this.saveBtn.UseVisualStyleBackColor = true;
-            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
             // tbnewpass
             // 
@@ -148,18 +135,40 @@ namespace SMTPE
             this.lblnotmatch.Text = "New Password and Verify password not match";
             this.lblnotmatch.Visible = false;
             // 
+            // saveBtn
+            // 
+            this.saveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.saveBtn.AutoSize = false;
+            this.saveBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.saveBtn.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.saveBtn.Depth = 0;
+            this.saveBtn.HighEmphasis = true;
+            this.saveBtn.Icon = null;
+            this.saveBtn.Location = new System.Drawing.Point(311, 274);
+            this.saveBtn.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.saveBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.saveBtn.Size = new System.Drawing.Size(120, 44);
+            this.saveBtn.TabIndex = 252;
+            this.saveBtn.Text = "Save";
+            this.saveBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.saveBtn.UseAccentColor = false;
+            this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
+            // 
             // ChangePassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(579, 375);
+            this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.lblnotmatch);
             this.Controls.Add(this.tbvrypass);
             this.Controls.Add(this.tbuserrole);
             this.Controls.Add(this.usernameLbl);
             this.Controls.Add(this.tbcrnpass);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.tbnewpass);
             this.Controls.Add(this.tbusername);
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -177,7 +186,6 @@ namespace SMTPE
         }
 
         #endregion
-        private System.Windows.Forms.Button saveBtn;
         public System.Windows.Forms.TextBox tbnewpass;
         private System.Windows.Forms.Label tbusername;
         public System.Windows.Forms.TextBox tbcrnpass;
@@ -186,5 +194,6 @@ namespace SMTPE
         private System.Windows.Forms.Label tbuserrole;
         public System.Windows.Forms.TextBox tbvrypass;
         public System.Windows.Forms.Label lblnotmatch;
+        private MaterialSkin.Controls.MaterialButton saveBtn;
     }
 }

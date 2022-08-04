@@ -44,8 +44,8 @@ namespace SMTPE
             this.btnPreviousPage = new System.Windows.Forms.Button();
             this.btnLastPage = new System.Windows.Forms.Button();
             this.btnFirstPage = new System.Windows.Forms.Button();
-            this.exportBtn = new System.Windows.Forms.Button();
-            this.backButton = new System.Windows.Forms.Button();
+            this.BackButton = new MaterialSkin.Controls.MaterialButton();
+            this.exportButton = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLabelPNList)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -121,9 +121,9 @@ namespace SMTPE
             this.toolStripUsername,
             this.toolStripStatusLabel1,
             this.dateTimeNow});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 742);
+            this.statusStrip1.Location = new System.Drawing.Point(3, 739);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1024, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1018, 26);
             this.statusStrip1.TabIndex = 59;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -198,53 +198,60 @@ namespace SMTPE
             this.btnFirstPage.UseVisualStyleBackColor = true;
             this.btnFirstPage.Click += new System.EventHandler(this.btnFirstPage_Click);
             // 
-            // exportBtn
+            // BackButton
             // 
-            this.exportBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.exportBtn.Enabled = false;
-            this.exportBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.exportBtn.Font = new System.Drawing.Font("Open Sans", 8.25F);
-            this.exportBtn.Image = global::SMTPE.Properties.Resources.icons8_export_excel_20;
-            this.exportBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.exportBtn.Location = new System.Drawing.Point(828, 70);
-            this.exportBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.exportBtn.Name = "exportBtn";
-            this.exportBtn.Size = new System.Drawing.Size(80, 43);
-            this.exportBtn.TabIndex = 196;
-            this.exportBtn.Text = "Export";
-            this.exportBtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.exportBtn.UseVisualStyleBackColor = true;
-            this.exportBtn.Click += new System.EventHandler(this.exportBtn_Click);
+            this.BackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BackButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.BackButton.Depth = 0;
+            this.BackButton.HighEmphasis = true;
+            this.BackButton.Icon = global::SMTPE.Properties.Resources.icons8_reply_arrow_20;
+            this.BackButton.Location = new System.Drawing.Point(909, 76);
+            this.BackButton.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.BackButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.BackButton.Name = "BackButton";
+            this.BackButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.BackButton.Size = new System.Drawing.Size(87, 36);
+            this.BackButton.TabIndex = 262;
+            this.BackButton.Text = "Back";
+            this.BackButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.BackButton.UseAccentColor = false;
+            this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.backButton_Click);
             // 
-            // backButton
+            // exportButton
             // 
-            this.backButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.backButton.Font = new System.Drawing.Font("Open Sans", 8.25F);
-            this.backButton.Image = global::SMTPE.Properties.Resources.icons8_reply_arrow_20;
-            this.backButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.backButton.Location = new System.Drawing.Point(916, 70);
-            this.backButton.Margin = new System.Windows.Forms.Padding(4);
-            this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(80, 43);
-            this.backButton.TabIndex = 185;
-            this.backButton.Text = "Back";
-            this.backButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.backButton.UseVisualStyleBackColor = true;
-            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            this.exportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.exportButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.exportButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.exportButton.Depth = 0;
+            this.exportButton.HighEmphasis = true;
+            this.exportButton.Icon = global::SMTPE.Properties.Resources.icons8_export_excel_20;
+            this.exportButton.Location = new System.Drawing.Point(795, 76);
+            this.exportButton.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.exportButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.exportButton.Name = "exportButton";
+            this.exportButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.exportButton.Size = new System.Drawing.Size(104, 36);
+            this.exportButton.TabIndex = 264;
+            this.exportButton.Text = "Export";
+            this.exportButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.exportButton.UseAccentColor = false;
+            this.exportButton.UseVisualStyleBackColor = true;
+            this.exportButton.Click += new System.EventHandler(this.exportBtn_Click);
             // 
             // LabelPNList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1024, 768);
-            this.Controls.Add(this.exportBtn);
+            this.Controls.Add(this.exportButton);
+            this.Controls.Add(this.BackButton);
             this.Controls.Add(this.txtDisplayPageNo);
             this.Controls.Add(this.btnNextPage);
             this.Controls.Add(this.btnPreviousPage);
             this.Controls.Add(this.btnLastPage);
             this.Controls.Add(this.btnFirstPage);
-            this.Controls.Add(this.backButton);
             this.Controls.Add(this.refreshLbl);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tbSearch);
@@ -275,12 +282,12 @@ namespace SMTPE
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.LinkLabel refreshLbl;
-        private System.Windows.Forms.Button backButton;
         internal System.Windows.Forms.TextBox txtDisplayPageNo;
         private System.Windows.Forms.Button btnNextPage;
         private System.Windows.Forms.Button btnPreviousPage;
         private System.Windows.Forms.Button btnLastPage;
         private System.Windows.Forms.Button btnFirstPage;
-        private System.Windows.Forms.Button exportBtn;
+        private MaterialSkin.Controls.MaterialButton BackButton;
+        private MaterialSkin.Controls.MaterialButton exportButton;
     }
 }

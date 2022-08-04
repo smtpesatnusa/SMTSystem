@@ -1,7 +1,7 @@
 ﻿
 namespace SMTPE
 {
-    partial class PackingList
+    partial class CustControl
     {
         /// <summary>
         /// Required designer variable.
@@ -32,17 +32,18 @@ namespace SMTPE
             this.components = new System.ComponentModel.Container();
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridViewPlList = new System.Windows.Forms.DataGridView();
+            this.dataGridViewCustList = new System.Windows.Forms.DataGridView();
             this.toolStripUsername = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.dateTimeNow = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.refreshLbl = new System.Windows.Forms.LinkLabel();
-            this.truncatePackingListLbl = new System.Windows.Forms.LinkLabel();
+            this.tbCustCode = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.BackButton = new MaterialSkin.Controls.MaterialButton();
-            this.importBtn = new MaterialSkin.Controls.MaterialButton();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlList)).BeginInit();
+            this.addCustCode = new MaterialSkin.Controls.MaterialButton();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCustList)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +51,7 @@ namespace SMTPE
             // 
             this.tbSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tbSearch.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbSearch.Location = new System.Drawing.Point(1138, 122);
+            this.tbSearch.Location = new System.Drawing.Point(691, 122);
             this.tbSearch.Name = "tbSearch";
             this.tbSearch.Size = new System.Drawing.Size(200, 26);
             this.tbSearch.TabIndex = 13;
@@ -62,32 +63,31 @@ namespace SMTPE
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1084, 127);
+            this.label1.Location = new System.Drawing.Point(637, 127);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 19);
             this.label1.TabIndex = 12;
             this.label1.Text = "Search";
             // 
-            // dataGridViewPlList
+            // dataGridViewCustList
             // 
-            this.dataGridViewPlList.AllowUserToAddRows = false;
-            this.dataGridViewPlList.AllowUserToDeleteRows = false;
-            this.dataGridViewPlList.AllowUserToOrderColumns = true;
-            this.dataGridViewPlList.AllowUserToResizeRows = false;
-            this.dataGridViewPlList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dataGridViewCustList.AllowUserToAddRows = false;
+            this.dataGridViewCustList.AllowUserToDeleteRows = false;
+            this.dataGridViewCustList.AllowUserToOrderColumns = true;
+            this.dataGridViewCustList.AllowUserToResizeRows = false;
+            this.dataGridViewCustList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewPlList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewPlList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPlList.Location = new System.Drawing.Point(23, 179);
-            this.dataGridViewPlList.Name = "dataGridViewPlList";
-            this.dataGridViewPlList.ReadOnly = true;
-            this.dataGridViewPlList.RowHeadersWidth = 51;
-            this.dataGridViewPlList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPlList.Size = new System.Drawing.Size(1315, 494);
-            this.dataGridViewPlList.TabIndex = 10;
-            this.dataGridViewPlList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPlList_CellContentClick);
-            this.dataGridViewPlList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewPlList_CellFormatting);
+            this.dataGridViewCustList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewCustList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCustList.Location = new System.Drawing.Point(23, 179);
+            this.dataGridViewCustList.Name = "dataGridViewCustList";
+            this.dataGridViewCustList.ReadOnly = true;
+            this.dataGridViewCustList.RowHeadersWidth = 51;
+            this.dataGridViewCustList.Size = new System.Drawing.Size(868, 400);
+            this.dataGridViewCustList.TabIndex = 10;
+            this.dataGridViewCustList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCustList_CellContentClick);
+            this.dataGridViewCustList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewCustList_CellFormatting);
             // 
             // toolStripUsername
             // 
@@ -118,9 +118,9 @@ namespace SMTPE
             this.toolStripUsername,
             this.toolStripStatusLabel1,
             this.dateTimeNow});
-            this.statusStrip1.Location = new System.Drawing.Point(3, 739);
+            this.statusStrip1.Location = new System.Drawing.Point(3, 645);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1360, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(913, 26);
             this.statusStrip1.TabIndex = 59;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -134,26 +134,34 @@ namespace SMTPE
             this.refreshLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.refreshLbl.AutoSize = true;
             this.refreshLbl.BackColor = System.Drawing.Color.Transparent;
-            this.refreshLbl.Location = new System.Drawing.Point(1198, 157);
+            this.refreshLbl.Location = new System.Drawing.Point(830, 157);
             this.refreshLbl.Name = "refreshLbl";
             this.refreshLbl.Size = new System.Drawing.Size(61, 19);
-            this.refreshLbl.TabIndex = 102;
+            this.refreshLbl.TabIndex = 107;
             this.refreshLbl.TabStop = true;
             this.refreshLbl.Text = "Refresh";
             this.refreshLbl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.refreshLbl_LinkClicked);
             // 
-            // truncatePackingListLbl
+            // tbCustCode
             // 
-            this.truncatePackingListLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.truncatePackingListLbl.AutoSize = true;
-            this.truncatePackingListLbl.BackColor = System.Drawing.Color.Transparent;
-            this.truncatePackingListLbl.Location = new System.Drawing.Point(1265, 157);
-            this.truncatePackingListLbl.Name = "truncatePackingListLbl";
-            this.truncatePackingListLbl.Size = new System.Drawing.Size(73, 19);
-            this.truncatePackingListLbl.TabIndex = 103;
-            this.truncatePackingListLbl.TabStop = true;
-            this.truncatePackingListLbl.Text = "Delete All";
-            this.truncatePackingListLbl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.truncatePackingListLbl_LinkClicked);
+            this.tbCustCode.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCustCode.Location = new System.Drawing.Point(132, 125);
+            this.tbCustCode.MaxLength = 2;
+            this.tbCustCode.Name = "tbCustCode";
+            this.tbCustCode.Size = new System.Drawing.Size(200, 26);
+            this.tbCustCode.TabIndex = 187;
+            this.tbCustCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbCustCode_KeyDown);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(19, 129);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(112, 19);
+            this.label2.TabIndex = 188;
+            this.label2.Text = "Customer Code";
             // 
             // BackButton
             // 
@@ -163,60 +171,62 @@ namespace SMTPE
             this.BackButton.Depth = 0;
             this.BackButton.HighEmphasis = true;
             this.BackButton.Icon = global::SMTPE.Properties.Resources.icons8_reply_arrow_20;
-            this.BackButton.Location = new System.Drawing.Point(1251, 76);
+            this.BackButton.Location = new System.Drawing.Point(804, 76);
             this.BackButton.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.BackButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.BackButton.Name = "BackButton";
             this.BackButton.NoAccentTextColor = System.Drawing.Color.Empty;
             this.BackButton.Size = new System.Drawing.Size(87, 36);
-            this.BackButton.TabIndex = 265;
+            this.BackButton.TabIndex = 260;
             this.BackButton.Text = "Back";
             this.BackButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.BackButton.UseAccentColor = false;
             this.BackButton.UseVisualStyleBackColor = true;
             this.BackButton.Click += new System.EventHandler(this.backButton_Click);
             // 
-            // importBtn
+            // addCustCode
             // 
-            this.importBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.importBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.importBtn.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.importBtn.Depth = 0;
-            this.importBtn.HighEmphasis = true;
-            this.importBtn.Icon = global::SMTPE.Properties.Resources.icons8_import_file_20;
-            this.importBtn.Location = new System.Drawing.Point(1138, 76);
-            this.importBtn.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
-            this.importBtn.MouseState = MaterialSkin.MouseState.HOVER;
-            this.importBtn.Name = "importBtn";
-            this.importBtn.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.importBtn.Size = new System.Drawing.Size(103, 36);
-            this.importBtn.TabIndex = 266;
-            this.importBtn.Text = "Import";
-            this.importBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.importBtn.UseAccentColor = false;
-            this.importBtn.UseVisualStyleBackColor = true;
-            this.importBtn.Click += new System.EventHandler(this.importPlButton_Click);
+            this.addCustCode.AutoSize = false;
+            this.addCustCode.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.addCustCode.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.addCustCode.Depth = 0;
+            this.addCustCode.HighEmphasis = true;
+            this.addCustCode.Icon = null;
+            this.addCustCode.Location = new System.Drawing.Point(350, 122);
+            this.addCustCode.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.addCustCode.MouseState = MaterialSkin.MouseState.HOVER;
+            this.addCustCode.Name = "addCustCode";
+            this.addCustCode.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.addCustCode.Size = new System.Drawing.Size(65, 34);
+            this.addCustCode.TabIndex = 262;
+            this.addCustCode.Text = "Add";
+            this.addCustCode.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            this.addCustCode.UseAccentColor = true;
+            this.addCustCode.UseVisualStyleBackColor = true;
+            this.addCustCode.Click += new System.EventHandler(this.addCustCode_Click);
             // 
-            // PackingList
+            // CustControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1366, 768);
-            this.Controls.Add(this.importBtn);
+            this.ClientSize = new System.Drawing.Size(919, 674);
+            this.Controls.Add(this.addCustCode);
             this.Controls.Add(this.BackButton);
-            this.Controls.Add(this.truncatePackingListLbl);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.tbCustCode);
             this.Controls.Add(this.refreshLbl);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tbSearch);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridViewPlList);
+            this.Controls.Add(this.dataGridViewCustList);
             this.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
-            this.Name = "PackingList";
-            this.Text = "Packing List";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PackingList_FormClosing);
-            this.Load += new System.EventHandler(this.PackingList_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlList)).EndInit();
+            this.Name = "CustControl";
+            this.Sizable = false;
+            this.Text = "Customer Control List";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CustControl_FormClosing);
+            this.Load += new System.EventHandler(this.CustControl_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCustList)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -227,15 +237,16 @@ namespace SMTPE
         #endregion
         private System.Windows.Forms.TextBox tbSearch;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridViewPlList;
+        private System.Windows.Forms.DataGridView dataGridViewCustList;
         public System.Windows.Forms.ToolStripStatusLabel toolStripUsername;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel dateTimeNow;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.LinkLabel refreshLbl;
-        private System.Windows.Forms.LinkLabel truncatePackingListLbl;
+        private System.Windows.Forms.TextBox tbCustCode;
+        private System.Windows.Forms.Label label2;
         private MaterialSkin.Controls.MaterialButton BackButton;
-        private MaterialSkin.Controls.MaterialButton importBtn;
+        private MaterialSkin.Controls.MaterialButton addCustCode;
     }
 }

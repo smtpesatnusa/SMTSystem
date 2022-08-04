@@ -155,7 +155,7 @@ namespace SMTPE
                     for (int i = 0; i < dataGridViewPackingList.Rows.Count; ++i)
                     {
                         model = dataGridViewPackingList.Rows[i].Cells[1].Value.ToString();
-                        // cek pn exist or not in db
+                        // cek model exist or not in db
                         string cekmodel = "SELECT model FROM tbl_model WHERE model = '"+model+"'";
                         using (MySqlDataAdapter dscmd = new MySqlDataAdapter(cekmodel, connectionDB.connection))
                         {
@@ -167,9 +167,6 @@ namespace SMTPE
                                 dataGridViewPackingList.Rows[i].DefaultCellStyle.BackColor = Color.Red;
                                 countmissingmodel++;
                                 missingmodel += model + "\r\n";
-                            }
-                            else
-                            {
                             }
                         }
                     }
@@ -206,7 +203,7 @@ namespace SMTPE
                     }
 
 
-                    ////to give color iif not found partnumber
+                    ////to give color if not found partnumber
                     //int countmissing = 0;
                     //string pn;
                     //missingpn = "";
@@ -259,7 +256,7 @@ namespace SMTPE
                     saveButton.Enabled = true;
                     MessageBox.Show(this, "Unable to import Packing List without choose file properly", "Packing List", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     homeButton.Enabled = true;
-                    backButton.Enabled = true;
+                    BackButton.Enabled = true;
                 }
 
                 else if (tbPackingListNo.Text == "" || tbInvoiceDate.Text == "" ||
@@ -270,7 +267,7 @@ namespace SMTPE
                     saveButton.Enabled = true;
                     MessageBox.Show(this, "Unable to import Packing List without any packing data", "Packing List", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     homeButton.Enabled = true;
-                    backButton.Enabled = true;
+                    BackButton.Enabled = true;
                 }
                 else
                 {

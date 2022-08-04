@@ -423,7 +423,7 @@ namespace SMTPE
 
             if (dataGridViewScrapPartList.Rows.Count > 0)
             {
-                exportBtn.Enabled = true;
+                exportButton.Enabled = true;
             }
         }
 

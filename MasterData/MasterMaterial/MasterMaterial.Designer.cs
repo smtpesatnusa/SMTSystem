@@ -1,7 +1,7 @@
 ﻿
 namespace SMTPE
 {
-    partial class MasterMaterialXM
+    partial class MasterMaterial
     {
         /// <summary>
         /// Required designer variable.
@@ -44,9 +44,10 @@ namespace SMTPE
             this.btnPreviousPage = new System.Windows.Forms.Button();
             this.btnLastPage = new System.Windows.Forms.Button();
             this.btnFirstPage = new System.Windows.Forms.Button();
-            this.importMMButton = new System.Windows.Forms.Button();
-            this.backButton = new System.Windows.Forms.Button();
             this.refreshLbl = new System.Windows.Forms.LinkLabel();
+            this.BackButton = new MaterialSkin.Controls.MaterialButton();
+            this.addBtn = new MaterialSkin.Controls.MaterialButton();
+            this.importBtn = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMasterMaterialList)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -86,6 +87,7 @@ namespace SMTPE
             this.dataGridViewMasterMaterialList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewMasterMaterialList.Location = new System.Drawing.Point(23, 179);
             this.dataGridViewMasterMaterialList.Name = "dataGridViewMasterMaterialList";
+            this.dataGridViewMasterMaterialList.ReadOnly = true;
             this.dataGridViewMasterMaterialList.RowHeadersWidth = 51;
             this.dataGridViewMasterMaterialList.Size = new System.Drawing.Size(1315, 494);
             this.dataGridViewMasterMaterialList.TabIndex = 10;
@@ -133,9 +135,9 @@ namespace SMTPE
             this.toolStripUsername,
             this.toolStripStatusLabel1,
             this.dateTimeNow});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 742);
+            this.statusStrip1.Location = new System.Drawing.Point(3, 739);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1366, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1360, 26);
             this.statusStrip1.TabIndex = 59;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -197,38 +199,6 @@ namespace SMTPE
             this.btnFirstPage.UseVisualStyleBackColor = true;
             this.btnFirstPage.Click += new System.EventHandler(this.btnFirstPage_Click);
             // 
-            // importMMButton
-            // 
-            this.importMMButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.importMMButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.importMMButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.importMMButton.Image = global::SMTPE.Properties.Resources.icons8_import_file_20;
-            this.importMMButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.importMMButton.Location = new System.Drawing.Point(1052, 70);
-            this.importMMButton.Name = "importMMButton";
-            this.importMMButton.Size = new System.Drawing.Size(194, 41);
-            this.importMMButton.TabIndex = 60;
-            this.importMMButton.Text = "Import Master Material";
-            this.importMMButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.importMMButton.UseVisualStyleBackColor = true;
-            this.importMMButton.Click += new System.EventHandler(this.importMMButton_Click);
-            // 
-            // backButton
-            // 
-            this.backButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.backButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backButton.Image = global::SMTPE.Properties.Resources.icons8_reply_arrow_20;
-            this.backButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.backButton.Location = new System.Drawing.Point(1262, 70);
-            this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(76, 40);
-            this.backButton.TabIndex = 58;
-            this.backButton.Text = "Back";
-            this.backButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.backButton.UseVisualStyleBackColor = true;
-            this.backButton.Click += new System.EventHandler(this.backButton_Click);
-            // 
             // refreshLbl
             // 
             this.refreshLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -242,11 +212,77 @@ namespace SMTPE
             this.refreshLbl.Text = "Refresh";
             this.refreshLbl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.refreshLbl_LinkClicked);
             // 
-            // MasterMaterialXM
+            // BackButton
+            // 
+            this.BackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BackButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.BackButton.Depth = 0;
+            this.BackButton.HighEmphasis = true;
+            this.BackButton.Icon = global::SMTPE.Properties.Resources.icons8_reply_arrow_20;
+            this.BackButton.Location = new System.Drawing.Point(1251, 75);
+            this.BackButton.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.BackButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.BackButton.Name = "BackButton";
+            this.BackButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.BackButton.Size = new System.Drawing.Size(87, 36);
+            this.BackButton.TabIndex = 263;
+            this.BackButton.Text = "Back";
+            this.BackButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.BackButton.UseAccentColor = false;
+            this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
+            // addBtn
+            // 
+            this.addBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.addBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.addBtn.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.addBtn.Depth = 0;
+            this.addBtn.HighEmphasis = true;
+            this.addBtn.Icon = global::SMTPE.Properties.Resources.icons8_add_20__2_;
+            this.addBtn.Location = new System.Drawing.Point(1163, 75);
+            this.addBtn.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.addBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.addBtn.Name = "addBtn";
+            this.addBtn.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.addBtn.Size = new System.Drawing.Size(78, 36);
+            this.addBtn.TabIndex = 264;
+            this.addBtn.Text = "Add";
+            this.addBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.addBtn.UseAccentColor = false;
+            this.addBtn.UseVisualStyleBackColor = true;
+            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
+            // 
+            // importBtn
+            // 
+            this.importBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.importBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.importBtn.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.importBtn.Depth = 0;
+            this.importBtn.HighEmphasis = true;
+            this.importBtn.Icon = global::SMTPE.Properties.Resources.icons8_import_file_20;
+            this.importBtn.Location = new System.Drawing.Point(1050, 75);
+            this.importBtn.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.importBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.importBtn.Name = "importBtn";
+            this.importBtn.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.importBtn.Size = new System.Drawing.Size(103, 36);
+            this.importBtn.TabIndex = 265;
+            this.importBtn.Text = "Import";
+            this.importBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.importBtn.UseAccentColor = false;
+            this.importBtn.UseVisualStyleBackColor = true;
+            this.importBtn.Click += new System.EventHandler(this.importMMButton_Click);
+            // 
+            // MasterMaterial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1366, 768);
+            this.Controls.Add(this.importBtn);
+            this.Controls.Add(this.addBtn);
+            this.Controls.Add(this.BackButton);
             this.Controls.Add(this.refreshLbl);
             this.Controls.Add(this.txtDisplayPageNo);
             this.Controls.Add(this.btnNextPage);
@@ -254,16 +290,14 @@ namespace SMTPE
             this.Controls.Add(this.btnLastPage);
             this.Controls.Add(this.btnFirstPage);
             this.Controls.Add(this.truncateMasterMaterialLbl);
-            this.Controls.Add(this.importMMButton);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.backButton);
             this.Controls.Add(this.tbSearch);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewMasterMaterialList);
             this.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
-            this.Name = "MasterMaterialXM";
-            this.Text = "Master Material XM";
+            this.Name = "MasterMaterial";
+            this.Text = "Master Material";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MasterMaterial_FormClosing);
             this.Load += new System.EventHandler(this.MasterMaterial_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMasterMaterialList)).EndInit();
@@ -278,8 +312,6 @@ namespace SMTPE
         private System.Windows.Forms.TextBox tbSearch;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridViewMasterMaterialList;
-        private System.Windows.Forms.Button backButton;
-        private System.Windows.Forms.Button importMMButton;
         private System.Windows.Forms.LinkLabel truncateMasterMaterialLbl;
         public System.Windows.Forms.ToolStripStatusLabel toolStripUsername;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
@@ -292,5 +324,8 @@ namespace SMTPE
         private System.Windows.Forms.Button btnLastPage;
         private System.Windows.Forms.Button btnFirstPage;
         private System.Windows.Forms.LinkLabel refreshLbl;
+        private MaterialSkin.Controls.MaterialButton BackButton;
+        private MaterialSkin.Controls.MaterialButton addBtn;
+        private MaterialSkin.Controls.MaterialButton importBtn;
     }
 }

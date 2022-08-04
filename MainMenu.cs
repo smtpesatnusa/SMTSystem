@@ -47,7 +47,6 @@ namespace SMTPE
                 // cek jika ada selected menu 
                 if (dt.Rows.Count > 0)
                 {
-
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         if (dt.Rows[i]["roleID"].ToString() == "1")
@@ -113,6 +112,14 @@ namespace SMTPE
                         if (dt.Rows[i]["roleID"].ToString() == "16")
                         {
                             userRoleToolStripMenuItem.Visible = true;
+                        }
+                        if (dt.Rows[i]["roleID"].ToString() == "17")
+                        {
+                            forecastListToolStripMenuItem.Visible = true;
+                        }
+                        if (dt.Rows[i]["roleID"].ToString() == "18")
+                        {
+                            uPHModelToolStripMenuItem.Visible = true;
                         }
                     }
                 }

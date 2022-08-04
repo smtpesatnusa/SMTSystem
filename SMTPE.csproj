@@ -200,10 +200,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustControl\CustControl.cs">
+    <Compile Include="LabelPartnumber\CustControl.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CustControl\CustControl.Designer.cs">
+    <Compile Include="LabelPartnumber\CustControl.Designer.cs">
       <DependentUpon>CustControl.cs</DependentUpon>
     </Compile>
     <Compile Include="LabelPartnumber\LabelPN.cs">
@@ -218,22 +218,22 @@
     <Compile Include="LabelPartnumber\LabelPNList.Designer.cs">
       <DependentUpon>LabelPNList.cs</DependentUpon>
     </Compile>
-    <Compile Include="MasterMaterial\AddMasterMaterial.cs">
+    <Compile Include="MasterData\MasterMaterial\AddMasterMaterial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MasterMaterial\AddMasterMaterial.Designer.cs">
+    <Compile Include="MasterData\MasterMaterial\AddMasterMaterial.Designer.cs">
       <DependentUpon>AddMasterMaterial.cs</DependentUpon>
     </Compile>
-    <Compile Include="MasterMaterial\ImportMasterMaterial.cs">
+    <Compile Include="MasterData\MasterMaterial\ImportMasterMaterial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MasterMaterial\ImportMasterMaterial.Designer.cs">
+    <Compile Include="MasterData\MasterMaterial\ImportMasterMaterial.Designer.cs">
       <DependentUpon>ImportMasterMaterial.cs</DependentUpon>
     </Compile>
-    <Compile Include="MasterMaterial\MasterMaterial.cs">
+    <Compile Include="MasterData\MasterMaterial\MasterMaterial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MasterMaterial\MasterMaterial.Designer.cs">
+    <Compile Include="MasterData\MasterMaterial\MasterMaterial.Designer.cs">
       <DependentUpon>MasterMaterial.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuControl\menuControl.cs">
@@ -248,10 +248,10 @@
     <Compile Include="ModelUPH\Addmodeluph.Designer.cs">
       <DependentUpon>Addmodeluph.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModelUPH\Modeluphlist.cs">
+    <Compile Include="MasterData\Modeluphlist.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ModelUPH\Modeluphlist.Designer.cs">
+    <Compile Include="MasterData\Modeluphlist.Designer.cs">
       <DependentUpon>Modeluphlist.cs</DependentUpon>
     </Compile>
     <Compile Include="ForecastList\DetailForecastList.cs">
@@ -290,16 +290,16 @@
     <Compile Include="PackingList\PackingList.Designer.cs">
       <DependentUpon>PackingList.cs</DependentUpon>
     </Compile>
-    <Compile Include="MasterMaterial\ImportMasterMaterialXM.cs">
+    <Compile Include="MasterData\MasterMaterial\ImportMasterMaterialXM.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MasterMaterial\ImportMasterMaterialXM.Designer.cs">
+    <Compile Include="MasterData\MasterMaterial\ImportMasterMaterialXM.Designer.cs">
       <DependentUpon>ImportMasterMaterialXM.cs</DependentUpon>
     </Compile>
-    <Compile Include="MasterMaterial\MasterMaterialXM.cs">
+    <Compile Include="MasterData\MasterMaterial\MasterMaterialXM.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MasterMaterial\MasterMaterialXM.Designer.cs">
+    <Compile Include="MasterData\MasterMaterial\MasterMaterialXM.Designer.cs">
       <DependentUpon>MasterMaterialXM.cs</DependentUpon>
     </Compile>
     <Compile Include="Modelmaster\Addmodelmaster.cs">
@@ -308,10 +308,10 @@
     <Compile Include="Modelmaster\Addmodelmaster.Designer.cs">
       <DependentUpon>Addmodelmaster.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modelmaster\Modelmasterlist.cs">
+    <Compile Include="MasterData\Modelmasterlist.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modelmaster\Modelmasterlist.Designer.cs">
+    <Compile Include="MasterData\Modelmasterlist.Designer.cs">
       <DependentUpon>Modelmasterlist.cs</DependentUpon>
     </Compile>
     <Compile Include="PrintLabel\PrintLabelNew.cs">
@@ -368,37 +368,37 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup\MessagesHelper.cs" />
-    <Compile Include="Department\Departmentlist.cs">
+    <Compile Include="Administration\Departmentlist.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Department\Departmentlist.Designer.cs">
+    <Compile Include="Administration\Departmentlist.Designer.cs">
       <DependentUpon>Departmentlist.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserLevel\UserLevellist.cs">
+    <Compile Include="Administration\UserLevellist.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserLevel\UserLevellist.Designer.cs">
+    <Compile Include="Administration\UserLevellist.Designer.cs">
       <DependentUpon>UserLevellist.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserRole\UserRole.cs">
+    <Compile Include="Administration\UserRole.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserRole\UserRole.Designer.cs">
+    <Compile Include="Administration\UserRole.Designer.cs">
       <DependentUpon>UserRole.cs</DependentUpon>
     </Compile>
-    <Compile Include="User\ChangePassword.cs">
+    <Compile Include="ChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User\ChangePassword.Designer.cs">
+    <Compile Include="ChangePassword.Designer.cs">
       <DependentUpon>ChangePassword.cs</DependentUpon>
     </Compile>
-    <Compile Include="User\Userlist.cs">
+    <Compile Include="Administration\Userlist.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User\Userlist.Designer.cs">
+    <Compile Include="Administration\Userlist.Designer.cs">
       <DependentUpon>Userlist.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="CustControl\CustControl.resx">
+    <EmbeddedResource Include="LabelPartnumber\CustControl.resx">
       <DependentUpon>CustControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LabelPartnumber\LabelPN.resx">
@@ -407,13 +407,13 @@
     <EmbeddedResource Include="LabelPartnumber\LabelPNList.resx">
       <DependentUpon>LabelPNList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MasterMaterial\AddMasterMaterial.resx">
+    <EmbeddedResource Include="MasterData\MasterMaterial\AddMasterMaterial.resx">
       <DependentUpon>AddMasterMaterial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MasterMaterial\ImportMasterMaterial.resx">
+    <EmbeddedResource Include="MasterData\MasterMaterial\ImportMasterMaterial.resx">
       <DependentUpon>ImportMasterMaterial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MasterMaterial\MasterMaterial.resx">
+    <EmbeddedResource Include="MasterData\MasterMaterial\MasterMaterial.resx">
       <DependentUpon>MasterMaterial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuControl\menuControl.resx">
@@ -422,7 +422,7 @@
     <EmbeddedResource Include="ModelUPH\Addmodeluph.resx">
       <DependentUpon>Addmodeluph.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ModelUPH\Modeluphlist.resx">
+    <EmbeddedResource Include="MasterData\Modeluphlist.resx">
       <DependentUpon>Modeluphlist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ForecastList\DetailForecastList.resx">
@@ -443,16 +443,16 @@
     <EmbeddedResource Include="PackingList\PackingList.resx">
       <DependentUpon>PackingList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MasterMaterial\ImportMasterMaterialXM.resx">
+    <EmbeddedResource Include="MasterData\MasterMaterial\ImportMasterMaterialXM.resx">
       <DependentUpon>ImportMasterMaterialXM.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MasterMaterial\MasterMaterialXM.resx">
+    <EmbeddedResource Include="MasterData\MasterMaterial\MasterMaterialXM.resx">
       <DependentUpon>MasterMaterialXM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modelmaster\Addmodelmaster.resx">
       <DependentUpon>Addmodelmaster.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modelmaster\Modelmasterlist.resx">
+    <EmbeddedResource Include="MasterData\Modelmasterlist.resx">
       <DependentUpon>Modelmasterlist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoadForm.resx">
@@ -481,19 +481,19 @@
     <EmbeddedResource Include="ScrapPartnumber\ScrapPartnumber.resx">
       <DependentUpon>ScrapPartnumber.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Department\Departmentlist.resx">
+    <EmbeddedResource Include="Administration\Departmentlist.resx">
       <DependentUpon>Departmentlist.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserLevel\UserLevellist.resx">
+    <EmbeddedResource Include="Administration\UserLevellist.resx">
       <DependentUpon>UserLevellist.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserRole\UserRole.resx">
+    <EmbeddedResource Include="Administration\UserRole.resx">
       <DependentUpon>UserRole.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User\ChangePassword.resx">
+    <EmbeddedResource Include="ChangePassword.resx">
       <DependentUpon>ChangePassword.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User\Userlist.resx">
+    <EmbeddedResource Include="Administration\Userlist.resx">
       <DependentUpon>Userlist.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -591,6 +591,7 @@
     <Content Include="Resources\icons8-purchase-order-20.png" />
     <Content Include="Resources\icons8-time-machine-30.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>if exist "$(TargetPath).locked" del "$(TargetPath).locked"

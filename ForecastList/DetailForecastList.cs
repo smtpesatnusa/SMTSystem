@@ -2,19 +2,15 @@
 using MaterialSkin.Controls;
 using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace SMTPE
 {
     public partial class DetailForecastList : MaterialForm
     {
-        LoadForm lf = new LoadForm();
         ConnectionDB connectionDB = new ConnectionDB();
-
-        string partnumber, materialSAP, model, prefix, suffix;
 
         public DetailForecastList()
         {
@@ -23,9 +19,9 @@ namespace SMTPE
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            PackingList packingList = new PackingList();
-            packingList.toolStripUsername.Text = toolStripUsername.Text;
-            packingList.Show();
+            ForecastList forecastList = new ForecastList();
+            forecastList.toolStripUsername.Text = toolStripUsername.Text;
+            forecastList.Show();
             this.Hide();
         }
 
@@ -34,67 +30,51 @@ namespace SMTPE
             dateTimeNow.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss");
         }
 
-        private void LoadDataPackingList()
+        private void LoadData()
         {
             try
             {
-                string query = "SELECT palletNo, projectmodel, soandline, poandline, partno, " +
-                    "tbl_packingdetail.desc, model, qtyperctn, totalctn, totalqty, unit, cou," +
-                    " netweight, grossweight, volume FROM tbl_packingdetail WHERE packingno = '" + tbPackingListNo.Text + "'";
+                string query = "SELECT a.model, c.uph, SUM(a.date1) AS date1, SUM(a.date2) AS date2, SUM(a.date3) AS date3, SUM(a.date4) AS date4, SUM(a.date5) AS date5, SUM(a.date6) AS date6, SUM(a.date7) AS date7, SUM(a.date8) AS date8, SUM(a.date9) AS date9, SUM(a.date10) AS date10" +
+                    ", SUM(a.date11) AS date11, SUM(a.date12) AS date12, SUM(a.date13) AS date13, SUM(a.date14) AS date14, SUM(a.date15) AS date15, SUM(a.date16) AS date16, SUM(a.date17) AS date17, SUM(a.date18) AS date18, SUM(a.date19) AS date19, SUM(a.date20) AS date20 " +
+                    ", SUM(a.date21) AS date21, SUM(a.date22) AS date22, SUM(a.date23) AS date23, SUM(a.date24) AS date24, SUM(a.date25) AS date25, SUM(a.date26) AS date26, SUM(a.date27) AS date27, SUM(a.date28) AS date28, SUM(a.date29) AS date29, SUM(a.date30) AS date30, SUM(a.date31) AS date31 " +
+                    "FROM tbl_forecastdetail a, tbl_forecastlist b, tbl_masteruph c, tbl_model d WHERE b.id = a.forecastid AND c.model = d.id AND a.model = d.model AND " +
+                    "b.forecastlist = '"+tbForecastListNo.Text+"' GROUP BY a.forecastid, a.model, c.uph ";
 
                 using (MySqlDataAdapter adpt = new MySqlDataAdapter(query, connectionDB.connection))
                 {
                     DataSet dset = new DataSet();
                     adpt.Fill(dset);
 
-                    dataGridViewPlDetail.DataSource = dset.Tables[0];
-                    dataGridViewPlDetail.Columns.Add("columnMaterial", "material");
-                    dataGridViewPlDetail.Columns.Add("columnMaterialStatus", "status");
+                    dataGridViewFCT.DataSource = dset.Tables[0];
                 }
 
-                //get material name by model and check in master material
-                for (int i = 0; i < dataGridViewPlDetail.Rows.Count; i++)
+                string query2 = "SELECT a.model, c.uph, ROUND(SUM(a.date1)/(c.uph*7.17),1) AS date1, ROUND(SUM(a.date2)/(c.uph*7.17),2) AS date2, " +
+                    "ROUND(SUM(a.date3) / (c.uph * 7.17), 2) AS date3, ROUND(SUM(a.date4) / (c.uph * 7.17), 2) AS date4," +
+                    "ROUND(SUM(a.date5) / (c.uph * 7.17), 2) AS date5, ROUND(SUM(a.date6) / (c.uph * 7.17), 2) AS date6, " +
+                    "ROUND(SUM(a.date7) / (c.uph * 7.17), 2) AS date7, ROUND(SUM(a.date8) / (c.uph * 7.17), 2) AS date8, ROUND(SUM(a.date9) / (c.uph * 7.17), 2) AS date9," +
+                    "ROUND(SUM(a.date10) / (c.uph * 7.17), 2) AS date10, ROUND(SUM(a.date11) / (c.uph * 7.17), 2) AS date11, " +
+                    "ROUND(SUM(a.date12) / (c.uph * 7.17), 2) AS date12, ROUND(SUM(a.date13) / (c.uph * 7.17), 2) AS date13," +
+                    "ROUND(SUM(a.date14) / (c.uph * 7.17), 2) AS date14, ROUND(SUM(a.date15) / (c.uph * 7.17), 2) AS date15," +
+                    "ROUND(SUM(a.date16) / (c.uph * 7.17), 2) AS date16, ROUND(SUM(a.date17) / (c.uph * 7.17), 2) AS date17," +
+                    "ROUND(SUM(a.date18) / (c.uph * 7.17), 2) AS date18, ROUND(SUM(a.date19) / (c.uph * 7.17), 2) AS date19," +
+                    "ROUND(SUM(a.date20) / (c.uph * 7.17), 2) AS date20, ROUND(SUM(a.date21) / (c.uph * 7.17), 2) AS date21," +
+                    "ROUND(SUM(a.date22) / (c.uph * 7.17), 2) AS date22, ROUND(SUM(a.date23) / (c.uph * 7.17), 2) AS date23," +
+                    "ROUND(SUM(a.date24) / (c.uph * 7.17), 2) AS date24, ROUND(SUM(a.date25) / (c.uph * 7.17), 2) AS date25," +
+                    "ROUND(SUM(a.date26) / (c.uph * 7.17), 2) AS date26, ROUND(SUM(a.date27) / (c.uph * 7.17), 2) AS date27," +
+                    "ROUND(SUM(a.date28) / (c.uph * 7.17), 2) AS date28, ROUND(SUM(a.date29) / (c.uph * 7.17), 2) AS date29," +
+                    "ROUND(SUM(a.date30) / (c.uph * 7.17), 2) AS date30, ROUND(SUM(a.date31) / (c.uph * 7.17), 2) AS date31 " +
+                    "FROM tbl_forecastdetail a, tbl_forecastlist b, tbl_masteruph c, tbl_model d WHERE b.id = a.forecastid " +
+                    "AND c.model = d.id AND a.model = d.model AND b.forecastlist = '" + tbForecastListNo.Text + "' GROUP BY a.forecastid, a.model, c.uph ";
+
+                using (MySqlDataAdapter adpt2 = new MySqlDataAdapter(query2, connectionDB.connection))
                 {
-                    //get prefix and suffix
-                    model = dataGridViewPlDetail.Rows[i].Cells[1].Value.ToString();
-                    partnumber = dataGridViewPlDetail.Rows[i].Cells[4].Value.ToString();
+                    DataSet dset2 = new DataSet();
+                    adpt2.Fill(dset2);
 
-                    string querymodel = "SELECT * FROM tbl_model WHERE model = '" + model + "'";
-                    using (MySqlDataAdapter adptmodel = new MySqlDataAdapter(querymodel, connectionDB.connection))
-                    {
-                        DataTable dsetmodel = new DataTable();
-                        adptmodel.Fill(dsetmodel);
-                        if (dsetmodel.Rows.Count > 0)
-                        {
-                            prefix = dsetmodel.Rows[0]["code"].ToString();
-                            suffix = dsetmodel.Rows[0]["taping"].ToString();
-                        }
-                        else
-                        {
-                            dataGridViewPlDetail.Rows[i].Cells[16].Value = "Model not Found in Master Model";
-                        }
-                    }
-
-                    materialSAP = prefix + "" + partnumber + "" + suffix;
-                    dataGridViewPlDetail.Rows[i].Cells[15].Value = materialSAP;
-
-                    string querymaterial = "SELECT * FROM tbl_mastermaterial WHERE material = '"+materialSAP+"'";
-                    using (MySqlDataAdapter adptmaterial = new MySqlDataAdapter(querymaterial, connectionDB.connection))
-                    {
-                        DataTable dsetmaterial = new DataTable();
-                        adptmaterial.Fill(dsetmaterial);
-                        if (dsetmaterial.Rows.Count > 0)
-                        {
-                            dataGridViewPlDetail.Rows[i].Cells[16].Value = "Material Ok";
-                        }
-                        else
-                        {
-                            dataGridViewPlDetail.Rows[i].Cells[16].Value = "Missing Material";
-                        }
-                    }
+                    dataGridViewFCT2.DataSource = dset2.Tables[0];
                 }
 
-                totalLbl.Text = dataGridViewPlDetail.Rows.Count.ToString();
+                totalLbl.Text = dataGridViewFCT.Rows.Count.ToString();
                 connectionDB.connection.Close();
             }
             catch (Exception ex)
@@ -104,105 +84,39 @@ namespace SMTPE
             }
         }
 
-
-        private void LoadDataInbound()
+        private void exportButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                //string query = "SELECT projectModel, REPLACE(packingNo, 'P','I') AS uniqueId, 'PTSN', 'PTSN', 'S01', 'ZPCC', '', 'IDR', '1000000013', '', partno, ''," +
-                //    " '', 'SM11', 'R001', SUM(totalqty) AS total, 'PC', '0', '1000', '', 'X', SUBSTRING_INDEX(soandline, '/', 1) AS supplierInvoice," +
-                //    "SUBSTRING_INDEX(soandline, '/', -1) AS supplierInvoice, 'SI4B', REPLACE(packingNo, 'P', 'I') AS shipInvoice," +
-                //    "'','','','','','','','','','','', 'ID', '', '', tbl_packingdetail.desc, '', '' FROM tbl_packingdetail " +
-                //    "WHERE packingNo = '"+tbPackingListNo.Text+ "' GROUP BY partno ORDER BY id ";
-
-                string query = "SELECT ANY_VALUE(projectModel) AS projectModel, REPLACE(packingNo, 'P','I') AS uniqueId, 'PTSN', 'PTSN', 'S01', 'ZPCC', ''," +
-                    " 'IDR', '1000000013', '', partno, '', '', 'SM11', 'R001', SUM(totalqty) AS total, 'PC', '0', '1000', '', 'X', " +
-                    "ANY_VALUE(SUBSTRING_INDEX(soandline, '/', 1)) AS supplierInvoice, ANY_VALUE( SUBSTRING_INDEX(soandline, '/', -1)) AS supplierInvoice, 'SI4B', " +
-                    "REPLACE(packingNo, 'P', 'I') AS shipInvoice, '','','','','','','','','','','', 'ID', '', '', ANY_VALUE(tbl_packingdetail.desc) AS descr, '', '' " +
-                    "FROM tbl_packingdetail WHERE packingNo = '" + tbPackingListNo.Text + "' GROUP BY partno ORDER BY id ";
-
-                using (MySqlDataAdapter adpt = new MySqlDataAdapter(query, connectionDB.connection))
-                {
-                    DataSet dset = new DataSet();
-                    adpt.Fill(dset);
-
-                    dataGridViewInbound.DataSource = dset.Tables[0];
-                }
-
-                //get material name by model and check in master material
-                for (int i = 0; i < dataGridViewInbound.Rows.Count; i++)
-                {
-                    //get prefix and suffix
-                    model = dataGridViewInbound.Rows[i].Cells[0].Value.ToString();
-                    partnumber = dataGridViewInbound.Rows[i].Cells[10].Value.ToString();
-                    //set item no
-                    int itemno = (i + 1) * 10;
-                    dataGridViewInbound.Rows[i].Cells[9].Value = itemno.ToString();
-                    //set invoiceDate
-                    string invoiceDate = DateTime.ParseExact(tbInvoiceDate.Text, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture).ToString("dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
-                    dataGridViewInbound.Rows[i].Cells[6].Value = invoiceDate.ToString();
-
-                    DateTime date = DateTime.ParseExact(tbInvoiceDate.Text, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
-                    DateTime dateTimeETA = date.AddDays(2);
-
-                    dataGridViewInbound.Rows[i].Cells[19].Value = dateTimeETA.ToString("dd.MM.yyyy");
-
-                    string querymodel = "SELECT * FROM tbl_model WHERE model = '" + model + "'";
-                    using (MySqlDataAdapter adptmodel = new MySqlDataAdapter(querymodel, connectionDB.connection))
-                    {
-                        DataTable dsetmodel = new DataTable();
-                        adptmodel.Fill(dsetmodel);
-                        if (dsetmodel.Rows.Count > 0)
-                        {
-                            prefix = dsetmodel.Rows[0]["code"].ToString();
-                            suffix = dsetmodel.Rows[0]["taping"].ToString();
-                        }
-                        else
-                        {
-                            dataGridViewInbound.Rows[i].Cells[40].Value = "Model not Found in Master Model";
-                        }
-                    }
-
-                    materialSAP = prefix + "" + partnumber + "" + suffix;
-                    dataGridViewInbound.Rows[i].Cells[10].Value = materialSAP;
-
-                    string querymaterial = "SELECT * FROM tbl_mastermaterial WHERE material = '" + materialSAP + "'";
-                    using (MySqlDataAdapter adptmaterial = new MySqlDataAdapter(querymaterial, connectionDB.connection))
-                    {
-                        DataTable dsetmaterial = new DataTable();
-                        adptmaterial.Fill(dsetmaterial);
-                        if (dsetmaterial.Rows.Count > 0)
-                        {
-                            dataGridViewInbound.Rows[i].Cells[41].Value = "Material Ok";
-                        }
-                        else
-                        {
-                            dataGridViewInbound.Rows[i].Cells[41].Value = "Missing Material";
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                connectionDB.connection.Close();
-                MessageBox.Show(ex.Message);
-            }
+            exportExcel();
         }
 
-
-        private void PackingList_Load(object sender, EventArgs e)
+        private void dataGridViewFCT_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            //set full with taskbar below
-            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
-            this.WindowState = FormWindowState.Maximized;
-            //icon
-            this.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+            //memberi nomor row
+            for (int i = 0; i < dataGridViewFCT.Rows.Count; ++i)
+            {
+                int row = i + 1;
+                dataGridViewFCT.Rows[i].HeaderCell.Value = "" + row;
+            }
 
-            LoadDataPackingList();
-            LoadDataInbound();
+            // not allow to sort table
+            for (int i = 0; i < dataGridViewFCT.Columns.Count; i++)
+            {
+                dataGridViewFCT.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+
+            dataGridViewFCT.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+
+            // Set table title
+            string[] title = { "MODEL", "UPH", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" };
+            for (int i = 0; i < title.Length; i++)
+            {
+                dataGridViewFCT.Columns[i].HeaderText = "" + title[i];
+            }
+
+            dataGridViewFCT.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
         }
 
-        private void PackingList_FormClosing(object sender, FormClosingEventArgs e)
+        private void DetailForecastList_FormClosing(object sender, FormClosingEventArgs e)
         {
             string message = "Are you sure you want to close this application?";
             string title = "Confirm Close";
@@ -220,214 +134,53 @@ namespace SMTPE
             }
         }
 
-        private void dataGridViewPlDetail_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void DetailForecastList_Load(object sender, EventArgs e)
         {
-            //memberi nomor row
-            for (int i = 0; i < dataGridViewPlDetail.Rows.Count; ++i)
-            {
-                int row = i + 1;
-                dataGridViewPlDetail.Rows[i].HeaderCell.Value = "" + row;
-            }
+            //set full with taskbar below
+            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+            this.WindowState = FormWindowState.Maximized;
+            //icon
+            this.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
 
-            // not allow to sort table
-            for (int i = 0; i < dataGridViewPlDetail.Columns.Count; i++)
-            {
-                dataGridViewPlDetail.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
-            }
-
-            dataGridViewPlDetail.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+            LoadData();
         }
 
-        private void planBtn_Click(object sender, EventArgs e)
+        public List<DateTime> getAllDates(int year, int month)
         {
-            exportExcelPlan();
+            var ret = new List<DateTime>();
+            for (int i = 1; i <= DateTime.DaysInMonth(year, month); i++)
+            {
+                ret.Add(new DateTime(year, month, i));
+            }
+            return ret;
         }
 
-        private void exportExcelPlan()
+
+        private void exportExcel()
         {
             try
             {
                 string directoryFile = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                directoryFile = directoryFile + "\\Inbound SMT\\" + tbPackingListNo.Text;
-                string filename =  tbPackingListNo.Text.Replace("P","") + "-Template ASN - Upload to SAP.xlsx";
+                directoryFile = directoryFile + "\\ALFASYS\\FCT SMT\\" + tbForecastListNo.Text;
+                string filename =  tbForecastListNo.Text+ ".xlsx";
                 using (var workbook = new XLWorkbook())
                 {
-                    //worksheet SAP upload inbound
-                    var worksheetInbound = workbook.Worksheets.Add("MW-031 Template Upload Inbound ");
-                    worksheetInbound.Rows().Style.Font.FontName = "Calibri";
-                    worksheetInbound.Rows().Style.Font.FontSize = 11;
-
-                    //to show gridlines
-                    worksheetInbound.ShowGridLines = true;
-
-                    //set column width
-                    worksheetInbound.Columns().Width = 8.22;
-                    worksheetInbound.Column(1).Width = 20.78;
-                    worksheetInbound.Column(5).Width = 10.22;
-                    worksheetInbound.Column(6).Width = 16.33;
-                    worksheetInbound.Column(8).Width = 11.89;
-                    worksheetInbound.Column(10).Width = 27;
-                    worksheetInbound.Column(11).Width = 20.22;
-                    worksheetInbound.Column(12).Width = 12.78;
-                    worksheetInbound.Column(15).Width = 10.44;
-                    worksheetInbound.Column(17).Width = 12.44;
-                    worksheetInbound.Column(19).Width = 11.78;
-                    worksheetInbound.Column(20).Width = 13.22;
-                    worksheetInbound.Column(21).Width = 12.33;
-                    worksheetInbound.Column(22).Width = 14.22;
-                    worksheetInbound.Column(23).Width = 29;
-                    worksheetInbound.Column(24).Width = 15.78;
-                    worksheetInbound.Column(29).Width = 13.44;
-                    worksheetInbound.Column(30).Width = 12.78;
-                    worksheetInbound.Column(31).Width = 11.22;
-                    worksheetInbound.Column(32).Width = 14.22;
-                    worksheetInbound.Column(33).Width = 11.78;
-                    worksheetInbound.Column(34).Width = 12;
-                    worksheetInbound.Column(35).Width = 19;
-                    worksheetInbound.Column(36).Width = 21.67;
-                    worksheetInbound.Column(37).Width = 12.22;
-                    worksheetInbound.Column(38).Width = 14.22;
-                    worksheetInbound.Column(39).Width = 22.22;
-                    worksheetInbound.Column(40).Width = 24.33;                                       
-
-                    worksheetInbound.Rows().Height = 14.4;
-                    worksheetInbound.Row(2).Height = 110.1;
-
-                    worksheetInbound.PageSetup.Margins.Top = 0.5;
-                    worksheetInbound.PageSetup.Margins.Bottom = 0.25;
-                    worksheetInbound.PageSetup.Margins.Left = 0.25;
-                    worksheetInbound.PageSetup.Margins.Right = 0;
-                    worksheetInbound.PageSetup.Margins.Header = 0.5;
-                    worksheetInbound.PageSetup.Margins.Footer = 0.25;
-                    worksheetInbound.PageSetup.CenterHorizontally = true;
-
-                    worksheetInbound.Row(1).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
-                    worksheetInbound.Row(1).Style.Alignment.SetVertical(XLAlignmentVerticalValues.Center);
-
-                    // Set title row 1
-                    string[] header = {"", "VERUR_LA",  "BUKRS", "EKORG", "EKGRP", "BSART", "EBDAT", "WAERS", "ELIFN", "EBELP", "MATNR40", "ZMATNR", "ZKUNNR",
-                        "WERKS", "LGORT_D", "QTY_PO", "BSTME", "BAPICUREXT", "EPEIN", "LFDAT", "UMSON", "KDMAT", "LIFEXPOS", "ZSTYPE" , "ZSHPIV" , "ZBORNR" ,
-                        "ZBORDT", "ZFORWD", "ZREMARKS", "ZNCV", "ZNCV_REASON", "PARVW_TO", "PRVW_TI", "PARVW_IO",   "PARVW_II", "UNREZ", "BORGR_GRP", "ZHAND", "ZLOCAL", "MAKTX", "NOREFERENCE" };
-                    for (int i = 1; i < header.Length; i++)
-                    {
-                        worksheetInbound.Cell(1, i).Value = "" + header[i];
-                    }
-
-                    // set border 
-                    worksheetInbound.Range(worksheetInbound.Cell(1, 1), worksheetInbound.Cell(5, 40)).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
-                    worksheetInbound.Range(worksheetInbound.Cell(1, 1), worksheetInbound.Cell(5, 40)).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
-                    worksheetInbound.Range(worksheetInbound.Cell(1, 1), worksheetInbound.Cell(5, 40)).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
-                    // set color header with rgb row 1
-                    worksheetInbound.Range(worksheetInbound.Cell(1, 1), worksheetInbound.Cell(1, 40)).Style.Fill.BackgroundColor = XLColor.FromArgb(0, 32, 96);
-                    //set font color
-                    worksheetInbound.Range(worksheetInbound.Cell(1, 1), worksheetInbound.Cell(1, 40)).Style.Font.FontColor = XLColor.White;
-
-                    // Set title row 3
-                    string[] row2 = {"", "Unique ID \nReference no from Customer : ASN no/Midoc no etc",   "Company Code\nFill PTSN", "Purch Org\nFill PTSN",
-                        "Purchasing grup\nFill S01", "Document Type\nConsign: ZPCC Buy & Sell : ZPOB ", "Document Date\nReference date from Customer Doc", "Currency" ,
-                        "Vendor\nBP Code ", "Item no\nIncrement of 10 ", "Material\n(SAP Material No) Can be blank if Colom K & L is filled. (SAP will mapping combination field K&L)",
-                        "Customer Material\nIF Column D blank, mandatory to fill this column", "Customer\nIf Column D blank, mandatory to fill this column",    "Plant", "Storage Location",
-                        "Quantity PO", "PO UoM", "Price\nOptional for Local Batam Max 2 decimal points", "Price Unit", "Delivery Date (ETA)", "Free Item\n- Fill X for ZPCC\n- For Buy and Sell fill X if Cust send free sample ",
-                        "Supplier Invoice No\nMandatory for Xiaomi", "Ext Item no(Invoice item No)\nMandatory for Xiaomi", "Shipping Invoice Type\nSI1I: SHP - INV IMPORT\nSI2N: SHP - INV Non - BTM FTZ\nSI3N: SHP - INV Non - BTM Non - FTZ\nSI4B: SHP - INV BATAM",
-                        "Shipping Invoice\nExternal Shipping Invoice No", "BL Original", "BL Original Date", "Forwarder BL Original\n(BP Code)", "Remarks", "NCV Ind\nFill X for NCV Item ",
-                        "NCV Reason\nFill Reason if NCV Ind is X",  "Transporter on Customer\n(BP Code)",   "Transporter on PTSN\n(BP Code)",
-                        "Insurance on Customer\n(BP Code)", "Insurance on PTSN\n(BP Code)", "Our Reference\n (For Roundtrip Indicator, Fill ROUNDTRIP for Inbound Roundtrip) ",
-                        "Inbound Delivery Group\n(Local / Overseas ID)\nLocal: fill ID\nOverseas: blank ",  "Hand Carry\nPut X if material is Hand Carry",  "Local Vendor\nPut X if vendor is Local Vendor ",
-                        "Description\nMandatory for ASN Import and NCV Item Non Stock ", "No Reference\nFill X if line item is non managed stock for NCV item . Line item with No Reference = X will be inputed only in Shipping Invoice Doc"};
-                    for (int i = 1; i < row2.Length; i++)
-                    {
-                        worksheetInbound.Cell(2, i).Value = "" + row2[i];
-                    }
-
-                    //wrap text in row 2
-                    worksheetInbound.Range(worksheetInbound.Cell(2, 1), worksheetInbound.Cell(2, 40)).Style.Alignment.WrapText = true;
-
-                    // set color header with rgb row 2
-                    worksheetInbound.Range(worksheetInbound.Cell(2, 1), worksheetInbound.Cell(2, 40)).Style.Fill.BackgroundColor = XLColor.FromArgb(217, 226, 243);
-                    //set align center
-                    //worksheetInbound.Range(worksheetInbound.Cell(2, 1), worksheetInbound.Cell(2, 40)).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
-                    worksheetInbound.Range(worksheetInbound.Cell(2, 1), worksheetInbound.Cell(2, 40)).Style.Alignment.SetVertical(XLAlignmentVerticalValues.Center);
-
-                    // Set title row 3
-                    string[] row3 = {"", "Mandatory", "Mandatory", "Mandatory", "Mandatory" , "Mandatory", "Mandatory", "Mandatory", "Mandatory", "Mandatory",
-                        "Conditional", "Conditional", "Conditional", "Mandatory", "Mandatory", "Mandatory", "Mandatory", "Conditional", "Optional", "Mandatory",
-                        "Optional", "Optional", "Optional", "Mandatory", "Mandatory", "Optional", "Optional", "Optional", "Optional", "Optional", "Optional", "Optional",
-                        "Optional", "Optional", "Optional", "Optional", "Optional", "Optional", "Optional", "Conditional", "Conditional" };
-                    for (int i = 1; i < row3.Length; i++)
-                    {
-                        worksheetInbound.Cell(3, i).Value = "" + row3[i];
-                    }
-
-                    // set color header with rgb row 3
-                    worksheetInbound.Range(worksheetInbound.Cell(3, 1), worksheetInbound.Cell(3, 40)).Style.Fill.BackgroundColor = XLColor.FromArgb(251, 228, 213);
-
-                    // Set title row 4
-                    string[] row4 = {"", "CHAR", "CHAR" , "CHAR", "CHAR", "CHAR", "DATS", "CUKY", "CHAR", "NUMC", "CHAR", "CHAR", "CHAR", "CHAR", "CHAR",
-                        "BSTMG", "UNIT", "DEC", "DEC", "DATS", "CHAR", "CHAR", "NUMC", "CHAR", "CHAR", "CHAR", "DATE", "CHAR", "CHAR", "CHAR", "CHAR", "CHAR",
-                        "CHAR", "CHAR", "CHAR", "CHAR", "CHAR", "CHAR", "CHAR", "CHAR", "CHAR" };
-                    for (int i = 1; i < row4.Length; i++)
-                    {
-                        worksheetInbound.Cell(4, i).Value = "" + row4[i];
-                    }
-
-                    // Set title row 5
-                    string[] row5 = {"", "35", "4", "4", "4", "4", "8", "5", "10", "5", "40", "80", "10", "4", "4", "13+3", "3", "", "5", "8", "1", "35", "6", "4",
-                        "40", "35", "10", "59", "1", "50", "10", "10", "10", "10", "12", "35","", "1", "1", "40", "1" };
-                    for (int i = 1; i < row5.Length; i++)
-                    {
-                        worksheetInbound.Cell(5, i).Value = "" + row5[i];
-                    }
-
-                    int cellRowIndexInbound = 6;
-                    int cellColumnIndexInbound = 1;
-
-                    // storing Each row and column value to excel sheet  
-                    for (int i = 0; i < dataGridViewInbound.Rows.Count; i++)
-                    {
-                        for (int j = 1; j < dataGridViewInbound.Columns.Count ; j++)
-                        {
-                            worksheetInbound.Cell(i + cellRowIndexInbound, j).Value = "'" + dataGridViewInbound.Rows[i].Cells[j].Value.ToString();
-                        }
-                    }
-
-                    int endPartInbound = dataGridViewInbound.Rows.Count + cellRowIndexInbound;
-
-
                     // worksheet plan
-                    var worksheet = workbook.Worksheets.Add("Plan-" + tbPackingListNo.Text);
+                    var worksheet = workbook.Worksheets.Add(tbForecastListNo.Text);
                     worksheet.Rows().Style.Font.FontName = "Calibri";
                     worksheet.Rows().Style.Font.FontSize = 11;
 
                     //to show gridlines
-                    worksheet.ShowGridLines = true;
+                    worksheet.ShowGridLines = false;
 
                     //set column width
-                    worksheet.Column(1).Width = 12;
-                    worksheet.Column(2).Width = 18;
-                    worksheet.Column(3).Width = 23.78;
-                    worksheet.Column(4).Width = 14.78;
-                    worksheet.Column(5).Width = 18.89;
-                    worksheet.Column(6).Width = 11.33;
-                    worksheet.Column(7).Width = 11.33;
-                    worksheet.Column(8).Width = 11.33;
-                    worksheet.Column(9).Width = 9.89;
-                    worksheet.Column(10).Width = 14.78;
-                    worksheet.Column(11).Width = 15.22;
-                    worksheet.Column(12).Width = 17;
-                    worksheet.Column(13).Width = 10.44;
-                    worksheet.Column(14).Width = 11;
-                    worksheet.Column(15).Width = 17.11;
-                    worksheet.Column(16).Width = 11.67;
-                    worksheet.Column(17).Width = 8.44;
-                    worksheet.Column(18).Width = 9.33;
-                    worksheet.Column(19).Width = 10;
-                    worksheet.Column(20).Width = 34;
-                    worksheet.Column(21).Width = 14.44;
-                    worksheet.Column(22).Width = 16.89;
-                    worksheet.Column(23).Width = 27.33;
+                    worksheet.Columns().Width = 10;
+                    worksheet.Column(1).Width = 4;
+                    worksheet.Column(2).Width = 12;
+                    worksheet.Column(3).Width = 12;
+                    worksheet.Column(4).Width = 12;
 
-                    worksheet.Rows().Height = 14.4;
-                    worksheet.Row(1).Height = 29.3;
+                    worksheet.Rows().Height = 18;
 
                     worksheet.PageSetup.Margins.Top = 0.5;
                     worksheet.PageSetup.Margins.Bottom = 0.25;
@@ -437,74 +190,179 @@ namespace SMTPE
                     worksheet.PageSetup.Margins.Footer = 0.25;
                     worksheet.PageSetup.CenterHorizontally = true;
 
-                    worksheet.Row(1).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Left);
-                    worksheet.Row(1).Style.Alignment.SetVertical(XLAlignmentVerticalValues.Center);
-                    worksheet.Cell(1, 1).Value = "Project Model";
-                    worksheet.Cell(1, 2).Value = "SO NO.&Line";
-                    worksheet.Cell(1, 3).Value = "Customer  PO# & Line";
-                    worksheet.Cell(1, 4).Value = "MI Part NO.";
-                    worksheet.Cell(1, 5).Value = "Description";
-                    worksheet.Cell(1, 6).Value = "Q'ty/CTN";
-                    worksheet.Cell(1, 7).Value = "Total CTNS";
-                    worksheet.Cell(1, 8).Value = "Total Q'ty";
-                    worksheet.Cell(1, 9).Value = "Country of origin ";
-                    worksheet.Cell(1, 10).Value = "Unit";
-                    worksheet.Cell(1, 11).Value = "Net Weight       (KGS)";
-                    worksheet.Cell(1, 12).Value = "Gross Weight   (KGS)";
-                    worksheet.Cell(1, 13).Value = "Volume (m³)";
-                    worksheet.Cell(1, 15).Value = "PackPnglPst NO.：";
-                    worksheet.Cell(1, 16).Value = "Invoice Date:";
-                    worksheet.Cell(1, 18).Value = "Ship term:";
-                    worksheet.Cell(1, 19).Value = "Incoterms:";
-                    worksheet.Cell(1, 20).Value = "Payment Term: ";
-                    worksheet.Cell(1, 21).Value = "Port of  Loading: ";
-                    worksheet.Cell(1, 22).Value = "Port of Destination:";
+                    // set text center
+                    worksheet.Range(worksheet.Cell(2, 2), worksheet.Cell(2, 35)).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+                    worksheet.Range(worksheet.Cell(2, 2), worksheet.Cell(2, 35)).Style.Alignment.SetVertical(XLAlignmentVerticalValues.Center);
+                    worksheet.Range(worksheet.Cell(2, 2), worksheet.Cell(2, 4)).Merge();
+                    worksheet.Cell(2, 2).Value = "PTSN CKD";
+                    worksheet.Cell(3, 2).Value = "MODEL";
+                    worksheet.Cell(3, 4).Value = "UPH";
+                    
+                    // date 1 to 31
+                    for (int i = 1; i <= 31; i++)
+                    {
+                        worksheet.Cell(2, 4+i).Value = i;
+                    }                        
 
                     // set border 
-                    worksheet.Range(worksheet.Cell(1, 1), worksheet.Cell(1, 22)).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
-                    worksheet.Range(worksheet.Cell(1, 1), worksheet.Cell(1, 23)).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                    worksheet.Range(worksheet.Cell(2, 5), worksheet.Cell(3, 35)).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                    worksheet.Range(worksheet.Cell(2, 5), worksheet.Cell(3, 35)).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
 
-                    // set color header with rgb
-                    worksheet.Range(worksheet.Cell(1, 1), worksheet.Cell(1, 13)).Style.Fill.BackgroundColor = XLColor.FromArgb(217, 226, 243);
-                    worksheet.Range(worksheet.Cell(1, 15), worksheet.Cell(1, 22)).Style.Fill.BackgroundColor = XLColor.FromArgb(217, 226, 243);
+                    // set color header
+                    worksheet.Range(worksheet.Cell(2, 2), worksheet.Cell(3, 5)).Style.Fill.BackgroundColor = XLColor.Yellow;
+                    worksheet.Range(worksheet.Cell(2, 5), worksheet.Cell(3, 35)).Style.Fill.BackgroundColor = XLColor.Black;
+                    worksheet.Range(worksheet.Cell(2, 5), worksheet.Cell(3, 35)).Style.Font.FontColor = XLColor.White;
+                    worksheet.Range(worksheet.Cell(2, 2), worksheet.Cell(3, 35)).Style.Font.Bold = true;
 
-                    int cellRowIndex = 2;
-                    int cellColumnIndex = 1;
+                    int cellRowIndex = 4;
+                    int cellColumnIndex = 3;
 
                     // storing Each row and column value to excel sheet  
-                    for (int i = 0; i < dataGridViewPlDetail.Rows.Count; i++)
+                    for (int i = 0; i < dataGridViewFCT.Rows.Count; i++)
                     {
-                        //from column 1-5
-                        for (int j = 1; j < 6; j++)
+                        for (int j = 0; j < dataGridViewFCT.Columns.Count; j++)
                         {
-                            worksheet.Cell(i + cellRowIndex, j).Value = "'" + dataGridViewPlDetail.Rows[i].Cells[j].Value.ToString();
-                        }
-                        //from column 7-14
-                        for (int j = 7; j < 15; j++)
-                        {
-                            string data = dataGridViewPlDetail.Rows[i].Cells[j].Value.ToString();
-                            if (data == "0")
+                            if (j == 0)
                             {
-                                data = "";
+                                worksheet.Cell(i + cellRowIndex, 2).Value = dataGridViewFCT.Rows[i].Cells[j].Value.ToString();
                             }
-                            worksheet.Cell(i + cellRowIndex, j - 1).Value = data;
+                            else
+                            {
+                                worksheet.Cell(i + cellRowIndex, j + cellColumnIndex).Value = dataGridViewFCT.Rows[i].Cells[j].Value.ToString();
+                            }                            
                         }
                     }
 
-                    for (int i = 0; i < dataGridViewPlDetail.Rows.Count; i++)
-                    {
-                        worksheet.Cell(cellRowIndex + i, 15).Value = tbPackingListNo.Text;
-                        worksheet.Cell(cellRowIndex + i, 16).Value = tbInvoiceDate.Text;
-                        worksheet.Cell(cellRowIndex + i, 18).Value = tbShipTerm.Text;
-                        worksheet.Cell(cellRowIndex + i, 19).Value = tbIncoterms.Text;
-                        worksheet.Cell(cellRowIndex + i, 20).Value = tbPaymentTerm.Text;
-                        worksheet.Cell(cellRowIndex + i, 21).Value = tbPortLoading.Text;
-                        worksheet.Cell(cellRowIndex + i, 22).Value = tbDestination.Text;
-                        worksheet.Cell(cellRowIndex + i, 23).Value = dataGridViewPlDetail.Rows[i].Cells[16].Value.ToString();
+                    int endPart = dataGridViewFCT.Rows.Count + cellRowIndex;
+                    int endCell = dataGridViewFCT.Rows.Count + 3;
 
+                    // set dok number format
+                    worksheet.Range(worksheet.Cell(4, 5), worksheet.Cell(endPart + 1, 35)).Style.NumberFormat.Format = "#,###;-#,###;-";
+                    // give color tan in demand result
+                    worksheet.Range(worksheet.Cell(endPart, 2), worksheet.Cell(endPart, 35)).Style.Fill.BackgroundColor = XLColor.FromArgb(197, 190, 151);
+                    worksheet.Cell(endPart, 3).Style.Font.Bold = true;
+                    worksheet.Cell(endPart, 3).Value = "TOTAL DEMAND QTY";
+
+                    #region insert data total demand Qty
+                    string[] column1 = { "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+                        "AA", "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ" };
+                    for (int i = 0; i < column1.Length; i++)
+                    {
+                        if (i < column1.Length - 1)
+                        {
+                            if (i == 13)
+                            {
+                                worksheet.Cell(endPart, i + 5).FormulaA1 = "=SUM(" + column1[i] + cellRowIndex + ":" + column1[i] + endCell + ")";
+                            }
+                            else
+                            {
+                                worksheet.Cell(endPart, i + 5).FormulaR1C1 = "=SUM(" + column1[i] + cellRowIndex + ":" + column1[i] + endCell + ")";
+                            }
+                        }
+                    }
+                    #endregion                    
+
+                    #region insert total data
+                    int cellDemand = dataGridViewFCT.Rows.Count + cellRowIndex;
+                    int nextcellDemand = cellDemand +1;
+
+                    // give color yellow in total result
+                    worksheet.Range(worksheet.Cell(endPart+1, 5), worksheet.Cell(endPart+1, 35)).Style.Fill.BackgroundColor = XLColor.Yellow;
+                                        
+                    string[] column = { "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+                        "AA", "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI" };
+                    for (int i = 0; i < column.Length; i++)
+                    {
+                        if (i< column.Length-1)
+                        {
+                            worksheet.Cell(endPart + 1, i + 5).FormulaR1C1 = "=" + column[i+1] + cellDemand + "+" + column[i] + nextcellDemand + "";
+                        }
+                    }
+                    #endregion
+
+                    int endFCT1 = endPart + 3;
+                    int endPart2 = dataGridViewFCT2.Rows.Count + endFCT1;
+
+                    // storing Each row and column value to excel sheet  
+                    for (int i = 0; i < dataGridViewFCT2.Rows.Count; i++)
+                    {
+                        for (int j = 0; j < dataGridViewFCT2.Columns.Count; j++)
+                        {
+                            if (j == 0)
+                            {
+                                worksheet.Cell(i + endFCT1, 2).Value = dataGridViewFCT2.Rows[i].Cells[j].Value.ToString();
+                            }
+                            else
+                            {
+                                worksheet.Cell(i + endFCT1, j + cellColumnIndex).Value = dataGridViewFCT2.Rows[i].Cells[j].Value.ToString();
+                            }
+                        }
                     }
 
-                    int endPart = dataGridViewPlDetail.Rows.Count + cellRowIndex;
+                    // give color tan 
+                    worksheet.Range(worksheet.Cell(endPart2, 2), worksheet.Cell(endPart2, 35)).Style.Fill.BackgroundColor = XLColor.FromArgb(197, 190, 151);
+                    worksheet.Cell(endPart2, 3).Style.Font.Bold = true;
+                    worksheet.Cell(endPart2, 3).Value = "TOTAL TEAM REQUIRED";
+
+                    int rowtotal = endPart2 - 1;
+
+                    //change number format
+                    worksheet.Range(worksheet.Cell(endFCT1, 5), worksheet.Cell(rowtotal, 35)).Style.NumberFormat.Format = "_(* #,##0.00_);_(* (#,##0.00);_(* \"-\"??_);_(@_)";
+                    worksheet.Range(worksheet.Cell(endPart2, 5), worksheet.Cell(1000, 35)).Style.NumberFormat.Format = "_(* #,#0.0_);_(* (#,#0.0);_(* \"-\"??_);_(@_)";
+
+                    #region insert sum data total team required
+                    string[] column2 = {  "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+                        "AA", "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ" };
+                    for (int i = 0; i < column2.Length; i++)
+                    {
+                        if (i < column2.Length - 1)
+                        {
+                            if (i == 13)
+                            {
+                                worksheet.Cell(endPart2, i + 5).FormulaA1 = "=SUM(" + column2[i] + endFCT1 + ":" + column2[i] + rowtotal + ")";
+                            }
+                            else
+                            {
+                                worksheet.Cell(endPart2, i + 5).FormulaR1C1 = "=SUM(" + column2[i]+ endFCT1 + ":" + column2[i] + rowtotal + ")";
+                            }
+                        }
+                    }
+                    #endregion
+
+                    worksheet.Cell(endPart2+1, 3).Value = "CURRENT TEAM";
+                    // give color red 
+                    worksheet.Range(worksheet.Cell(endPart2+2, 2), worksheet.Cell(endPart2+2, 35)).Style.Fill.BackgroundColor = XLColor.FromArgb(230, 185, 184);
+                    worksheet.Range(worksheet.Cell(endPart2+4, 5), worksheet.Cell(endPart2+4, 35)).Style.Fill.BackgroundColor = XLColor.FromArgb(230, 185, 184);
+                    worksheet.Cell(endPart2+2, 3).Value = "SHORTAGE TEAM";
+
+                    #region insert formula Shortage Team
+                    int requiredrow = endPart2;
+                    int currentrow = requiredrow+1;
+
+                    string[] column3 = { "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+                        "AA", "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ" };
+                    for (int i = 0; i < column3.Length; i++)
+                    {
+                        if (i < column3.Length - 1)
+                        {
+                            worksheet.Cell(endPart2 + 2, i + 5).FormulaR1C1 = "=" + column3[i] + currentrow + "-" + column3[i] + requiredrow + "";
+                        }
+                    }
+                    #endregion
+
+                    worksheet.Cell(endPart2 + 4, 3).Value = "ACCM SHORTAGE TEAM";
+                    #region insert formula accm Shortage Team
+                    int shortagerow = endPart2 + 2;
+                    int accmshortagerow = shortagerow + 2;
+
+                    for (int i = 0; i < column3.Length; i++)
+                    {
+                        if (i < column3.Length - 1)
+                        {
+                            worksheet.Cell(accmshortagerow, i + 5).FormulaR1C1 = "=" + column[i + 1] + shortagerow + "+" + column[i] + accmshortagerow + "";
+                        }
+                    }
+                    #endregion
 
                     workbook.SaveAs(directoryFile + "\\" + filename);
                 }

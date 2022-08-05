@@ -218,6 +218,12 @@
     <Compile Include="LabelPartnumber\LabelPNList.Designer.cs">
       <DependentUpon>LabelPNList.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterData\Editmodeluph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterData\Editmodeluph.Designer.cs">
+      <DependentUpon>Editmodeluph.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterData\MasterMaterial\AddMasterMaterial.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,10 +248,10 @@
     <Compile Include="MenuControl\menuControl.Designer.cs">
       <DependentUpon>menuControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModelUPH\Addmodeluph.cs">
+    <Compile Include="MasterData\Addmodeluph.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ModelUPH\Addmodeluph.Designer.cs">
+    <Compile Include="MasterData\Addmodeluph.Designer.cs">
       <DependentUpon>Addmodeluph.cs</DependentUpon>
     </Compile>
     <Compile Include="MasterData\Modeluphlist.cs">
@@ -407,6 +413,9 @@
     <EmbeddedResource Include="LabelPartnumber\LabelPNList.resx">
       <DependentUpon>LabelPNList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\Editmodeluph.resx">
+      <DependentUpon>Editmodeluph.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MasterData\MasterMaterial\AddMasterMaterial.resx">
       <DependentUpon>AddMasterMaterial.cs</DependentUpon>
     </EmbeddedResource>
@@ -419,7 +428,7 @@
     <EmbeddedResource Include="MenuControl\menuControl.resx">
       <DependentUpon>menuControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ModelUPH\Addmodeluph.resx">
+    <EmbeddedResource Include="MasterData\Addmodeluph.resx">
       <DependentUpon>Addmodeluph.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterData\Modeluphlist.resx">

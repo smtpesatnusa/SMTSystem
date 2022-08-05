@@ -47,7 +47,7 @@ namespace SMTPE
         {
             try
             {
-                string query = "SELECT forecastlist, importDate, importBy FROM tbl_forecastlist ORDER BY id DESC";
+                string query = "SELECT DATE_FORMAT(monthyear,'%M %Y') AS monthyear, forecastlist, importdate, importby FROM tbl_forecastlist ORDER BY id DESC";
 
                 using (MySqlDataAdapter adpt = new MySqlDataAdapter(query, connectionDB.connection))
                 {
@@ -101,7 +101,7 @@ namespace SMTPE
         {
            
             // Set table title
-            string[] title = { "FORECAST LIST", "IMPORT DATE", "IMPORT BY" };
+            string[] title = { "MONTH YEAR", "PRODUCTION PLAN", "IMPORT DATE", "IMPORT BY" };
             for (int i = 0; i < title.Length; i++)
             {
                 dataGridViewFCTList.Columns[i].HeaderText = "" + title[i];
@@ -115,18 +115,20 @@ namespace SMTPE
         {
             int i;
             i = dataGridViewFCTList.SelectedCells[0].RowIndex;
-            string fctslctd = dataGridViewFCTList.Rows[i].Cells[0].Value.ToString();   
+            string monthslctd = dataGridViewFCTList.Rows[i].Cells[0].Value.ToString();   
+            string fctslctd = dataGridViewFCTList.Rows[i].Cells[1].Value.ToString();   
 
-            if (e.ColumnIndex == 3)
+            if (e.ColumnIndex == 4)
             {
                 DetailForecastList detailForecast = new DetailForecastList();
                 detailForecast.toolStripUsername.Text = toolStripUsername.Text;
+                detailForecast.tbMonthYear.Text = monthslctd;
                 detailForecast.tbForecastListNo.Text = fctslctd;
                 detailForecast.Show();
                 this.Hide();
             }
 
-            if (e.ColumnIndex == 4)
+            if (e.ColumnIndex == 5)
             {
                 string message = "Do you want to delete this Plan " + fctslctd + "?";
                 string title = "Delete Production Plan List";

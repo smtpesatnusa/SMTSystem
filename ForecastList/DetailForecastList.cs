@@ -11,6 +11,10 @@ namespace SMTPE
     public partial class DetailForecastList : MaterialForm
     {
         ConnectionDB connectionDB = new ConnectionDB();
+        
+        int totalDay;
+        string monthFile;
+        int yearFile;
 
         public DetailForecastList()
         {
@@ -34,11 +38,28 @@ namespace SMTPE
         {
             try
             {
-                string query = "SELECT a.model, c.uph, SUM(a.date1) AS date1, SUM(a.date2) AS date2, SUM(a.date3) AS date3, SUM(a.date4) AS date4, SUM(a.date5) AS date5, SUM(a.date6) AS date6, SUM(a.date7) AS date7, SUM(a.date8) AS date8, SUM(a.date9) AS date9, SUM(a.date10) AS date10" +
-                    ", SUM(a.date11) AS date11, SUM(a.date12) AS date12, SUM(a.date13) AS date13, SUM(a.date14) AS date14, SUM(a.date15) AS date15, SUM(a.date16) AS date16, SUM(a.date17) AS date17, SUM(a.date18) AS date18, SUM(a.date19) AS date19, SUM(a.date20) AS date20 " +
-                    ", SUM(a.date21) AS date21, SUM(a.date22) AS date22, SUM(a.date23) AS date23, SUM(a.date24) AS date24, SUM(a.date25) AS date25, SUM(a.date26) AS date26, SUM(a.date27) AS date27, SUM(a.date28) AS date28, SUM(a.date29) AS date29, SUM(a.date30) AS date30, SUM(a.date31) AS date31 " +
-                    "FROM tbl_forecastdetail a, tbl_forecastlist b, tbl_masteruph c, tbl_model d WHERE b.id = a.forecastid AND c.model = d.id AND a.model = d.model AND " +
-                    "b.forecastlist = '"+tbForecastListNo.Text+"' GROUP BY a.forecastid, a.model, c.uph ";
+                // get month year datepicker
+                string _Date = tbMonthYear.Text;
+                DateTime dt = Convert.ToDateTime(_Date);
+                int year = Convert.ToInt32(dt.ToString("yyyy"));
+                int month = Convert.ToInt32(dt.ToString("MM"));
+                monthFile = dt.ToString("MMM");
+                yearFile = Convert.ToInt32(dt.ToString("yyyy"));
+
+                totalDay = DateTime.DaysInMonth(year, month);
+
+                // to run qry statement based on total day
+                string qry = "";
+
+                for (int i = 1; i <= totalDay; i++)
+                {
+                    qry += "SUM(a.date"+i+ ") AS '" + i + "' ,";
+                }
+                qry = qry.Remove(qry.Length - 1);
+                //-----------
+
+                string query = "SELECT a.model, c.uph, "+qry+" FROM tbl_forecastdetail a, tbl_forecastlist b, tbl_masteruph c, tbl_model d WHERE b.id = a.forecastid AND c.model = d.id AND a.model = d.model AND " +
+                    "b.forecastlist = '" + tbForecastListNo.Text + "' GROUP BY a.forecastid, a.model, c.uph ";
 
                 using (MySqlDataAdapter adpt = new MySqlDataAdapter(query, connectionDB.connection))
                 {
@@ -48,22 +69,17 @@ namespace SMTPE
                     dataGridViewFCT.DataSource = dset.Tables[0];
                 }
 
-                string query2 = "SELECT a.model, c.uph, ROUND(SUM(a.date1)/(c.uph*7.17),1) AS date1, ROUND(SUM(a.date2)/(c.uph*7.17),2) AS date2, " +
-                    "ROUND(SUM(a.date3) / (c.uph * 7.17), 2) AS date3, ROUND(SUM(a.date4) / (c.uph * 7.17), 2) AS date4," +
-                    "ROUND(SUM(a.date5) / (c.uph * 7.17), 2) AS date5, ROUND(SUM(a.date6) / (c.uph * 7.17), 2) AS date6, " +
-                    "ROUND(SUM(a.date7) / (c.uph * 7.17), 2) AS date7, ROUND(SUM(a.date8) / (c.uph * 7.17), 2) AS date8, ROUND(SUM(a.date9) / (c.uph * 7.17), 2) AS date9," +
-                    "ROUND(SUM(a.date10) / (c.uph * 7.17), 2) AS date10, ROUND(SUM(a.date11) / (c.uph * 7.17), 2) AS date11, " +
-                    "ROUND(SUM(a.date12) / (c.uph * 7.17), 2) AS date12, ROUND(SUM(a.date13) / (c.uph * 7.17), 2) AS date13," +
-                    "ROUND(SUM(a.date14) / (c.uph * 7.17), 2) AS date14, ROUND(SUM(a.date15) / (c.uph * 7.17), 2) AS date15," +
-                    "ROUND(SUM(a.date16) / (c.uph * 7.17), 2) AS date16, ROUND(SUM(a.date17) / (c.uph * 7.17), 2) AS date17," +
-                    "ROUND(SUM(a.date18) / (c.uph * 7.17), 2) AS date18, ROUND(SUM(a.date19) / (c.uph * 7.17), 2) AS date19," +
-                    "ROUND(SUM(a.date20) / (c.uph * 7.17), 2) AS date20, ROUND(SUM(a.date21) / (c.uph * 7.17), 2) AS date21," +
-                    "ROUND(SUM(a.date22) / (c.uph * 7.17), 2) AS date22, ROUND(SUM(a.date23) / (c.uph * 7.17), 2) AS date23," +
-                    "ROUND(SUM(a.date24) / (c.uph * 7.17), 2) AS date24, ROUND(SUM(a.date25) / (c.uph * 7.17), 2) AS date25," +
-                    "ROUND(SUM(a.date26) / (c.uph * 7.17), 2) AS date26, ROUND(SUM(a.date27) / (c.uph * 7.17), 2) AS date27," +
-                    "ROUND(SUM(a.date28) / (c.uph * 7.17), 2) AS date28, ROUND(SUM(a.date29) / (c.uph * 7.17), 2) AS date29," +
-                    "ROUND(SUM(a.date30) / (c.uph * 7.17), 2) AS date30, ROUND(SUM(a.date31) / (c.uph * 7.17), 2) AS date31 " +
-                    "FROM tbl_forecastdetail a, tbl_forecastlist b, tbl_masteruph c, tbl_model d WHERE b.id = a.forecastid " +
+                // to run qry statement based on total day
+                string qry2 = "";
+
+                for (int i = 1; i <= totalDay; i++)
+                {
+                    qry2 += "ROUND(SUM(a.date" + i + ")/(c.uph*7.17),2) AS '" + i + "' ,";
+                }
+                qry2 = qry2.Remove(qry2.Length - 1);
+                //-----------
+
+                string query2 = "SELECT a.model, c.uph, " + qry2 + " FROM tbl_forecastdetail a, tbl_forecastlist b, tbl_masteruph c, tbl_model d WHERE b.id = a.forecastid " +
                     "AND c.model = d.id AND a.model = d.model AND b.forecastlist = '" + tbForecastListNo.Text + "' GROUP BY a.forecastid, a.model, c.uph ";
 
                 using (MySqlDataAdapter adpt2 = new MySqlDataAdapter(query2, connectionDB.connection))
@@ -106,12 +122,12 @@ namespace SMTPE
 
             dataGridViewFCT.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 
-            // Set table title
-            string[] title = { "MODEL", "UPH", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" };
-            for (int i = 0; i < title.Length; i++)
-            {
-                dataGridViewFCT.Columns[i].HeaderText = "" + title[i];
-            }
+            //// Set table title
+            //string[] title = { "MODEL", "UPH", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" };
+            //for (int i = 0; i < title.Length; i++)
+            //{
+            //    dataGridViewFCT.Columns[i].HeaderText = "" + title[i];
+            //}
 
             dataGridViewFCT.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
         }
@@ -160,6 +176,7 @@ namespace SMTPE
         {
             try
             {
+
                 string directoryFile = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                 directoryFile = directoryFile + "\\ALFASYS\\FCT SMT\\" + tbForecastListNo.Text;
                 string filename =  tbForecastListNo.Text+ ".xlsx";
@@ -191,28 +208,34 @@ namespace SMTPE
                     worksheet.PageSetup.CenterHorizontally = true;
 
                     // set text center
-                    worksheet.Range(worksheet.Cell(2, 2), worksheet.Cell(2, 35)).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
-                    worksheet.Range(worksheet.Cell(2, 2), worksheet.Cell(2, 35)).Style.Alignment.SetVertical(XLAlignmentVerticalValues.Center);
+                    worksheet.Range(worksheet.Cell(2, 2), worksheet.Cell(3, 35)).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+                    worksheet.Range(worksheet.Cell(2, 2), worksheet.Cell(3, 35)).Style.Alignment.SetVertical(XLAlignmentVerticalValues.Center);
                     worksheet.Range(worksheet.Cell(2, 2), worksheet.Cell(2, 4)).Merge();
                     worksheet.Cell(2, 2).Value = "PTSN CKD";
                     worksheet.Cell(3, 2).Value = "MODEL";
                     worksheet.Cell(3, 4).Value = "UPH";
                     
                     // date 1 to 31
-                    for (int i = 1; i <= 31; i++)
+                    for (int i = 1; i <= totalDay; i++)
                     {
-                        worksheet.Cell(2, 4+i).Value = i;
-                    }                        
+                        string date = monthFile+"/"+i + "/" + yearFile;
+                        DateTime dt = Convert.ToDateTime(date);
+                        worksheet.Cell(2, 4+i).Value = date;
+                        worksheet.Cell(3, 4+i).Value = dt.ToString("ddd");
+                    }
+
+                    // set dok number format
+                    worksheet.Range(worksheet.Cell(2, 5), worksheet.Cell(2, totalDay + 4)).Style.NumberFormat.Format = "d-mmm";
 
                     // set border 
-                    worksheet.Range(worksheet.Cell(2, 5), worksheet.Cell(3, 35)).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
-                    worksheet.Range(worksheet.Cell(2, 5), worksheet.Cell(3, 35)).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                    worksheet.Range(worksheet.Cell(2, 5), worksheet.Cell(3, totalDay + 4)).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                    worksheet.Range(worksheet.Cell(2, 5), worksheet.Cell(3, totalDay + 4)).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
 
                     // set color header
                     worksheet.Range(worksheet.Cell(2, 2), worksheet.Cell(3, 5)).Style.Fill.BackgroundColor = XLColor.Yellow;
-                    worksheet.Range(worksheet.Cell(2, 5), worksheet.Cell(3, 35)).Style.Fill.BackgroundColor = XLColor.Black;
-                    worksheet.Range(worksheet.Cell(2, 5), worksheet.Cell(3, 35)).Style.Font.FontColor = XLColor.White;
-                    worksheet.Range(worksheet.Cell(2, 2), worksheet.Cell(3, 35)).Style.Font.Bold = true;
+                    worksheet.Range(worksheet.Cell(2, 5), worksheet.Cell(3, totalDay + 4)).Style.Fill.BackgroundColor = XLColor.Black;
+                    worksheet.Range(worksheet.Cell(2, 5), worksheet.Cell(3, totalDay + 4)).Style.Font.FontColor = XLColor.White;
+                    worksheet.Range(worksheet.Cell(2, 2), worksheet.Cell(3, totalDay + 4)).Style.Font.Bold = true;
 
                     int cellRowIndex = 4;
                     int cellColumnIndex = 3;
@@ -237,16 +260,16 @@ namespace SMTPE
                     int endCell = dataGridViewFCT.Rows.Count + 3;
 
                     // set dok number format
-                    worksheet.Range(worksheet.Cell(4, 5), worksheet.Cell(endPart + 1, 35)).Style.NumberFormat.Format = "#,###;-#,###;-";
+                    worksheet.Range(worksheet.Cell(4, 5), worksheet.Cell(endPart + 1, totalDay + 4)).Style.NumberFormat.Format = "#,###;-#,###;-";
                     // give color tan in demand result
-                    worksheet.Range(worksheet.Cell(endPart, 2), worksheet.Cell(endPart, 35)).Style.Fill.BackgroundColor = XLColor.FromArgb(197, 190, 151);
+                    worksheet.Range(worksheet.Cell(endPart, 2), worksheet.Cell(endPart, totalDay + 4)).Style.Fill.BackgroundColor = XLColor.FromArgb(197, 190, 151);
                     worksheet.Cell(endPart, 3).Style.Font.Bold = true;
                     worksheet.Cell(endPart, 3).Value = "TOTAL DEMAND QTY";
 
                     #region insert data total demand Qty
                     string[] column1 = { "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
                         "AA", "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ" };
-                    for (int i = 0; i < column1.Length; i++)
+                    for (int i = 0; i < totalDay; i++)
                     {
                         if (i < column1.Length - 1)
                         {
@@ -267,13 +290,13 @@ namespace SMTPE
                     int nextcellDemand = cellDemand +1;
 
                     // give color yellow in total result
-                    worksheet.Range(worksheet.Cell(endPart+1, 5), worksheet.Cell(endPart+1, 35)).Style.Fill.BackgroundColor = XLColor.Yellow;
+                    worksheet.Range(worksheet.Cell(endPart+1, 5), worksheet.Cell(endPart+1, totalDay+4)).Style.Fill.BackgroundColor = XLColor.Yellow;
                                         
-                    string[] column = { "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+                   string[] column = { "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
                         "AA", "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI" };
-                    for (int i = 0; i < column.Length; i++)
+                    for (int i = 0; i < totalDay; i++)
                     {
-                        if (i< column.Length-1)
+                        if (i< totalDay)
                         {
                             worksheet.Cell(endPart + 1, i + 5).FormulaR1C1 = "=" + column[i+1] + cellDemand + "+" + column[i] + nextcellDemand + "";
                         }
@@ -300,22 +323,22 @@ namespace SMTPE
                     }
 
                     // give color tan 
-                    worksheet.Range(worksheet.Cell(endPart2, 2), worksheet.Cell(endPart2, 35)).Style.Fill.BackgroundColor = XLColor.FromArgb(197, 190, 151);
+                    worksheet.Range(worksheet.Cell(endPart2, 2), worksheet.Cell(endPart2, totalDay + 4)).Style.Fill.BackgroundColor = XLColor.FromArgb(197, 190, 151);
                     worksheet.Cell(endPart2, 3).Style.Font.Bold = true;
                     worksheet.Cell(endPart2, 3).Value = "TOTAL TEAM REQUIRED";
 
                     int rowtotal = endPart2 - 1;
 
                     //change number format
-                    worksheet.Range(worksheet.Cell(endFCT1, 5), worksheet.Cell(rowtotal, 35)).Style.NumberFormat.Format = "_(* #,##0.00_);_(* (#,##0.00);_(* \"-\"??_);_(@_)";
-                    worksheet.Range(worksheet.Cell(endPart2, 5), worksheet.Cell(1000, 35)).Style.NumberFormat.Format = "_(* #,#0.0_);_(* (#,#0.0);_(* \"-\"??_);_(@_)";
+                    worksheet.Range(worksheet.Cell(endFCT1, 5), worksheet.Cell(rowtotal, totalDay + 4)).Style.NumberFormat.Format = "_(* #,##0.00_);_(* (#,##0.00);_(* \"-\"??_);_(@_)";
+                    worksheet.Range(worksheet.Cell(endPart2, 5), worksheet.Cell(1000, totalDay + 4)).Style.NumberFormat.Format = "_(* #,#0.0_);_(* (#,#0.0);_(* \"-\"??_);_(@_)";
 
                     #region insert sum data total team required
                     string[] column2 = {  "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
                         "AA", "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ" };
-                    for (int i = 0; i < column2.Length; i++)
+                    for (int i = 0; i < totalDay; i++)
                     {
-                        if (i < column2.Length - 1)
+                        if (i < totalDay)
                         {
                             if (i == 13)
                             {
@@ -331,8 +354,8 @@ namespace SMTPE
 
                     worksheet.Cell(endPart2+1, 3).Value = "CURRENT TEAM";
                     // give color red 
-                    worksheet.Range(worksheet.Cell(endPart2+2, 2), worksheet.Cell(endPart2+2, 35)).Style.Fill.BackgroundColor = XLColor.FromArgb(230, 185, 184);
-                    worksheet.Range(worksheet.Cell(endPart2+4, 5), worksheet.Cell(endPart2+4, 35)).Style.Fill.BackgroundColor = XLColor.FromArgb(230, 185, 184);
+                    worksheet.Range(worksheet.Cell(endPart2+2, 2), worksheet.Cell(endPart2+2, totalDay + 4)).Style.Fill.BackgroundColor = XLColor.FromArgb(230, 185, 184);
+                    worksheet.Range(worksheet.Cell(endPart2+4, 5), worksheet.Cell(endPart2+4, totalDay + 4)).Style.Fill.BackgroundColor = XLColor.FromArgb(230, 185, 184);
                     worksheet.Cell(endPart2+2, 3).Value = "SHORTAGE TEAM";
 
                     #region insert formula Shortage Team
@@ -341,9 +364,9 @@ namespace SMTPE
 
                     string[] column3 = { "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
                         "AA", "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ" };
-                    for (int i = 0; i < column3.Length; i++)
+                    for (int i = 0; i < totalDay; i++)
                     {
-                        if (i < column3.Length - 1)
+                        if (i < totalDay)
                         {
                             worksheet.Cell(endPart2 + 2, i + 5).FormulaR1C1 = "=" + column3[i] + currentrow + "-" + column3[i] + requiredrow + "";
                         }
@@ -375,6 +398,33 @@ namespace SMTPE
                 // tampilkan pesan error
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void dataGridViewFCT2_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            //memberi nomor row
+            for (int i = 0; i < dataGridViewFCT2.Rows.Count; ++i)
+            {
+                int row = i + 1;
+                dataGridViewFCT2.Rows[i].HeaderCell.Value = "" + row;
+            }
+
+            // not allow to sort table
+            for (int i = 0; i < dataGridViewFCT2.Columns.Count; i++)
+            {
+                dataGridViewFCT2.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+
+            dataGridViewFCT2.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+
+            //// Set table title
+            //string[] title = { "MODEL", "UPH", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" };
+            //for (int i = 0; i < title.Length; i++)
+            //{
+            //    dataGridViewFCT2.Columns[i].HeaderText = "" + title[i];
+            //}
+
+            dataGridViewFCT2.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
         }
     }
 }

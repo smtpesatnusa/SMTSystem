@@ -56,12 +56,23 @@ namespace SMTPE
             try
             {
                 connectionDB.connection.Open();
+
                 string query = "SELECT b.model, a.uph FROM tbl_masteruph a, tbl_model b WHERE a.model = b.id ORDER BY a.id DESC";
+
                 using (MySqlDataAdapter adpt = new MySqlDataAdapter(query, connectionDB.connection))
                 {
                     DataSet dset = new DataSet();
                     adpt.Fill(dset);
+
                     dataGridViewModeluphlist.DataSource = dset.Tables[0];
+
+                    // add button edit in datagridview table
+                    DataGridViewButtonColumn btnEdit = new DataGridViewButtonColumn();
+                    dataGridViewModeluphlist.Columns.Add(btnEdit);
+                    btnEdit.HeaderText = "";
+                    btnEdit.Text = "Edit";
+                    btnEdit.Name = "btnEdit";
+                    btnEdit.UseColumnTextForButtonValue = true;
 
                     // add button delete in datagridview table
                     DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
@@ -70,7 +81,6 @@ namespace SMTPE
                     btnDelete.Text = "Delete";
                     btnDelete.Name = "btnDelete";
                     btnDelete.UseColumnTextForButtonValue = true;
-
                 }
                 connectionDB.connection.Close();
             }
@@ -86,8 +96,17 @@ namespace SMTPE
             int i;
             i = dataGridViewModeluphlist.SelectedCells[0].RowIndex;
             string modeluphslctd = dataGridViewModeluphlist.Rows[i].Cells[0].Value.ToString();
+            string uphslctd = dataGridViewModeluphlist.Rows[i].Cells[1].Value.ToString();
 
             if (e.ColumnIndex == 2)
+            {
+                Editmodeluph editmodeluph = new Editmodeluph();
+                editmodeluph.usernameLbl.Text = toolStripUsername.Text;
+                editmodeluph.tbModel.Text = modeluphslctd;
+                editmodeluph.tbUph.Text = uphslctd;
+                editmodeluph.ShowDialog();
+            }
+            if (e.ColumnIndex == 3)
             {
                 string message = "Do you want to delete this Model UPH " + modeluphslctd + "?";
                 string title = "Delete Model UPH";
@@ -164,6 +183,7 @@ namespace SMTPE
             }
 
             dataGridViewModeluphlist.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+            
         }
 
         private void Modeluphlist_Load(object sender, EventArgs e)
@@ -174,26 +194,7 @@ namespace SMTPE
             //icon
             this.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
 
-            connectionDB.connection.Open();
-
-            string query = "SELECT b.model, a.uph FROM tbl_masteruph a, tbl_model b WHERE a.model = b.id ORDER BY a.id DESC";
-
-            using (MySqlDataAdapter adpt = new MySqlDataAdapter(query, connectionDB.connection))
-            {
-                DataSet dset = new DataSet();
-                adpt.Fill(dset);
-
-                dataGridViewModeluphlist.DataSource = dset.Tables[0];
-
-                // add button delete in datagridview table
-                DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
-                dataGridViewModeluphlist.Columns.Add(btnDelete);
-                btnDelete.HeaderText = "";
-                btnDelete.Text = "Delete";
-                btnDelete.Name = "btnDelete";
-                btnDelete.UseColumnTextForButtonValue = true;
-            }
-            connectionDB.connection.Close();
+            LoadData();
         }
     }
     

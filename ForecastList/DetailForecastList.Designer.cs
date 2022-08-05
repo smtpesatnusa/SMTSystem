@@ -37,6 +37,8 @@ namespace SMTPE
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tbMonthYear = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.exportButton = new MaterialSkin.Controls.MaterialButton();
             this.tbForecastListNo = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -44,10 +46,15 @@ namespace SMTPE
             this.label1 = new System.Windows.Forms.Label();
             this.BackButton = new MaterialSkin.Controls.MaterialButton();
             this.dataGridViewFCT2 = new System.Windows.Forms.DataGridView();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFCT)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFCT2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridViewFCT
@@ -60,13 +67,13 @@ namespace SMTPE
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewFCT.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewFCT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewFCT.Location = new System.Drawing.Point(16, 286);
+            this.dataGridViewFCT.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewFCT.Name = "dataGridViewFCT";
             this.dataGridViewFCT.ReadOnly = true;
             this.dataGridViewFCT.RowHeadersWidth = 51;
             this.dataGridViewFCT.RowTemplate.Height = 30;
             this.dataGridViewFCT.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewFCT.Size = new System.Drawing.Size(1334, 435);
+            this.dataGridViewFCT.Size = new System.Drawing.Size(1334, 218);
             this.dataGridViewFCT.TabIndex = 10;
             this.dataGridViewFCT.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewFCT_CellFormatting);
             // 
@@ -114,6 +121,8 @@ namespace SMTPE
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.tbMonthYear);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.exportButton);
             this.groupBox1.Controls.Add(this.tbForecastListNo);
             this.groupBox1.Controls.Add(this.label2);
@@ -128,6 +137,27 @@ namespace SMTPE
             this.groupBox1.TabIndex = 60;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Production Plan List";
+            // 
+            // tbMonthYear
+            // 
+            this.tbMonthYear.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbMonthYear.Location = new System.Drawing.Point(222, 35);
+            this.tbMonthYear.Margin = new System.Windows.Forms.Padding(4);
+            this.tbMonthYear.Name = "tbMonthYear";
+            this.tbMonthYear.ReadOnly = true;
+            this.tbMonthYear.Size = new System.Drawing.Size(440, 26);
+            this.tbMonthYear.TabIndex = 265;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(24, 35);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(87, 19);
+            this.label3.TabIndex = 264;
+            this.label3.Text = "Month Year";
             // 
             // exportButton
             // 
@@ -153,7 +183,7 @@ namespace SMTPE
             // tbForecastListNo
             // 
             this.tbForecastListNo.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbForecastListNo.Location = new System.Drawing.Point(233, 42);
+            this.tbForecastListNo.Location = new System.Drawing.Point(222, 69);
             this.tbForecastListNo.Margin = new System.Windows.Forms.Padding(4);
             this.tbForecastListNo.Name = "tbForecastListNo";
             this.tbForecastListNo.ReadOnly = true;
@@ -164,7 +194,7 @@ namespace SMTPE
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(35, 42);
+            this.label2.Location = new System.Drawing.Point(24, 69);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(169, 19);
@@ -226,26 +256,45 @@ namespace SMTPE
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewFCT2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewFCT2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewFCT2.Location = new System.Drawing.Point(16, 286);
+            this.dataGridViewFCT2.Location = new System.Drawing.Point(3, 3);
             this.dataGridViewFCT2.Name = "dataGridViewFCT2";
             this.dataGridViewFCT2.ReadOnly = true;
             this.dataGridViewFCT2.RowHeadersWidth = 51;
             this.dataGridViewFCT2.RowTemplate.Height = 30;
             this.dataGridViewFCT2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewFCT2.Size = new System.Drawing.Size(1334, 435);
+            this.dataGridViewFCT2.Size = new System.Drawing.Size(1328, 207);
             this.dataGridViewFCT2.TabIndex = 263;
-            this.dataGridViewFCT2.Visible = false;
+            this.dataGridViewFCT2.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewFCT2_CellFormatting);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Location = new System.Drawing.Point(16, 276);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.dataGridViewFCT);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.dataGridViewFCT2);
+            this.splitContainer1.Size = new System.Drawing.Size(1334, 434);
+            this.splitContainer1.SplitterDistance = 217;
+            this.splitContainer1.TabIndex = 264;
             // 
             // DetailForecastList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1366, 768);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.BackButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.dataGridViewFCT);
-            this.Controls.Add(this.dataGridViewFCT2);
             this.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
             this.Name = "DetailForecastList";
@@ -258,6 +307,10 @@ namespace SMTPE
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFCT2)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -278,5 +331,8 @@ namespace SMTPE
         private MaterialSkin.Controls.MaterialButton BackButton;
         private MaterialSkin.Controls.MaterialButton exportButton;
         private System.Windows.Forms.DataGridView dataGridViewFCT2;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        public System.Windows.Forms.TextBox tbMonthYear;
+        private System.Windows.Forms.Label label3;
     }
 }

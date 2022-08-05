@@ -27,6 +27,8 @@ namespace SMTPE
         string missingpn;
         string missingmodel;
 
+        string monthyear;
+
         public ImportForecastList()
         {
             InitializeComponent();
@@ -77,7 +79,7 @@ namespace SMTPE
             if (cmbForecastFile.Text == "" || cmbForecastFile.Text == "" || dataGridViewProdPlanList.Rows.Count == 0)
             {
                 saveButton.Enabled = true;
-                MessageBox.Show(this, "Unable to import Forecast List without choose file properly", "Forecast List", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, "Unable to import Production Plan List without choose file properly", "Production Plan List", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 homeButton.Enabled = true;
                 BackButton.Enabled = true;
             }
@@ -85,7 +87,6 @@ namespace SMTPE
             {
                 try
                 {
-                    StartProgress("Loading...");
                     var cmd = new MySqlCommand("", connectionDB.connection);
                     string forecast = cmbForecastFile.Text;
                     string cekmodel = "SELECT * FROM tbl_forecastlist WHERE forecastList = '" + cmbForecastFile.Text + "'";
@@ -97,12 +98,11 @@ namespace SMTPE
                         // cek jika modelno tsb sudah di upload
                         if (ds.Tables[0].Rows.Count > 0)
                         {
-                            CloseProgress();
-                            MessageBox.Show(this, "Unable to import Forecast List, Forecast List already insert", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            resetData();
+                            MessageBox.Show(this, "Unable to import Production Plan List, Production Plan List already insert", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         else
                         {
+                            StartProgress("Loading...");
                             //insert data
                             insertData();
 
@@ -175,7 +175,7 @@ namespace SMTPE
                 string forecastNo = cmbForecastFile.Text;
 
                 //insert listdata
-                string insert = "INSERT INTO tbl_forecastlist (forecastList, importDate, importBy) VALUES ('" + forecastNo + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '" + idUser + "')";
+                string insert = "INSERT INTO tbl_forecastlist (monthyear, forecastList, importDate, importBy) VALUES ('"+monthyear+"','" + forecastNo + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '" + idUser + "')";
                 cmd.CommandText = insert;
                 cmd.ExecuteNonQuery();
 
@@ -232,8 +232,7 @@ namespace SMTPE
                                 string StrQuery = "INSERT INTO tbl_forecastdetail " +
                                     "(forecastid, model, modelno, descr, detail, date1,date2,date3,date4,date5,date6,date7,date8,date9,date10,date11,date12,date13,date14,date15" +
                                     ",date16,date17,date18,date19,date20,date21,date22,date23,date24,date25,date26,date27,date28,date29,date30,date31) " +
-                                    "VALUES ('"
-                                     + idForecast + "','"
+                                    "VALUES ('"+ idForecast + "','"
                                      + model + "','"
                                      + modelNo + "', '"
                                      + desc + "', '"
@@ -282,16 +281,18 @@ namespace SMTPE
                         //Tutup koneksi
 
                         CloseProgress();
-                        MessageBox.Show(this, "Import Forecast List complete", "Forecast List", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(this, "Import Production Plan List complete", "Production Plan List", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        MessageBox.Show(this, "Fail to import Forecast file", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        CloseProgress();
+                        MessageBox.Show(this, "Fail to import Production Plan file", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
             catch (Exception ex)
             {
+                CloseProgress();
                 connectionDB.connection.Close();
                 MessageBox.Show(ex.Message.ToString());
             }
@@ -315,184 +316,224 @@ namespace SMTPE
 
         private void browseButton_Click(object sender, EventArgs e)
         {
-            openFileDialog.Title = "Please Select a File Forecast List";
-            openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;";
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    StartProgress("Loading...");
-                    resetData();
-                    FileName = openFileDialog.FileName;
-                    tbfilepath.Text = FileName;
-                    fileExt = Path.GetExtension(FileName).ToLower(); //get the file extension  
+            // get month year datepicker
+            string _Date = dateTimePickerMonthYear.Text;
+            DateTime dt = Convert.ToDateTime(_Date);
+            monthyear = dt.ToString("yyyy-MM-dd HH-mm-ss");
+            int year = Convert.ToInt32(dt.ToString("yyyy"));
+            int month = Convert.ToInt32(dt.ToString("MM"));
 
-                    //get sheet name 
-                    var excelFile = Path.GetFullPath(FileName);
-                    var excel = new Excel.Application();
-                    var workbook = excel.Workbooks.Open(FileName);
-                    Thread.Sleep(2500);
-
-                    // get all sheet name into dropdown list
-                    ArrayList sheetname = new ArrayList();
-                    foreach (Excel.Worksheet sheet in workbook.Sheets)
-                    {
-                        sheetname.Add(sheet.Name);
-                    }
-                    cmbForecastFile.DataSource = sheetname;
-
-                    excel.Workbooks.Close();
-                    excel.Quit();
-
-                    cmbForecastFile.Enabled = true;
-                    Loadbutton.Enabled = true;
-
-                    CloseProgress();
-                }
-                catch (Exception ex)
-                {
-                    CloseProgress();
-                    saveButton.Enabled = false;
-                    MessageBox.Show(ex.Message);
-                }
-            }
-        }
-
-        private void dataGridViewForecastList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            // not allow to sort table
-            for (int i = 0; i < dataGridViewProdPlanList.Columns.Count; i++)
-            {
-                dataGridViewProdPlanList.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
-            }
-
-            // to resize column
-            dataGridViewProdPlanList.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-        }
-
-        private void Loadbutton_Click(object sender, EventArgs e)
-        {
-            string sheetName = cmbForecastFile.Text;
-
-            query = "select * from [" + sheetName + "$A3:AI]";
-            queryGetTotal = "select * from [" + sheetName + "$D:D]";
+            string totalDay = DateTime.DaysInMonth(year, month).ToString();
 
             try
             {
-                StartProgress("Loading...");
-
-                // baca data pl No dan invoice date
-                DataTable dtExcel = new DataTable();
-                dtExcel = help.ReadExcel(FileName, fileExt, query); //read excel file   
-                dataGridViewProdPlanList.DataSource = dtExcel;
-
-                // buat cari batas total row
-                DataTable dtExcel1 = new DataTable();
-                dtExcel1 = help.ReadExcel(FileName, fileExt, queryGetTotal); //read excel file  
-
-                //get datatable row
-                DataRow row = dtExcel1.NewRow();
-
-                string searchingFor = "Accm";
-                int rowIndexBatas = 0;
-
-                for (int i = 0; i < dtExcel1.Rows.Count; i++)
+                string cekmodel = "SELECT * FROM tbl_forecastlist WHERE monthyear = '" + monthyear + "'";
+                using (MySqlDataAdapter dscmd = new MySqlDataAdapter(cekmodel, connectionDB.connection))
                 {
-                    if (dtExcel1.Rows[i][0].ToString().Contains(searchingFor))
+                    DataSet ds = new DataSet();
+                    dscmd.Fill(ds);
+
+                    // cek jika modelno tsb sudah di upload
+                    if (ds.Tables[0].Rows.Count > 0)
                     {
-                        rowIndexBatas = i;
+                        MessageBox.Show(this, "Unable to import Production Plan List, Production Plan List selected month year already insert", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        resetData();
+                        dateTimePickerMonthYear.Focus();
                     }
-                }
-
-                int totalrow = dataGridViewProdPlanList.Rows.Count;
-                rowIndexBatas = rowIndexBatas - 2;
-
-                //delete data start from text stencil No
-                for (int i = totalrow - 1; i > rowIndexBatas; i--)
-                {
-                    dataGridViewProdPlanList.Rows.RemoveAt(i);
-                }
-
-                // change - and remove other remarks 
-                for (int i = 0; i < dataGridViewProdPlanList.Rows.Count; i++)
-                {
-                    // get model detail
-                    if (dataGridViewProdPlanList.Rows[i].Cells[2].Value.ToString().Contains(" MB"))
+                    else
                     {
-                        //get model name
-                        var model = dataGridViewProdPlanList.Rows[i].Cells[2].Value.ToString().Split(' ');
-                        dataGridViewProdPlanList.Rows[i].Cells[0].Value = model[0];
-                    }
-
-                    for (int j = 0; j <= dataGridViewProdPlanList.Columns.Count - 1; j++)
-                    {
-                        if (dataGridViewProdPlanList.Rows[i].Cells[j].Value.ToString() == "-")
+                        openFileDialog.Title = "Please Select a File  Production Plan List";
+                        openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;";
+                        if (openFileDialog.ShowDialog() == DialogResult.OK)
                         {
-                            dataGridViewProdPlanList.Rows[i].Cells[j].Value = 0;
-                        }
-                    }
-                }
-                totalLbl.Text = dataGridViewProdPlanList.Rows.Count.ToString();
 
-                //to give color if not found model in datagridview
-                int countmissingmodel = 0;
-                string modelUPH;
-                missingmodel = "";
+                            StartProgress("Loading...");
+                            resetData();
+                            FileName = openFileDialog.FileName;
+                            tbfilepath.Text = FileName;
+                            fileExt = Path.GetExtension(FileName).ToLower(); //get the file extension  
 
-                for (int i = 0; i < dataGridViewProdPlanList.Rows.Count; ++i)
-                {
-                    //Only check data MB
-                    if (dataGridViewProdPlanList.Rows[i].Cells[0].Value.ToString() != "" )
-                    {
-                        modelUPH = dataGridViewProdPlanList.Rows[i].Cells[0].Value.ToString();
-                        // cek model exist or not in db
-                        string cekmodel = "SELECT b.model FROM tbl_masteruph a, tbl_model b WHERE b.id = a.model AND b.model = '" + modelUPH + "'";
-                        using (MySqlDataAdapter dscmd = new MySqlDataAdapter(cekmodel, connectionDB.connection))
-                        {
-                            DataSet ds = new DataSet();
-                            dscmd.Fill(ds);
-                            // cek jika ada model tsb
-                            if (ds.Tables[0].Rows.Count < 1)
+                            //get sheet name 
+                            var excelFile = Path.GetFullPath(FileName);
+                            var excel = new Excel.Application();
+                            var workbook = excel.Workbooks.Open(FileName);
+                            Thread.Sleep(2500);
+
+                            // get all sheet name into dropdown list
+                            ArrayList sheetname = new ArrayList();
+                            foreach (Excel.Worksheet sheet in workbook.Sheets)
                             {
-                                dataGridViewProdPlanList.Rows[i].DefaultCellStyle.BackColor = Color.Red;
-                                countmissingmodel++;
-                                missingmodel += modelUPH + "\r\n";
+                                sheetname.Add(sheet.Name);
                             }
+                            cmbForecastFile.DataSource = sheetname;
+
+                            excel.Workbooks.Close();
+                            excel.Quit();
+
+                            cmbForecastFile.Enabled = true;
+                            Loadbutton.Enabled = true;
+
+                            CloseProgress();
                         }
                     }
                 }
-
-                if (countmissingmodel > 0)
-                {
-                    CloseProgress();
-                    MessageBox.Show(this, "Missing model from model UPH, please register model uph first ", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error); //custom messageBox to show error 
-                    saveButton.Enabled = false;
-                }
-                else
-                {                   
-                    saveButton.Enabled = true;
-                    CloseProgress();
-                }
-
-                totalLbl.Text = dataGridViewProdPlanList.Rows.Count.ToString();
             }
             catch (Exception ex)
             {
                 CloseProgress();
                 saveButton.Enabled = false;
                 MessageBox.Show(ex.Message);
-                MessageBox.Show(this, "Please select Forecast file with correct format", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error); //custom messageBox to show error 
             }
         }
 
-        private void cmbForecastFile_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            saveButton.Enabled = false;
-        }
+        private void dataGridViewForecastList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+            {
+                // not allow to sort table
+                for (int i = 0; i < dataGridViewProdPlanList.Columns.Count; i++)
+                {
+                    dataGridViewProdPlanList.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
+                }
 
-        private void ImportForecastList_FormClosing(object sender, FormClosingEventArgs e)
-        {
+                // to resize column
+                dataGridViewProdPlanList.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            }
 
+            private void Loadbutton_Click(object sender, EventArgs e)
+            {
+                string sheetName = cmbForecastFile.Text;
+
+                query = "select * from [" + sheetName + "$A3:AI]";
+                queryGetTotal = "select * from [" + sheetName + "$D:D]";
+
+                try
+                {
+                    StartProgress("Loading...");
+
+                    // baca data pl No dan invoice date
+                    DataTable dtExcel = new DataTable();
+                    dtExcel = help.ReadExcel(FileName, fileExt, query); //read excel file   
+                    dataGridViewProdPlanList.DataSource = dtExcel;
+
+                    // buat cari batas total row
+                    DataTable dtExcel1 = new DataTable();
+                    dtExcel1 = help.ReadExcel(FileName, fileExt, queryGetTotal); //read excel file  
+
+                    //get datatable row
+                    DataRow row = dtExcel1.NewRow();
+
+                    string searchingFor = "Accm";
+                    int rowIndexBatas = 0;
+
+                    for (int i = 0; i < dtExcel1.Rows.Count; i++)
+                    {
+                        if (dtExcel1.Rows[i][0].ToString().Contains(searchingFor))
+                        {
+                            rowIndexBatas = i;
+                        }
+                    }
+
+                    int totalrow = dataGridViewProdPlanList.Rows.Count;
+                    rowIndexBatas = rowIndexBatas - 2;
+
+                    //delete data start from text stencil No
+                    for (int i = totalrow - 1; i > rowIndexBatas; i--)
+                    {
+                        dataGridViewProdPlanList.Rows.RemoveAt(i);
+                    }
+
+                    // change - and remove other remarks 
+                    for (int i = 0; i < dataGridViewProdPlanList.Rows.Count; i++)
+                    {
+                        // get model detail
+                        if (dataGridViewProdPlanList.Rows[i].Cells[2].Value.ToString().Contains(" MB"))
+                        {
+                            //get model name
+                            var model = dataGridViewProdPlanList.Rows[i].Cells[2].Value.ToString().Split(' ');
+                            dataGridViewProdPlanList.Rows[i].Cells[0].Value = model[0];
+                        }
+
+                        for (int j = 0; j <= dataGridViewProdPlanList.Columns.Count - 1; j++)
+                        {
+                            if (dataGridViewProdPlanList.Rows[i].Cells[j].Value.ToString() == "-")
+                            {
+                                dataGridViewProdPlanList.Rows[i].Cells[j].Value = 0;
+                            }
+                        }
+                    }
+                    totalLbl.Text = dataGridViewProdPlanList.Rows.Count.ToString();
+
+                    //to give color if not found model in datagridview
+                    int countmissingmodel = 0;
+                    string modelUPH;
+                    missingmodel = "";
+
+                    for (int i = 0; i < dataGridViewProdPlanList.Rows.Count; ++i)
+                    {
+                        //Only check data MB
+                        if (dataGridViewProdPlanList.Rows[i].Cells[0].Value.ToString() != "")
+                        {
+                            modelUPH = dataGridViewProdPlanList.Rows[i].Cells[0].Value.ToString();
+                            // cek model exist or not in db
+                            string cekmodel = "SELECT b.model FROM tbl_masteruph a, tbl_model b WHERE b.id = a.model AND b.model = '" + modelUPH + "'";
+                            using (MySqlDataAdapter dscmd = new MySqlDataAdapter(cekmodel, connectionDB.connection))
+                            {
+                                DataSet ds = new DataSet();
+                                dscmd.Fill(ds);
+                                // cek jika ada model tsb
+                                if (ds.Tables[0].Rows.Count < 1)
+                                {
+                                    dataGridViewProdPlanList.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                                    countmissingmodel++;
+                                    missingmodel += modelUPH + "\r\n";
+                                }
+                            }
+                        }
+                    }
+
+                    if (countmissingmodel > 0)
+                    {
+                        CloseProgress();
+                        MessageBox.Show(this, "Missing model from model UPH, please register model uph first ", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error); //custom messageBox to show error 
+                        saveButton.Enabled = false;
+                    }
+                    else
+                    {
+                        saveButton.Enabled = true;
+                        CloseProgress();
+                    }
+
+                    totalLbl.Text = dataGridViewProdPlanList.Rows.Count.ToString();
+                }
+                catch (Exception ex)
+                {
+                    CloseProgress();
+                    saveButton.Enabled = false;
+                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(this, "Please select  Production Plan file with correct format", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error); //custom messageBox to show error 
+                }
+            }
+
+            private void cmbForecastFile_SelectedIndexChanged(object sender, EventArgs e)
+            {
+                saveButton.Enabled = false;
+            }
+
+            private void ImportForecastList_FormClosing(object sender, FormClosingEventArgs e)
+            {
+                string message = "Are you sure you want to close this application?";
+                string title = "Confirm Close";
+                MaterialDialog materialDialog = new MaterialDialog(this, title, message, "OK", true, "Cancel");
+                DialogResult result = materialDialog.ShowDialog(this);
+                if (result.ToString() == "OK")
+                {
+                    Application.ExitThread();
+                }
+                else
+                {
+                    e.Cancel = true;
+                    MaterialSnackBar SnackBarMessage = new MaterialSnackBar(result.ToString(), 750);
+                    SnackBarMessage.Show(this);
+                }
+            }
         }
     }
-}

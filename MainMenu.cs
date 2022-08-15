@@ -311,5 +311,13 @@ namespace SMTPE
             forecastList.Show();
             this.Hide();
         }
+
+        private void publicHolidayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PublicHoliday publicHoliday = new PublicHoliday();
+            publicHoliday.toolStripUsername.Text = toolStripUsername.Text;
+            publicHoliday.Show();
+            this.Hide();
+        }
     }
 }

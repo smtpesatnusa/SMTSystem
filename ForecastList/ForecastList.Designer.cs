@@ -81,7 +81,9 @@ namespace SMTPE
             this.dataGridViewFCTList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewFCTList.Location = new System.Drawing.Point(23, 179);
             this.dataGridViewFCTList.Name = "dataGridViewFCTList";
+            this.dataGridViewFCTList.ReadOnly = true;
             this.dataGridViewFCTList.RowHeadersWidth = 51;
+            this.dataGridViewFCTList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewFCTList.Size = new System.Drawing.Size(1315, 494);
             this.dataGridViewFCTList.TabIndex = 10;
             this.dataGridViewFCTList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPlList_CellContentClick);

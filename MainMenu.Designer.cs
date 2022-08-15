@@ -58,6 +58,7 @@
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.publicHolidayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -197,7 +198,8 @@
             this.modelMasterToolStripMenuItem,
             this.uPHModelToolStripMenuItem,
             this.materialMasterToolStripMenuItem,
-            this.materialMasterXMToolStripMenuItem});
+            this.materialMasterXMToolStripMenuItem,
+            this.publicHolidayToolStripMenuItem});
             this.masterDataToolStripMenuItem.Name = "masterDataToolStripMenuItem";
             this.masterDataToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.masterDataToolStripMenuItem.Text = "Master Data";
@@ -206,7 +208,7 @@
             // modelMasterToolStripMenuItem
             // 
             this.modelMasterToolStripMenuItem.Name = "modelMasterToolStripMenuItem";
-            this.modelMasterToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.modelMasterToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.modelMasterToolStripMenuItem.Text = "Model Master";
             this.modelMasterToolStripMenuItem.Visible = false;
             this.modelMasterToolStripMenuItem.Click += new System.EventHandler(this.modelMasterToolStripMenuItem_Click);
@@ -222,7 +224,7 @@
             // materialMasterToolStripMenuItem
             // 
             this.materialMasterToolStripMenuItem.Name = "materialMasterToolStripMenuItem";
-            this.materialMasterToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.materialMasterToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.materialMasterToolStripMenuItem.Text = "Material Master";
             this.materialMasterToolStripMenuItem.Visible = false;
             this.materialMasterToolStripMenuItem.Click += new System.EventHandler(this.materialMasterToolStripMenuItem_Click);
@@ -230,7 +232,7 @@
             // materialMasterXMToolStripMenuItem
             // 
             this.materialMasterXMToolStripMenuItem.Name = "materialMasterXMToolStripMenuItem";
-            this.materialMasterXMToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.materialMasterXMToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.materialMasterXMToolStripMenuItem.Text = "Material Master XM";
             this.materialMasterXMToolStripMenuItem.Visible = false;
             this.materialMasterXMToolStripMenuItem.Click += new System.EventHandler(this.materialMasterXMToolStripMenuItem_Click);
@@ -255,7 +257,7 @@
             // departmentToolStripMenuItem
             // 
             this.departmentToolStripMenuItem.Name = "departmentToolStripMenuItem";
-            this.departmentToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
+            this.departmentToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.departmentToolStripMenuItem.Text = "Department";
             this.departmentToolStripMenuItem.Visible = false;
             this.departmentToolStripMenuItem.Click += new System.EventHandler(this.departmentToolStripMenuItem_Click);
@@ -263,7 +265,7 @@
             // userLevelToolStripMenuItem
             // 
             this.userLevelToolStripMenuItem.Name = "userLevelToolStripMenuItem";
-            this.userLevelToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
+            this.userLevelToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.userLevelToolStripMenuItem.Text = "User Level";
             this.userLevelToolStripMenuItem.Visible = false;
             this.userLevelToolStripMenuItem.Click += new System.EventHandler(this.userLevelToolStripMenuItem_Click);
@@ -271,7 +273,7 @@
             // userToolStripMenuItem
             // 
             this.userToolStripMenuItem.Name = "userToolStripMenuItem";
-            this.userToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
+            this.userToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.userToolStripMenuItem.Text = "User";
             this.userToolStripMenuItem.Visible = false;
             this.userToolStripMenuItem.Click += new System.EventHandler(this.userToolStripMenuItem_Click);
@@ -279,7 +281,7 @@
             // userRoleToolStripMenuItem
             // 
             this.userRoleToolStripMenuItem.Name = "userRoleToolStripMenuItem";
-            this.userRoleToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
+            this.userRoleToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.userRoleToolStripMenuItem.Text = "User Role";
             this.userRoleToolStripMenuItem.Visible = false;
             this.userRoleToolStripMenuItem.Click += new System.EventHandler(this.userRoleToolStripMenuItem_Click);
@@ -304,6 +306,13 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // publicHolidayToolStripMenuItem
+            // 
+            this.publicHolidayToolStripMenuItem.Name = "publicHolidayToolStripMenuItem";
+            this.publicHolidayToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.publicHolidayToolStripMenuItem.Text = "Public Holiday";
+            this.publicHolidayToolStripMenuItem.Click += new System.EventHandler(this.publicHolidayToolStripMenuItem_Click);
             // 
             // MainMenu
             // 
@@ -357,6 +366,7 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uPHModelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem forecastListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem publicHolidayToolStripMenuItem;
     }
 }
 

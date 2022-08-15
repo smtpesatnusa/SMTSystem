@@ -218,10 +218,28 @@
     <Compile Include="LabelPartnumber\LabelPNList.Designer.cs">
       <DependentUpon>LabelPNList.cs</DependentUpon>
     </Compile>
-    <Compile Include="MasterData\Editmodeluph.cs">
+    <Compile Include="MasterData\Public Holiday\EditPublicHoliday.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MasterData\Editmodeluph.Designer.cs">
+    <Compile Include="MasterData\Public Holiday\EditPublicHoliday.Designer.cs">
+      <DependentUpon>EditPublicHoliday.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\Public Holiday\AddPublicHoliday.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterData\Public Holiday\AddPublicHoliday.Designer.cs">
+      <DependentUpon>AddPublicHoliday.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\Public Holiday\PublicHoliday.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterData\Public Holiday\PublicHoliday.Designer.cs">
+      <DependentUpon>PublicHoliday.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\UPHModel\Editmodeluph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterData\UPHModel\Editmodeluph.Designer.cs">
       <DependentUpon>Editmodeluph.cs</DependentUpon>
     </Compile>
     <Compile Include="MasterData\MasterMaterial\AddMasterMaterial.cs">
@@ -248,16 +266,16 @@
     <Compile Include="MenuControl\menuControl.Designer.cs">
       <DependentUpon>menuControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MasterData\Addmodeluph.cs">
+    <Compile Include="MasterData\UPHModel\Addmodeluph.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MasterData\Addmodeluph.Designer.cs">
+    <Compile Include="MasterData\UPHModel\Addmodeluph.Designer.cs">
       <DependentUpon>Addmodeluph.cs</DependentUpon>
     </Compile>
-    <Compile Include="MasterData\Modeluphlist.cs">
+    <Compile Include="MasterData\UPHModel\Modeluphlist.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MasterData\Modeluphlist.Designer.cs">
+    <Compile Include="MasterData\UPHModel\Modeluphlist.Designer.cs">
       <DependentUpon>Modeluphlist.cs</DependentUpon>
     </Compile>
     <Compile Include="ForecastList\DetailForecastList.cs">
@@ -296,28 +314,28 @@
     <Compile Include="PackingList\PackingList.Designer.cs">
       <DependentUpon>PackingList.cs</DependentUpon>
     </Compile>
-    <Compile Include="MasterData\MasterMaterial\ImportMasterMaterialXM.cs">
+    <Compile Include="MasterData\MasterMaterialXM\ImportMasterMaterialXM.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MasterData\MasterMaterial\ImportMasterMaterialXM.Designer.cs">
+    <Compile Include="MasterData\MasterMaterialXM\ImportMasterMaterialXM.Designer.cs">
       <DependentUpon>ImportMasterMaterialXM.cs</DependentUpon>
     </Compile>
-    <Compile Include="MasterData\MasterMaterial\MasterMaterialXM.cs">
+    <Compile Include="MasterData\MasterMaterialXM\MasterMaterialXM.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MasterData\MasterMaterial\MasterMaterialXM.Designer.cs">
+    <Compile Include="MasterData\MasterMaterialXM\MasterMaterialXM.Designer.cs">
       <DependentUpon>MasterMaterialXM.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modelmaster\Addmodelmaster.cs">
+    <Compile Include="MasterData\Modelmaster\Addmodelmaster.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modelmaster\Addmodelmaster.Designer.cs">
+    <Compile Include="MasterData\Modelmaster\Addmodelmaster.Designer.cs">
       <DependentUpon>Addmodelmaster.cs</DependentUpon>
     </Compile>
-    <Compile Include="MasterData\Modelmasterlist.cs">
+    <Compile Include="MasterData\Modelmaster\Modelmasterlist.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MasterData\Modelmasterlist.Designer.cs">
+    <Compile Include="MasterData\Modelmaster\Modelmasterlist.Designer.cs">
       <DependentUpon>Modelmasterlist.cs</DependentUpon>
     </Compile>
     <Compile Include="PrintLabel\PrintLabelNew.cs">
@@ -413,7 +431,16 @@
     <EmbeddedResource Include="LabelPartnumber\LabelPNList.resx">
       <DependentUpon>LabelPNList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MasterData\Editmodeluph.resx">
+    <EmbeddedResource Include="MasterData\Public Holiday\EditPublicHoliday.resx">
+      <DependentUpon>EditPublicHoliday.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\Public Holiday\AddPublicHoliday.resx">
+      <DependentUpon>AddPublicHoliday.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\Public Holiday\PublicHoliday.resx">
+      <DependentUpon>PublicHoliday.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\UPHModel\Editmodeluph.resx">
       <DependentUpon>Editmodeluph.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterData\MasterMaterial\AddMasterMaterial.resx">
@@ -428,10 +455,10 @@
     <EmbeddedResource Include="MenuControl\menuControl.resx">
       <DependentUpon>menuControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MasterData\Addmodeluph.resx">
+    <EmbeddedResource Include="MasterData\UPHModel\Addmodeluph.resx">
       <DependentUpon>Addmodeluph.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MasterData\Modeluphlist.resx">
+    <EmbeddedResource Include="MasterData\UPHModel\Modeluphlist.resx">
       <DependentUpon>Modeluphlist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ForecastList\DetailForecastList.resx">
@@ -452,16 +479,16 @@
     <EmbeddedResource Include="PackingList\PackingList.resx">
       <DependentUpon>PackingList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MasterData\MasterMaterial\ImportMasterMaterialXM.resx">
+    <EmbeddedResource Include="MasterData\MasterMaterialXM\ImportMasterMaterialXM.resx">
       <DependentUpon>ImportMasterMaterialXM.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MasterData\MasterMaterial\MasterMaterialXM.resx">
+    <EmbeddedResource Include="MasterData\MasterMaterialXM\MasterMaterialXM.resx">
       <DependentUpon>MasterMaterialXM.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modelmaster\Addmodelmaster.resx">
+    <EmbeddedResource Include="MasterData\Modelmaster\Addmodelmaster.resx">
       <DependentUpon>Addmodelmaster.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MasterData\Modelmasterlist.resx">
+    <EmbeddedResource Include="MasterData\Modelmaster\Modelmasterlist.resx">
       <DependentUpon>Modelmasterlist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoadForm.resx">

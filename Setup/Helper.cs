@@ -2,6 +2,7 @@
 using ExcelDataReader;
 using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.IO;
@@ -10,6 +11,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
 using Tkx.Lppa;
+using DateTime = System.DateTime;
 
 namespace SMTPE
 {
@@ -237,6 +239,16 @@ namespace SMTPE
             return dt;
         }
 
+        public List<DateTime> getAllDates(int year, int month)
+        {
+            var ret = new List<DateTime>();
+            for (int i = 1; i <= DateTime.DaysInMonth(year, month); i++)
+            {
+                ret.Add(new DateTime(year, month, i));
+            }
+            return ret;
+        }
+
         // to fill listbox from db
         public void fill_listbox(string sql, ListBox lst, string column)
         {
@@ -415,5 +427,16 @@ namespace SMTPE
         }
         #endregion
 
+        //get totaldays
+        public string totalDay(DateTimePicker picker1, DateTimePicker picker2)
+        {
+            System.DateTime startDate = picker1.Value;
+            System.DateTime endDate = picker2.Value;
+
+            TimeSpan ts = endDate - startDate;
+            int diffInDay = ts.Days + 1;
+
+            return diffInDay.ToString(); ;
+        }
     }
 }

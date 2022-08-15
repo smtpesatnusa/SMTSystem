@@ -76,7 +76,7 @@ namespace SMTPE
         {
             saveButton.Enabled = false;
 
-            if (cmbForecastFile.Text == "" || cmbForecastFile.Text == "" || dataGridViewProdPlanList.Rows.Count == 0)
+            if (cmbForecastFile.Text == "" || cmbForecastFile.Text == "" || dataGridViewPublicHolidayList.Rows.Count == 0)
             {
                 saveButton.Enabled = true;
                 MessageBox.Show(this, "Unable to import Production Plan List without choose file properly", "Production Plan List", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -131,12 +131,12 @@ namespace SMTPE
             Loadbutton.Enabled = false;
 
             // remove data in datagridview result
-            dataGridViewProdPlanList.DataSource = null;
-            dataGridViewProdPlanList.Refresh();
+            dataGridViewPublicHolidayList.DataSource = null;
+            dataGridViewPublicHolidayList.Refresh();
 
-            while (dataGridViewProdPlanList.Columns.Count > 0)
+            while (dataGridViewPublicHolidayList.Columns.Count > 0)
             {
-                dataGridViewProdPlanList.Columns.RemoveAt(0);
+                dataGridViewPublicHolidayList.Columns.RemoveAt(0);
             }
         }
 
@@ -188,46 +188,46 @@ namespace SMTPE
                     {
                         string idForecast = dt.Rows[0]["id"].ToString();
                         //insert detail
-                        for (int i = 0; i < dataGridViewProdPlanList.Rows.Count; i++)
+                        for (int i = 0; i < dataGridViewPublicHolidayList.Rows.Count; i++)
                         {
                             // insert data plan only 
-                            if (dataGridViewProdPlanList.Rows[i].Cells[0].Value.ToString() != "")
+                            if (dataGridViewPublicHolidayList.Rows[i].Cells[0].Value.ToString() != "")
                             {
-                                string model = dataGridViewProdPlanList.Rows[i].Cells[0].Value.ToString();
-                                string modelNo = dataGridViewProdPlanList.Rows[i].Cells[1].Value.ToString();
-                                string desc = dataGridViewProdPlanList.Rows[i].Cells[2].Value.ToString();
-                                string detail = dataGridViewProdPlanList.Rows[i].Cells[3].Value.ToString();
-                                string date1 = dataGridViewProdPlanList.Rows[i].Cells[4].Value.ToString();
-                                string date2 = dataGridViewProdPlanList.Rows[i].Cells[5].Value.ToString();
-                                string date3 = dataGridViewProdPlanList.Rows[i].Cells[6].Value.ToString();
-                                string date4 = dataGridViewProdPlanList.Rows[i].Cells[7].Value.ToString();
-                                string date5 = dataGridViewProdPlanList.Rows[i].Cells[8].Value.ToString();
-                                string date6 = dataGridViewProdPlanList.Rows[i].Cells[9].Value.ToString();
-                                string date7 = dataGridViewProdPlanList.Rows[i].Cells[10].Value.ToString();
-                                string date8 = dataGridViewProdPlanList.Rows[i].Cells[11].Value.ToString();
-                                string date9 = dataGridViewProdPlanList.Rows[i].Cells[12].Value.ToString();
-                                string date10 = dataGridViewProdPlanList.Rows[i].Cells[13].Value.ToString();
-                                string date11 = dataGridViewProdPlanList.Rows[i].Cells[14].Value.ToString();
-                                string date12 = dataGridViewProdPlanList.Rows[i].Cells[15].Value.ToString();
-                                string date13 = dataGridViewProdPlanList.Rows[i].Cells[16].Value.ToString();
-                                string date14 = dataGridViewProdPlanList.Rows[i].Cells[17].Value.ToString();
-                                string date15 = dataGridViewProdPlanList.Rows[i].Cells[18].Value.ToString();
-                                string date16 = dataGridViewProdPlanList.Rows[i].Cells[19].Value.ToString();
-                                string date17 = dataGridViewProdPlanList.Rows[i].Cells[20].Value.ToString();
-                                string date18 = dataGridViewProdPlanList.Rows[i].Cells[21].Value.ToString();
-                                string date19 = dataGridViewProdPlanList.Rows[i].Cells[22].Value.ToString();
-                                string date20 = dataGridViewProdPlanList.Rows[i].Cells[23].Value.ToString();
-                                string date21 = dataGridViewProdPlanList.Rows[i].Cells[24].Value.ToString();
-                                string date22 = dataGridViewProdPlanList.Rows[i].Cells[25].Value.ToString();
-                                string date23 = dataGridViewProdPlanList.Rows[i].Cells[26].Value.ToString();
-                                string date24 = dataGridViewProdPlanList.Rows[i].Cells[27].Value.ToString();
-                                string date25 = dataGridViewProdPlanList.Rows[i].Cells[28].Value.ToString();
-                                string date26 = dataGridViewProdPlanList.Rows[i].Cells[29].Value.ToString();
-                                string date27 = dataGridViewProdPlanList.Rows[i].Cells[30].Value.ToString();
-                                string date28 = dataGridViewProdPlanList.Rows[i].Cells[31].Value.ToString();
-                                string date29 = dataGridViewProdPlanList.Rows[i].Cells[32].Value.ToString();
-                                string date30 = dataGridViewProdPlanList.Rows[i].Cells[33].Value.ToString();
-                                string date31 = dataGridViewProdPlanList.Rows[i].Cells[34].Value.ToString();
+                                string model = dataGridViewPublicHolidayList.Rows[i].Cells[0].Value.ToString();
+                                string modelNo = dataGridViewPublicHolidayList.Rows[i].Cells[1].Value.ToString();
+                                string desc = dataGridViewPublicHolidayList.Rows[i].Cells[2].Value.ToString();
+                                string detail = dataGridViewPublicHolidayList.Rows[i].Cells[3].Value.ToString();
+                                string date1 = dataGridViewPublicHolidayList.Rows[i].Cells[4].Value.ToString();
+                                string date2 = dataGridViewPublicHolidayList.Rows[i].Cells[5].Value.ToString();
+                                string date3 = dataGridViewPublicHolidayList.Rows[i].Cells[6].Value.ToString();
+                                string date4 = dataGridViewPublicHolidayList.Rows[i].Cells[7].Value.ToString();
+                                string date5 = dataGridViewPublicHolidayList.Rows[i].Cells[8].Value.ToString();
+                                string date6 = dataGridViewPublicHolidayList.Rows[i].Cells[9].Value.ToString();
+                                string date7 = dataGridViewPublicHolidayList.Rows[i].Cells[10].Value.ToString();
+                                string date8 = dataGridViewPublicHolidayList.Rows[i].Cells[11].Value.ToString();
+                                string date9 = dataGridViewPublicHolidayList.Rows[i].Cells[12].Value.ToString();
+                                string date10 = dataGridViewPublicHolidayList.Rows[i].Cells[13].Value.ToString();
+                                string date11 = dataGridViewPublicHolidayList.Rows[i].Cells[14].Value.ToString();
+                                string date12 = dataGridViewPublicHolidayList.Rows[i].Cells[15].Value.ToString();
+                                string date13 = dataGridViewPublicHolidayList.Rows[i].Cells[16].Value.ToString();
+                                string date14 = dataGridViewPublicHolidayList.Rows[i].Cells[17].Value.ToString();
+                                string date15 = dataGridViewPublicHolidayList.Rows[i].Cells[18].Value.ToString();
+                                string date16 = dataGridViewPublicHolidayList.Rows[i].Cells[19].Value.ToString();
+                                string date17 = dataGridViewPublicHolidayList.Rows[i].Cells[20].Value.ToString();
+                                string date18 = dataGridViewPublicHolidayList.Rows[i].Cells[21].Value.ToString();
+                                string date19 = dataGridViewPublicHolidayList.Rows[i].Cells[22].Value.ToString();
+                                string date20 = dataGridViewPublicHolidayList.Rows[i].Cells[23].Value.ToString();
+                                string date21 = dataGridViewPublicHolidayList.Rows[i].Cells[24].Value.ToString();
+                                string date22 = dataGridViewPublicHolidayList.Rows[i].Cells[25].Value.ToString();
+                                string date23 = dataGridViewPublicHolidayList.Rows[i].Cells[26].Value.ToString();
+                                string date24 = dataGridViewPublicHolidayList.Rows[i].Cells[27].Value.ToString();
+                                string date25 = dataGridViewPublicHolidayList.Rows[i].Cells[28].Value.ToString();
+                                string date26 = dataGridViewPublicHolidayList.Rows[i].Cells[29].Value.ToString();
+                                string date27 = dataGridViewPublicHolidayList.Rows[i].Cells[30].Value.ToString();
+                                string date28 = dataGridViewPublicHolidayList.Rows[i].Cells[31].Value.ToString();
+                                string date29 = dataGridViewPublicHolidayList.Rows[i].Cells[32].Value.ToString();
+                                string date30 = dataGridViewPublicHolidayList.Rows[i].Cells[33].Value.ToString();
+                                string date31 = dataGridViewPublicHolidayList.Rows[i].Cells[34].Value.ToString();
 
                                 string StrQuery = "INSERT INTO tbl_forecastdetail " +
                                     "(forecastid, model, modelno, descr, detail, date1,date2,date3,date4,date5,date6,date7,date8,date9,date10,date11,date12,date13,date14,date15" +
@@ -316,15 +316,6 @@ namespace SMTPE
 
         private void browseButton_Click(object sender, EventArgs e)
         {
-            // get month year datepicker
-            string _Date = dateTimePickerMonthYear.Text;
-            DateTime dt = Convert.ToDateTime(_Date);
-            monthyear = dt.ToString("yyyy-MM-dd HH-mm-ss");
-            int year = Convert.ToInt32(dt.ToString("yyyy"));
-            int month = Convert.ToInt32(dt.ToString("MM"));
-
-            string totalDay = DateTime.DaysInMonth(year, month).ToString();
-
             try
             {
                 string cekmodel = "SELECT * FROM tbl_forecastlist WHERE monthyear = '" + monthyear + "'";
@@ -338,7 +329,6 @@ namespace SMTPE
                     {
                         MessageBox.Show(this, "Unable to import Production Plan List, Production Plan List selected month year already insert", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         resetData();
-                        dateTimePickerMonthYear.Focus();
                     }
                     else
                     {
@@ -389,13 +379,13 @@ namespace SMTPE
         private void dataGridViewForecastList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
             {
                 // not allow to sort table
-                for (int i = 0; i < dataGridViewProdPlanList.Columns.Count; i++)
+                for (int i = 0; i < dataGridViewPublicHolidayList.Columns.Count; i++)
                 {
-                    dataGridViewProdPlanList.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
+                    dataGridViewPublicHolidayList.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
                 }
 
                 // to resize column
-                dataGridViewProdPlanList.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                dataGridViewPublicHolidayList.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             }
 
             private void Loadbutton_Click(object sender, EventArgs e)
@@ -412,7 +402,7 @@ namespace SMTPE
                     // baca data pl No dan invoice date
                     DataTable dtExcel = new DataTable();
                     dtExcel = help.ReadExcel(FileName, fileExt, query); //read excel file   
-                    dataGridViewProdPlanList.DataSource = dtExcel;
+                    dataGridViewPublicHolidayList.DataSource = dtExcel;
 
                     // buat cari batas total row
                     DataTable dtExcel1 = new DataTable();
@@ -432,47 +422,47 @@ namespace SMTPE
                         }
                     }
 
-                    int totalrow = dataGridViewProdPlanList.Rows.Count;
+                    int totalrow = dataGridViewPublicHolidayList.Rows.Count;
                     rowIndexBatas = rowIndexBatas - 2;
 
                     //delete data start from text stencil No
                     for (int i = totalrow - 1; i > rowIndexBatas; i--)
                     {
-                        dataGridViewProdPlanList.Rows.RemoveAt(i);
+                        dataGridViewPublicHolidayList.Rows.RemoveAt(i);
                     }
 
                     // change - and remove other remarks 
-                    for (int i = 0; i < dataGridViewProdPlanList.Rows.Count; i++)
+                    for (int i = 0; i < dataGridViewPublicHolidayList.Rows.Count; i++)
                     {
                         // get model detail
-                        if (dataGridViewProdPlanList.Rows[i].Cells[2].Value.ToString().Contains(" MB"))
+                        if (dataGridViewPublicHolidayList.Rows[i].Cells[2].Value.ToString().Contains(" MB"))
                         {
                             //get model name
-                            var model = dataGridViewProdPlanList.Rows[i].Cells[2].Value.ToString().Split(' ');
-                            dataGridViewProdPlanList.Rows[i].Cells[0].Value = model[0];
+                            var model = dataGridViewPublicHolidayList.Rows[i].Cells[2].Value.ToString().Split(' ');
+                            dataGridViewPublicHolidayList.Rows[i].Cells[0].Value = model[0];
                         }
 
-                        for (int j = 0; j <= dataGridViewProdPlanList.Columns.Count - 1; j++)
+                        for (int j = 0; j <= dataGridViewPublicHolidayList.Columns.Count - 1; j++)
                         {
-                            if (dataGridViewProdPlanList.Rows[i].Cells[j].Value.ToString() == "-")
+                            if (dataGridViewPublicHolidayList.Rows[i].Cells[j].Value.ToString() == "-")
                             {
-                                dataGridViewProdPlanList.Rows[i].Cells[j].Value = 0;
+                                dataGridViewPublicHolidayList.Rows[i].Cells[j].Value = 0;
                             }
                         }
                     }
-                    totalLbl.Text = dataGridViewProdPlanList.Rows.Count.ToString();
+                    totalLbl.Text = dataGridViewPublicHolidayList.Rows.Count.ToString();
 
                     //to give color if not found model in datagridview
                     int countmissingmodel = 0;
                     string modelUPH;
                     missingmodel = "";
 
-                    for (int i = 0; i < dataGridViewProdPlanList.Rows.Count; ++i)
+                    for (int i = 0; i < dataGridViewPublicHolidayList.Rows.Count; ++i)
                     {
                         //Only check data MB
-                        if (dataGridViewProdPlanList.Rows[i].Cells[0].Value.ToString() != "")
+                        if (dataGridViewPublicHolidayList.Rows[i].Cells[0].Value.ToString() != "")
                         {
-                            modelUPH = dataGridViewProdPlanList.Rows[i].Cells[0].Value.ToString();
+                            modelUPH = dataGridViewPublicHolidayList.Rows[i].Cells[0].Value.ToString();
                             // cek model exist or not in db
                             string cekmodel = "SELECT b.model FROM tbl_masteruph a, tbl_model b WHERE b.id = a.model AND b.model = '" + modelUPH + "'";
                             using (MySqlDataAdapter dscmd = new MySqlDataAdapter(cekmodel, connectionDB.connection))
@@ -482,7 +472,7 @@ namespace SMTPE
                                 // cek jika ada model tsb
                                 if (ds.Tables[0].Rows.Count < 1)
                                 {
-                                    dataGridViewProdPlanList.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                                    dataGridViewPublicHolidayList.Rows[i].DefaultCellStyle.BackColor = Color.Red;
                                     countmissingmodel++;
                                     missingmodel += modelUPH + "\r\n";
                                 }
@@ -502,7 +492,7 @@ namespace SMTPE
                         CloseProgress();
                     }
 
-                    totalLbl.Text = dataGridViewProdPlanList.Rows.Count.ToString();
+                    totalLbl.Text = dataGridViewPublicHolidayList.Rows.Count.ToString();
                 }
                 catch (Exception ex)
                 {

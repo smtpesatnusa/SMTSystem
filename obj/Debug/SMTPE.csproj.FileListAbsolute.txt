@@ -342,11 +342,13 @@ C:\Users\mis\source\repos\SMTSystem\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\mis\source\repos\SMTSystem\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\mis\source\repos\SMTSystem\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\mis\source\repos\SMTSystem\bin\Debug\Z.BulkOperations.xml
-C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.csprojAssemblyReference.cache
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.csproj.ResolveComReference.cache
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.CustControl.resources
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.LabelPN.resources
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.LabelPNList.resources
+C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.EditPublicHoliday.resources
+C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.AddPublicHoliday.resources
+C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.PublicHoliday.resources
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.Editmodeluph.resources
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.AddMasterMaterial.resources
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.ImportMasterMaterial.resources
@@ -384,3 +386,4 @@ C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.application
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.csproj.CopyComplete
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.exe
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.pdb
+C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.csprojAssemblyReference.cache

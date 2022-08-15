@@ -4,6 +4,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SMTPE
@@ -11,11 +12,14 @@ namespace SMTPE
     public partial class DetailForecastList : MaterialForm
     {
         ConnectionDB connectionDB = new ConnectionDB();
-        
+
         int totalDay;
         string monthFile;
         int yearFile;
+        int year;
+        int month;
 
+        int row;
         public DetailForecastList()
         {
             InitializeComponent();
@@ -41,8 +45,8 @@ namespace SMTPE
                 // get month year datepicker
                 string _Date = tbMonthYear.Text;
                 DateTime dt = Convert.ToDateTime(_Date);
-                int year = Convert.ToInt32(dt.ToString("yyyy"));
-                int month = Convert.ToInt32(dt.ToString("MM"));
+                year = Convert.ToInt32(dt.ToString("yyyy"));
+                month = Convert.ToInt32(dt.ToString("MM"));
                 monthFile = dt.ToString("MMM");
                 yearFile = Convert.ToInt32(dt.ToString("yyyy"));
 
@@ -53,12 +57,12 @@ namespace SMTPE
 
                 for (int i = 1; i <= totalDay; i++)
                 {
-                    qry += "SUM(a.date"+i+ ") AS '" + i + "' ,";
+                    qry += "SUM(a.date" + i + ") AS '" + i + "' ,";
                 }
                 qry = qry.Remove(qry.Length - 1);
                 //-----------
 
-                string query = "SELECT a.model, c.uph, "+qry+" FROM tbl_forecastdetail a, tbl_forecastlist b, tbl_masteruph c, tbl_model d WHERE b.id = a.forecastid AND c.model = d.id AND a.model = d.model AND " +
+                string query = "SELECT a.model, c.uph, " + qry + " FROM tbl_forecastdetail a, tbl_forecastlist b, tbl_masteruph c, tbl_model d WHERE b.id = a.forecastid AND c.model = d.id AND a.model = d.model AND " +
                     "b.forecastlist = '" + tbForecastListNo.Text + "' GROUP BY a.forecastid, a.model, c.uph ";
 
                 using (MySqlDataAdapter adpt = new MySqlDataAdapter(query, connectionDB.connection))
@@ -89,7 +93,6 @@ namespace SMTPE
 
                     dataGridViewFCT2.DataSource = dset2.Tables[0];
                 }
-
                 totalLbl.Text = dataGridViewFCT.Rows.Count.ToString();
                 connectionDB.connection.Close();
             }
@@ -121,14 +124,6 @@ namespace SMTPE
             }
 
             dataGridViewFCT.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-
-            //// Set table title
-            //string[] title = { "MODEL", "UPH", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" };
-            //for (int i = 0; i < title.Length; i++)
-            //{
-            //    dataGridViewFCT.Columns[i].HeaderText = "" + title[i];
-            //}
-
             dataGridViewFCT.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
         }
 
@@ -161,28 +156,17 @@ namespace SMTPE
             LoadData();
         }
 
-        public List<DateTime> getAllDates(int year, int month)
-        {
-            var ret = new List<DateTime>();
-            for (int i = 1; i <= DateTime.DaysInMonth(year, month); i++)
-            {
-                ret.Add(new DateTime(year, month, i));
-            }
-            return ret;
-        }
-
-
         private void exportExcel()
         {
             try
             {
-
                 string directoryFile = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                 directoryFile = directoryFile + "\\ALFASYS\\FCT SMT\\" + tbForecastListNo.Text;
-                string filename =  tbForecastListNo.Text+ ".xlsx";
+                string filename = tbForecastListNo.Text + ".xlsx";
                 using (var workbook = new XLWorkbook())
                 {
-                    // worksheet plan
+                    #region worksheet1
+                    // worksheet 1
                     var worksheet = workbook.Worksheets.Add(tbForecastListNo.Text);
                     worksheet.Rows().Style.Font.FontName = "Calibri";
                     worksheet.Rows().Style.Font.FontSize = 11;
@@ -197,7 +181,7 @@ namespace SMTPE
                     worksheet.Column(3).Width = 12;
                     worksheet.Column(4).Width = 12;
 
-                    worksheet.Rows().Height = 18;
+                    worksheet.Rows().Height = 22;
 
                     worksheet.PageSetup.Margins.Top = 0.5;
                     worksheet.PageSetup.Margins.Bottom = 0.25;
@@ -214,16 +198,8 @@ namespace SMTPE
                     worksheet.Cell(2, 2).Value = "PTSN CKD";
                     worksheet.Cell(3, 2).Value = "MODEL";
                     worksheet.Cell(3, 4).Value = "UPH";
-                    
-                    // date 1 to 31
-                    for (int i = 1; i <= totalDay; i++)
-                    {
-                        string date = monthFile+"/"+i + "/" + yearFile;
-                        DateTime dt = Convert.ToDateTime(date);
-                        worksheet.Cell(2, 4+i).Value = date;
-                        worksheet.Cell(3, 4+i).Value = dt.ToString("ddd");
-                    }
 
+                    // set style for header
                     // set dok number format
                     worksheet.Range(worksheet.Cell(2, 5), worksheet.Cell(2, totalDay + 4)).Style.NumberFormat.Format = "d-mmm";
 
@@ -236,6 +212,41 @@ namespace SMTPE
                     worksheet.Range(worksheet.Cell(2, 5), worksheet.Cell(3, totalDay + 4)).Style.Fill.BackgroundColor = XLColor.Black;
                     worksheet.Range(worksheet.Cell(2, 5), worksheet.Cell(3, totalDay + 4)).Style.Font.FontColor = XLColor.White;
                     worksheet.Range(worksheet.Cell(2, 2), worksheet.Cell(3, totalDay + 4)).Style.Font.Bold = true;
+
+                    // date 1 to 31
+                    for (int i = 1; i <= totalDay; i++)
+                    {
+                        string date = monthFile + "/" + i + "/" + yearFile;
+                        DateTime dte = Convert.ToDateTime(date);
+                        worksheet.Cell(2, 4 + i).Value = date;
+                        worksheet.Cell(3, 4 + i).Value = dte.ToString("ddd");
+
+                        // set color red if day is sunday
+                        if (worksheet.Cell(3, 4 + i).Value.ToString() == "Sun")
+                        {
+                            worksheet.Range(worksheet.Cell(2, 4 + i), worksheet.Cell(3, 4 + i)).Style.Fill.BackgroundColor = XLColor.Red;
+                            worksheet.Range(worksheet.Cell(2, 4 + i), worksheet.Cell(3, 4 + i)).Style.Font.FontColor = XLColor.Black;
+                        }
+                        else if (worksheet.Cell(3, 4 + i).Value.ToString() == "Sat")
+                        {
+                            worksheet.Range(worksheet.Cell(2, 4 + i), worksheet.Cell(3, 4 + i)).Style.Fill.BackgroundColor = XLColor.FromArgb(0, 255, 0);
+                            worksheet.Range(worksheet.Cell(2, 4 + i), worksheet.Cell(3, 4 + i)).Style.Font.FontColor = XLColor.Black;
+                        }
+
+                        // give  cololor blue if public holiday
+                        string menu = "SELECT NAME, DATE FROM tbl_masterholiday WHERE DATE = '" + year + "-" + month + "-" + i + "'";
+                        using (MySqlDataAdapter adpt = new MySqlDataAdapter(menu, connectionDB.connection))
+                        {
+                            DataTable dt = new DataTable();
+                            adpt.Fill(dt);
+                            //cek jika ada tanggal merah
+                            if (dt.Rows.Count > 0)
+                            {
+                                worksheet.Range(worksheet.Cell(2, 4 + i), worksheet.Cell(3, 4 + i)).Style.Fill.BackgroundColor = XLColor.FromArgb(0, 176, 240);
+                                worksheet.Range(worksheet.Cell(2, 4 + i), worksheet.Cell(3, 4 + i)).Style.Font.FontColor = XLColor.Black;
+                            }
+                        }
+                    }
 
                     int cellRowIndex = 4;
                     int cellColumnIndex = 3;
@@ -252,7 +263,7 @@ namespace SMTPE
                             else
                             {
                                 worksheet.Cell(i + cellRowIndex, j + cellColumnIndex).Value = dataGridViewFCT.Rows[i].Cells[j].Value.ToString();
-                            }                            
+                            }
                         }
                     }
 
@@ -287,18 +298,18 @@ namespace SMTPE
 
                     #region insert total data
                     int cellDemand = dataGridViewFCT.Rows.Count + cellRowIndex;
-                    int nextcellDemand = cellDemand +1;
+                    int nextcellDemand = cellDemand + 1;
 
                     // give color yellow in total result
-                    worksheet.Range(worksheet.Cell(endPart+1, 5), worksheet.Cell(endPart+1, totalDay+4)).Style.Fill.BackgroundColor = XLColor.Yellow;
-                                        
-                   string[] column = { "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+                    worksheet.Range(worksheet.Cell(endPart + 1, 5), worksheet.Cell(endPart + 1, totalDay + 4)).Style.Fill.BackgroundColor = XLColor.Yellow;
+
+                    string[] column = { "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
                         "AA", "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI" };
                     for (int i = 0; i < totalDay; i++)
                     {
-                        if (i< totalDay)
+                        if (i < totalDay)
                         {
-                            worksheet.Cell(endPart + 1, i + 5).FormulaR1C1 = "=" + column[i+1] + cellDemand + "+" + column[i] + nextcellDemand + "";
+                            worksheet.Cell(endPart + 1, i + 5).FormulaR1C1 = "=" + column[i + 1] + cellDemand + "+" + column[i] + nextcellDemand + "";
                         }
                     }
                     #endregion
@@ -346,21 +357,21 @@ namespace SMTPE
                             }
                             else
                             {
-                                worksheet.Cell(endPart2, i + 5).FormulaR1C1 = "=SUM(" + column2[i]+ endFCT1 + ":" + column2[i] + rowtotal + ")";
+                                worksheet.Cell(endPart2, i + 5).FormulaR1C1 = "=SUM(" + column2[i] + endFCT1 + ":" + column2[i] + rowtotal + ")";
                             }
                         }
                     }
                     #endregion
 
-                    worksheet.Cell(endPart2+1, 3).Value = "CURRENT TEAM";
+                    worksheet.Cell(endPart2 + 1, 3).Value = "CURRENT TEAM";
                     // give color red 
-                    worksheet.Range(worksheet.Cell(endPart2+2, 2), worksheet.Cell(endPart2+2, totalDay + 4)).Style.Fill.BackgroundColor = XLColor.FromArgb(230, 185, 184);
-                    worksheet.Range(worksheet.Cell(endPart2+4, 5), worksheet.Cell(endPart2+4, totalDay + 4)).Style.Fill.BackgroundColor = XLColor.FromArgb(230, 185, 184);
-                    worksheet.Cell(endPart2+2, 3).Value = "SHORTAGE TEAM";
+                    worksheet.Range(worksheet.Cell(endPart2 + 2, 2), worksheet.Cell(endPart2 + 2, totalDay + 4)).Style.Fill.BackgroundColor = XLColor.FromArgb(230, 185, 184);
+                    worksheet.Range(worksheet.Cell(endPart2 + 4, 5), worksheet.Cell(endPart2 + 4, totalDay + 4)).Style.Fill.BackgroundColor = XLColor.FromArgb(230, 185, 184);
+                    worksheet.Cell(endPart2 + 2, 3).Value = "SHORTAGE TEAM";
 
                     #region insert formula Shortage Team
                     int requiredrow = endPart2;
-                    int currentrow = requiredrow+1;
+                    int currentrow = requiredrow + 1;
 
                     string[] column3 = { "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
                         "AA", "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ" };
@@ -385,6 +396,163 @@ namespace SMTPE
                             worksheet.Cell(accmshortagerow, i + 5).FormulaR1C1 = "=" + column[i + 1] + shortagerow + "+" + column[i] + accmshortagerow + "";
                         }
                     }
+                    #endregion
+
+                    #endregion
+
+                    #region worksheet1
+                    // worksheet1
+
+                    var worksheet1 = workbook.Worksheets.Add("Schedule");
+                    worksheet1.Rows().Style.Font.FontName = "Calibri";
+                    worksheet1.Rows().Style.Font.FontSize = 11;
+
+                    //to show gridlines
+                    worksheet1.ShowGridLines = false;
+
+                    //set column width
+                    worksheet1.Columns().Width = 10;
+                    worksheet1.Column(1).Width = 2;
+                    worksheet1.Column(2).Width = 23;
+                    worksheet1.Column(3).Width = 12;
+                    worksheet1.Column(4).Width = 12;
+                    worksheet1.Column(5).Width = 12;
+
+                    worksheet1.Rows().Height = 22;
+
+                    worksheet1.PageSetup.Margins.Top = 0.5;
+                    worksheet1.PageSetup.Margins.Bottom = 0.25;
+                    worksheet1.PageSetup.Margins.Left = 0.25;
+                    worksheet1.PageSetup.Margins.Right = 0;
+                    worksheet1.PageSetup.Margins.Header = 0.5;
+                    worksheet1.PageSetup.Margins.Footer = 0.25;
+                    worksheet1.PageSetup.CenterHorizontally = true;
+
+                    // set text center
+                    worksheet1.Range(worksheet1.Cell(2, 3), worksheet1.Cell(3, 36)).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+                    worksheet1.Range(worksheet1.Cell(2, 3), worksheet1.Cell(3, 36)).Style.Alignment.SetVertical(XLAlignmentVerticalValues.Center);
+                    worksheet1.Range(worksheet1.Cell(2, 3), worksheet1.Cell(2, 5)).Merge();
+                    worksheet1.Cell(2, 3).Value = "PTSN CKD";
+                    worksheet1.Cell(3, 3).Value = "MODEL";
+                    worksheet1.Cell(3, 5).Value = "UPH";
+
+                    // set style for header
+                    // set dok number format
+                    worksheet1.Range(worksheet1.Cell(2, 6), worksheet1.Cell(2, totalDay + 5)).Style.NumberFormat.Format = "d-mmm";
+
+                    // set border 
+                    worksheet1.Range(worksheet1.Cell(2, 6), worksheet1.Cell(3, totalDay + 5)).Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                    worksheet1.Range(worksheet1.Cell(2, 6), worksheet1.Cell(3, totalDay + 5)).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+
+                    // set color header
+                    worksheet1.Range(worksheet1.Cell(2, 3), worksheet1.Cell(3, 6)).Style.Fill.BackgroundColor = XLColor.Yellow;
+                    worksheet1.Range(worksheet1.Cell(2, 6), worksheet1.Cell(3, totalDay + 5)).Style.Fill.BackgroundColor = XLColor.Black;
+                    worksheet1.Range(worksheet1.Cell(2, 6), worksheet1.Cell(3, totalDay + 5)).Style.Font.FontColor = XLColor.White;
+                    worksheet1.Range(worksheet1.Cell(2, 3), worksheet1.Cell(3, totalDay + 5)).Style.Font.Bold = true;
+
+                    int cellRowIndexSheet1 = 4;
+                    int cellColumnIndexSheet1 = 4;
+
+                    // get all data in datagridview with skip 0 value
+                    Dictionary<string, int> smtSchedule = new Dictionary<string, int>();
+                    //IDictionary<string, string[]> smtSchedule = new Dictionary<string, string[]>();
+
+                    // storing Each row and column value to excel sheet  
+                    for (int i = 0; i < dataGridViewFCT.Rows.Count; i++)
+                    {
+                        // display SMT scehdule
+                        for (int j = 0; j < dataGridViewFCT.Columns.Count; j++)
+                        {
+                            row = (5 * i) + 7;
+                            worksheet1.Cell(row, 2).Value = "FATP Demand";
+                            worksheet1.Cell(row - 1, 2).Value = "Delivery";
+                            worksheet1.Cell(row - 2, 2).Value = "SA";
+                            worksheet1.Cell(row - 3, 2).Value = "SMT";
+
+                            //display model name
+                            if (j == 0)
+                            {
+                                worksheet1.Cell(row, 3).Value = dataGridViewFCT.Rows[i].Cells[j].Value.ToString();
+                            }
+                            else
+                            {
+                                worksheet1.Cell(row, j + cellColumnIndexSheet1).Value = dataGridViewFCT.Rows[i].Cells[j].Value.ToString();
+                            }
+                        }
+
+                        // display Schedule beside SMT
+                        int k = 0;
+                        for (int j = 5; j < dataGridViewFCT.Columns.Count; j++)
+                        {
+                            // to get all data in datagridview c# with skip 0 value 
+                            if (dataGridViewFCT.Rows[i].Cells[j].Value.ToString() != "0")
+                            {
+                                k++;
+                                smtSchedule.Add(i + "," + + k, Convert.ToInt32(dataGridViewFCT.Rows[i].Cells[j].Value.ToString()));
+                            }
+                        }
+                    }
+
+                    // get end of row in excel
+                    int endPartSheet1 = row+1;
+                    int endCellSheet1 = dataGridViewFCT.Rows.Count + 3;
+
+                    for (int i = 0; i < smtSchedule.Count; i++)
+                    {
+                        //get row
+                        var row = smtSchedule.ElementAt(i).Key.ToString().Split(',');
+                        int rowPosition = Convert.ToInt32(row[0].Replace(",", ""));
+                        int rowPosition1 = (rowPosition * 5) + 4;
+                        int rowPosition2 = (rowPosition + 1) * 5;
+                        int rowPosition3 = (rowPosition * 5) + 6;
+                        int columnPosition = Convert.ToInt32(row[1].Replace(",", ""));
+
+                        worksheet1.Cell(rowPosition1, 5 + columnPosition).Value = smtSchedule.ElementAt(i).Value;
+                        worksheet1.Cell(rowPosition2, 6 + columnPosition).Value = smtSchedule.ElementAt(i).Value;
+                        worksheet1.Cell(rowPosition3, 7 + columnPosition).Value = smtSchedule.ElementAt(i).Value;
+                    }
+
+                    // set dok number format
+                    worksheet1.Range(worksheet1.Cell(4, 5), worksheet1.Cell(endPartSheet1, totalDay + 5)).Style.NumberFormat.Format = "#,###;-#,###;-";
+
+                    // giving color for sun(red), sat(green) and public holiday (blue)
+                    for (int i = 1; i <= totalDay; i++)
+                    {
+                        string date = monthFile + "/" + i + "/" + yearFile;
+                        DateTime dte = Convert.ToDateTime(date);
+                        worksheet1.Cell(2, 5 + i).Value = date;
+                        worksheet1.Cell(3, 5 + i).Value = dte.ToString("ddd");
+
+                        // set color red if day is sunday
+                        if (worksheet1.Cell(3, 5 + i).Value.ToString() == "Sun")
+                        {
+                            worksheet1.Range(worksheet1.Cell(2, 5 + i), worksheet1.Cell(3, 5 + i)).Style.Fill.BackgroundColor = XLColor.Red;
+                            worksheet1.Range(worksheet1.Cell(2, 5 + i), worksheet1.Cell(3, 5 + i)).Style.Font.FontColor = XLColor.Black;
+                            //worksheet1.Range(worksheet1.Cell(4, 5 + i), worksheet1.Cell(endPartSheet1, 5 + i)).Style.Fill.BackgroundColor = XLColor.Red;
+                        }
+                        else if (worksheet1.Cell(3, 5 + i).Value.ToString() == "Sat")
+                        {
+                            worksheet1.Range(worksheet1.Cell(2, 5 + i), worksheet1.Cell(3, 5 + i)).Style.Fill.BackgroundColor = XLColor.FromArgb(0, 255, 0);
+                            worksheet1.Range(worksheet1.Cell(2, 5 + i), worksheet1.Cell(3, 5 + i)).Style.Font.FontColor = XLColor.Black;
+                            //worksheet1.Range(worksheet1.Cell(4, 5 + i), worksheet1.Cell(endPartSheet1, 5 + i)).Style.Fill.BackgroundColor = XLColor.FromArgb(0, 255, 0);
+                        }
+
+                        // give  color blue if public holiday
+                        string menu = "SELECT NAME, DATE FROM tbl_masterholiday WHERE DATE = '" + year + "-" + month + "-" + i + "'";
+                        using (MySqlDataAdapter adpt = new MySqlDataAdapter(menu, connectionDB.connection))
+                        {
+                            DataTable dt = new DataTable();
+                            adpt.Fill(dt);
+                            //cek jika ada tanggal merah
+                            if (dt.Rows.Count > 0)
+                            {
+                                worksheet1.Range(worksheet1.Cell(2, 5 + i), worksheet1.Cell(3, 5 + i)).Style.Fill.BackgroundColor = XLColor.FromArgb(0, 176, 240);
+                                worksheet1.Range(worksheet1.Cell(2, 5 + i), worksheet1.Cell(3, 5 + i)).Style.Font.FontColor = XLColor.Black;
+                                //worksheet1.Range(worksheet1.Cell(4, 5 + i), worksheet1.Cell(endPartSheet1, 5 + i)).Style.Fill.BackgroundColor = XLColor.FromArgb(0, 176, 240);
+                            }
+                        }
+                    }
+                    //===============
                     #endregion
 
                     workbook.SaveAs(directoryFile + "\\" + filename);
@@ -416,14 +584,6 @@ namespace SMTPE
             }
 
             dataGridViewFCT2.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-
-            //// Set table title
-            //string[] title = { "MODEL", "UPH", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" };
-            //for (int i = 0; i < title.Length; i++)
-            //{
-            //    dataGridViewFCT2.Columns[i].HeaderText = "" + title[i];
-            //}
-
             dataGridViewFCT2.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
         }
     }

@@ -80,7 +80,9 @@ namespace SMTPE
             this.dataGridViewModeluphlist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewModeluphlist.Location = new System.Drawing.Point(23, 179);
             this.dataGridViewModeluphlist.Name = "dataGridViewModeluphlist";
+            this.dataGridViewModeluphlist.ReadOnly = true;
             this.dataGridViewModeluphlist.RowHeadersWidth = 51;
+            this.dataGridViewModeluphlist.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewModeluphlist.Size = new System.Drawing.Size(1315, 494);
             this.dataGridViewModeluphlist.TabIndex = 10;
             this.dataGridViewModeluphlist.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewModellist_CellContentClick);

@@ -184,7 +184,7 @@ namespace SMTPE
             this.importBtn.Depth = 0;
             this.importBtn.HighEmphasis = true;
             this.importBtn.Icon = global::SMTPE.Properties.Resources.icons8_import_file_20;
-            this.importBtn.Location = new System.Drawing.Point(1138, 76);
+            this.importBtn.Location = new System.Drawing.Point(1138, 75);
             this.importBtn.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.importBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.importBtn.Name = "importBtn";

@@ -259,14 +259,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SMTPE.exe" size="368088">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SMTPE.exe" size="368600">
       <assemblyIdentity name="SMTPE" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ARn3fyPu7XMCrR3hY/PT/fAag/v4kkc7tn/qFL3Y+L4=</dsig:DigestValue>
+        <dsig:DigestValue>Yrkk++g7dakMZk/b6FD+jHLDIeFUJD0piHoqk5DeRkU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

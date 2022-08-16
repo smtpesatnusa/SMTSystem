@@ -1,11 +1,13 @@
 ﻿using ClosedXML.Excel;
 using MaterialSkin.Controls;
+using Microsoft.Office.Interop.Excel;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using DataTable = System.Data.DataTable;
 
 namespace SMTPE
 {
@@ -20,6 +22,8 @@ namespace SMTPE
         int month;
 
         int row;
+        int firstDataPosition;
+
         public DetailForecastList()
         {
             InitializeComponent();
@@ -135,7 +139,7 @@ namespace SMTPE
             DialogResult result = materialDialog.ShowDialog(this);
             if (result.ToString() == "OK")
             {
-                Application.ExitThread();
+                System.Windows.Forms.Application.ExitThread();
             }
             else
             {
@@ -151,7 +155,7 @@ namespace SMTPE
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
             this.WindowState = FormWindowState.Maximized;
             //icon
-            this.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+            this.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Windows.Forms.Application.ExecutablePath);
 
             LoadData();
         }
@@ -453,68 +457,6 @@ namespace SMTPE
                     int cellRowIndexSheet1 = 4;
                     int cellColumnIndexSheet1 = 4;
 
-                    // get all data in datagridview with skip 0 value
-                    Dictionary<string, int> smtSchedule = new Dictionary<string, int>();
-                    //IDictionary<string, string[]> smtSchedule = new Dictionary<string, string[]>();
-
-                    // storing Each row and column value to excel sheet  
-                    for (int i = 0; i < dataGridViewFCT.Rows.Count; i++)
-                    {
-                        // display SMT scehdule
-                        for (int j = 0; j < dataGridViewFCT.Columns.Count; j++)
-                        {
-                            row = (5 * i) + 7;
-                            worksheet1.Cell(row, 2).Value = "FATP Demand";
-                            worksheet1.Cell(row - 1, 2).Value = "Delivery";
-                            worksheet1.Cell(row - 2, 2).Value = "SA";
-                            worksheet1.Cell(row - 3, 2).Value = "SMT";
-
-                            //display model name
-                            if (j == 0)
-                            {
-                                worksheet1.Cell(row, 3).Value = dataGridViewFCT.Rows[i].Cells[j].Value.ToString();
-                            }
-                            else
-                            {
-                                worksheet1.Cell(row, j + cellColumnIndexSheet1).Value = dataGridViewFCT.Rows[i].Cells[j].Value.ToString();
-                            }
-                        }
-
-                        // display Schedule beside SMT
-                        int k = 0;
-                        for (int j = 5; j < dataGridViewFCT.Columns.Count; j++)
-                        {
-                            // to get all data in datagridview c# with skip 0 value 
-                            if (dataGridViewFCT.Rows[i].Cells[j].Value.ToString() != "0")
-                            {
-                                k++;
-                                smtSchedule.Add(i + "," + + k, Convert.ToInt32(dataGridViewFCT.Rows[i].Cells[j].Value.ToString()));
-                            }
-                        }
-                    }
-
-                    // get end of row in excel
-                    int endPartSheet1 = row+1;
-                    int endCellSheet1 = dataGridViewFCT.Rows.Count + 3;
-
-                    for (int i = 0; i < smtSchedule.Count; i++)
-                    {
-                        //get row
-                        var row = smtSchedule.ElementAt(i).Key.ToString().Split(',');
-                        int rowPosition = Convert.ToInt32(row[0].Replace(",", ""));
-                        int rowPosition1 = (rowPosition * 5) + 4;
-                        int rowPosition2 = (rowPosition + 1) * 5;
-                        int rowPosition3 = (rowPosition * 5) + 6;
-                        int columnPosition = Convert.ToInt32(row[1].Replace(",", ""));
-
-                        worksheet1.Cell(rowPosition1, 5 + columnPosition).Value = smtSchedule.ElementAt(i).Value;
-                        worksheet1.Cell(rowPosition2, 6 + columnPosition).Value = smtSchedule.ElementAt(i).Value;
-                        worksheet1.Cell(rowPosition3, 7 + columnPosition).Value = smtSchedule.ElementAt(i).Value;
-                    }
-
-                    // set dok number format
-                    worksheet1.Range(worksheet1.Cell(4, 5), worksheet1.Cell(endPartSheet1, totalDay + 5)).Style.NumberFormat.Format = "#,###;-#,###;-";
-
                     // giving color for sun(red), sat(green) and public holiday (blue)
                     for (int i = 1; i <= totalDay; i++)
                     {
@@ -528,7 +470,8 @@ namespace SMTPE
                         {
                             worksheet1.Range(worksheet1.Cell(2, 5 + i), worksheet1.Cell(3, 5 + i)).Style.Fill.BackgroundColor = XLColor.Red;
                             worksheet1.Range(worksheet1.Cell(2, 5 + i), worksheet1.Cell(3, 5 + i)).Style.Font.FontColor = XLColor.Black;
-                            //worksheet1.Range(worksheet1.Cell(4, 5 + i), worksheet1.Cell(endPartSheet1, 5 + i)).Style.Fill.BackgroundColor = XLColor.Red;
+                            //worksheet1.Range(worksheet1.Cell(4, 5 + i), worksheet1.Cell(endPartSheet1, 5 + i)).InsertColumnsBefore(1);
+                            ////worksheet1.Range(worksheet1.Cell(4, 5 + i), worksheet1.Cell(endPartSheet1, 5 + i)).Style.Fill.BackgroundColor = XLColor.Red;
                         }
                         else if (worksheet1.Cell(3, 5 + i).Value.ToString() == "Sat")
                         {
@@ -548,11 +491,110 @@ namespace SMTPE
                             {
                                 worksheet1.Range(worksheet1.Cell(2, 5 + i), worksheet1.Cell(3, 5 + i)).Style.Fill.BackgroundColor = XLColor.FromArgb(0, 176, 240);
                                 worksheet1.Range(worksheet1.Cell(2, 5 + i), worksheet1.Cell(3, 5 + i)).Style.Font.FontColor = XLColor.Black;
+                                if (worksheet1.Cell(3, 5 + i).Value.ToString() != "Sun")
+                                {
+                                    //worksheet1.Range(worksheet1.Cell(4, 5 + i), worksheet1.Cell(endPartSheet1, 5 + i)).InsertColumnsBefore(1);
+                                }
                                 //worksheet1.Range(worksheet1.Cell(4, 5 + i), worksheet1.Cell(endPartSheet1, 5 + i)).Style.Fill.BackgroundColor = XLColor.FromArgb(0, 176, 240);
+                            }
+                        }                        
+                    }
+                    //===============
+
+                    // get all data in datagridview with skip 0 value
+                    Dictionary<string, int> smtSchedule = new Dictionary<string, int>();
+
+                    // storing Each row and column value to excel sheet  
+                    for (int i = 0; i < dataGridViewFCT.Rows.Count; i++)
+                    {
+                        // list all fcst and skip 0 value
+                        int k = 0;
+                        int firstcol = 0;
+                        for (int j = 5; j < dataGridViewFCT.Columns.Count; j++)
+                        {
+                            // to get all data in datagridview c# with skip 0 value 
+                            if (dataGridViewFCT.Rows[i].Cells[j].Value.ToString() != "0")
+                            {
+                                int colposition = j - 5;
+                                k++;
+                                smtSchedule.Add(i + "," + k + "," +colposition, Convert.ToInt32(dataGridViewFCT.Rows[i].Cells[j].Value.ToString()));
                             }
                         }
                     }
-                    //===============
+
+                    for (int i = 0; i < smtSchedule.Count; i++)
+                    {
+                        //get row
+                        var row = smtSchedule.ElementAt(i).Key.ToString().Split(',');
+                        int rowPosition = Convert.ToInt32(row[0].Replace(",", ""));
+                        int rowPosition1 = (rowPosition * 5) + 4;
+                        int rowPosition2 = (rowPosition + 1) * 5;
+                        int rowPosition3 = (rowPosition * 5) + 6;
+                        
+                        int columnPosition = Convert.ToInt32(row[1].Replace(",", ""));
+                        
+                        // to get first column
+                        if (columnPosition == 1)
+                        {
+                            firstDataPosition = Convert.ToInt32(row[2].Replace(",", ""));
+                        }
+
+                        Console.WriteLine(firstDataPosition.ToString());
+
+                        worksheet1.Cell(rowPosition1, 5 + firstDataPosition + columnPosition).Value = smtSchedule.ElementAt(i).Value;
+                        worksheet1.Cell(rowPosition2, 6 + firstDataPosition + columnPosition).Value = smtSchedule.ElementAt(i).Value;
+                        worksheet1.Cell(rowPosition3, 7 + firstDataPosition + columnPosition).Value = smtSchedule.ElementAt(i).Value;
+                    }
+
+                    // get end of row in excel
+                    int maxrow = (dataGridViewFCT.Rows.Count * 5) + 3;
+                    int endPartSheet1 = maxrow;
+
+                    // moving 1 cell if in sun or public holiday in excel sheet  
+                    for (int i = 4; i < endPartSheet1; i++)
+                    {
+                        for (int j = 5; j < totalDay + 5; j++)
+                        {
+                            // to get all data in datagridview c# with skip 0 value, with ceck if cell is not blank and the header color is read or blue add 1 cell  
+                            if (worksheet1.Cell(i, j).Value != "")
+                            {
+                                if (worksheet1.Cell(3, j).Style.Fill.BackgroundColor == XLColor.Red|| worksheet1.Cell(3, j).Style.Fill.BackgroundColor == XLColor.FromArgb(0, 176, 240))
+                                {
+                                    worksheet1.Cell(i, j).InsertCellsBefore(1);
+                                }                              
+                            }
+                        }
+                    }
+
+                    // storing Each row and column value to excel sheet  
+                    for (int k = 0; k < dataGridViewFCT.Rows.Count; k++)
+                    {
+                        // display SMT scehdule
+                        for (int j = 0; j < dataGridViewFCT.Columns.Count; j++)
+                        {
+                            row = (5 * k) + 7;
+                            worksheet1.Cell(row, 2).Value = "FATP Demand";
+                            worksheet1.Cell(row - 1, 2).Value = "Delivery";
+                            worksheet1.Cell(row - 2, 2).Value = "SA";
+                            worksheet1.Cell(row - 3, 2).Value = "SMT";
+
+                            //display model name
+                            if (j == 0)
+                            {
+                                worksheet1.Cell(row, 3).Value = dataGridViewFCT.Rows[k].Cells[j].Value.ToString();
+                            }
+                            else
+                            {
+                                worksheet1.Cell(row, j + cellColumnIndexSheet1).Value = dataGridViewFCT.Rows[k].Cells[j].Value.ToString();
+                            }
+                        }
+                    }
+                    //// to delete unnecessary data
+                    //worksheet1.Range("AK:AZ").Delete(XLShiftDeletedCells.ShiftCellsLeft); 
+
+                    // set dok number format
+                    worksheet1.Range(worksheet1.Cell(4, 5), worksheet1.Cell(endPartSheet1, totalDay + 5)).Style.NumberFormat.Format = "#,###;-#,###;-";                   
+                    
                     #endregion
 
                     workbook.SaveAs(directoryFile + "\\" + filename);

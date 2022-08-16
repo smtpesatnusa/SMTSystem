@@ -175,7 +175,7 @@ namespace SMTPE
                 string forecastNo = cmbForecastFile.Text;
 
                 //insert listdata
-                string insert = "INSERT INTO tbl_forecastlist (monthyear, forecastList, importDate, importBy) VALUES ('"+monthyear+"','" + forecastNo + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '" + idUser + "')";
+                string insert = "INSERT INTO tbl_forecastlist (monthyear, forecastList, importDate, importBy) VALUES ('" + monthyear + "','" + forecastNo + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '" + idUser + "')";
                 cmd.CommandText = insert;
                 cmd.ExecuteNonQuery();
 
@@ -232,7 +232,7 @@ namespace SMTPE
                                 string StrQuery = "INSERT INTO tbl_forecastdetail " +
                                     "(forecastid, model, modelno, descr, detail, date1,date2,date3,date4,date5,date6,date7,date8,date9,date10,date11,date12,date13,date14,date15" +
                                     ",date16,date17,date18,date19,date20,date21,date22,date23,date24,date25,date26,date27,date28,date29,date30,date31) " +
-                                    "VALUES ('"+ idForecast + "','"
+                                    "VALUES ('" + idForecast + "','"
                                      + model + "','"
                                      + modelNo + "', '"
                                      + desc + "', '"
@@ -318,8 +318,10 @@ namespace SMTPE
         {
             try
             {
-                string cekmodel = "SELECT * FROM tbl_forecastlist WHERE monthyear = '" + monthyear + "'";
-                using (MySqlDataAdapter dscmd = new MySqlDataAdapter(cekmodel, connectionDB.connection))
+                monthyear = dateTimePickerMonthYear.Value.ToString("yyyy-MM-01");
+
+                string cek = "SELECT * FROM tbl_forecastlist WHERE monthyear = '" + monthyear + "'";
+                using (MySqlDataAdapter dscmd = new MySqlDataAdapter(cek, connectionDB.connection))
                 {
                     DataSet ds = new DataSet();
                     dscmd.Fill(ds);
@@ -377,153 +379,154 @@ namespace SMTPE
         }
 
         private void dataGridViewForecastList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // not allow to sort table
+            for (int i = 0; i < dataGridViewPublicHolidayList.Columns.Count; i++)
             {
-                // not allow to sort table
-                for (int i = 0; i < dataGridViewPublicHolidayList.Columns.Count; i++)
-                {
-                    dataGridViewPublicHolidayList.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
-                }
-
-                // to resize column
-                dataGridViewPublicHolidayList.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                dataGridViewPublicHolidayList.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
             }
 
-            private void Loadbutton_Click(object sender, EventArgs e)
+            // to resize column
+            dataGridViewPublicHolidayList.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+        }
+
+        private void Loadbutton_Click(object sender, EventArgs e)
+        {
+            string sheetName = cmbForecastFile.Text;
+
+            query = "select * from [" + sheetName + "$A3:AI]";
+            queryGetTotal = "select * from [" + sheetName + "$D:D]";
+
+            try
             {
-                string sheetName = cmbForecastFile.Text;
+                StartProgress("Loading...");
 
-                query = "select * from [" + sheetName + "$A3:AI]";
-                queryGetTotal = "select * from [" + sheetName + "$D:D]";
+                // baca data pl No dan invoice date
+                DataTable dtExcel = new DataTable();
+                dtExcel = help.ReadExcel(FileName, fileExt, query); //read excel file   
+                dataGridViewPublicHolidayList.DataSource = dtExcel;
 
-                try
+                // buat cari batas total row
+                DataTable dtExcel1 = new DataTable();
+                dtExcel1 = help.ReadExcel(FileName, fileExt, queryGetTotal); //read excel file  
+
+                //get datatable row
+                DataRow row = dtExcel1.NewRow();
+
+                string searchingFor = "Accm";
+                int rowIndexBatas = 0;
+
+                for (int i = 0; i < dtExcel1.Rows.Count; i++)
                 {
-                    StartProgress("Loading...");
-
-                    // baca data pl No dan invoice date
-                    DataTable dtExcel = new DataTable();
-                    dtExcel = help.ReadExcel(FileName, fileExt, query); //read excel file   
-                    dataGridViewPublicHolidayList.DataSource = dtExcel;
-
-                    // buat cari batas total row
-                    DataTable dtExcel1 = new DataTable();
-                    dtExcel1 = help.ReadExcel(FileName, fileExt, queryGetTotal); //read excel file  
-
-                    //get datatable row
-                    DataRow row = dtExcel1.NewRow();
-
-                    string searchingFor = "Accm";
-                    int rowIndexBatas = 0;
-
-                    for (int i = 0; i < dtExcel1.Rows.Count; i++)
+                    if (dtExcel1.Rows[i][0].ToString().Contains(searchingFor))
                     {
-                        if (dtExcel1.Rows[i][0].ToString().Contains(searchingFor))
-                        {
-                            rowIndexBatas = i;
-                        }
+                        rowIndexBatas = i;
                     }
-
-                    int totalrow = dataGridViewPublicHolidayList.Rows.Count;
-                    rowIndexBatas = rowIndexBatas - 2;
-
-                    //delete data start from text stencil No
-                    for (int i = totalrow - 1; i > rowIndexBatas; i--)
-                    {
-                        dataGridViewPublicHolidayList.Rows.RemoveAt(i);
-                    }
-
-                    // change - and remove other remarks 
-                    for (int i = 0; i < dataGridViewPublicHolidayList.Rows.Count; i++)
-                    {
-                        // get model detail
-                        if (dataGridViewPublicHolidayList.Rows[i].Cells[2].Value.ToString().Contains(" MB"))
-                        {
-                            //get model name
-                            var model = dataGridViewPublicHolidayList.Rows[i].Cells[2].Value.ToString().Split(' ');
-                            dataGridViewPublicHolidayList.Rows[i].Cells[0].Value = model[0];
-                        }
-
-                        for (int j = 0; j <= dataGridViewPublicHolidayList.Columns.Count - 1; j++)
-                        {
-                            if (dataGridViewPublicHolidayList.Rows[i].Cells[j].Value.ToString() == "-")
-                            {
-                                dataGridViewPublicHolidayList.Rows[i].Cells[j].Value = 0;
-                            }
-                        }
-                    }
-                    totalLbl.Text = dataGridViewPublicHolidayList.Rows.Count.ToString();
-
-                    //to give color if not found model in datagridview
-                    int countmissingmodel = 0;
-                    string modelUPH;
-                    missingmodel = "";
-
-                    for (int i = 0; i < dataGridViewPublicHolidayList.Rows.Count; ++i)
-                    {
-                        //Only check data MB
-                        if (dataGridViewPublicHolidayList.Rows[i].Cells[0].Value.ToString() != "")
-                        {
-                            modelUPH = dataGridViewPublicHolidayList.Rows[i].Cells[0].Value.ToString();
-                            // cek model exist or not in db
-                            string cekmodel = "SELECT b.model FROM tbl_masteruph a, tbl_model b WHERE b.id = a.model AND b.model = '" + modelUPH + "'";
-                            using (MySqlDataAdapter dscmd = new MySqlDataAdapter(cekmodel, connectionDB.connection))
-                            {
-                                DataSet ds = new DataSet();
-                                dscmd.Fill(ds);
-                                // cek jika ada model tsb
-                                if (ds.Tables[0].Rows.Count < 1)
-                                {
-                                    dataGridViewPublicHolidayList.Rows[i].DefaultCellStyle.BackColor = Color.Red;
-                                    countmissingmodel++;
-                                    missingmodel += modelUPH + "\r\n";
-                                }
-                            }
-                        }
-                    }
-
-                    if (countmissingmodel > 0)
-                    {
-                        CloseProgress();
-                        MessageBox.Show(this, "Missing model from model UPH, please register model uph first ", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error); //custom messageBox to show error 
-                        saveButton.Enabled = false;
-                    }
-                    else
-                    {
-                        saveButton.Enabled = true;
-                        CloseProgress();
-                    }
-
-                    totalLbl.Text = dataGridViewPublicHolidayList.Rows.Count.ToString();
                 }
-                catch (Exception ex)
+
+                int totalrow = dataGridViewPublicHolidayList.Rows.Count;
+                rowIndexBatas = rowIndexBatas - 2;
+
+                //delete data start from text stencil No
+                for (int i = totalrow - 1; i > rowIndexBatas; i--)
+                {
+                    dataGridViewPublicHolidayList.Rows.RemoveAt(i);
+                }
+
+                // change - and remove other remarks 
+                for (int i = 0; i < dataGridViewPublicHolidayList.Rows.Count; i++)
+                {
+                    // get model detail
+                    if (dataGridViewPublicHolidayList.Rows[i].Cells[2].Value.ToString().Contains(" MB"))
+                    {
+                        //get model name
+                        var model = dataGridViewPublicHolidayList.Rows[i].Cells[2].Value.ToString().Split(' ');
+                        dataGridViewPublicHolidayList.Rows[i].Cells[0].Value = model[0];
+                    }
+
+                    for (int j = 0; j <= dataGridViewPublicHolidayList.Columns.Count - 1; j++)
+                    {
+                        if (dataGridViewPublicHolidayList.Rows[i].Cells[j].Value.ToString() == "-")
+                        {
+                            dataGridViewPublicHolidayList.Rows[i].Cells[j].Value = 0;
+                        }
+                    }
+                }
+                totalLbl.Text = dataGridViewPublicHolidayList.Rows.Count.ToString();
+
+                //to give color if not found model in datagridview
+                int countmissingmodel = 0;
+                string modelUPH;
+                missingmodel = "";
+
+                for (int i = 0; i < dataGridViewPublicHolidayList.Rows.Count; ++i)
+                {
+                    //Only check data MB
+                    if (dataGridViewPublicHolidayList.Rows[i].Cells[0].Value.ToString() != "")
+                    {
+                        modelUPH = dataGridViewPublicHolidayList.Rows[i].Cells[0].Value.ToString();
+                        // cek model exist or not in db
+                        string cekmodel = "SELECT b.model FROM tbl_masteruph a, tbl_model b WHERE b.id = a.model AND b.model = '" + modelUPH + "'";
+                        using (MySqlDataAdapter dscmd = new MySqlDataAdapter(cekmodel, connectionDB.connection))
+                        {
+                            DataSet ds = new DataSet();
+                            dscmd.Fill(ds);
+                            // cek jika ada model tsb
+                            if (ds.Tables[0].Rows.Count < 1)
+                            {
+                                dataGridViewPublicHolidayList.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                                countmissingmodel++;
+                                missingmodel += modelUPH + "\r\n";
+                            }
+                        }
+                    }
+                }
+
+                if (countmissingmodel > 0)
                 {
                     CloseProgress();
+                    MessageBox.Show(this, "Missing model from model UPH, please register model uph first ", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error); //custom messageBox to show error 
                     saveButton.Enabled = false;
-                    MessageBox.Show(ex.Message);
-                    MessageBox.Show(this, "Please select  Production Plan file with correct format", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error); //custom messageBox to show error 
-                }
-            }
-
-            private void cmbForecastFile_SelectedIndexChanged(object sender, EventArgs e)
-            {
-                saveButton.Enabled = false;
-            }
-
-            private void ImportForecastList_FormClosing(object sender, FormClosingEventArgs e)
-            {
-                string message = "Are you sure you want to close this application?";
-                string title = "Confirm Close";
-                MaterialDialog materialDialog = new MaterialDialog(this, title, message, "OK", true, "Cancel");
-                DialogResult result = materialDialog.ShowDialog(this);
-                if (result.ToString() == "OK")
-                {
-                    Application.ExitThread();
                 }
                 else
                 {
-                    e.Cancel = true;
-                    MaterialSnackBar SnackBarMessage = new MaterialSnackBar(result.ToString(), 750);
-                    SnackBarMessage.Show(this);
+                    saveButton.Enabled = true;
+                    CloseProgress();
                 }
+
+                totalLbl.Text = dataGridViewPublicHolidayList.Rows.Count.ToString();
+            }
+            catch (Exception ex)
+            {
+                CloseProgress();
+                saveButton.Enabled = false;
+                MessageBox.Show(ex.Message);
+                MessageBox.Show(this, "Please select  Production Plan file with correct format", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error); //custom messageBox to show error 
             }
         }
+
+        private void cmbForecastFile_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            saveButton.Enabled = false;
+        }
+
+        private void ImportForecastList_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string message = "Are you sure you want to close this application?";
+            string title = "Confirm Close";
+            MaterialDialog materialDialog = new MaterialDialog(this, title, message, "OK", true, "Cancel");
+            DialogResult result = materialDialog.ShowDialog(this);
+            if (result.ToString() == "OK")
+            {
+                Application.ExitThread();
+            }
+            else
+            {
+                e.Cancel = true;
+                MaterialSnackBar SnackBarMessage = new MaterialSnackBar(result.ToString(), 750);
+                SnackBarMessage.Show(this);
+            }
+        }
+
     }
+}

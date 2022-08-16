@@ -29,14 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripUsername = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.dateTimeNow = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dateTimePickerMonthYear = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
             this.Loadbutton = new System.Windows.Forms.Button();
             this.cmbForecastFile = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -99,6 +101,8 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.dateTimePickerMonthYear);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.Loadbutton);
             this.groupBox1.Controls.Add(this.cmbForecastFile);
             this.groupBox1.Controls.Add(this.label2);
@@ -110,17 +114,38 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(1334, 132);
+            this.groupBox1.Size = new System.Drawing.Size(1334, 170);
             this.groupBox1.TabIndex = 35;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Production Plan List";
+            // 
+            // dateTimePickerMonthYear
+            // 
+            this.dateTimePickerMonthYear.CustomFormat = "MMM-yyyy";
+            this.dateTimePickerMonthYear.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerMonthYear.Location = new System.Drawing.Point(212, 34);
+            this.dateTimePickerMonthYear.Name = "dateTimePickerMonthYear";
+            this.dateTimePickerMonthYear.ShowUpDown = true;
+            this.dateTimePickerMonthYear.Size = new System.Drawing.Size(331, 26);
+            this.dateTimePickerMonthYear.TabIndex = 45;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(27, 38);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(87, 19);
+            this.label3.TabIndex = 44;
+            this.label3.Text = "Month Year";
             // 
             // Loadbutton
             // 
             this.Loadbutton.Enabled = false;
             this.Loadbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Loadbutton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Loadbutton.Location = new System.Drawing.Point(674, 79);
+            this.Loadbutton.Location = new System.Drawing.Point(671, 115);
             this.Loadbutton.Margin = new System.Windows.Forms.Padding(4);
             this.Loadbutton.Name = "Loadbutton";
             this.Loadbutton.Size = new System.Drawing.Size(100, 28);
@@ -134,7 +159,7 @@
             this.cmbForecastFile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbForecastFile.Enabled = false;
             this.cmbForecastFile.FormattingEnabled = true;
-            this.cmbForecastFile.Location = new System.Drawing.Point(215, 79);
+            this.cmbForecastFile.Location = new System.Drawing.Point(212, 115);
             this.cmbForecastFile.Name = "cmbForecastFile";
             this.cmbForecastFile.Size = new System.Drawing.Size(440, 27);
             this.cmbForecastFile.TabIndex = 42;
@@ -144,7 +169,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(30, 79);
+            this.label2.Location = new System.Drawing.Point(27, 115);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 19);
@@ -155,7 +180,7 @@
             // 
             this.browseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.browseButton.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.browseButton.Location = new System.Drawing.Point(555, 40);
+            this.browseButton.Location = new System.Drawing.Point(552, 76);
             this.browseButton.Margin = new System.Windows.Forms.Padding(4);
             this.browseButton.Name = "browseButton";
             this.browseButton.Size = new System.Drawing.Size(100, 28);
@@ -167,7 +192,7 @@
             // tbfilepath
             // 
             this.tbfilepath.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbfilepath.Location = new System.Drawing.Point(215, 40);
+            this.tbfilepath.Location = new System.Drawing.Point(212, 76);
             this.tbfilepath.Margin = new System.Windows.Forms.Padding(4);
             this.tbfilepath.Name = "tbfilepath";
             this.tbfilepath.ReadOnly = true;
@@ -178,7 +203,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(30, 40);
+            this.label6.Location = new System.Drawing.Point(27, 76);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(169, 19);
@@ -209,38 +234,38 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewPublicHolidayList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewPublicHolidayList.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewPublicHolidayList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewPublicHolidayList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.dataGridViewPublicHolidayList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Open Sans", 8.25F);
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewPublicHolidayList.DefaultCellStyle = dataGridViewCellStyle20;
-            this.dataGridViewPublicHolidayList.Location = new System.Drawing.Point(16, 285);
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Open Sans", 8.25F);
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewPublicHolidayList.DefaultCellStyle = dataGridViewCellStyle17;
+            this.dataGridViewPublicHolidayList.Location = new System.Drawing.Point(16, 323);
             this.dataGridViewPublicHolidayList.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewPublicHolidayList.Name = "dataGridViewPublicHolidayList";
             this.dataGridViewPublicHolidayList.ReadOnly = true;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Open Sans", 8.25F);
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewPublicHolidayList.RowHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Open Sans", 8.25F);
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewPublicHolidayList.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.dataGridViewPublicHolidayList.RowHeadersWidth = 51;
             this.dataGridViewPublicHolidayList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPublicHolidayList.Size = new System.Drawing.Size(1334, 394);
+            this.dataGridViewPublicHolidayList.Size = new System.Drawing.Size(1334, 356);
             this.dataGridViewPublicHolidayList.TabIndex = 37;
             this.dataGridViewPublicHolidayList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewForecastList_CellFormatting);
             // 
@@ -365,5 +390,7 @@
         private MaterialSkin.Controls.MaterialButton homeButton;
         private System.Windows.Forms.Label totalLbl;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DateTimePicker dateTimePickerMonthYear;
     }
 }

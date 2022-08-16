@@ -497,7 +497,7 @@ namespace SMTPE
                                 }
                                 //worksheet1.Range(worksheet1.Cell(4, 5 + i), worksheet1.Cell(endPartSheet1, 5 + i)).Style.Fill.BackgroundColor = XLColor.FromArgb(0, 176, 240);
                             }
-                        }                        
+                        }
                     }
                     //===============
 
@@ -517,7 +517,7 @@ namespace SMTPE
                             {
                                 int colposition = j - 5;
                                 k++;
-                                smtSchedule.Add(i + "," + k + "," +colposition, Convert.ToInt32(dataGridViewFCT.Rows[i].Cells[j].Value.ToString()));
+                                smtSchedule.Add(i + "," + k + "," + colposition, Convert.ToInt32(dataGridViewFCT.Rows[i].Cells[j].Value.ToString()));
                             }
                         }
                     }
@@ -530,9 +530,9 @@ namespace SMTPE
                         int rowPosition1 = (rowPosition * 5) + 4;
                         int rowPosition2 = (rowPosition + 1) * 5;
                         int rowPosition3 = (rowPosition * 5) + 6;
-                        
+
                         int columnPosition = Convert.ToInt32(row[1].Replace(",", ""));
-                        
+
                         // to get first column
                         if (columnPosition == 1)
                         {
@@ -558,10 +558,20 @@ namespace SMTPE
                             // to get all data in datagridview c# with skip 0 value, with ceck if cell is not blank and the header color is read or blue add 1 cell  
                             if (worksheet1.Cell(i, j).Value != "")
                             {
-                                if (worksheet1.Cell(3, j).Style.Fill.BackgroundColor == XLColor.Red|| worksheet1.Cell(3, j).Style.Fill.BackgroundColor == XLColor.FromArgb(0, 176, 240))
+                                if (worksheet1.Cell(3, j).Style.Fill.BackgroundColor == XLColor.Red || worksheet1.Cell(3, j).Style.Fill.BackgroundColor == XLColor.FromArgb(0, 176, 240))
                                 {
                                     worksheet1.Cell(i, j).InsertCellsBefore(1);
-                                }                              
+                                }
+                            }
+                        }
+
+                        // store 0 if value is blank
+                        for (int j = 6; j < totalDay + 6; j++)
+                        {
+                            // to get all data in datagridview c# with skip 0 value, with ceck if cell is not blank and the header color is read or blue add 1 cell  
+                            if (worksheet1.Cell(i, j).Value == "")
+                            {
+                                worksheet1.Cell(i, j).Value = 0;
                             }
                         }
                     }
@@ -587,14 +597,32 @@ namespace SMTPE
                             {
                                 worksheet1.Cell(row, j + cellColumnIndexSheet1).Value = dataGridViewFCT.Rows[k].Cells[j].Value.ToString();
                             }
+
+                            //// to remove row for separate each data per model
+                            //if (k > 0)
+                            //{
+                            //    int blankrow = ((k * 5) + 3) +1;
+                            //    worksheet1.Cell(blankrow, j).Value = "";
+                            //}                         
                         }
                     }
+
+                    // remove row for separate each data 
+                    for (int k = 1; k < dataGridViewFCT.Rows.Count + 1; k++)
+                    {
+                        int blankrow = ((k * 5) + 3);
+                        for (int j = 1; j < dataGridViewFCT.Columns.Count + 4; j++)
+                        {
+                            worksheet1.Cell(blankrow, j).Value = "";
+                        }
+                    }
+
                     //// to delete unnecessary data
                     //worksheet1.Range("AK:AZ").Delete(XLShiftDeletedCells.ShiftCellsLeft); 
 
                     // set dok number format
-                    worksheet1.Range(worksheet1.Cell(4, 5), worksheet1.Cell(endPartSheet1, totalDay + 5)).Style.NumberFormat.Format = "#,###;-#,###;-";                   
-                    
+                    worksheet1.Range(worksheet1.Cell(4, 5), worksheet1.Cell(endPartSheet1, totalDay + 5)).Style.NumberFormat.Format = "#,###;-#,###;-";
+
                     #endregion
 
                     workbook.SaveAs(directoryFile + "\\" + filename);

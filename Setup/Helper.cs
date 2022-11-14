@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -393,6 +394,27 @@ namespace SMTPE
                 connectionDB.connection.Close();
                 // tampilkan pesan error
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        // to display no records data in datagridview c#
+        public void norecord_dgv(DataGridView dgv, PaintEventArgs e)
+        {
+            if (dgv.Rows.Count == 0)
+            {
+                dgv.ColumnHeadersVisible = false;
+
+                //setting font
+                Font font = new Font("Open Sans", 20.0f, FontStyle.Bold);
+
+                //add text no records
+                TextRenderer.DrawText(e.Graphics, "No records found.", font,
+                dgv.ClientRectangle, Color.White,
+                dgv.BackgroundColor, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+            }
+            else
+            {
+                dgv.ColumnHeadersVisible = true;
             }
         }
 

@@ -121,6 +121,10 @@ namespace SMTPE
                         {
                             uPHModelToolStripMenuItem.Visible = true;
                         }
+                        if (dt.Rows[i]["roleID"].ToString() == "19")
+                        {
+                            pegatronLabelToolStripMenuItem.Visible = true;
+                        }
                     }
                 }
             }
@@ -134,7 +138,7 @@ namespace SMTPE
             DialogResult result = materialDialog.ShowDialog(this);
             if (result.ToString() == "OK")
             {
-                Application.ExitThread();
+                System.Windows.Forms.Application.ExitThread();
             }
             else
             {
@@ -191,7 +195,6 @@ namespace SMTPE
             userlist.Show();
             this.Hide();
         }
-
 
         private void scanToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -317,6 +320,14 @@ namespace SMTPE
             PublicHoliday publicHoliday = new PublicHoliday();
             publicHoliday.toolStripUsername.Text = toolStripUsername.Text;
             publicHoliday.Show();
+            this.Hide();
+        }
+
+        private void pegatronLabelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PegatronLabelList pegatronLabelList = new PegatronLabelList();
+            pegatronLabelList.toolStripUsername.Text = toolStripUsername.Text;
+            pegatronLabelList.Show();
             this.Hide();
         }
     }

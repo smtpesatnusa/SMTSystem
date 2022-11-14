@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>SMTPE</RootNamespace>
     <AssemblyName>SMTPE</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -61,7 +61,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
@@ -100,6 +100,11 @@
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>bin\Debug\Interop.BarTender.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.LabelManager2, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\Interop.LabelManager2.DLL</HintPath>
     </Reference>
     <Reference Include="K4os.Compression.LZ4, Version=1.1.11.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
       <HintPath>packages\K4os.Compression.LZ4.1.1.11\lib\net46\K4os.Compression.LZ4.dll</HintPath>
@@ -355,6 +360,30 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="PegatronLabel\AddLabel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PegatronLabel\AddLabel.Designer.cs">
+      <DependentUpon>AddLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PegatronLabel\HistoryPrintLabel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PegatronLabel\HistoryPrintLabel.Designer.cs">
+      <DependentUpon>HistoryPrintLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PegatronLabel\PegatronLabel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PegatronLabel\PegatronLabel.Designer.cs">
+      <DependentUpon>PegatronLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PegatronLabel\PegatronLabelList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PegatronLabel\PegatronLabelList.Designer.cs">
+      <DependentUpon>PegatronLabelList.cs</DependentUpon>
+    </Compile>
     <Compile Include="ScrapPartnumber\ScrapPartnumberList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -510,6 +539,18 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PegatronLabel\AddLabel.resx">
+      <DependentUpon>AddLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PegatronLabel\HistoryPrintLabel.resx">
+      <DependentUpon>HistoryPrintLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PegatronLabel\PegatronLabel.resx">
+      <DependentUpon>PegatronLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PegatronLabel\PegatronLabelList.resx">
+      <DependentUpon>PegatronLabelList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ScrapPartnumber\ScrapPartnumberList.resx">
       <DependentUpon>ScrapPartnumberList.cs</DependentUpon>

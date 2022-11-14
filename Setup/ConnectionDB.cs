@@ -17,14 +17,14 @@ namespace SMTPE
         //static string database = "uat_smt";
         //static string userDB = "smt_developer";
         //static string password = "w(v97weP8UGe=bYd";
-        public static string strProvider = "server=" + host + ";Database=" + database + ";User ID=" + userDB + ";Password=" + password;
-        public MySqlConnection connection = new MySqlConnection("server=" + host + ";Database=" + database + ";User ID=" + userDB + ";Password=" + password);
+        public static string strProvider = "server=" + host + ";Database=" + database + ";User ID=" + userDB + ";Password=" + password + ";SslMode=None;Connection Timeout=30";
+        public MySqlConnection connection = new MySqlConnection("server=" + host + ";Database=" + database + ";User ID=" + userDB + ";Password=" + password + ";SslMode=None;Connection Timeout=30");
 
         public bool Open()
         {
             try
             {
-                strProvider = "server=" + host + ";Database=" + database + ";User ID=" + userDB + ";Password=" + password;
+                strProvider = "server=" + host + ";Database=" + database + ";User ID=" + userDB + ";Password=" + password + ";SslMode=None;Connection Timeout=30";
                 conn = new MySqlConnection(strProvider);
                 conn.Open();
                 return true;

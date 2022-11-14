@@ -49,6 +49,7 @@
             this.uPHModelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.materialMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.materialMasterXMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.publicHolidayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.administrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.departmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,7 +59,7 @@
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.publicHolidayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pegatronLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -119,6 +120,7 @@
             this.labelPartnumberToolStripMenuItem,
             this.scrapPartToolStripMenuItem,
             this.printLabelToolStripMenuItem,
+            this.pegatronLabelToolStripMenuItem,
             this.masterDataToolStripMenuItem,
             this.toolStripMenuItem1,
             this.administrationToolStripMenuItem,
@@ -126,7 +128,7 @@
             this.logOutToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(211, 278);
+            this.contextMenuStrip.Size = new System.Drawing.Size(211, 302);
             // 
             // forecastListToolStripMenuItem
             // 
@@ -237,6 +239,13 @@
             this.materialMasterXMToolStripMenuItem.Visible = false;
             this.materialMasterXMToolStripMenuItem.Click += new System.EventHandler(this.materialMasterXMToolStripMenuItem_Click);
             // 
+            // publicHolidayToolStripMenuItem
+            // 
+            this.publicHolidayToolStripMenuItem.Name = "publicHolidayToolStripMenuItem";
+            this.publicHolidayToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.publicHolidayToolStripMenuItem.Text = "Public Holiday";
+            this.publicHolidayToolStripMenuItem.Click += new System.EventHandler(this.publicHolidayToolStripMenuItem_Click);
+            // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
@@ -257,7 +266,7 @@
             // departmentToolStripMenuItem
             // 
             this.departmentToolStripMenuItem.Name = "departmentToolStripMenuItem";
-            this.departmentToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.departmentToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
             this.departmentToolStripMenuItem.Text = "Department";
             this.departmentToolStripMenuItem.Visible = false;
             this.departmentToolStripMenuItem.Click += new System.EventHandler(this.departmentToolStripMenuItem_Click);
@@ -265,7 +274,7 @@
             // userLevelToolStripMenuItem
             // 
             this.userLevelToolStripMenuItem.Name = "userLevelToolStripMenuItem";
-            this.userLevelToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.userLevelToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
             this.userLevelToolStripMenuItem.Text = "User Level";
             this.userLevelToolStripMenuItem.Visible = false;
             this.userLevelToolStripMenuItem.Click += new System.EventHandler(this.userLevelToolStripMenuItem_Click);
@@ -273,7 +282,7 @@
             // userToolStripMenuItem
             // 
             this.userToolStripMenuItem.Name = "userToolStripMenuItem";
-            this.userToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.userToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
             this.userToolStripMenuItem.Text = "User";
             this.userToolStripMenuItem.Visible = false;
             this.userToolStripMenuItem.Click += new System.EventHandler(this.userToolStripMenuItem_Click);
@@ -281,7 +290,7 @@
             // userRoleToolStripMenuItem
             // 
             this.userRoleToolStripMenuItem.Name = "userRoleToolStripMenuItem";
-            this.userRoleToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.userRoleToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
             this.userRoleToolStripMenuItem.Text = "User Role";
             this.userRoleToolStripMenuItem.Visible = false;
             this.userRoleToolStripMenuItem.Click += new System.EventHandler(this.userRoleToolStripMenuItem_Click);
@@ -307,12 +316,13 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // publicHolidayToolStripMenuItem
+            // pegatronLabelToolStripMenuItem
             // 
-            this.publicHolidayToolStripMenuItem.Name = "publicHolidayToolStripMenuItem";
-            this.publicHolidayToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.publicHolidayToolStripMenuItem.Text = "Public Holiday";
-            this.publicHolidayToolStripMenuItem.Click += new System.EventHandler(this.publicHolidayToolStripMenuItem_Click);
+            this.pegatronLabelToolStripMenuItem.Name = "pegatronLabelToolStripMenuItem";
+            this.pegatronLabelToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.pegatronLabelToolStripMenuItem.Text = "Pegatron Label";
+            this.pegatronLabelToolStripMenuItem.Visible = false;
+            this.pegatronLabelToolStripMenuItem.Click += new System.EventHandler(this.pegatronLabelToolStripMenuItem_Click);
             // 
             // MainMenu
             // 
@@ -367,6 +377,7 @@
         private System.Windows.Forms.ToolStripMenuItem uPHModelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem forecastListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem publicHolidayToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pegatronLabelToolStripMenuItem;
     }
 }
 

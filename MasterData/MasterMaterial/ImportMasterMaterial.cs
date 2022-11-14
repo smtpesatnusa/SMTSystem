@@ -168,7 +168,7 @@ namespace SMTPE
             DialogResult result = materialDialog.ShowDialog(this);
             if (result.ToString() == "OK")
             {
-                Application.ExitThread();
+                System.Windows.Forms.Application.ExitThread();
             }
             else
             {

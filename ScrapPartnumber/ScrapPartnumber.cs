@@ -282,11 +282,11 @@ namespace SMTPE
 
         private void printlabel()
         {
-            if (tbpnSN.Text.Length >= 12 && tbpnSN.Text.Length <= 30 && tbscrapQty.Text != ""
-                && tbPrfNo.Text.Length == 7 && cmbDepartment.SelectedIndex != -1 && cmbRequestBy.SelectedIndex != -1)
+            // insert to data to db
+            try
             {
-                // insert to data to db
-                try
+                if (tbpnSN.Text.Length >= 12 && tbpnSN.Text.Length <= 30 && tbscrapQty.Text != ""
+                && tbPrfNo.Text.Length == 7 && cmbDepartment.Text != "" && cmbRequestBy.Text != "")
                 {
                     pnSN = tbpnSN.Text.Trim();
                     pn = pnSN.Remove(pnSN.Length - 3);
@@ -340,16 +340,16 @@ namespace SMTPE
                         }
                     }
                 }
-                catch (Exception ex)
+                else
                 {
-                    connectionDB.connection.Close();
-                    // tampilkan pesan error
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Please fill scrap data properly", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Please fill scrap data properly", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                connectionDB.connection.Close();
+                // tampilkan pesan error
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -410,7 +410,7 @@ namespace SMTPE
             DialogResult result = materialDialog.ShowDialog(this);
             if (result.ToString() == "OK")
             {
-                Application.ExitThread();
+                System.Windows.Forms.Application.ExitThread();
             }
             else
             {
@@ -450,7 +450,7 @@ namespace SMTPE
                         {
                             var cmd = new MySqlCommand("", connectionDB.connection);
 
-                            string queryupdateStatusPart = "UPDATE tbl_scrappart SET statusDelete ='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")+ ","+idUser+"' WHERE partnosn = '" +partslctd+"' AND prfno = '"+prfslctd+"'";
+                            string queryupdateStatusPart = "UPDATE tbl_scrappart SET statusDelete ='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "," + idUser + "' WHERE partnosn = '" + partslctd + "' AND prfno = '" + prfslctd + "'";
                             connectionDB.connection.Open();
 
                             string[] allQuery = { queryupdateStatusPart };
@@ -517,7 +517,7 @@ namespace SMTPE
                     // get part with $$
                     try
                     {
-                        string query = "SELECT partdetail, qty, updatedate FROM tbl_scrappart WHERE partnosn = '"+partslctd+"' AND prfNo = '"+prfslctd+"'";
+                        string query = "SELECT partdetail, qty, updatedate FROM tbl_scrappart WHERE partnosn = '" + partslctd + "' AND prfNo = '" + prfslctd + "'";
                         using (MySqlDataAdapter adpt = new MySqlDataAdapter(query, connectionDB.connection))
                         {
                             DataTable dt = new DataTable();

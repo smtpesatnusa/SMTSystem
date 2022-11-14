@@ -4,17 +4,17 @@
   <description asmv2:publisher="Microsoft" asmv2:product="SMTPE" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true" />
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
-    <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
+    <framework targetVersion="4.6.1" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="SMTPE.exe.manifest" size="31152">
+    <dependentAssembly dependencyType="install" codebase="SMTPE.exe.manifest" size="98017">
       <assemblyIdentity name="SMTPE.exe" version="1.0.0.3" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>wQRr6HfqxhBLFvHeePsz6S6JpzJL9SrspcMrH3W5r20=</dsig:DigestValue>
+        <dsig:DigestValue>zXxADUU72mtkuymRTtIiYXNkY3k7KIov22c7DB5QatU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

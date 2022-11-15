@@ -54,48 +54,24 @@ namespace SMTPE
                     string woNo = cmbWO.Text;
                     string runningNo = runningNumbertb.Text;
                     string model = modeltb.Text;
+                    string remark = remarktb.Text;
 
-                    string cek = "SELECT id FROM tbl_pegatronlabel WHERE sequence = '"+sequence+"' AND woNumber = '"+woNo+"' " +
-                        "AND runningNumber = '"+runningNo+"' AND model = '"+model+"'";
-                        
-                    using (MySqlDataAdapter adpt = new MySqlDataAdapter(cek, connectionDB.connection))
-                    {
-                        DataSet ds = new DataSet();
-                        adpt.Fill(ds);
+                    //insert data to db
+                    var cmd = new MySqlCommand("", connectionDB.connection);
+                    connectionDB.connection.Open();
+                    // query insert data patlite label and qty
+                    string Query = "INSERT INTO tbl_pegatronlabel (sequence, def,  woNumber, runningNumber, model, remark, printDate, printBy) VALUES " +
+                        "('" + sequence + "', 'HSF', '" + woNo + "', '" + runningNo + "', '" + model + "', '" + remark + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "','" + userdetail.Text + "' )";
 
-                        // cek jika modelno tsb sudah di upload
-                        if (ds.Tables[0].Rows.Count > 0)
-                        {
-                            MessageBox.Show(this, "Pegatron Label already added, Unable to add pegatron label with similar detail", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        else
-                        {
-                            //insert data to db
-                            var cmd = new MySqlCommand("", connectionDB.connection);
-                            connectionDB.connection.Open();
-                            // query insert data patlite label and qty
-                            string Query = "INSERT INTO tbl_pegatronlabel (sequence, def,  woNumber, runningNumber, model, createDate, createBy) VALUES " +
-                                "('" + sequence + "', 'HSF', '" + woNo + "', '" + runningNo + "', '" + model + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "','" + userdetail.Text + "' )";
+                    cmd.CommandText = Query;
+                    cmd.ExecuteNonQuery();
 
-                            cmd.CommandText = Query;
-                            cmd.ExecuteNonQuery();
+                    // print Pegatron label
+                    printLabeltoPrinter();
 
-                            // print Pegatron label
-                            printLabeltoPrinter();
-
-                            // query insert hisyory
-                            string QueryPrint = "INSERT INTO tbl_historyprintpega(labelID, qty, printDate, printBy) VALUES " +
-                                "((SELECT id FROM tbl_pegatronlabel WHERE sequence = '"+sequence+"' AND woNumber = '"+woNo+"' AND runningNumber = '"+runningNo+"' AND model = '"+model+"')," +
-                                " '1', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "','" + userdetail.Text + "' )";
-
-                            cmd.CommandText = QueryPrint;
-                            cmd.ExecuteNonQuery();
-
-                            connectionDB.connection.Close();
-                            MessageBox.Show(this, "Pegatron Label Successfully Print", "Print Pegatron Label", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            this.Close();
-                        }
-                    }
+                    connectionDB.connection.Close();
+                    MessageBox.Show(this, "Pegatron Label Successfully Print", "Print Pegatron Label", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
                 }
             }
             catch (Exception ex)

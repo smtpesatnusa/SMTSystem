@@ -488,3 +488,4 @@ C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.PegatronLabelList.resources
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.csprojAssemblyReference.cache
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.AddWOmaster.resources
 C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.Womasterlist.resources
+C:\Users\mis\source\repos\SMTSystem\obj\Debug\SMTPE.LabelPrint.resources

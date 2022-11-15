@@ -162,7 +162,7 @@ namespace SMTPE
                     catch (Exception ex)
                     {
                         connectionDB.connection.Close();
-                        MessageBox.Show(this, "Unable to delete pegatron label with similar detail", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(this, "Unable to delete master WO pegatron, WO already use", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }                    
                 }
             }

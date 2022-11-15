@@ -355,6 +355,12 @@
     <Compile Include="MasterData\Modelmaster\Modelmasterlist.Designer.cs">
       <DependentUpon>Modelmasterlist.cs</DependentUpon>
     </Compile>
+    <Compile Include="PegatronLabel\LabelPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PegatronLabel\LabelPrint.Designer.cs">
+      <DependentUpon>LabelPrint.cs</DependentUpon>
+    </Compile>
     <Compile Include="PrintLabel\PrintLabelNew.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -546,6 +552,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PegatronLabel\LabelPrint.resx">
+      <DependentUpon>LabelPrint.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PrintLabel\PrintLabelNew.resx">
       <DependentUpon>PrintLabelNew.cs</DependentUpon>

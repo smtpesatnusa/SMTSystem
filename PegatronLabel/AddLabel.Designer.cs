@@ -34,7 +34,9 @@ namespace SMTPE
             this.sequencetb = new MaterialSkin.Controls.MaterialTextBox();
             this.runningNumbertb = new MaterialSkin.Controls.MaterialTextBox();
             this.modeltb = new MaterialSkin.Controls.MaterialTextBox();
-            this.cmbWO = new MaterialSkin.Controls.MaterialComboBox();
+            this.cmbWO = new System.Windows.Forms.ComboBox();
+            this.remarktb = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // saveBtn
@@ -45,13 +47,13 @@ namespace SMTPE
             this.saveBtn.Depth = 0;
             this.saveBtn.HighEmphasis = true;
             this.saveBtn.Icon = null;
-            this.saveBtn.Location = new System.Drawing.Point(183, 344);
+            this.saveBtn.Location = new System.Drawing.Point(195, 429);
             this.saveBtn.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.saveBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.NoAccentTextColor = System.Drawing.Color.Empty;
             this.saveBtn.Size = new System.Drawing.Size(126, 44);
-            this.saveBtn.TabIndex = 257;
+            this.saveBtn.TabIndex = 267;
             this.saveBtn.Text = "Save";
             this.saveBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.saveBtn.UseAccentColor = false;
@@ -63,7 +65,7 @@ namespace SMTPE
             this.userdetail.AutoSize = true;
             this.userdetail.BackColor = System.Drawing.Color.Transparent;
             this.userdetail.Font = new System.Drawing.Font("Open Sans", 8.25F);
-            this.userdetail.Location = new System.Drawing.Point(52, 369);
+            this.userdetail.Location = new System.Drawing.Point(64, 454);
             this.userdetail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.userdetail.Name = "userdetail";
             this.userdetail.Size = new System.Drawing.Size(77, 19);
@@ -131,33 +133,47 @@ namespace SMTPE
             // 
             // cmbWO
             // 
-            this.cmbWO.AutoResize = false;
-            this.cmbWO.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.cmbWO.Depth = 0;
-            this.cmbWO.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cmbWO.DropDownHeight = 174;
-            this.cmbWO.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbWO.DropDownWidth = 121;
-            this.cmbWO.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.cmbWO.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cmbWO.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbWO.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbWO.DropDownHeight = 150;
+            this.cmbWO.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbWO.FormattingEnabled = true;
-            this.cmbWO.Hint = "WO Number";
             this.cmbWO.IntegralHeight = false;
-            this.cmbWO.ItemHeight = 43;
-            this.cmbWO.Location = new System.Drawing.Point(44, 150);
-            this.cmbWO.MaxDropDownItems = 4;
-            this.cmbWO.MouseState = MaterialSkin.MouseState.OUT;
+            this.cmbWO.ItemHeight = 31;
+            this.cmbWO.Location = new System.Drawing.Point(44, 155);
             this.cmbWO.Name = "cmbWO";
-            this.cmbWO.Size = new System.Drawing.Size(428, 49);
-            this.cmbWO.StartIndex = 0;
+            this.cmbWO.Size = new System.Drawing.Size(428, 39);
             this.cmbWO.TabIndex = 263;
             this.cmbWO.SelectedIndexChanged += new System.EventHandler(this.cmbWO_SelectedIndexChanged);
+            // 
+            // remarktb
+            // 
+            this.remarktb.Location = new System.Drawing.Point(44, 338);
+            this.remarktb.Multiline = true;
+            this.remarktb.Name = "remarktb";
+            this.remarktb.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.remarktb.Size = new System.Drawing.Size(428, 70);
+            this.remarktb.TabIndex = 266;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Open Sans", 8.25F);
+            this.label1.Location = new System.Drawing.Point(40, 316);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 19);
+            this.label1.TabIndex = 267;
+            this.label1.Text = "Remark";
             // 
             // AddLabel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(515, 425);
+            this.ClientSize = new System.Drawing.Size(515, 501);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.remarktb);
             this.Controls.Add(this.cmbWO);
             this.Controls.Add(this.modeltb);
             this.Controls.Add(this.runningNumbertb);
@@ -187,7 +203,9 @@ namespace SMTPE
         private MaterialSkin.Controls.MaterialTextBox sequencetb;
         private MaterialSkin.Controls.MaterialTextBox runningNumbertb;
         private MaterialSkin.Controls.MaterialTextBox modeltb;
-        private MaterialSkin.Controls.MaterialComboBox cmbWO;
+        private System.Windows.Forms.ComboBox cmbWO;
+        private System.Windows.Forms.TextBox remarktb;
+        public System.Windows.Forms.Label label1;
     }
 }
 

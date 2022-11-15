@@ -76,7 +76,7 @@ namespace SMTPE
                 catch (Exception ex)
                 {
                     connectionDB.connection.Close();
-                    MessageBox.Show(this, "Unable to delete master WO pegatron, WO already used", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message.ToString());
                 }            
             }
         }

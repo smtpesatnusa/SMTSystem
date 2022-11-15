@@ -329,9 +329,9 @@ namespace SMTPE
 
         private void pegatronLabelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PegatronLabelList pegatronLabelList = new PegatronLabelList();
-            pegatronLabelList.toolStripUsername.Text = toolStripUsername.Text;
-            pegatronLabelList.Show();
+            LabelPrint labelPrint = new LabelPrint();
+            labelPrint.toolStripUsername.Text = toolStripUsername.Text;
+            labelPrint.Show();
             this.Hide();
         }
 

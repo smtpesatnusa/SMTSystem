@@ -125,6 +125,10 @@ namespace SMTPE
                         {
                             pegatronLabelToolStripMenuItem.Visible = true;
                         }
+                        if (dt.Rows[i]["roleID"].ToString() == "20")
+                        {
+                            pegatronWOMasterToolStripMenuItem.Visible = true;
+                        }
                     }
                 }
             }
@@ -328,6 +332,14 @@ namespace SMTPE
             PegatronLabelList pegatronLabelList = new PegatronLabelList();
             pegatronLabelList.toolStripUsername.Text = toolStripUsername.Text;
             pegatronLabelList.Show();
+            this.Hide();
+        }
+
+        private void pegatronWOMasterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Womasterlist womasterlist = new Womasterlist();
+            womasterlist.toolStripUsername.Text = toolStripUsername.Text;
+            womasterlist.Show();
             this.Hide();
         }
     }

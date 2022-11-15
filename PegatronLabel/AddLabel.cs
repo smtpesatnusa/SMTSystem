@@ -10,6 +10,7 @@ namespace SMTPE
     public partial class AddLabel : MaterialForm
     {
         ConnectionDB connectionDB = new ConnectionDB();
+        Helper help = new Helper();
 
         public AddLabel()
         {
@@ -22,23 +23,22 @@ namespace SMTPE
 
             //icon
             this.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+
+            //menampilkan data combobox department
+            help.displayCmbList("SELECT * FROM tbl_wopegatron ORDER BY id ASC", "woNumber", "id", cmbWO);
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                if (sequencetb.Text == "" || woNumbertb.Text == "" || runningNumbertb.Text == "" || modeltb.Text == "" )
+                if (sequencetb.Text == "" || cmbWO.Text == "" || runningNumbertb.Text == "" || modeltb.Text == "" )
                 {
                     MessageBox.Show("Please fill all field properly", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else if (sequencetb.TextLength != 2)
                 {
                     MessageBox.Show("Please fill sequence with 2 character", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else if (woNumbertb.TextLength != 8)
-                {
-                    MessageBox.Show("Please fill WO Number with 8 character", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else if (runningNumbertb.TextLength != 7)
                 {
@@ -51,7 +51,7 @@ namespace SMTPE
                 else
                 {
                     string sequence = sequencetb.Text;
-                    string woNo = woNumbertb.Text;
+                    string woNo = cmbWO.Text;
                     string runningNo = runningNumbertb.Text;
                     string model = modeltb.Text;
 
@@ -79,11 +79,20 @@ namespace SMTPE
 
                             cmd.CommandText = Query;
                             cmd.ExecuteNonQuery();
+
+                            // print Pegatron label
+                            printLabeltoPrinter();
+
+                            // query insert hisyory
+                            string QueryPrint = "INSERT INTO tbl_historyprintpega(labelID, qty, printDate, printBy) VALUES " +
+                                "((SELECT id FROM tbl_pegatronlabel WHERE sequence = '"+sequence+"' AND woNumber = '"+woNo+"' AND runningNumber = '"+runningNo+"' AND model = '"+model+"')," +
+                                " '1', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "','" + userdetail.Text + "' )";
+
+                            cmd.CommandText = QueryPrint;
+                            cmd.ExecuteNonQuery();
+
                             connectionDB.connection.Close();
-
-
-
-                            MessageBox.Show(this, "Pegatron Label Successfully Added", "Add Pegatron Label", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(this, "Pegatron Label Successfully Print", "Print Pegatron Label", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.Close();
                         }
                     }
@@ -102,7 +111,7 @@ namespace SMTPE
             LabelManager2.Document labDoc = null;
             //string filePathName = System.Windows.Forms.Application.StartupPath + "\\Document1.lab";
             string filePathName = AppDomain.CurrentDomain.BaseDirectory + "Pcb.lab";
-            string text = sequencetb.Text + " HSF " + woNumbertb.Text + " " + runningNumbertb.Text + " " + modeltb.Text + " ";
+            string text = sequencetb.Text + " HSF " + cmbWO.Text + " " + runningNumbertb.Text + " " + modeltb.Text + " ";
             if (!File.Exists(filePathName))
             {
                 MessageBox.Show("File not found");
@@ -113,7 +122,7 @@ namespace SMTPE
                 labelapp = new LabelManager2.Application();
                 labelapp.Documents.Open(filePathName, false);
                 labDoc = labelapp.ActiveDocument;
-                labDoc.Variables.FormVariables.Item("Var0").Value = woNumbertb.Text;
+                labDoc.Variables.FormVariables.Item("Var0").Value = cmbWO.Text;
                 labDoc.Variables.FormVariables.Item("var1").Value = text;
                 labDoc.PrintDocument(1);
 
@@ -149,14 +158,39 @@ namespace SMTPE
             }
         }
 
-        private void woNumbertb_Leave(object sender, EventArgs e)
-        {
-            woNumbertb.Text = woNumbertb.Text.ToUpper();
-        }
 
         private void modeltb_Leave(object sender, EventArgs e)
         {
             modeltb.Text = modeltb.Text.ToUpper();
+        }
+
+        private void cmbWO_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            modeltb.Clear();
+
+            try
+            {
+                string query = "SELECT * FROM tbl_wopegatron WHERE id = '" + cmbWO.SelectedValue + "' ";
+                using (MySqlDataAdapter adpt = new MySqlDataAdapter(query, connectionDB.connection))
+                {
+                    DataTable dset = new DataTable();
+                    adpt.Fill(dset);
+
+                    if (dset.Rows.Count > 0)
+                    {
+                        for (int j = 0; j < dset.Rows.Count; j++)
+                        {
+                            string model = dset.Rows[0]["model"].ToString();
+                            modeltb.Text = model;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // tampilkan pesan error
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

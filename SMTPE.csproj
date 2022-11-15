@@ -205,6 +205,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MasterData\WOMaster\AddWOmaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterData\WOMaster\AddWOmaster.Designer.cs">
+      <DependentUpon>AddWOmaster.cs</DependentUpon>
+    </Compile>
     <Compile Include="LabelPartnumber\CustControl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -300,6 +306,12 @@
     </Compile>
     <Compile Include="ForecastList\ForecastList.Designer.cs">
       <DependentUpon>ForecastList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterData\WOMaster\Womasterlist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterData\WOMaster\Womasterlist.Designer.cs">
+      <DependentUpon>Womasterlist.cs</DependentUpon>
     </Compile>
     <Compile Include="PackingList\ImportPackingList.cs">
       <SubType>Form</SubType>
@@ -451,6 +463,9 @@
     <Compile Include="Administration\Userlist.Designer.cs">
       <DependentUpon>Userlist.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="MasterData\WOMaster\AddWOmaster.resx">
+      <DependentUpon>AddWOmaster.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LabelPartnumber\CustControl.resx">
       <DependentUpon>CustControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -498,6 +513,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ForecastList\ForecastList.resx">
       <DependentUpon>ForecastList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterData\WOMaster\Womasterlist.resx">
+      <DependentUpon>Womasterlist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PackingList\ImportPackingList.resx">
       <DependentUpon>ImportPackingList.cs</DependentUpon>

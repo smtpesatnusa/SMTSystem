@@ -9,7 +9,7 @@ using System.Windows.Forms;
 namespace SMTPE
 {
     public partial class PegatronLabelList : MaterialForm
-    {        
+    {     
 
         LoadForm lf = new LoadForm();
         ConnectionDB connectionDB = new ConnectionDB();
@@ -206,6 +206,7 @@ namespace SMTPE
                 }
             }
 
+
             dataGridViewBarcodeList.DataSource = dtTemp;
             // add button print in datagridview table
             DataGridViewButtonColumn btnPrint = new DataGridViewButtonColumn();
@@ -307,7 +308,7 @@ namespace SMTPE
         private void dataGridViewQRCodeList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             // Set table title
-            string[] title = {"ID", "Sequence", "WO Number", "Running Number", "Model", "Create Date", "Create By" };
+            string[] title = { "ID", "Sequence", "WO Number", "Running Number", "Model", "Create Date", "Create By" };
             for (int i = 0; i < title.Length; i++)
             {
                 dataGridViewBarcodeList.Columns[i].HeaderText = "" + title[i];

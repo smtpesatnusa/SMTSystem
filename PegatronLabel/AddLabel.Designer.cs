@@ -32,9 +32,9 @@ namespace SMTPE
             this.saveBtn = new MaterialSkin.Controls.MaterialButton();
             this.userdetail = new System.Windows.Forms.Label();
             this.sequencetb = new MaterialSkin.Controls.MaterialTextBox();
-            this.woNumbertb = new MaterialSkin.Controls.MaterialTextBox();
             this.runningNumbertb = new MaterialSkin.Controls.MaterialTextBox();
             this.modeltb = new MaterialSkin.Controls.MaterialTextBox();
+            this.cmbWO = new MaterialSkin.Controls.MaterialComboBox();
             this.SuspendLayout();
             // 
             // saveBtn
@@ -79,35 +79,16 @@ namespace SMTPE
             this.sequencetb.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.sequencetb.Hint = "Sequence";
             this.sequencetb.LeadingIcon = null;
-            this.sequencetb.Location = new System.Drawing.Point(40, 93);
+            this.sequencetb.Location = new System.Drawing.Point(44, 93);
             this.sequencetb.MaxLength = 2;
             this.sequencetb.MouseState = MaterialSkin.MouseState.OUT;
             this.sequencetb.Multiline = false;
             this.sequencetb.Name = "sequencetb";
-            this.sequencetb.Size = new System.Drawing.Size(424, 50);
+            this.sequencetb.Size = new System.Drawing.Size(428, 50);
             this.sequencetb.TabIndex = 262;
             this.sequencetb.Text = "";
             this.sequencetb.TrailingIcon = null;
             this.sequencetb.TextChanged += new System.EventHandler(this.sequencetb_TextChanged);
-            // 
-            // woNumbertb
-            // 
-            this.woNumbertb.AnimateReadOnly = false;
-            this.woNumbertb.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.woNumbertb.Depth = 0;
-            this.woNumbertb.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.woNumbertb.Hint = "WO Number";
-            this.woNumbertb.LeadingIcon = null;
-            this.woNumbertb.Location = new System.Drawing.Point(44, 149);
-            this.woNumbertb.MaxLength = 8;
-            this.woNumbertb.MouseState = MaterialSkin.MouseState.OUT;
-            this.woNumbertb.Multiline = false;
-            this.woNumbertb.Name = "woNumbertb";
-            this.woNumbertb.Size = new System.Drawing.Size(424, 50);
-            this.woNumbertb.TabIndex = 263;
-            this.woNumbertb.Text = "";
-            this.woNumbertb.TrailingIcon = null;
-            this.woNumbertb.Leave += new System.EventHandler(this.woNumbertb_Leave);
             // 
             // runningNumbertb
             // 
@@ -122,7 +103,7 @@ namespace SMTPE
             this.runningNumbertb.MouseState = MaterialSkin.MouseState.OUT;
             this.runningNumbertb.Multiline = false;
             this.runningNumbertb.Name = "runningNumbertb";
-            this.runningNumbertb.Size = new System.Drawing.Size(424, 50);
+            this.runningNumbertb.Size = new System.Drawing.Size(428, 50);
             this.runningNumbertb.TabIndex = 264;
             this.runningNumbertb.Text = "";
             this.runningNumbertb.TrailingIcon = null;
@@ -133,6 +114,7 @@ namespace SMTPE
             this.modeltb.AnimateReadOnly = false;
             this.modeltb.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.modeltb.Depth = 0;
+            this.modeltb.Enabled = false;
             this.modeltb.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.modeltb.Hint = "Model";
             this.modeltb.LeadingIcon = null;
@@ -141,20 +123,44 @@ namespace SMTPE
             this.modeltb.MouseState = MaterialSkin.MouseState.OUT;
             this.modeltb.Multiline = false;
             this.modeltb.Name = "modeltb";
-            this.modeltb.Size = new System.Drawing.Size(424, 50);
+            this.modeltb.Size = new System.Drawing.Size(428, 50);
             this.modeltb.TabIndex = 265;
             this.modeltb.Text = "";
             this.modeltb.TrailingIcon = null;
             this.modeltb.Leave += new System.EventHandler(this.modeltb_Leave);
+            // 
+            // cmbWO
+            // 
+            this.cmbWO.AutoResize = false;
+            this.cmbWO.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cmbWO.Depth = 0;
+            this.cmbWO.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cmbWO.DropDownHeight = 174;
+            this.cmbWO.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbWO.DropDownWidth = 121;
+            this.cmbWO.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cmbWO.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cmbWO.FormattingEnabled = true;
+            this.cmbWO.Hint = "WO Number";
+            this.cmbWO.IntegralHeight = false;
+            this.cmbWO.ItemHeight = 43;
+            this.cmbWO.Location = new System.Drawing.Point(44, 150);
+            this.cmbWO.MaxDropDownItems = 4;
+            this.cmbWO.MouseState = MaterialSkin.MouseState.OUT;
+            this.cmbWO.Name = "cmbWO";
+            this.cmbWO.Size = new System.Drawing.Size(428, 49);
+            this.cmbWO.StartIndex = 0;
+            this.cmbWO.TabIndex = 263;
+            this.cmbWO.SelectedIndexChanged += new System.EventHandler(this.cmbWO_SelectedIndexChanged);
             // 
             // AddLabel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(515, 425);
+            this.Controls.Add(this.cmbWO);
             this.Controls.Add(this.modeltb);
             this.Controls.Add(this.runningNumbertb);
-            this.Controls.Add(this.woNumbertb);
             this.Controls.Add(this.sequencetb);
             this.Controls.Add(this.userdetail);
             this.Controls.Add(this.saveBtn);
@@ -179,9 +185,9 @@ namespace SMTPE
         private MaterialSkin.Controls.MaterialButton saveBtn;
         public System.Windows.Forms.Label userdetail;
         private MaterialSkin.Controls.MaterialTextBox sequencetb;
-        private MaterialSkin.Controls.MaterialTextBox woNumbertb;
         private MaterialSkin.Controls.MaterialTextBox runningNumbertb;
         private MaterialSkin.Controls.MaterialTextBox modeltb;
+        private MaterialSkin.Controls.MaterialComboBox cmbWO;
     }
 }
 

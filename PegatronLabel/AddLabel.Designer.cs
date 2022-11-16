@@ -54,7 +54,7 @@ namespace SMTPE
             this.saveBtn.NoAccentTextColor = System.Drawing.Color.Empty;
             this.saveBtn.Size = new System.Drawing.Size(126, 44);
             this.saveBtn.TabIndex = 267;
-            this.saveBtn.Text = "Save";
+            this.saveBtn.Text = "Print";
             this.saveBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.saveBtn.UseAccentColor = false;
             this.saveBtn.UseVisualStyleBackColor = true;
@@ -90,7 +90,7 @@ namespace SMTPE
             this.sequencetb.TabIndex = 262;
             this.sequencetb.Text = "";
             this.sequencetb.TrailingIcon = null;
-            this.sequencetb.TextChanged += new System.EventHandler(this.sequencetb_TextChanged);
+            this.sequencetb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.sequencetb_KeyPress);
             // 
             // runningNumbertb
             // 
@@ -110,6 +110,7 @@ namespace SMTPE
             this.runningNumbertb.Text = "";
             this.runningNumbertb.TrailingIcon = null;
             this.runningNumbertb.TextChanged += new System.EventHandler(this.runningNumbertb_TextChanged);
+            this.runningNumbertb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.runningNumbertb_KeyPress);
             // 
             // modeltb
             // 

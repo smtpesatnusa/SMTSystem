@@ -70,8 +70,9 @@ namespace SMTPE
                     printLabeltoPrinter();
 
                     connectionDB.connection.Close();
-                    MessageBox.Show(this, "Pegatron Label Successfully Print", "Print Pegatron Label", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
+                    sequencetb.Clear();
+                    runningNumbertb.Clear();
+                    sequencetb.Select();
                 }
             }
             catch (Exception ex)
@@ -117,24 +118,6 @@ namespace SMTPE
         }
 
 
-
-        private void sequencetb_TextChanged(object sender, EventArgs e)
-        {
-            if (System.Text.RegularExpressions.Regex.IsMatch(sequencetb.Text, "[^0-9]"))
-            {
-                sequencetb.Text = sequencetb.Text.Remove(sequencetb.Text.Length - 1);
-            }
-        }
-
-        private void runningNumbertb_TextChanged(object sender, EventArgs e)
-        {
-            if (System.Text.RegularExpressions.Regex.IsMatch(runningNumbertb.Text, "[^0-9]"))
-            {
-                runningNumbertb.Clear();
-            }
-        }
-
-
         private void modeltb_Leave(object sender, EventArgs e)
         {
             modeltb.Text = modeltb.Text.ToUpper();
@@ -167,6 +150,24 @@ namespace SMTPE
                 // tampilkan pesan error
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void runningNumbertb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar);
+        }
+
+        private void runningNumbertb_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(runningNumbertb.Text, "[^0-9]"))
+            {
+                runningNumbertb.Clear();
+            }
+        }
+
+        private void sequencetb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar);
         }
     }
 }

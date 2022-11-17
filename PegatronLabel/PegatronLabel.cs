@@ -123,6 +123,7 @@ namespace SMTPE
             //string filePathName = System.Windows.Forms.Application.StartupPath + "\\Document1.lab";
             string filePathName = AppDomain.CurrentDomain.BaseDirectory + "Pcb.lab";
             string text = sequenceslctd + " " + defslctd + " " + woslctd + " " + rnslctd + " " + modelslctd + " ";
+            string barcode = woNumbertb.Text + "" + runningNumbertb.Text;
             if (!File.Exists(filePathName))
             {
                 MessageBox.Show("File not found");
@@ -133,7 +134,7 @@ namespace SMTPE
                 labelapp = new LabelManager2.Application();
                 labelapp.Documents.Open(filePathName, false);
                 labDoc = labelapp.ActiveDocument;
-                labDoc.Variables.FormVariables.Item("Var0").Value = woNumbertb.Text;
+                labDoc.Variables.FormVariables.Item("Var0").Value = barcode;
                 labDoc.Variables.FormVariables.Item("var1").Value = text;
                 labDoc.PrintDocument(Convert.ToInt32(qtytb.Text));
 

@@ -50,7 +50,7 @@ namespace SMTPE
 
         private void selectBtn_Click(object sender, EventArgs e)
         {
-            if (cmbType.Text == "Single Print")
+            if (cmbType.Text == "PCB Single")
             {
                 AddLabel addLabel = new AddLabel();
                 addLabel.userdetail.Text = badgeId;

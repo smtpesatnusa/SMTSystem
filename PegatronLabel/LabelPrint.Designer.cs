@@ -120,7 +120,7 @@
             this.cmbType.IntegralHeight = false;
             this.cmbType.ItemHeight = 43;
             this.cmbType.Items.AddRange(new object[] {
-            "Single Print"});
+            "PCB Single"});
             this.cmbType.Location = new System.Drawing.Point(79, 60);
             this.cmbType.MaxDropDownItems = 4;
             this.cmbType.MouseState = MaterialSkin.MouseState.OUT;

@@ -71,6 +71,8 @@ namespace SMTPE
         {
             try
             {
+                string search = tbSearch.Text.Replace("'", "''");
+
                 if (tbSearch.Text == "")
                 {
                     Sql = "SELECT a.woNumber, a.model, a.createDate, b.name FROM tbl_wopegatron a, tbl_user b WHERE a.createBy = b.username ORDER BY a.id DESC";
@@ -178,15 +180,15 @@ namespace SMTPE
         }
 
         private void dataGridViewModellist_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            // Set table title
-            string[] title = { "WO NO." , "MODEL", "CREATE DATE", "CREATE BY" };
-            for (int i = 0; i < title.Length; i++)
-            {
-                dataGridViewWOMasterlist.Columns[i].HeaderText = "" + title[i];
-            }
+        {            
+            //// Set table title
+            //string[] title = { "WO NO." , "MODEL", "CREATE DATE", "CREATE BY" };
+            //for (int i = 0; i < title.Length; i++)
+            //{
+            //    dataGridViewWOMasterlist.Columns[i].HeaderText = "" + title[i];
+            //}
 
-            dataGridViewWOMasterlist.Columns[2].DefaultCellStyle.Format = "dddd, dd MMMM yyyy HH:mm:ss";
+            //dataGridViewWOMasterlist.Columns[2].DefaultCellStyle.Format = "dddd, dd MMMM yyyy HH:mm:ss";
             dataGridViewWOMasterlist.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
         }
 
@@ -415,7 +417,6 @@ namespace SMTPE
                     recNo++;
                 }
             }
-
 
             dataGridViewWOMasterlist.DataSource = dtTemp;
             // add button delete in datagridview table
